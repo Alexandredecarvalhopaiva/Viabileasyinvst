@@ -1,0 +1,9 @@
+{
+  "name": "urba-prototipo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Protótipo descartável de inteligência urbanística com dados demonstrativos",
+  "scripts": {
+    "prototype": "node serve.mjs"
+  }
+}

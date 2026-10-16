@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#153f3a">
+  <meta name="description" content="Explore um protótipo de inteligência urbanística para João Pessoa: terreno, diagnóstico, volumetria e cenários de viabilidade.">
+  <title>URBA — Inteligência urbanística</title>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body data-prototype="true">
+  <div id="app" class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="./" aria-label="URBA início"><span class="brand-mark"><i></i><i></i><i></i></span>urba<span class="brand-dot">.</span></a>
+      <div class="brand-caption">INTELIGÊNCIA URBANÍSTICA</div>
+      <button class="workspace" id="workspace-button"><span class="workspace-avatar">M</span><span><strong>MATAVA</strong><small>Workspace de demonstração</small></span><span data-icon="chevrons"></span></button>
+      <div class="nav-caption">ÁREA DE TRABALHO</div>
+      <nav class="main-nav" aria-label="Navegação principal">
+        <button data-page="overview"><span data-icon="grid"></span>Visão geral</button>
+        <button data-page="analysis" class="active"><span data-icon="scan"></span>Nova análise<span class="nav-new">+</span></button>
+        <button data-page="projects"><span data-icon="folder"></span>Meus terrenos<span class="nav-count" id="project-count">3</span></button>
+        <button data-page="sources"><span data-icon="book"></span>Fontes e legislação</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="region-card"><span class="region-pulse"></span><div><strong>João Pessoa, PB</strong><small>Recorte inicial do produto</small></div><span data-icon="pin"></span></div>
+        <button class="help-link" id="about-button"><span data-icon="help"></span>Sobre este protótipo<span data-icon="external"></span></button>
+        <div class="profile"><div class="profile-avatar">MA</div><div><strong>Equipe MATAVA</strong><small>Ambiente de exploração</small></div><span class="online-dot"></span></div>
+      </div>
+    </aside>
+    <div class="main-shell">
+      <header class="topbar">
+        <button class="icon-button mobile-menu" id="mobile-menu" aria-label="Abrir menu"><span data-icon="menu"></span></button>
+        <div class="breadcrumb">Workspace <span>/</span> <strong id="breadcrumb-current">Nova análise</strong></div>
+        <div class="topbar-end"><span class="prototype-tag"><span></span>Protótipo interativo</span><span class="topbar-divider"></span><span class="version">Especificação v3.0</span><button class="icon-button" id="notification-button" aria-label="Ver pendências"><span data-icon="bell"></span><b></b></button></div>
+      </header>
+      <main id="main-content" tabindex="-1"></main>
+    </div>
+  </div>
+  <div class="prototype-switcher" aria-label="Alternativas de interface"><span class="switcher-kicker">EXPLORAR LAYOUTS</span><button id="variant-prev" aria-label="Layout anterior"><span data-icon="arrowLeft"></span></button><button id="variant-label" title="Alternar layout">01 <span>Mapa & diagnóstico</span></button><button id="variant-next" aria-label="Próximo layout"><span data-icon="arrowRight"></span></button></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div id="modal-root"></div>
+  <input id="geojson-input" type="file" accept=".json,.geojson,application/json,application/geo+json" hidden>
+  <script src="./app.js"></script>
+</body>
+</html>
