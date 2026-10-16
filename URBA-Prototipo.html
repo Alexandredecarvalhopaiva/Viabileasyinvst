@@ -68,7 +68,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,ca
       <button class="icon-button drawer-close" id="drawer-close" aria-label="Fechar menu">Fechar <span data-icon="close"></span></button>
       <a class="brand" href="./" aria-label="ViabilEasy início"><span class="brand-mark"><i></i><i></i><i></i></span><span class="brand-name">Viabil<span>Easy</span></span></a>
       <div class="brand-caption">INTELIGÊNCIA URBANÍSTICA</div>
-      <button class="workspace" id="workspace-button"><span class="workspace-avatar">M</span><span><strong>MATAVA</strong><small>Workspace de demonstração</small></span><span data-icon="chevrons"></span></button>
+      <button class="workspace" id="workspace-button"><span class="workspace-avatar">V</span><span><strong>Viabileasy</strong><small>Workspace de demonstração</small></span><span data-icon="chevrons"></span></button>
       <div class="nav-caption">ÁREA DE TRABALHO</div>
       <nav class="main-nav" aria-label="Navegação principal">
         <button data-page="overview"><span data-icon="grid"></span>Visão geral</button>
@@ -79,7 +79,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,ca
       <div class="sidebar-bottom">
         <div class="region-card"><span class="region-pulse"></span><div><strong>João Pessoa, PB</strong><small>Recorte inicial do produto</small></div><span data-icon="pin"></span></div>
         <button class="help-link" id="about-button"><span data-icon="help"></span>Sobre este protótipo<span data-icon="external"></span></button>
-        <div class="profile"><div class="profile-avatar">MA</div><div><strong>Equipe MATAVA</strong><small>Ambiente de exploração</small></div><span class="online-dot"></span></div>
+        <div class="profile"><div class="profile-avatar">VE</div><div><strong>Equipe Viabileasy</strong><small>Ambiente de exploração</small></div><span class="online-dot"></span></div>
       </div>
     </aside>
     <div class="main-shell">
@@ -324,7 +324,7 @@ document.addEventListener('submit',e=>{e.preventDefault();if(e.target.id==='lot-
  const fd=new FormData(e.target);for(const k of ['price','cost','landPrice','indirect','profit'])state[k]=Number(fd.get(k));$('#finance-results').innerHTML=financeResults();enhanceAccessibility();notify('Premissas atualizadas. Resultados recalculados.');
 }});
 $('#variant-prev').addEventListener('click',()=>cycleVariant(-1));$('#variant-next').addEventListener('click',()=>cycleVariant(1));$('#variant-label').addEventListener('click',chooseLayout);
-$('#about-button').addEventListener('click',about);$('#workspace-button').addEventListener('click',()=>modal('Seu espaço de trabalho.',`<p>MATAVA · ambiente de demonstração.</p><p>A versão operacional poderá reunir usuários, permissões, estudos e trilhas de auditoria por organização. Neste protótipo, os dados ficam somente na sessão do navegador.</p>`,btn('Entendi','check','close-modal','primary')));
+$('#about-button').addEventListener('click',about);$('#workspace-button').addEventListener('click',()=>modal('Seu espaço de trabalho.',`<p>Viabileasy · ambiente de demonstração.</p><p>A versão operacional poderá reunir usuários, permissões, estudos e trilhas de auditoria por organização. Neste protótipo, os dados ficam somente na sessão do navegador.</p>`,btn('Entendi','check','close-modal','primary')));
 $('#notification-button').addEventListener('click',()=>modal('O que precisa de validação.',`<ul><li>Cadastro e geometrias oficiais do município.</li><li>Zoneamento e classificação viária de cada lote.</li><li>Pacotes normativos com artigo, anexo e vigência.</li><li>Restrições de orla, patrimônio e ambiente.</li><li>Topografia, produto, vagas e orçamento.</li></ul><div class="notice">${icon('info')}Os estudos permanecem preliminares até que as dependências críticas sejam resolvidas.</div>`,btn('Ver fontes','book','open-sources','primary')));
 $('#mobile-menu').addEventListener('click',()=>setMenu(!menuOpen));
 $('#drawer-close').addEventListener('click',()=>setMenu(false));
