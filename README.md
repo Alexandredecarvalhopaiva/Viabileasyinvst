@@ -16,7 +16,7 @@ Abra o endereço local exibido no terminal. O projeto não exige instalação de
 
 ## Explorar
 
-- **Mapa e diagnóstico** — `?variant=A`. Busque Jardim Oceania, Bessa ou Cabo Branco; selecione um marcador; consulte as premissas e avance para o 3D.
+- **Mapa e diagnóstico** — `?variant=A`. Escolha Coordenadas, Matrícula ou Endereço. Localize um exemplo, confirme o perímetro, consulte as premissas e avance para o 3D.
 - **Estúdio de volumetria** — `?variant=B`. Controles à esquerda, modelo central e indicadores do cenário. Arraste para girar, use a roda para ampliar e as setas com o canvas em foco para orientar o modelo.
 - **Resumo executivo** — `?variant=C`. Visão integrada das camadas legal, geométrica e econômica.
 
@@ -71,3 +71,26 @@ Uma inspeção de estilos no navegador verificou contraste dos textos HTML e dim
 Referências usadas: [contraste mínimo na WCAG 2.2](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html) e [tamanho mínimo de alvos na WCAG 2.2](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html).
 
 Esta revisão não constitui certificação WCAG. A validação completa com VoiceOver, TalkBack e leitores de tela de desktop, em aparelhos reais, permanece necessária antes do uso operacional.
+
+
+## Localização por coordenadas e matrícula na versão 0.3
+
+A tela inicial oferece três formas de busca: coordenadas geográficas, matrícula e endereço. As melhorias responsivas e de teclado da versão 0.2 foram preservadas.
+
+- **Coordenadas:** latitude e longitude WGS84 em graus decimais, com ponto ou vírgula decimal. É possível colar o par `-7.0816, -34.8368` no campo Latitude; para um par com vírgulas decimais, use `-7,0816; -34,8368`. Há validação de alcance e recorte demonstrativo e sugestão explícita para inverter campos quando os valores parecem trocados. A ordem não é corrigida silenciosamente.
+- **Matrícula:** número e cartório formam a chave de busca no conjunto sintético. Exemplos: `12.345` no Cartório A retorna Jardim Oceania; o mesmo número no Cartório B retorna Cabo Branco; `54.321` no Cartório A retorna Bessa. Os nomes dos cartórios e os registros são fictícios.
+- **Endereço:** os nomes Jardim Oceania, Bessa e Cabo Branco continuam disponíveis na opção Endereço.
+
+Um resultado de exemplo precisa ser confirmado antes da análise. Um ponto válido sem correspondência é exibido como referência sem área ou perímetro cadastral; ele pode ser aberto no OpenStreetMap por uma ação explícita do usuário. O mapa interno desse estado é apenas esquemático. Nenhuma área, norma ou volumetria é inferida a partir de um ponto isolado. Buscas sem correspondência registral declaram que nenhum cartório foi consultado, sem afirmar que o registro inexiste.
+
+Alterar os dados da busca desabilita o avanço até uma nova confirmação. A origem da identificação é incluída no relatório e no JSON. Importar ou desenhar um novo perímetro inicia uma referência geométrica independente e não cria vínculo automático com uma matrícula pesquisada anteriormente.
+
+### Integrações pendentes
+
+Não há geocodificador, consulta cadastral oficial ou serviço registral conectado. A busca registral real exigirá acesso autorizado a um provedor e uma forma verificável de associar a matrícula à geometria do terreno. A existência de uma matrícula, por si só, não implica que seu perímetro esteja disponível em formato georreferenciado para esta aplicação.
+
+Referências de identificação: [ONR — consulta com cidade, cartório e matrícula](https://www.onr.org.br/conheca-o-passo-a-passo-para-acessar-o-monitor-registral/) e [ONR — estrutura do Código Nacional de Matrícula](https://cnm.onr.org.br/institucional.php). Essas páginas não foram utilizadas como fonte de registros para o protótipo. O CNM é uma possível evolução; não é validado nesta versão.
+
+### Conferência da busca
+
+Conferidos no navegador: coordenadas com vírgula decimal; colagem de um par de coordenadas; detecção e inversão assistida de latitude/longitude; latitude inválida; ponto sem polígono; cartório ausente; matrícula sem correspondência nos exemplos; mesmo número em cartórios diferentes; confirmação do lote; origem da busca no relatório; manutenção da busca por endereço; reflow em 320 pixels e apresentação em desktop. O JavaScript passou pela verificação de sintaxe e não registrou erros nas jornadas verificadas.
