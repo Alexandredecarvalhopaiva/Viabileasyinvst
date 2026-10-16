@@ -106,3 +106,11 @@ Premissas iniciais: casa com 2 pavimentos, TO solicitada de 25%, eficiência de 
 **Nenhuma tipologia representa uso permitido confirmado.** Todos os enquadramentos e índices são fictícios; flats exigem também a definição de enquadramento residencial ou de hospedagem. O lote de orla mantém o bloqueio explícito. A capacidade geométrica não confirma plantas, vagas, acessibilidade arquitetônica ou aprovação urbanística.
 
 Conferência v0.4: consistência numérica das 12 combinações de 3 lotes e 4 produtos, seleção de cada tipologia no navegador, recálculo de área por unidade, comparação e relatório. Layout inspecionado em 320, 768 e 1280 pixels, sem transbordamento horizontal da página; botões de seleção medidos com 46 pixels de altura. Não houve auditoria formal de acessibilidade assistiva.
+
+## Identidade visual ViabilEasy (v0.5)
+
+Aplicada a paleta do manual enviado: Azul Profundo `#0F2D4A`, Azul Urbano `#1F8EA6`, Verde Viabilidade `#10B981`, Verde Claro `#7EE2B8`, Azul Céu `#8EC5F4`, Roxo Insight `#7C3AED`, Laranja Destaque `#F97316`, Verde Natural `#5A8F3D`, Cinza Escuro `#334155` e Cinza Claro `#E5E7EB`. Tokens e estilos complementares estão em `dist/brand.css`. Cores de texto escuras e fundos suaves derivados mantêm legibilidade; vermelho continua reservado aos bloqueios.
+
+A imagem original do manual está preservada em `dist/assets/viabileasy-manual.png`. A logo é apresentada por uma janela de CSS, sem redesenhar ou alterar seus pixels, no menu, no cabeçalho móvel e no relatório. O favicon é uma versão vetorial simplificada para leitura em tamanho pequeno. Não foi fornecida família tipográfica no manual; mantidas Manrope e DM Sans do protótipo.
+
+Conferência visual em 320 e 1280 pixels, carregamento da imagem, teclado no menu e cartões, passagem da análise para o 3D e relatório. Verificação automatizada de contraste dos textos HTML visíveis sem falhas nas telas de busca, análise, volumetria, relatório e viabilidade; não equivale a auditoria formal de acessibilidade.
