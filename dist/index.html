@@ -8,10 +8,13 @@
   <title>URBA — Inteligência urbanística</title>
   <link rel="icon" type="image/svg+xml" href="./favicon.svg">
   <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./responsive.css">
 </head>
 <body data-prototype="true">
+  <a class="skip-link" href="#main-content">Pular para o conteúdo</a>
   <div id="app" class="app-shell">
     <aside class="sidebar" id="sidebar">
+      <button class="icon-button drawer-close" id="drawer-close" aria-label="Fechar menu">Fechar <span data-icon="close"></span></button>
       <a class="brand" href="./" aria-label="URBA início"><span class="brand-mark"><i></i><i></i><i></i></span>urba<span class="brand-dot">.</span></a>
       <div class="brand-caption">INTELIGÊNCIA URBANÍSTICA</div>
       <button class="workspace" id="workspace-button"><span class="workspace-avatar">M</span><span><strong>MATAVA</strong><small>Workspace de demonstração</small></span><span data-icon="chevrons"></span></button>
@@ -30,16 +33,18 @@
     </aside>
     <div class="main-shell">
       <header class="topbar">
-        <button class="icon-button mobile-menu" id="mobile-menu" aria-label="Abrir menu"><span data-icon="menu"></span></button>
+        <button class="icon-button mobile-menu" id="mobile-menu" aria-label="Abrir menu de navegação" aria-controls="sidebar" aria-expanded="false"><span data-icon="menu"></span></button>
         <div class="breadcrumb">Workspace <span>/</span> <strong id="breadcrumb-current">Nova análise</strong></div>
         <div class="topbar-end"><span class="prototype-tag"><span></span>Protótipo interativo</span><span class="topbar-divider"></span><span class="version">Especificação v3.0</span><button class="icon-button" id="notification-button" aria-label="Ver pendências"><span data-icon="bell"></span><b></b></button></div>
       </header>
       <main id="main-content" tabindex="-1"></main>
     </div>
   </div>
-  <div class="prototype-switcher" aria-label="Alternativas de interface"><span class="switcher-kicker">EXPLORAR LAYOUTS</span><button id="variant-prev" aria-label="Layout anterior"><span data-icon="arrowLeft"></span></button><button id="variant-label" title="Alternar layout">01 <span>Mapa & diagnóstico</span></button><button id="variant-next" aria-label="Próximo layout"><span data-icon="arrowRight"></span></button></div>
+  <button class="menu-backdrop" id="menu-backdrop" aria-hidden="true" aria-label="Fechar menu" tabindex="-1" hidden></button>
+  <div class="prototype-switcher" role="group" aria-label="Alternativas de interface"><span class="switcher-kicker">LAYOUT DO PROTÓTIPO</span><button id="variant-prev" aria-label="Layout anterior"><span data-icon="arrowLeft"></span></button><button id="variant-label" title="Escolher layout" aria-haspopup="dialog">01 <span>Mapa & diagnóstico</span></button><button id="variant-next" aria-label="Próximo layout"><span data-icon="arrowRight"></span></button></div>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <div id="modal-root"></div>
+  <div id="results-announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
   <input id="geojson-input" type="file" accept=".json,.geojson,application/json,application/geo+json" hidden>
   <script src="./app.js"></script>
 </body>

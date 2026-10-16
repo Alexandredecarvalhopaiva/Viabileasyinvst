@@ -50,3 +50,24 @@ O cálculo usa o menor limite entre TO, recuos simplificados e CA máximo dividi
 Verificação de sintaxe JavaScript e conferência manual no navegador: navegação, diagnóstico, passagem ao 3D, atualização de controles, comparação de cenários, alteração de preço e recálculo financeiro, composição do relatório, importação de GeoJSON, tratamento do exemplo de orla e apresentação responsiva. Isso não representa homologação técnica, jurídica ou financeira.
 
 O código é experimental e deve ser reimplementado com os controles da especificação antes de uso operacional.
+
+
+## Responsividade e acessibilidade da versão 0.2
+
+A interface foi revisada para celular, tablet e desktop. Em telas menores, o menu passa a um painel com os nomes das opções e o modelo 3D aparece antes dos controles. Um resumo do lote com acesso direto à análise fica abaixo do mapa. Tabelas extensas mantêm seus dados e recebem uma região de rolagem identificada.
+
+Os textos de interface ganharam tamanho e contraste; os botões HTML principais têm área mínima de 44 × 44 pixels CSS. Os rótulos de seleção ampliam a área clicável das caixas de verificação. Os marcadores do mapa também têm alternativas por busca e pela lista de terrenos.
+
+Há link para pular ao conteúdo, foco visível, contenção de foco no menu e nos diálogos, fechamento por Escape, retorno ao elemento de origem, indicação da página/etapa atual e navegação das abas por setas, Home e End. A alteração dos controles do cenário atualiza seus valores acessíveis e anuncia um resumo textual. A massa 3D possui resultados em texto e botões de giro, zoom e vista superior, além da alternativa por teclado.
+
+No celular, o toque sobre o modelo permite rolar a página por padrão. A rotação por gesto precisa ser ativada e pode ser desativada no próprio painel. A interface também respeita a preferência de reduzir movimento e inclui ajustes para modo de cores forçadas.
+
+### Conferência da revisão
+
+Foram conferidas larguras CSS de 320, 360, 768, 1280 e 1440 pixels, com reflow sem transbordamento horizontal da página nas telas verificadas. A conferência incluiu as três propostas de layout, busca e análise de lote, abas, recálculo financeiro, tabelas, relatório, menu, diálogos e atualização por teclado. Não houve erros JavaScript registrados nas jornadas verificadas.
+
+Uma inspeção de estilos no navegador verificou contraste dos textos HTML e dimensões dos controles; os últimos desvios identificados foram corrigidos. A inspeção não cobre o texto desenhado dentro dos mapas ou do canvas. O comportamento de foco e a exclusão do conteúdo de fundo foram conferidos também pela árvore de acessibilidade do navegador.
+
+Referências usadas: [contraste mínimo na WCAG 2.2](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html) e [tamanho mínimo de alvos na WCAG 2.2](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html).
+
+Esta revisão não constitui certificação WCAG. A validação completa com VoiceOver, TalkBack e leitores de tela de desktop, em aparelhos reais, permanece necessária antes do uso operacional.
