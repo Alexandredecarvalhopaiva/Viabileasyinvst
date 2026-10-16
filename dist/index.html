@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="./styles.css">
   <link rel="stylesheet" href="./responsive.css">
   <link rel="stylesheet" href="./brand.css">
+  <link rel="stylesheet" href="./mobile-glass.css">
 </head>
 <body data-prototype="true">
   <a class="skip-link" href="#main-content">Pular para o conteúdo</a>
@@ -17,6 +18,21 @@
     <aside class="sidebar" id="sidebar">
       <button class="icon-button drawer-close" id="drawer-close" aria-label="Fechar menu">Fechar <span data-icon="close"></span></button>
       <a class="brand" href="./" aria-label="ViabilEasy início"><span class="brand-art"><img src="./assets/viabileasy-manual.png" alt="ViabilEasy — inteligência urbanística para mais possibilidades" width="1448" height="1086"></span></a>
+      <section class="glass-menu-content" aria-labelledby="glass-menu-title">
+        <div class="glass-menu-heading"><span class="glass-eyebrow">SEU TERRENO, MAIS POSSIBILIDADES</span><h2 id="glass-menu-title">O que você quer explorar?</h2><p id="glass-menu-context">Selecione um terreno para começar.</p></div>
+        <nav class="glass-function-grid" aria-label="Funções do sistema">
+          <button data-mobile-destination="find" class="glass-function"><span class="glass-function-icon"><span data-icon="pin"></span></span><span><strong>Buscar terreno</strong><small>Coordenadas ou matrícula</small></span></button>
+          <button data-mobile-destination="potential" class="glass-function"><span class="glass-function-icon"><span data-icon="scan"></span></span><span><strong>Potencial construtivo</strong><small>Possibilidades do lote</small></span></button>
+          <button data-mobile-destination="3d" class="glass-function"><span class="glass-function-icon"><span data-icon="cube"></span></span><span><strong>Volumetria 3D</strong><small>Explore a massa do edifício</small></span></button>
+          <button data-mobile-destination="compare" class="glass-function"><span class="glass-function-icon"><span data-icon="compare"></span></span><span><strong>Comparar produtos</strong><small>Casa, salas, aptos e flats</small></span></button>
+          <button data-mobile-destination="finance" class="glass-function"><span class="glass-function-icon"><span data-icon="chart"></span></span><span><strong>Viabilidade</strong><small>Premissas de receita e custo</small></span></button>
+          <button data-mobile-destination="report" class="glass-function"><span class="glass-function-icon"><span data-icon="file"></span></span><span><strong>Relatório</strong><small>Visualizar e exportar</small></span></button>
+          <button data-mobile-destination="projects" class="glass-function"><span class="glass-function-icon"><span data-icon="folder"></span></span><span><strong>Meus estudos</strong><small>Retome seus terrenos</small></span></button>
+          <button data-mobile-destination="sources" class="glass-function"><span class="glass-function-icon"><span data-icon="book"></span></span><span><strong>Fontes e legislação</strong><small>Consulte as referências</small></span></button>
+          <button data-mobile-destination="overview" class="glass-function"><span class="glass-function-icon"><span data-icon="grid"></span></span><span><strong>Visão geral</strong><small>Seu espaço de trabalho</small></span></button>
+        </nav>
+        <div class="glass-menu-footer"><button data-action="choose-layout"><span data-icon="layers"></span>Layouts do protótipo</button><button data-action="about"><span data-icon="help"></span>Ajuda</button></div>
+      </section>
       <button class="workspace" id="workspace-button"><span class="workspace-avatar">V</span><span><strong>Viabileasy</strong><small>Workspace de demonstração</small></span><span data-icon="chevrons"></span></button>
       <div class="nav-caption">ÁREA DE TRABALHO</div>
       <nav class="main-nav" aria-label="Navegação principal">
@@ -43,6 +59,13 @@
   </div>
   <button class="menu-backdrop" id="menu-backdrop" aria-hidden="true" aria-label="Fechar menu" tabindex="-1" hidden></button>
   <div class="prototype-switcher" role="group" aria-label="Alternativas de interface"><span class="switcher-kicker">LAYOUT DO PROTÓTIPO</span><button id="variant-prev" aria-label="Layout anterior"><span data-icon="arrowLeft"></span></button><button id="variant-label" title="Escolher layout" aria-haspopup="dialog">01 <span>Mapa & diagnóstico</span></button><button id="variant-next" aria-label="Próximo layout"><span data-icon="arrowRight"></span></button></div>
+  <nav class="liquid-dock" id="mobile-dock" aria-label="Atalhos principais">
+    <button data-mobile-destination="overview"><span data-icon="grid"></span><span>Início</span></button>
+    <button data-mobile-destination="find"><span data-icon="pin"></span><span>Terreno</span></button>
+    <button data-mobile-destination="3d"><span data-icon="cube"></span><span>3D</span></button>
+    <button data-mobile-destination="projects"><span data-icon="folder"></span><span>Estudos</span></button>
+    <button id="dock-menu" aria-label="Abrir menu de funções" aria-controls="sidebar" aria-expanded="false"><span data-icon="menu"></span><span>Menu</span></button>
+  </nav>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <div id="modal-root"></div>
   <div id="results-announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
