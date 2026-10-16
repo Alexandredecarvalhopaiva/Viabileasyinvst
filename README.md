@@ -94,3 +94,15 @@ Referências de identificação: [ONR — consulta com cidade, cartório e matr�
 ### Conferência da busca
 
 Conferidos no navegador: coordenadas com vírgula decimal; colagem de um par de coordenadas; detecção e inversão assistida de latitude/longitude; latitude inválida; ponto sem polígono; cartório ausente; matrícula sem correspondência nos exemplos; mesmo número em cartórios diferentes; confirmação do lote; origem da busca no relatório; manutenção da busca por endereço; reflow em 320 pixels e apresentação em desktop. O JavaScript passou pela verificação de sintaxe e não registrou erros nas jornadas verificadas.
+
+## ViabilEasy · potencial construtivo (v0.4)
+
+A entrega principal passa a ser a comparação do potencial de um mesmo terreno para casa, apartamentos, salas comerciais e flats. A imagem conceitual do usuário define a direção do produto e a marca ViabilEasy; seus números não foram usados como índices legais.
+
+Na etapa **Analisar potencial**, quatro cartões mostram pavimentos, área computável e unidades estimadas. Cada botão abre a hipótese no modelo 3D. O seletor de produto reaplica as premissas iniciais; os controles de pavimentos, ocupação e área útil atualizam a simulação. A comparação mantém os quatro produtos e as variações de volume do produto atual. O relatório e o JSON incluem as alternativas iniciais e o cenário selecionado.
+
+Premissas iniciais: casa com 2 pavimentos, TO solicitada de 25%, eficiência de 85% e 250 m² úteis; apartamentos com 6/50%/76%/70 m²; salas com 6/45%/80%/45 m²; flats com 8/40%/72%/30 m². A casa tem uma unidade e sua massa é limitada pela área útil solicitada dividida pela eficiência. As demais tipologias estimam unidades inteiras pela área computável × eficiência ÷ área útil por unidade. A projeção de todas respeita o menor limite do conjunto fictício de TO, recuos e CA. O orçamento simplificado acrescenta 35% da área do lote como área auxiliar apenas nas tipologias coletivas; não há projeto de garagem.
+
+**Nenhuma tipologia representa uso permitido confirmado.** Todos os enquadramentos e índices são fictícios; flats exigem também a definição de enquadramento residencial ou de hospedagem. O lote de orla mantém o bloqueio explícito. A capacidade geométrica não confirma plantas, vagas, acessibilidade arquitetônica ou aprovação urbanística.
+
+Conferência v0.4: consistência numérica das 12 combinações de 3 lotes e 4 produtos, seleção de cada tipologia no navegador, recálculo de área por unidade, comparação e relatório. Layout inspecionado em 320, 768 e 1280 pixels, sem transbordamento horizontal da página; botões de seleção medidos com 46 pixels de altura. Não houve auditoria formal de acessibilidade assistiva.

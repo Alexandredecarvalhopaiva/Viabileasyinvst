@@ -1,8 +1,8 @@
 {
   "name": "urba-prototipo",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
-  "description": "Protótipo descartável de inteligência urbanística com dados demonstrativos",
+  "description": "Protótipo ViabilEasy: potencial construtivo do terreno por tipologia",
   "scripts": {
     "prototype": "node serve.mjs"
   }
