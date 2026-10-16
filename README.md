@@ -54,7 +54,7 @@ O código é experimental e deve ser reimplementado com os controles da especifi
 
 ## Responsividade e acessibilidade da versão 0.2
 
-A interface foi revisada para celular, tablet e desktop. Em telas menores, o menu passa a um painel com os nomes das opções e o modelo 3D aparece antes dos controles. Um resumo do lote com acesso direto à análise fica abaixo do mapa. Tabelas extensas mantêm seus dados e recebem uma região de rolagem identificada.
+A interface foi revisada para celular, tablet e desktop. A barra de layouts tem uma área reservada, fora da região de rolagem do conteúdo, para não cobrir controles ou foco. Em telas menores, o menu passa a um painel com os nomes das opções e o modelo 3D aparece antes dos controles. Um resumo do lote com acesso direto à análise fica abaixo do mapa. Tabelas extensas mantêm seus dados e recebem uma região de rolagem identificada.
 
 Os textos de interface ganharam tamanho e contraste; os botões HTML principais têm área mínima de 44 × 44 pixels CSS. Os rótulos de seleção ampliam a área clicável das caixas de verificação. Os marcadores do mapa também têm alternativas por busca e pela lista de terrenos.
 
