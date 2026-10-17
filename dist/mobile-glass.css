@@ -4,7 +4,9 @@
   :root{--dock-gap:16px;--dock-clearance:112px}
   html{scroll-padding-bottom:calc(var(--dock-clearance) + env(safe-area-inset-bottom,0px))}
   .prototype-switcher{display:none}
-  .main-shell{margin:0;width:100%;padding-bottom:calc(var(--dock-clearance) + env(safe-area-inset-bottom,0px))}
+  .main-shell{margin:0;width:100%;padding-bottom:0}
+  /* Scroll behind the floating dock; reserve clearance only at the end of the content. */
+  main{padding-bottom:calc(var(--dock-clearance) + env(safe-area-inset-bottom,0px));scroll-padding-bottom:calc(var(--dock-clearance) + env(safe-area-inset-bottom,0px))}
   .mobile-menu{display:inline-grid;flex-shrink:0}
   .busy-bar{left:0}
   body::after{display:none}
