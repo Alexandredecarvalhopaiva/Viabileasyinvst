@@ -184,3 +184,11 @@ O fluxo começa por **frente e profundidade**, com **área e perímetro automát
 Bibliotecas locais e licenças: `dist/vendor/geometry/proj4.js` (licença em `PROJ4-LICENSE.md`) e `clipper.js` (Boost Software License em `CLIPPER-LICENSE.txt`). Referências: [Proj4js](https://proj4js.org/) e [documentação Clipper](https://sourceforge.net/p/jsclipper/wiki/documentation/).
 
 Para reproduzir a conferência numérica: `node verify-geometry.cjs` ou `npm run verify:geometry`, a partir da pasta do projeto.
+
+## Menu flutuante mobile e tablet (v0.12)
+
+A navegação inferior fica centralizada e afastada das bordas, com cantos arredondados, vidro translúcido, desfoque do conteúdo ao fundo, saturação, reflexos e sombra. Mantém os cinco atalhos com ícones e rótulos: Início, Terreno, 3D, Estudos e Menu. A seleção usa uma cápsula verde da marca. O painel Menu também flutua, com as nove funções principais em duas colunas no celular e três no tablet.
+
+O modo se aplica até 1279 px e também a tablets de toque até 1440 px (ponteiro grosso e sem hover), incluindo orientação horizontal. A consulta de mídia é idêntica no CSS e no controle de foco em JavaScript. A distância inferior inclui a área segura do dispositivo. Há espaço de rolagem no conteúdo, alvos de toque maiores que 44 px, foco visível, fechamento por Escape, retorno do foco ao acionador e bloqueio do conteúdo de fundo quando o painel está aberto. Em telas baixas, o painel rola internamente. São preservadas alternativas para movimento/transparência reduzidos, alto contraste e ausência de suporte ao desfoque.
+
+Conferência no navegador: 320 × 568, 392 × 844, 768 × 1024, 1024 × 768, 1180 × 820 e 1279 × 800 px, sem transbordamento horizontal; dock afastado 16 px da base no celular e 24 px no tablet, antes da área segura. Menor alvo de toque medido: aproximadamente 55 × 60 px. Verificados abertura do painel, navegação para estudos, indicação ativa, ciclo Tab/Shift+Tab, Escape, retorno do foco e rolagem até Ajuda na tela pequena. Ao passar para 1280 × 960 px com ponteiro fino, o painel perde o estado modal e a navegação de desktop reaparece sem bloquear o conteúdo. Sem erros de JavaScript nos caminhos conferidos. A conferência visual não equivale a auditoria formal de acessibilidade ou teste físico em dispositivos.

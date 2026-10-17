@@ -313,7 +313,8 @@ function drawScene(canvas){
 window.addEventListener('resize',()=>requestAnimationFrame(drawAll));
 window.addEventListener('popstate',()=>{const v=new URLSearchParams(location.search).get('variant');if(variants[v]){state.variant=v;state.step=v==='A'||!state.lotConfirmed||state.lookupDirty||state.parcelDirty?1:3;state.tab='3d';render()}});
 
-const mobileQuery=window.matchMedia('(max-width:1024px)');
+// Keep the navigation mode aligned with mobile-glass.css, including wide touch tablets.
+const mobileQuery=window.matchMedia('(max-width:1279px), (max-width:1440px) and (hover:none) and (pointer:coarse)');
 let menuOpen=false,menuReturnFocus=null;
 function focusMain(scroll=true){const h=$('main h1');if(h){h.tabIndex=-1;h.focus({preventScroll:true})}else $('#main-content').focus({preventScroll:true});if(scroll)$('#main-content').scrollTo({top:0,behavior:'instant'})}
 function rememberControl(el){if(!el||!el.closest('#main-content'))return null;if(el.id)return '#'+CSS.escape(el.id);for(const key of ['action','product','use','layer','report','tab','scenario'])if(el.dataset[key])return `[data-${key}="${CSS.escape(el.dataset[key])}"]`;return null}
