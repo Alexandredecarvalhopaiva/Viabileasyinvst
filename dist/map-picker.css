@@ -9,3 +9,14 @@
 .modal-backdrop.location-picker-backdrop{display:flex;align-items:center;justify-content:center;animation:none;opacity:1;transform:none;overflow:hidden}
 .modal.location-picker-modal{width:min(940px,calc(100vw - 32px));max-width:calc(100vw - 32px);background:#fff}
 @media(max-width:600px){.modal-backdrop.location-picker-backdrop{padding:0}.modal.location-picker-modal{width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;border-radius:0}}
+/* Aerial photographs and streets share the same center, pin and zoom. */
+.picker-basemaps{position:absolute;z-index:450;top:12px;left:12px;display:flex;gap:3px;padding:4px;border:1px solid #d2dfe5;border-radius:13px;background:#fff;box-shadow:0 3px 14px #0f2d4a24}
+.picker-basemaps button{display:flex;align-items:center;justify-content:center;gap:7px;min-height:44px;padding:9px 12px;border:1px solid transparent;border-radius:9px;background:#fff;color:#334155;font-size:13px;font-weight:650}
+.picker-basemaps button[aria-pressed="true"]{background:#0F2D4A;color:#fff;border-color:#0F2D4A}
+.picker-basemaps .icon{width:18px;height:18px}
+.picker-selection-title span{margin-left:auto;font-size:12px;font-weight:450;color:#526174}
+.picker-selection .picker-imagery-note{font-size:12px;line-height:1.5;color:#526174;margin:3px 0 0}
+.picker-map-error>div{display:flex;gap:8px;flex-wrap:wrap}
+.picker-stage .leaflet-control-scale{margin:0 0 8px 10px}.picker-stage .leaflet-control-scale-line{border-color:#0F2D4A;background:#fffffff0;color:#0F2D4A;line-height:1.3;text-shadow:none;font-size:11px}
+@media(max-width:600px){.picker-basemaps{left:9px;top:9px;padding:3px;gap:2px}.picker-basemaps button{padding:8px 9px;font-size:12px;gap:6px}.picker-basemaps .icon{width:16px;height:16px}.picker-selection-title span{font-size:10px}.picker-stage .leaflet-control-attribution{max-width:220px}.picker-selection .picker-imagery-note{font-size:11px}}
+@media(forced-colors:active){.picker-basemaps,.picker-basemaps button{background:Canvas;color:CanvasText;border:1px solid CanvasText}.picker-basemaps button[aria-pressed="true"]{background:Highlight;color:HighlightText}}
