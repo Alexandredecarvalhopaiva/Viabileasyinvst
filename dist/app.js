@@ -2,6 +2,9 @@
    Pergunta de design: como localizar, entender e explorar um terreno com premissas rastreáveis?
    Dados fictícios. Sem consulta cadastral, regra legal homologada, autenticação ou persistência. */
 const paths = {
+  mountain:'M2 20l7-15 5 9 3-5 5 11z M6 11l3 3 3-3',
+  rotateLeft:'M3 3v6h6 M3 9a9 9 0 1 1 1 9',
+  expand:'M8 3H3v5 M16 3h5v5 M3 16v5h5 M21 16v5h-5',
   map:'M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z M9 3v15 M15 6v15',
   grid:'M3 3h7v7H3z M14 3h7v7h-7z M3 14h7v7H3z M14 14h7v7h-7z',
   scan:'M8 3H4a1 1 0 0 0-1 1v4 M16 3h4a1 1 0 0 1 1 1v4 M21 16v4a1 1 0 0 1-1 1h-4 M8 21H4a1 1 0 0 1-1-1v-4 M8 8h8v8H8z',
@@ -53,6 +56,7 @@ const lots=[
 const sourceData=[
  {id:'municipal',title:'Plano Diretor e LUOS',org:'Prefeitura de João Pessoa',text:'Catálogo previsto para normas municipais, anexos e alterações. Os índices deste protótipo são fictícios e não foram extraídos destes textos.',url:'https://planodiretor.joaopessoa.pb.gov.br/legislacaovigente/',type:'Normas municipais',icon:'book'},
  {id:'gis',title:'Filipeia · Vista aérea e atlas municipal',org:'Prefeitura de João Pessoa',text:'A vista aérea do seletor usa a ortofoto municipal de 2021. Ela ajuda a visualizar o entorno; os limites dos lotes e o zoneamento não são identificados automaticamente. O desenho da análise permanece esquemático.',url:'https://filipeia.joaopessoa.pb.gov.br/',type:'Geoprocessamento',icon:'layers'},
+ {id:'terrain',title:'Mapterhorn · Relevo do entorno',org:'Projeto aberto Mapterhorn',text:'Elevação regional para sombras e exploração do relevo em 3D, com ruas OpenStreetMap. No Brasil, a cobertura global tem resolução aproximada de 30 m. Não representa levantamento topográfico do lote nem modelos 3D de edificações.',url:'https://mapterhorn.com/attribution/',type:'Elevação regional',icon:'mountain'},
  {id:'environment',title:'Licenciamento ambiental',org:'SUDEMA / COPAM',text:'Referência para condicionantes ambientais. Geometrias, vigência e aplicabilidade deverão ser verificadas antes de integrar o motor.',url:'https://sudema.pb.gov.br/institucional/copam-1/licenciamento-ambiental-municipal/licenciamento-ambiental-municipal',type:'Restrições e anuências',icon:'leaf'},
  {id:'fire',title:'Normas de segurança',org:'Corpo de Bombeiros da Paraíba',text:'Consulta às normas técnicas conforme tipologia. A conformidade de um projeto depende de documentação e análise específica.',url:'https://bravo.bombeiros.pb.gov.br/portal/normas-tecnicas/',type:'Segurança',icon:'shield'}
 ];
