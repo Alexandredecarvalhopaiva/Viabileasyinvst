@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="./map-picker.css">
   <link rel="stylesheet" href="./simple-flow.css">
   <link rel="stylesheet" href="./map-explorer.css">
+  <link rel="stylesheet" href="./parcel-form.css">
 </head>
 <body data-prototype="true">
   <a class="skip-link" href="#main-content">Pular para o conteúdo</a>
@@ -74,11 +75,17 @@
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <div id="modal-root"></div>
   <div id="results-announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
-  <input id="geojson-input" type="file" accept=".json,.geojson,application/json,application/geo+json" hidden>
+  <input id="geojson-input" type="file" accept=".json,.geojson,.kml,application/json,application/geo+json,application/vnd.google-earth.kml+xml" hidden>
   <script src="./vendor/leaflet/leaflet.js"></script>
   <script src="./vendor/maplibre/maplibre-gl.js"></script>
+  <script src="./vendor/geometry/proj4.js"></script>
+  <script src="./vendor/geometry/clipper.js"></script>
+  <script src="./parcel-geometry.js"></script>
+  <script src="./parcel-form.js"></script>
+  <script src="./parcel-scene.js"></script>
   <script src="./simple-flow.js"></script>
   <script src="./app.js"></script>
+  <script src="./parcel-map.js"></script>
   <script src="./map-explorer.js"></script>
   <script src="./map-picker.js"></script>
 </body>

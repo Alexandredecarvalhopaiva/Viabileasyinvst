@@ -1,9 +1,10 @@
 {
   "name": "urba-prototipo",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "private": true,
   "description": "Protótipo ViabilEasy: potencial construtivo do terreno por tipologia",
   "scripts": {
-    "prototype": "node serve.mjs"
+    "prototype": "node serve.mjs",
+    "verify:geometry": "node verify-geometry.cjs"
   }
 }
