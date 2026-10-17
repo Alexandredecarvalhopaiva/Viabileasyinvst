@@ -7,10 +7,13 @@
   <meta name="description" content="Explore um protótipo de inteligência urbanística para João Pessoa: terreno, diagnóstico, volumetria e cenários de viabilidade.">
   <title>ViabilEasy — Potencial construtivo</title>
   <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="stylesheet" href="./vendor/leaflet/leaflet.css">
   <link rel="stylesheet" href="./styles.css">
   <link rel="stylesheet" href="./responsive.css">
   <link rel="stylesheet" href="./brand.css">
   <link rel="stylesheet" href="./mobile-glass.css">
+  <link rel="stylesheet" href="./map-picker.css">
+  <link rel="stylesheet" href="./simple-flow.css">
 </head>
 <body data-prototype="true">
   <a class="skip-link" href="#main-content">Pular para o conteúdo</a>
@@ -70,6 +73,9 @@
   <div id="modal-root"></div>
   <div id="results-announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
   <input id="geojson-input" type="file" accept=".json,.geojson,application/json,application/geo+json" hidden>
+  <script src="./vendor/leaflet/leaflet.js"></script>
+  <script src="./simple-flow.js"></script>
   <script src="./app.js"></script>
+  <script src="./map-picker.js"></script>
 </body>
 </html>
