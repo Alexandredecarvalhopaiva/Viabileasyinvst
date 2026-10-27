@@ -1,0 +1,370 @@
+[
+  {
+    "bodyState": "signin",
+    "contentWidth": 300,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Bom ter você aqui."
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 3.2597159015679584,
+      "interactions": [
+        40,
+        40,
+        40
+      ],
+      "lcp": 80
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "login-after",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 10,
+        "text": "SEU ESPAÇO DE POSSIBILIDADES"
+      }
+    ],
+    "tinyTextCount": 1,
+    "title": "Entrar | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 320,
+    "requestedWidth": 320
+  },
+  {
+    "bodyState": "signin",
+    "contentWidth": 354,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Bom ter você aqui."
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 3.32880258068061,
+      "interactions": [
+        40,
+        40,
+        40
+      ],
+      "lcp": 80
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "login-after",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 10,
+        "text": "SEU ESPAÇO DE POSSIBILIDADES"
+      }
+    ],
+    "tinyTextCount": 1,
+    "title": "Entrar | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 374,
+    "requestedWidth": 375
+  },
+  {
+    "bodyState": "signin",
+    "contentWidth": 370,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Bom ter você aqui."
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 3.332050997338896,
+      "interactions": [
+        40,
+        40,
+        40
+      ],
+      "lcp": 80
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "login-after",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 10,
+        "text": "SEU ESPAÇO DE POSSIBILIDADES"
+      }
+    ],
+    "tinyTextCount": 1,
+    "title": "Entrar | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 390,
+    "requestedWidth": 390
+  },
+  {
+    "bodyState": "signin",
+    "contentWidth": 748,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H2",
+        "text": "Cada terreno,um mundo depossibilidades."
+      },
+      {
+        "level": "H1",
+        "text": "Bom ter você aqui."
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 3.332050997338896,
+      "interactions": [
+        40,
+        40,
+        40
+      ],
+      "lcp": 80
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "login-after",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 10,
+        "text": "INTELIGÊNCIA URBANÍSTICA"
+      },
+      {
+        "size": 10,
+        "text": "SEU ESPAÇO DE POSSIBILIDADES"
+      }
+    ],
+    "tinyTextCount": 2,
+    "title": "Entrar | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 768,
+    "requestedWidth": 768
+  },
+  {
+    "bodyState": "signin",
+    "contentWidth": 1004,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H2",
+        "text": "Cada terreno,um mundo depossibilidades."
+      },
+      {
+        "level": "H1",
+        "text": "Bom ter você aqui."
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 3.435969112032722,
+      "interactions": [
+        40,
+        40,
+        40
+      ],
+      "lcp": 80
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "login-after",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 10,
+        "text": "INTELIGÊNCIA URBANÍSTICA"
+      },
+      {
+        "size": 10,
+        "text": "SEU ESPAÇO DE POSSIBILIDADES"
+      }
+    ],
+    "tinyTextCount": 2,
+    "title": "Entrar | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1024,
+    "requestedWidth": 1024
+  },
+  {
+    "bodyState": "signin",
+    "contentWidth": 1260,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H2",
+        "text": "Cada terreno,um mundo depossibilidades."
+      },
+      {
+        "level": "H1",
+        "text": "Bom ter você aqui."
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 3.556939889905628,
+      "interactions": [
+        40,
+        40,
+        40
+      ],
+      "lcp": 80
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "login-after",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 10,
+        "text": "INTELIGÊNCIA URBANÍSTICA"
+      },
+      {
+        "size": 10,
+        "text": "SEU ESPAÇO DE POSSIBILIDADES"
+      }
+    ],
+    "tinyTextCount": 2,
+    "title": "Entrar | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1280,
+    "requestedWidth": 1280
+  },
+  {
+    "bodyState": "signin",
+    "contentWidth": 1420,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H2",
+        "text": "Cada terreno,um mundo depossibilidades."
+      },
+      {
+        "level": "H1",
+        "text": "Bom ter você aqui."
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 3.6029400518826646,
+      "interactions": [
+        40,
+        40,
+        40
+      ],
+      "lcp": 80
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "login-after",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 10,
+        "text": "INTELIGÊNCIA URBANÍSTICA"
+      },
+      {
+        "size": 10,
+        "text": "SEU ESPAÇO DE POSSIBILIDADES"
+      }
+    ],
+    "tinyTextCount": 2,
+    "title": "Entrar | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1440,
+    "requestedWidth": 1440
+  },
+  {
+    "bodyState": "signin",
+    "contentWidth": 1900,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H2",
+        "text": "Cada terreno,um mundo depossibilidades."
+      },
+      {
+        "level": "H1",
+        "text": "Bom ter você aqui."
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 3.7091835320736775,
+      "interactions": [
+        40,
+        40,
+        40
+      ],
+      "lcp": 80
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "login-after",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 10,
+        "text": "INTELIGÊNCIA URBANÍSTICA"
+      },
+      {
+        "size": 10,
+        "text": "SEU ESPAÇO DE POSSIBILIDADES"
+      }
+    ],
+    "tinyTextCount": 2,
+    "title": "Entrar | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1920,
+    "requestedWidth": 1920
+  }
+]

@@ -9,6 +9,10 @@
   <link rel="icon" type="image/svg+xml" href="./favicon.svg">
   <link rel="stylesheet" href="./vendor/leaflet/leaflet.css">
   <link rel="stylesheet" href="./vendor/maplibre/maplibre-gl.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700&family=Manrope:wght@400;500;600;650;700;750;800&display=swap">
+  <link rel="stylesheet" href="./design-tokens.css">
   <link rel="stylesheet" href="./styles.css">
   <link rel="stylesheet" href="./responsive.css">
   <link rel="stylesheet" href="./brand.css">
@@ -17,13 +21,148 @@
   <link rel="stylesheet" href="./simple-flow.css">
   <link rel="stylesheet" href="./map-explorer.css">
   <link rel="stylesheet" href="./parcel-form.css">
+  <link rel="stylesheet" href="./auth.css">
+  <link rel="stylesheet" href="./recent-studies.css">
+  <link rel="stylesheet" href="./setbacks.css">
+  <link rel="stylesheet" href="./building-capacity.css">
+  <link rel="stylesheet" href="./public-site.css">
+  <link rel="stylesheet" href="./experience3d/experience.css">
+  <link rel="stylesheet" href="./experience3d/hero-layout.css">
+  <link rel="stylesheet" href="./experience3d/comparison.css">
+  <link rel="stylesheet" href="./ui-system.css">
 </head>
-<body data-prototype="true">
+<body data-prototype="true" data-auth="guest">
+  <div id="public-site">
+    <a class="public-skip" href="#public-main">Pular para o conteúdo</a>
+    <header class="public-header">
+      <a class="public-brand" href="/" aria-label="ViabilEasy início"><span class="brand-art"><img src="./assets/viabileasy-logo.png" alt="ViabilEasy" width="560" height="180"></span></a>
+      <button class="public-menu-toggle" type="button" data-public-menu aria-label="Abrir navegação do site" aria-controls="public-navigation" aria-expanded="false" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <nav id="public-navigation" aria-label="Navegação do site"><a href="#experiencia-3d">Experiência 3D</a><a href="#recursos">Recursos</a><a href="#como-funciona">Como funciona</a></nav>
+      <button class="public-button public-login" data-public-login>Entrar</button>
+    </header>
+    <main class="public-main" id="public-main" tabindex="-1">
+      <!-- public-experience:start -->
+      <section id="experiencia-3d" class="ve-experience" data-architecture="house" data-layer="building" aria-labelledby="ve-experience-title">
+    <div class="ve-hero-layout">
+      <header class="ve-hero-content">
+        <span class="ve-eyebrow"><span></span> VIABILIDADE QUE VOCÊ CONSEGUE VER</span>
+        <h1 id="ve-experience-title">O futuro<br><em>toma forma.</em></h1>
+        <p class="ve-hero-description ve-description-desktop">Antes da primeira obra, um novo olhar. Descubra o que o seu terreno pode se tornar.</p>
+        <p class="ve-hero-description ve-description-mobile">Descubra o que o seu terreno pode se tornar.</p>
+        <div class="ve-hero-actions"><button class="ve-hero-primary" type="button" data-require-login="analysis" data-access-label="analisar seu terreno">Analisar meu terreno <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></button></div>
+        <p class="ve-hero-promise">DA LOCALIZAÇÃO À POSSIBILIDADE.</p>
+        <div class="ve-hero-evidence" aria-label="Um terreno, cinco possibilidades"><span><b>01</b> terreno</span><i aria-hidden="true"></i><span><b>05</b> possibilidades</span></div>
+        <p class="ve-hero-account-note">Explore livremente. Entre para analisar e salvar seus terrenos.</p>
+      </header>
+      <div class="ve-hero-demo">
+        <div class="ve-demo-heading"><span class="ve-demo-badge"><i></i> Simulação ilustrativa</span><span class="ve-demo-lot">UM MESMO TERRENO <b>1.200 m²</b></span></div>
+        <div class="ve-workbench">
+          <div class="ve-stage"><span class="ve-scene-edition" aria-hidden="true">FORMA <b data-scene-edition>01</b><i>/ 05</i></span>
+            <div class="ve-scene-viewport" data-scene-viewport tabindex="0" aria-describedby="ve-setback-description" aria-label="Modelo tridimensional interativo do lote demonstrativo"></div>
+            <div class="ve-scene-loading" data-scene-loading role="status"><span class="ve-loading-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5v8l-9 5-9-5V8Z"/><path d="m3 8 9 5 9-5M12 13v8m-4.5-15.5 9 5"/></svg></span><strong>Preparando as possibilidades…</strong><span>Um lote, cinco formas de imaginar.</span></div>
+            <div class="ve-scene-fallback" data-scene-fallback hidden><span class="ve-fallback-art"><svg class="ve-scenario-illustration" viewBox="0 0 88 82" aria-hidden="true"><path d="m7 54 37-19 36 19-37 20Z" fill="#dce8e2"/><path d="m12 55 31-15 31 15-31 15Z" fill="none" stroke="#a2bcb0" stroke-dasharray="2 2"/><path d="M24 14v45l21 9.66V23.66Z" fill="#4d9c89"/><path d="M45 23.66v45l20 -9.200000000000001V14.459999999999999Z" fill="#28635f"/><path d="M24 14l20 -9.200000000000001 21 9.66-20 9.200000000000001Z" fill="#c4e5d8"/><path d="M24 59l21 9.66 20 -9.200000000000001" fill="none" stroke="#234e50" stroke-width=".6"/><g fill="none" stroke="#d5eadd" stroke-width="1.5"><path d="m24 22 21 10 20-9M24 30l21 10 20-9M24 38l21 10 20-9M24 46l21 10 20-9M24 54l21 10 20-9"/></g><circle cx="16" cy="58" r="4" fill="#7fae8c"/><path d="M16 61v4" stroke="#6e8b77"/></svg></span><strong>O 3D está indisponível neste dispositivo.</strong><p>Selecione os cenários abaixo e compare suas estimativas.</p></div>
+            <div class="ve-stage-label"><span class="ve-live-dot"></span><span data-phase-label>Explorando possibilidades</span></div>
+            <div class="ve-parcel-label"><span>MESMO LOTE EM TODOS OS CENÁRIOS</span><strong>1.200 <small>m²</small></strong><div><span>Testada <b>30 m</b></span><span>Profundidade <b>40 m</b></span></div></div>
+            <div class="ve-kinetic-action"><button type="button" data-explode aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 7 8-4 8 4v10l-8 4-8-4Z" stroke-dasharray="3 3"/><path d="m4 7 8 4 8-4M12 11v10"/></svg><span>Separar pavimentos</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button><small>Uma nova perspectiva, camada por camada.</small></div>
+            <div class="ve-camera-zoom" role="group" aria-label="Zoom e enquadramento"><button type="button" data-camera="zoomIn" aria-label="Aproximar modelo" title="Aproximar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button><button type="button" data-camera="zoomOut" aria-label="Afastar modelo" title="Afastar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg></button><button type="button" data-camera="reset" aria-label="Restaurar enquadramento" title="Restaurar enquadramento"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3H3v6m12-6h6v6M3 15v6h6m6 0h6v-6"/><circle cx="12" cy="12" r="3"/></svg></button></div>
+            <div class="ve-compass" aria-label="Norte ilustrativo, acompanha a orientação do terreno"><span>N</span><svg viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="21" fill="#ffffffab" stroke="#a9bbc6" stroke-width=".7"/><path d="m26 7 6 19-6 19-6-19Z" fill="#0f2d4a"/><path d="m26 26 6 0-6 19Z" fill="#93adb4"/><path d="M7 26h7m24 0h7" stroke="#8fa5af" stroke-width=".7"/></svg></div>
+            <span class="ve-scene-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 3 4-2 4 2M12 1v5m-4 15 4 2 4-2m-4-4v6M3 8l-2 4 2 4m-2-4h5m15-4 2 4-2 4m-4-4h6"/></svg> Arraste. Gire. Descubra.</span>
+          </div>
+          <div class="ve-toolbar">
+            <div class="ve-segmented ve-layers" role="group" aria-label="O que visualizar">
+              <button type="button" data-layer="terrain" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 12 9-6 9 6-9 6Z"/><path d="m7 9 9 6m-9 0 9-6"/></svg><span>Terreno</span></button>
+              <button type="button" data-layer="envelope" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 7 8-4 8 4v10l-8 4-8-4Z" stroke-dasharray="3 3"/><path d="m4 7 8 4 8-4M12 11v10"/></svg><span>Envelope</span></button>
+              <button type="button" data-layer="building" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5v8l-9 5-9-5V8Z"/><path d="m3 8 9 5 9-5M12 13v8m-4.5-15.5 9 5"/></svg><span>Construção</span></button>
+            </div>
+            <div class="ve-segmented ve-views" role="group" aria-label="Vista da câmera">
+              <button type="button" data-view="iso" aria-pressed="true" aria-label="Vista isométrica" title="Vista isométrica"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5v8l-9 5-9-5V8Z"/><path d="m3 8 9 5 9-5M12 13v8m-4.5-15.5 9 5"/></svg><span>3D</span></button>
+              <button type="button" data-view="top" aria-pressed="false" aria-label="Vista aérea" title="Vista aérea"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="1"/><path d="M9 5v14M5 9h14m-4-4v14M5 15h14"/></svg><span>Aérea</span></button>
+            </div>
+          </div>
+          <div class="ve-display-tools">
+            <button class="ve-touch-rotation" type="button" data-touch-rotate aria-pressed="false">Girar por toque</button>
+            <button class="ve-cotas-toggle" type="button" data-toggle="dimensions" aria-pressed="false" aria-label="Mostrar cotas dos recuos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7v10m18-10v10M3 12h18m-14-3-4 3 4 3m10-6 4 3-4 3"/></svg><span>Cotas</span></button>
+            <details class="ve-advanced-tools"><summary>Visualização <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 10 7 7 7-7"/></svg></summary><div class="ve-advanced-panel"><div class="ve-toggles" role="group" aria-label="Representação do modelo"><button type="button" data-toggle="technical" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4ZM4 4l16 16M4 20 20 4M12 4v16M4 12h16"/></svg> Visão técnica</button><button type="button" data-toggle="envelope" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 7 8-4 8 4v10l-8 4-8-4Z" stroke-dasharray="3 3"/><path d="m4 7 8 4 8-4M12 11v10"/></svg> Envelope</button><button type="button" data-toggle="transparent" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="12" height="12" rx="2"/><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M9 11h6m-6 4h6"/></svg> Transparência</button></div><div class="ve-camera-arrows" role="group" aria-label="Mover a câmera"><span>Câmera</span><button type="button" data-camera="left" aria-label="Girar para a esquerda" title="Girar à esquerda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 5-7 7 7 7"/></svg></button><button type="button" data-camera="right" aria-label="Girar para a direita" title="Girar à direita"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m10 5 7 7-7 7"/></svg></button><button type="button" data-camera="up" aria-label="Elevar a câmera" title="Elevar câmera"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 14 7-7 7 7"/></svg></button><button type="button" data-camera="down" aria-label="Baixar a câmera" title="Baixar câmera"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 10 7 7 7-7"/></svg></button></div></div></details>
+            <div class="ve-tour-actions"><button type="button" data-tour="play"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 5 11 7-11 7Z"/></svg><span>Reproduzir</span></button><button type="button" data-tour="pause" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 5v14m8-14v14" stroke-width="3"/></svg><span>Pausar</span></button><button type="button" data-tour="replay" aria-label="Repetir demonstração" title="Repetir demonstração"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10a8 8 0 1 1 1 7M4 4v6h6"/></svg></button></div>
+          </div>
+        </div>
+        <section class="ve-scenarios" aria-labelledby="ve-scenarios-heading"><div class="ve-scenarios-heading"><h2 id="ve-scenarios-heading">O que pode nascer aqui?</h2><div class="ve-scenario-nav"><button type="button" data-scenario-nav="previous" aria-label="Cenário anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 5-7 7 7 7"/></svg></button><button type="button" data-scenario-nav="next" aria-label="Próximo cenário"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m10 5 7 7-7 7"/></svg></button></div></div><div class="ve-scenario-list" aria-label="Alternativas para o mesmo terreno"><button class="ve-scenario" type="button" data-scenario="house" aria-pressed="true" aria-label="Explorar Residência unifamiliar">
+    <span class="ve-scenario-identity"><span class="ve-scenario-thumb"><svg class="ve-scenario-illustration" viewBox="0 0 88 82" aria-hidden="true"><path d="m7 54 37-19 36 19-37 20Z" fill="#dce8e2"/><path d="m12 55 31-15 31 15-31 15Z" fill="none" stroke="#a2bcb0" stroke-dasharray="2 2"/><path d="M20 40v16l26 11.96V51.96Z" fill="#4d9c89"/><path d="M46 51.96v16l19 -8.74V43.22Z" fill="#28635f"/><path d="M20 40l19 -8.74 26 11.96-19 8.74Z" fill="#c4e5d8"/><path d="M20 56l26 11.96 19 -8.74" fill="none" stroke="#234e50" stroke-width=".6"/><path d="M35 29v14l15 6.9V35.9Z" fill="#7db5a0"/><path d="M50 35.9v14l13 -5.98V29.919999999999998Z" fill="#28635f"/><path d="M35 29l13 -5.98 15 6.9-13 5.98Z" fill="#e4f0e9"/><path d="M35 43l15 6.9 13 -5.98" fill="none" stroke="#234e50" stroke-width=".6"/><path d="m24 47 17 8v9l-17-8Z" fill="#a4ccd0"/><path d="m51 46 8-4v11l-8 4Z" fill="#b8dcda"/><circle cx="16" cy="58" r="4" fill="#7fae8c"/><path d="M16 61v4" stroke="#6e8b77"/></svg></span><span class="ve-scenario-number">01</span></span>
+    <strong>Casa</strong>
+    <span class="ve-scenario-stats"><span><b>2</b> pav.</span><span><b>576</b> m²</span></span>
+    <span class="ve-scenario-units">1 residência</span>
+    <span class="ve-scenario-potential" data-scenario-potential="house">Potencial a comparar</span>
+    <span class="ve-viability" data-scenario-viability="house">Viabilidade não avaliada</span>
+  </button><button class="ve-scenario" type="button" data-scenario="residential" aria-pressed="false" aria-label="Explorar Edifício residencial">
+    <span class="ve-scenario-identity"><span class="ve-scenario-thumb"><svg class="ve-scenario-illustration" viewBox="0 0 88 82" aria-hidden="true"><path d="m7 54 37-19 36 19-37 20Z" fill="#dce8e2"/><path d="m12 55 31-15 31 15-31 15Z" fill="none" stroke="#a2bcb0" stroke-dasharray="2 2"/><path d="M24 14v45l21 9.66V23.66Z" fill="#4d9c89"/><path d="M45 23.66v45l20 -9.200000000000001V14.459999999999999Z" fill="#28635f"/><path d="M24 14l20 -9.200000000000001 21 9.66-20 9.200000000000001Z" fill="#c4e5d8"/><path d="M24 59l21 9.66 20 -9.200000000000001" fill="none" stroke="#234e50" stroke-width=".6"/><g fill="none" stroke="#d5eadd" stroke-width="1.5"><path d="m24 22 21 10 20-9M24 30l21 10 20-9M24 38l21 10 20-9M24 46l21 10 20-9M24 54l21 10 20-9"/></g><circle cx="16" cy="58" r="4" fill="#7fae8c"/><path d="M16 61v4" stroke="#6e8b77"/></svg></span><span class="ve-scenario-number">02</span></span>
+    <strong>Residencial</strong>
+    <span class="ve-scenario-stats"><span><b>8</b> pav.</span><span><b>3.168</b> m²</span></span>
+    <span class="ve-scenario-units">32 apartamentos</span>
+    <span class="ve-scenario-potential" data-scenario-potential="residential">Potencial a comparar</span>
+    <span class="ve-viability" data-scenario-viability="residential">Viabilidade não avaliada</span>
+  </button><button class="ve-scenario" type="button" data-scenario="commercial" aria-pressed="false" aria-label="Explorar Empreendimento comercial">
+    <span class="ve-scenario-identity"><span class="ve-scenario-thumb"><svg class="ve-scenario-illustration" viewBox="0 0 88 82" aria-hidden="true"><path d="m7 54 37-19 36 19-37 20Z" fill="#dce8e2"/><path d="m12 55 31-15 31 15-31 15Z" fill="none" stroke="#a2bcb0" stroke-dasharray="2 2"/><path d="M20 27v31l26 11.96V38.96Z" fill="#91bdc3"/><path d="M46 38.96v31l23 -10.58V28.380000000000003Z" fill="#28635f"/><path d="M20 27l23 -10.58 26 11.96-23 10.58Z" fill="#deeeec"/><path d="M20 58l26 11.96 23 -10.58" fill="none" stroke="#234e50" stroke-width=".6"/><g fill="none" stroke="#e3f2f0" stroke-width="1"><path d="m20 36 26 12 23-11M20 45l26 12 23-11m-40-15v31m8-27v30m9-26v31m9-35v32m8-36v31"/></g><circle cx="16" cy="58" r="4" fill="#7fae8c"/><path d="M16 61v4" stroke="#6e8b77"/></svg></span><span class="ve-scenario-number">03</span></span>
+    <strong>Comercial</strong>
+    <span class="ve-scenario-stats"><span><b>5</b> pav.</span><span><b>2.640</b> m²</span></span>
+    <span class="ve-scenario-units">30 salas</span>
+    <span class="ve-scenario-potential" data-scenario-potential="commercial">Potencial a comparar</span>
+    <span class="ve-viability" data-scenario-viability="commercial">Viabilidade não avaliada</span>
+  </button><button class="ve-scenario" type="button" data-scenario="flats" aria-pressed="false" aria-label="Explorar Flats e hospedagem">
+    <span class="ve-scenario-identity"><span class="ve-scenario-thumb"><svg class="ve-scenario-illustration" viewBox="0 0 88 82" aria-hidden="true"><path d="m7 54 37-19 36 19-37 20Z" fill="#dce8e2"/><path d="m12 55 31-15 31 15-31 15Z" fill="none" stroke="#a2bcb0" stroke-dasharray="2 2"/><path d="M21 18v42l21 9.66V27.66Z" fill="#719c83"/><path d="M42 27.66v42l23 -10.58V17.08Z" fill="#28635f"/><path d="M21 18l23 -10.58 21 9.66-23 10.58Z" fill="#d9e8d1"/><path d="M21 60l21 9.66 23 -10.58" fill="none" stroke="#234e50" stroke-width=".6"/><g fill="none" stroke="#cde4d5" stroke-width="1.7"><path d="m21 27 21 10 23-11M21 36l21 10 23-11M21 45l21 10 23-11M21 54l21 10 23-11"/></g><circle cx="16" cy="58" r="4" fill="#7fae8c"/><path d="M16 61v4" stroke="#6e8b77"/></svg></span><span class="ve-scenario-number">04</span></span>
+    <strong>Flats</strong>
+    <span class="ve-scenario-stats"><span><b>6</b> pav.</span><span><b>2.880</b> m²</span></span>
+    <span class="ve-scenario-units">60 flats</span>
+    <span class="ve-scenario-potential" data-scenario-potential="flats">Potencial a comparar</span>
+    <span class="ve-viability" data-scenario-viability="flats">Viabilidade não avaliada</span>
+  </button><button class="ve-scenario" type="button" data-scenario="mixed" aria-pressed="false" aria-label="Explorar Empreendimento de uso misto">
+    <span class="ve-scenario-identity"><span class="ve-scenario-thumb"><svg class="ve-scenario-illustration" viewBox="0 0 88 82" aria-hidden="true"><path d="m7 54 37-19 36 19-37 20Z" fill="#dce8e2"/><path d="m12 55 31-15 31 15-31 15Z" fill="none" stroke="#a2bcb0" stroke-dasharray="2 2"/><path d="M17 47v12l29 13.34V60.34Z" fill="#98bbc0"/><path d="M46 60.34v12l25 -11.5V48.84Z" fill="#28635f"/><path d="M17 47l25 -11.5 29 13.34-25 11.5Z" fill="#dae9e5"/><path d="M17 59l29 13.34 25 -11.5" fill="none" stroke="#234e50" stroke-width=".6"/><path d="M28 17v34l18 8.280000000000001V25.28Z" fill="#569c8d"/><path d="M46 25.28v34l18 -8.280000000000001V17Z" fill="#28635f"/><path d="M28 17l18 -8.280000000000001 18 8.280000000000001-18 8.280000000000001Z" fill="#c6e4d4"/><path d="M28 51l18 8.280000000000001 18 -8.280000000000001" fill="none" stroke="#234e50" stroke-width=".6"/><g fill="none" stroke="#c6e5dc" stroke-width="1.4"><path d="m28 25 18 8 18-8m-36 8 18 8 18-8m-36 8 18 8 18-8"/></g><circle cx="16" cy="58" r="4" fill="#7fae8c"/><path d="M16 61v4" stroke="#6e8b77"/></svg></span><span class="ve-scenario-number">05</span></span>
+    <strong>Uso misto</strong>
+    <span class="ve-scenario-stats"><span><b>7</b> pav.</span><span><b>3.542</b> m²</span></span>
+    <span class="ve-scenario-units">40 unidades</span>
+    <span class="ve-scenario-potential" data-scenario-potential="mixed">Potencial a comparar</span>
+    <span class="ve-viability" data-scenario-viability="mixed">Viabilidade não avaliada</span>
+  </button></div><p class="ve-carousel-hint">Deslize para explorar as cinco alternativas.</p></section>
+        <details class="ve-study-details"><summary><span>Indicadores e recuos</span><span>CENÁRIO <b data-scenario-index>01 / 05</b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 10 7 7 7-7"/></svg></span></summary>
+          <div class="ve-selected-scenario"><h2 data-scenario-name>Residência unifamiliar</h2><p data-scenario-description>Uma residência contemporânea, com espaços generosos e jardim no mesmo lote.</p><b data-floors-label>2 pavimentos</b></div>
+          <dl class="ve-metrics" aria-label="Indicadores do cenário demonstrativo"><div><dt>Coef. de aproveitamento</dt><dd data-metric="coefficient">0,48</dd></div><div><dt>Taxa de ocupação</dt><dd data-metric="occupancy">24%</dd></div><div><dt>Permeabilidade</dt><dd data-metric="permeability">20%</dd></div><div><dt>Área computável estimada</dt><dd data-metric="computableArea">576 m²</dd></div></dl>
+          <section class="ve-setback-summary" aria-label="Recuos do terreno demonstrativo"><div class="ve-setback-heading"><strong>Recuos do terreno</strong><span>30 × 40 m</span></div><dl><div><dt>Frente</dt><dd>5 m</dd></div><div><dt>Lateral esquerda</dt><dd>3 m</dd></div><div><dt>Lateral direita</dt><dd>3 m</dd></div><div><dt>Fundos</dt><dd>5 m</dd></div></dl><p id="ve-setback-description">Cotas ilustrativas do limite do lote até o envelope de 27 m. A edificação pode ficar mais afastada. Parâmetros, usos e viabilidade dependem da análise específica do terreno.</p></section>
+        </details>
+      </div>
+        <div class="ve-hero-insight" data-hero-insight><span>SIMULAÇÃO ILUSTRATIVA</span><h2 data-insight-title>Cinco estratégias. Um mesmo terreno.</h2><p data-insight-description>Compare as possibilidades com premissas transparentes.</p><button type="button" data-show-comparison>Comparar investimentos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></button></div>
+    </div>
+    <div class="ve-tour-bar"><span class="ve-tour-caption">DO TERRENO À DECISÃO <small>Explore cada perspectiva</small></span><ol class="ve-tour-phases" aria-label="Etapas da apresentação"><li data-phase="terrain"><span>01</span> Localização</li><li data-phase="envelope"><span>02</span> Parâmetros</li><li data-phase="scenarios" aria-current="step"><span>03</span> Projeção 3D</li><li data-phase="comparison"><span>04</span> Comparação</li><li data-phase="opportunity"><span>05</span> Oportunidade</li></ol></div>
+    <div id="ve-comparison" class="ve-comparison" data-comparison-root aria-labelledby="ve-comparison-title">
+    <header class="ve-comparison-heading"><div><span class="ve-eyebrow">UM LOTE. DIFERENTES ESTRATÉGIAS.</span><h2 id="ve-comparison-title" tabindex="-1">Mais área nem sempre<br>significa mais oportunidade.</h2><p>Compare as alternativas com as mesmas premissas de terreno e margem. Todos os valores abaixo são fictícios.</p></div><span class="ve-comparison-badge">Simulação ilustrativa</span></header>
+    <div class="ve-comparison-overview">
+      <div class="ve-residual-chart" aria-label="Comparação do valor residual estimado do terreno"><h3>Valor residual do terreno <small>Preservando 18% de margem sobre vendas</small></h3><button type="button" class="ve-residual-row" data-compare-scenario="house" data-comparison-highlight="house" aria-label="Explorar Residência unifamiliar: valor residual R$ 338.204,16"><span>Casa</span><span class="ve-residual-track"><i style="width:9.04040746192362%" class=""></i></span><strong>R$ 338.204</strong></button><button type="button" class="ve-residual-row" data-compare-scenario="residential" data-comparison-highlight="residential" aria-label="Explorar Edifício residencial: valor residual R$ 3.741.027,84"><span>Residencial</span><span class="ve-residual-track"><i style="width:100%" class=""></i></span><strong>R$ 3,74 mi</strong></button><button type="button" class="ve-residual-row" data-compare-scenario="commercial" data-comparison-highlight="commercial" aria-label="Explorar Empreendimento comercial: valor residual R$ 654.720,00"><span>Comercial</span><span class="ve-residual-track"><i style="width:17.501072646388003%" class=""></i></span><strong>R$ 654.720</strong></button><button type="button" class="ve-residual-row" data-compare-scenario="flats" data-comparison-highlight="flats" aria-label="Explorar Flats e hospedagem: valor residual R$ 3.393.792,00"><span>Flats</span><span class="ve-residual-track"><i style="width:90.71817011658486%" class=""></i></span><strong>R$ 3,39 mi</strong></button><button type="button" class="ve-residual-row" data-compare-scenario="mixed" data-comparison-highlight="mixed" aria-label="Explorar Empreendimento de uso misto: valor residual R$ 2.503.485,60"><span>Uso misto</span><span class="ve-residual-track"><i style="width:66.91972653162614%" class=""></i></span><strong>R$ 2,5 mi</strong></button></div>
+      <aside class="ve-comparison-winner"><span class="ve-winner-kicker">CENÁRIO COM MAIOR POTENCIAL ESTIMADO</span><h3>Edifício residencial</h3><strong>R$ 3,74 mi</strong><p>Maior valor residual neste exemplo, após reservar a margem alvo. O resultado depende das premissas abaixo.</p><button type="button" data-compare-scenario="residential">Explorar cenário em 3D <span aria-hidden="true">↗</span></button></aside>
+    </div>
+    <div class="ve-comparison-table-wrap" tabindex="0" role="region" aria-label="Tabela comparativa dos cenários; deslize para consultar todos os indicadores"><table><caption>Indicadores ilustrativos · venda das unidades · mesmo terreno</caption><thead><tr><th scope="col">Alternativa</th><th scope="col">Potencial construtivo</th><th scope="col">Unidades</th><th scope="col">VGV</th><th scope="col">Custo total</th><th scope="col">Residual do terreno</th><th scope="col">Retorno sobre custo</th><th scope="col">Resultado no exemplo</th></tr></thead><tbody><tr data-comparison-highlight="house"><th scope="row"><button type="button" data-compare-scenario="house">Casa <span aria-hidden="true">↗</span></button></th><td><b>576 m²</b><small>2 pav. · CA 0,5×</small></td><td>1</td><td><span title="R$ 4.209.408,00">R$ 4,21 mi</span></td><td><span title="R$ 4.913.510,40">R$ 4,91 mi</span></td><td><span title="R$ 338.204,16">R$ 338.204</span></td><td>-14,3%</td><td><span class="ve-financial-state" data-tone="caution">Saldo negativo</span></td></tr><tr data-comparison-highlight="residential"><th scope="row"><button type="button" data-compare-scenario="residential">Residencial <span aria-hidden="true">↗</span></button></th><td><b>3.168 m²</b><small>8 pav. · CA 2,6×</small></td><td>32</td><td><span title="R$ 22.632.192,00">R$ 22,63 mi</span></td><td><span title="R$ 16.617.369,60">R$ 16,62 mi</span></td><td><span title="R$ 3.741.027,84">R$ 3,74 mi</span></td><td>36,2%</td><td><span class="ve-financial-state" data-tone="positive">Atinge a margem alvo</span></td></tr><tr data-comparison-highlight="commercial"><th scope="row"><button type="button" data-compare-scenario="commercial">Comercial <span aria-hidden="true">↗</span></button></th><td><b>2.640 m²</b><small>5 pav. · CA 2,2×</small></td><td>30</td><td><span title="R$ 16.896.000,00">R$ 16,9 mi</span></td><td><span title="R$ 15.000.000,00">R$ 15 mi</span></td><td><span title="R$ 654.720,00">R$ 654.720</span></td><td>12,6%</td><td><span class="ve-financial-state" data-tone="neutral">Abaixo da margem alvo</span></td></tr><tr data-comparison-highlight="flats"><th scope="row"><button type="button" data-compare-scenario="flats">Flats <span aria-hidden="true">↗</span></button></th><td><b>2.880 m²</b><small>6 pav. · CA 2,4×</small></td><td>60</td><td><span title="R$ 22.809.600,00">R$ 22,81 mi</span></td><td><span title="R$ 17.110.080,00">R$ 17,11 mi</span></td><td><span title="R$ 3.393.792,00">R$ 3,39 mi</span></td><td>33,3%</td><td><span class="ve-financial-state" data-tone="positive">Atinge a margem alvo</span></td></tr><tr data-comparison-highlight="mixed"><th scope="row"><button type="button" data-compare-scenario="mixed">Uso misto <span aria-hidden="true">↗</span></button></th><td><b>3.542 m²</b><small>7 pav. · CA 3×</small></td><td>40</td><td><span title="R$ 24.227.280,00">R$ 24,23 mi</span></td><td><span title="R$ 19.162.884,00">R$ 19,16 mi</span></td><td><span title="R$ 2.503.485,60">R$ 2,5 mi</span></td><td>26,4%</td><td><span class="ve-financial-state" data-tone="positive">Atinge a margem alvo</span></td></tr></tbody></table></div>
+    <p class="ve-comparison-note">Custo total inclui construção, custos indiretos, comercialização e o terreno assumido em R$ 1,8 mi. O retorno é do projeto completo, sem prazo definido; não é uma taxa anual. A viabilidade legal ainda não foi validada.</p>
+    <details class="ve-methodology"><summary>Como calculamos · premissas e metodologia <span aria-hidden="true">+</span></summary><div class="ve-methodology-content"><p><strong>Critério de destaque:</strong> Maior valor residual do terreno, preservando a margem alvo. Um empate, premissas incompletas ou residual inferior ao preço assumido do terreno impedem a recomendação.</p><div class="ve-assumptions"><span>Terreno <b>R$ 1,8 mi</b></span><span>Indiretos sobre obra <b>20%</b></span><span>Comercialização sobre VGV <b>5%</b></span><span>Margem alvo sobre VGV <b>18%</b></span></div><div class="ve-method-table"><table><caption>Premissas inventadas para a demonstração, sem cotação de mercado</caption><thead><tr><th scope="col">Cenário</th><th scope="col">Venda / m² vendável</th><th scope="col">Obra / m² construído</th><th scope="col">Eficiência vendável</th></tr></thead><tbody><tr><th scope="row">Casa</th><td>R$ 8.700,00</td><td>R$ 4.200,00</td><td>84%</td></tr><tr><th scope="row">Residencial</th><td>R$ 9.400,00</td><td>R$ 3.600,00</td><td>76%</td></tr><tr><th scope="row">Comercial</th><td>R$ 8.000,00</td><td>R$ 3.900,00</td><td>80%</td></tr><tr><th scope="row">Flats</th><td>R$ 11.000,00</td><td>R$ 4.100,00</td><td>72%</td></tr><tr><th scope="row">Uso misto</th><td>R$ 9.000,00</td><td>R$ 3.800,00</td><td>76%</td></tr></tbody></table></div><ol><li>Área vendável = área construída × eficiência. VGV = área vendável × preço de venda.</li><li>Custo sem terreno = obra + custos indiretos + comercialização.</li><li>Residual = VGV − custo sem terreno − margem alvo × VGV.</li><li>Retorno sobre custo = (VGV − custo total) ÷ custo total × 100.</li></ol><p>Hipótese comum: venda integral das unidades, inclusive flats. Não estima renda de locação. Cronograma, financiamento, tributação detalhada, outorga e particularidades de cada terreno exigem uma análise própria.</p></div></details>
+  </div>
+    <p class="ve-sr-only" data-scene-status role="status" aria-live="polite" aria-atomic="true"></p>
+  </section>
+      <!-- public-experience:end -->
+      <section class="public-features" id="recursos" aria-labelledby="public-features-title"><div class="public-section-heading"><div><span class="public-eyebrow">SUAS IDEIAS, MAIS CLAREZA</span><h2 id="public-features-title">Conheça o que você pode explorar.</h2></div><p>Da localização às hipóteses de viabilidade, organize cada etapa do seu estudo.</p></div><div class="public-feature-grid">
+        <article><span class="public-feature-symbol" aria-hidden="true">01</span><h3>Terreno e recuos</h3><p>Informe as medidas e organize as referências urbanísticas do seu terreno.</p><button data-require-login="analysis" data-access-label="analisar um terreno">Analisar terreno <span aria-hidden="true">↗</span></button></article>
+        <article><span class="public-feature-symbol" aria-hidden="true">02</span><h3>Volumetria 3D</h3><p>Explore a massa, os recuos e a quantidade de pavimentos do cenário.</p><button data-require-login="analysis" data-access-label="usar a modelagem 3D">Explorar o 3D <span aria-hidden="true">↗</span></button></article>
+        <article><span class="public-feature-symbol" aria-hidden="true">03</span><h3>Cenários e viabilidade</h3><p>Compare produtos e ajuste hipóteses de receita e custo no estudo.</p><button data-require-login="analysis" data-access-label="simular cenários">Simular possibilidades <span aria-hidden="true">↗</span></button></article>
+        <article><span class="public-feature-symbol" aria-hidden="true">04</span><h3>Seus estudos</h3><p>Salve suas análises na sua conta e retome de onde parou.</p><button data-require-login="projects" data-access-label="acessar seus estudos">Acessar meus estudos <span aria-hidden="true">↗</span></button></article>
+      </div></section>
+      <section class="public-how" id="como-funciona" aria-labelledby="public-how-title"><div><span class="public-eyebrow">COMECE PELO SEU TERRENO</span><h2 id="public-how-title">Da primeira ideia<br>ao próximo estudo.</h2><button class="public-button primary" data-public-register>Criar minha conta <span aria-hidden="true">→</span></button></div><ol><li><span>1</span><div><h3>Entre na sua conta</h3><p>Seu espaço para organizar terrenos e estudos pessoais.</p></div></li><li><span>2</span><div><h3>Cadastre o terreno</h3><p>Informe a geometria e confira as premissas e referências.</p></div></li><li><span>3</span><div><h3>Explore e salve</h3><p>Visualize o cenário e guarde o estudo para continuar depois.</p></div></li></ol></section>
+      <p class="public-server-notice" data-public-status role="status" hidden></p>
+    </main>
+    <footer class="public-footer"><span>ViabilEasy · Mais clareza para construir possibilidades.</span><small>Protótipo · estudos preliminares · João Pessoa/PB</small><button data-public-login>Entrar na minha conta</button></footer>
+  </div>
+  <div id="auth-root" hidden></div>
+  <noscript><p>Ative o JavaScript para entrar na sua conta e usar o ViabilEasy.</p></noscript>
+  <dialog id="account-dialog" aria-labelledby="account-title"></dialog>
   <a class="skip-link" href="#main-content">Pular para o conteúdo</a>
   <div id="app" class="app-shell">
     <aside class="sidebar" id="sidebar">
       <button class="icon-button drawer-close" id="drawer-close" aria-label="Fechar menu">Fechar <span data-icon="close"></span></button>
-      <a class="brand" href="./" aria-label="ViabilEasy início"><span class="brand-art"><img src="./assets/viabileasy-manual.png" alt="ViabilEasy — inteligência urbanística para mais possibilidades" width="1448" height="1086"></span></a>
+      <a class="brand" href="./" aria-label="ViabilEasy início"><span class="brand-art"><img src="./assets/viabileasy-logo.png" alt="ViabilEasy — inteligência urbanística para mais possibilidades" width="560" height="180"></span></a>
       <section class="glass-menu-content" aria-labelledby="glass-menu-title">
         <div class="glass-menu-heading"><span class="glass-eyebrow">SEU TERRENO, MAIS POSSIBILIDADES</span><h2 id="glass-menu-title">O que você quer explorar?</h2><p id="glass-menu-context">Selecione um terreno para começar.</p></div>
         <nav class="glass-function-grid" aria-label="Funções do sistema">
@@ -34,7 +173,9 @@
           <button data-mobile-destination="finance" class="glass-function"><span class="glass-function-icon"><span data-icon="chart"></span></span><span><strong>Viabilidade</strong><small>Premissas de receita e custo</small></span></button>
           <button data-mobile-destination="report" class="glass-function"><span class="glass-function-icon"><span data-icon="file"></span></span><span><strong>Relatório</strong><small>Visualizar e exportar</small></span></button>
           <button data-mobile-destination="projects" class="glass-function"><span class="glass-function-icon"><span data-icon="folder"></span></span><span><strong>Meus estudos</strong><small>Retome seus terrenos</small></span></button>
+          <button data-mobile-destination="documents" class="glass-function"><span class="glass-function-icon"><span data-icon="upload"></span></span><span><strong>Documentos oficiais</strong><small>Anexe leis, certidões e plantas</small></span></button>
           <button data-mobile-destination="sources" class="glass-function"><span class="glass-function-icon"><span data-icon="book"></span></span><span><strong>Fontes e legislação</strong><small>Consulte as referências</small></span></button>
+          <button data-mobile-destination="admin" class="glass-function" data-admin-nav hidden><span class="glass-function-icon"><span data-icon="shield"></span></span><span><strong>Administração</strong><small>Visão superadministrador</small></span></button>
           <button data-mobile-destination="overview" class="glass-function"><span class="glass-function-icon"><span data-icon="grid"></span></span><span><strong>Visão geral</strong><small>Seu espaço de trabalho</small></span></button>
         </nav>
         <div class="glass-menu-footer"><button data-action="choose-layout"><span data-icon="layers"></span>Layouts do protótipo</button><button data-action="about"><span data-icon="help"></span>Ajuda</button></div>
@@ -44,21 +185,22 @@
       <nav class="main-nav" aria-label="Navegação principal">
         <button data-page="overview"><span data-icon="grid"></span>Visão geral</button>
         <button data-page="analysis" class="active"><span data-icon="scan"></span>Nova análise<span class="nav-new">+</span></button>
-        <button data-page="projects"><span data-icon="folder"></span>Meus terrenos<span class="nav-count" id="project-count">3</span></button>
+        <button data-page="projects"><span data-icon="folder"></span>Meus estudos<span class="nav-count" id="project-count">0</span></button>
+        <button data-page="documents"><span data-icon="upload"></span>Documentos oficiais</button>
         <button data-page="sources"><span data-icon="book"></span>Fontes e legislação</button>
+        <button data-page="admin" data-admin-nav hidden><span data-icon="shield"></span>Administração</button>
       </nav>
       <div class="sidebar-bottom">
         <div class="region-card"><span class="region-pulse"></span><div><strong>João Pessoa, PB</strong><small>Recorte inicial do produto</small></div><span data-icon="pin"></span></div>
         <button class="help-link" id="about-button"><span data-icon="help"></span>Sobre este protótipo<span data-icon="external"></span></button>
-        <div class="profile"><div class="profile-avatar">VE</div><div><strong>Equipe Viabileasy</strong><small>Ambiente de exploração</small></div><span class="online-dot"></span></div>
+        <button class="account-sidebar" data-account-open type="button" aria-label="Abrir meu perfil"><span class="account-avatar">VE</span><span><strong>Minha conta</strong><small>Meu perfil e acesso</small></span></button>
       </div>
     </aside>
     <div class="main-shell">
       <header class="topbar">
-        <button class="icon-button mobile-menu" id="mobile-menu" aria-label="Abrir menu de navegação" aria-controls="sidebar" aria-expanded="false"><span data-icon="menu"></span></button>
-        <a class="mobile-brand" href="./" aria-label="ViabilEasy início"><span class="brand-art"><img src="./assets/viabileasy-manual.png" alt="ViabilEasy — inteligência urbanística para mais possibilidades" width="1448" height="1086"></span></a>
+        <a class="mobile-brand" href="./" aria-label="ViabilEasy início"><span class="brand-art"><img src="./assets/viabileasy-logo.png" alt="ViabilEasy — inteligência urbanística para mais possibilidades" width="560" height="180"></span></a>
         <div class="breadcrumb">Workspace <span>/</span> <strong id="breadcrumb-current">Nova análise</strong></div>
-        <div class="topbar-end"><span class="prototype-tag"><span></span>Protótipo interativo</span><span class="topbar-divider"></span><span class="version">Especificação v3.0</span><button class="icon-button" id="notification-button" aria-label="Ver pendências"><span data-icon="bell"></span><b></b></button></div>
+        <div class="topbar-end"><span id="usage-balance" class="usage-balance" aria-live="polite" hidden></span><span class="prototype-tag"><span></span>Protótipo interativo</span><span class="topbar-divider"></span><span class="version">Especificação v3.0</span><button class="icon-button" id="notification-button" aria-label="Ver pendências"><span data-icon="bell"></span><b></b></button><button class="account-topbar" data-account-open type="button" aria-label="Abrir meu perfil"><span class="account-avatar">VE</span></button></div>
       </header>
       <main id="main-content" tabindex="-1"></main>
     </div>
@@ -70,23 +212,34 @@
     <button data-mobile-destination="find"><span data-icon="pin"></span><span>Terreno</span></button>
     <button data-mobile-destination="3d"><span data-icon="cube"></span><span>3D</span></button>
     <button data-mobile-destination="projects"><span data-icon="folder"></span><span>Estudos</span></button>
-    <button id="dock-menu" aria-label="Abrir menu de funções" aria-controls="sidebar" aria-expanded="false"><span data-icon="menu"></span><span>Menu</span></button>
+    <button id="mobile-menu" aria-label="Abrir menu de navegação" aria-controls="sidebar" aria-expanded="false"><span data-icon="menu"></span><span>Menu</span></button>
   </nav>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <div id="modal-root"></div>
   <div id="results-announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
   <input id="geojson-input" type="file" accept=".json,.geojson,.kml,application/json,application/geo+json,application/vnd.google-earth.kml+xml" hidden>
   <script src="./vendor/leaflet/leaflet.js"></script>
-  <script src="./vendor/maplibre/maplibre-gl.js"></script>
   <script src="./vendor/geometry/proj4.js"></script>
   <script src="./vendor/geometry/clipper.js"></script>
   <script src="./parcel-geometry.js"></script>
+  <script src="./analysis-identity.js"></script>
+  <script src="./setback-rules.js"></script>
+  <script src="./building-capacity.js"></script>
+  <script src="./building-capacity-ui.js"></script>
+  <script src="./setback-ui.js"></script>
   <script src="./parcel-form.js"></script>
   <script src="./parcel-scene.js"></script>
   <script src="./simple-flow.js"></script>
+  <script src="./recent-studies.js"></script>
   <script src="./app.js"></script>
   <script src="./parcel-map.js"></script>
   <script src="./map-explorer.js"></script>
   <script src="./map-picker.js"></script>
+  <script src="./usage.js"></script>
+  <script src="./documents.js"></script>
+  <script src="./admin.js"></script>
+  <script src="./auth.js"></script>
+  <script src="./ui-navigation.js"></script>
+  <script type="module" src="./experience3d/controller.js"></script>
 </body>
 </html>

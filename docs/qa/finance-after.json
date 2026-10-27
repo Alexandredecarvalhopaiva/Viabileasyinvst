@@ -1,0 +1,477 @@
+[
+  {
+    "bodyState": "ready",
+    "contentWidth": 320,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "O que este terreno pode se tornar?"
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 8.65214322245659,
+      "interactions": [
+        32,
+        48,
+        48,
+        32,
+        32,
+        48,
+        48,
+        48,
+        40,
+        40,
+        40,
+        40
+      ],
+      "lcp": 92
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "finance-after",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 11,
+        "text": "22,39"
+      },
+      {
+        "size": 11,
+        "text": "VGV"
+      },
+      {
+        "size": 11,
+        "text": "10,85"
+      },
+      {
+        "size": 11,
+        "text": "Obra direta"
+      },
+      {
+        "size": 11,
+        "text": "2,39"
+      },
+      {
+        "size": 11,
+        "text": "Indiretos"
+      },
+      {
+        "size": 11,
+        "text": "4,03"
+      },
+      {
+        "size": 11,
+        "text": "Lucro alvo"
+      },
+      {
+        "size": 11,
+        "text": "5,11"
+      },
+      {
+        "size": 11,
+        "text": "Residual"
+      }
+    ],
+    "tinyTextCount": 10,
+    "title": "O que este terreno pode se tornar? | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 320,
+    "requestedWidth": 320
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 374,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "O que este terreno pode se tornar?"
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 8.784086925850982,
+      "interactions": [
+        32,
+        48,
+        48,
+        32,
+        32,
+        48,
+        48,
+        48,
+        40,
+        40,
+        40,
+        40
+      ],
+      "lcp": 92
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "finance-after",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 11,
+        "text": "22,39"
+      },
+      {
+        "size": 11,
+        "text": "VGV"
+      },
+      {
+        "size": 11,
+        "text": "10,85"
+      },
+      {
+        "size": 11,
+        "text": "Obra direta"
+      },
+      {
+        "size": 11,
+        "text": "2,39"
+      },
+      {
+        "size": 11,
+        "text": "Indiretos"
+      },
+      {
+        "size": 11,
+        "text": "4,03"
+      },
+      {
+        "size": 11,
+        "text": "Lucro alvo"
+      },
+      {
+        "size": 11,
+        "text": "5,11"
+      },
+      {
+        "size": 11,
+        "text": "Residual"
+      }
+    ],
+    "tinyTextCount": 10,
+    "title": "O que este terreno pode se tornar? | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 374,
+    "requestedWidth": 375
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 390,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "O que este terreno pode se tornar?"
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 8.788841568743106,
+      "interactions": [
+        32,
+        48,
+        48,
+        32,
+        32,
+        48,
+        48,
+        48,
+        40,
+        40,
+        40,
+        40
+      ],
+      "lcp": 92
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "finance-after",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 11,
+        "text": "22,39"
+      },
+      {
+        "size": 11,
+        "text": "VGV"
+      },
+      {
+        "size": 11,
+        "text": "10,85"
+      },
+      {
+        "size": 11,
+        "text": "Obra direta"
+      },
+      {
+        "size": 11,
+        "text": "2,39"
+      },
+      {
+        "size": 11,
+        "text": "Indiretos"
+      },
+      {
+        "size": 11,
+        "text": "4,03"
+      },
+      {
+        "size": 11,
+        "text": "Lucro alvo"
+      },
+      {
+        "size": 11,
+        "text": "5,11"
+      },
+      {
+        "size": 11,
+        "text": "Residual"
+      }
+    ],
+    "tinyTextCount": 10,
+    "title": "O que este terreno pode se tornar? | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 390,
+    "requestedWidth": 390
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 768,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "O que este terreno pode se tornar?"
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 9.26945923622363,
+      "interactions": [
+        32,
+        48,
+        48,
+        32,
+        32,
+        48,
+        48,
+        48,
+        40,
+        40,
+        40,
+        40
+      ],
+      "lcp": 92
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "finance-after",
+    "smallTargets": [],
+    "tinyText": [],
+    "tinyTextCount": 0,
+    "title": "O que este terreno pode se tornar? | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 768,
+    "requestedWidth": 768
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 1024,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "O que este terreno pode se tornar?"
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 9.751575777919555,
+      "interactions": [
+        32,
+        48,
+        48,
+        32,
+        32,
+        48,
+        48,
+        48,
+        40,
+        40,
+        40,
+        40
+      ],
+      "lcp": 92
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "finance-after",
+    "smallTargets": [],
+    "tinyText": [],
+    "tinyTextCount": 0,
+    "title": "O que este terreno pode se tornar? | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1024,
+    "requestedWidth": 1024
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 1280,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "O que este terreno pode se tornar?"
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 10.112366793544556,
+      "interactions": [
+        32,
+        48,
+        48,
+        32,
+        32,
+        48,
+        48,
+        48,
+        40,
+        40,
+        40,
+        40
+      ],
+      "lcp": 92
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "finance-after",
+    "smallTargets": [],
+    "tinyText": [],
+    "tinyTextCount": 0,
+    "title": "O que este terreno pode se tornar? | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1280,
+    "requestedWidth": 1280
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 1440,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "O que este terreno pode se tornar?"
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 10.179811928812102,
+      "interactions": [
+        32,
+        48,
+        48,
+        32,
+        32,
+        48,
+        48,
+        48,
+        40,
+        40,
+        40,
+        40
+      ],
+      "lcp": 92
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "finance-after",
+    "smallTargets": [],
+    "tinyText": [],
+    "tinyTextCount": 0,
+    "title": "O que este terreno pode se tornar? | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1440,
+    "requestedWidth": 1440
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 1920,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "O que este terreno pode se tornar?"
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 10.396430897705864,
+      "interactions": [
+        32,
+        48,
+        48,
+        32,
+        32,
+        48,
+        48,
+        48,
+        40,
+        40,
+        40,
+        40
+      ],
+      "lcp": 92
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "finance-after",
+    "smallTargets": [],
+    "tinyText": [],
+    "tinyTextCount": 0,
+    "title": "O que este terreno pode se tornar? | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1920,
+    "requestedWidth": 1920
+  }
+]

@@ -1,10 +1,29 @@
 {
   "name": "urba-prototipo",
-  "version": "0.12.1",
+  "version": "0.14.0",
   "private": true,
   "description": "Protótipo ViabilEasy: potencial construtivo do terreno por tipologia",
   "scripts": {
-    "prototype": "node serve.mjs",
-    "verify:geometry": "node verify-geometry.cjs"
+    "prototype": "node --env-file-if-exists=.env serve.mjs",
+    "verify:geometry": "node verify-geometry.cjs",
+    "test:accounts": "node --test test/accounts.test.mjs",
+    "test:approvals": "node --test test/account-approvals.test.mjs",
+    "test:documents": "node --test test/documents.test.mjs",
+    "test:usage": "node --test test/usage-credits.test.mjs test/usage-api.test.mjs test/analysis-identity.test.cjs",
+    "account:role": "node --env-file-if-exists=.env scripts/set-account-role.mjs",
+    "test:setbacks": "node --test test/setbacks.test.cjs",
+    "test:capacity": "node --test test/building-capacity.test.cjs",
+    "vendor:three": "node scripts/vendor-three.mjs",
+    "test:experience": "node --test test/experience3d.test.mjs test/experience-comparison.test.mjs",
+    "build:public": "node scripts/render-public.mjs",
+    "preprototype": "node scripts/render-public.mjs"
+  },
+  "dependencies": {
+    "google-auth-library": "^11.3.1",
+    "nodemailer": "^10.2.0",
+    "three": "0.186.1"
+  },
+  "engines": {
+    "node": ">=24.0.0"
   }
 }

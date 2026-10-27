@@ -1,0 +1,854 @@
+[
+  {
+    "bodyState": "ready",
+    "contentWidth": 320,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "O que este terreno pode se tornar?"
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 2.488098034044829,
+      "interactions": [
+        32,
+        48,
+        48,
+        32,
+        32,
+        48,
+        48,
+        48
+      ],
+      "lcp": 92
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "studio-after",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 10,
+        "text": "NO MODELO 3D"
+      },
+      {
+        "size": 11,
+        "text": "18 m de altura simulada · 3 m por pavimento"
+      },
+      {
+        "size": 10,
+        "text": "LIMITE PARA ESTE TERRENO"
+      },
+      {
+        "size": 11,
+        "text": "Depende do gabarito e das restrições aplicáveis ao lote."
+      },
+      {
+        "size": 11,
+        "text": "Cotas: térreo"
+      },
+      {
+        "size": 11,
+        "text": "Terreno plano assumido · massa conceitual"
+      },
+      {
+        "size": 10,
+        "text": "Norte de referência"
+      },
+      {
+        "size": 11,
+        "text": "Frente"
+      },
+      {
+        "size": 11,
+        "text": "Laterais"
+      },
+      {
+        "size": 11,
+        "text": "Fundos"
+      },
+      {
+        "size": 11,
+        "text": "Envelope por pavimento"
+      },
+      {
+        "size": 10,
+        "text": "Cotas no terreno: térreo · distância mínima exigida, não a distância efetiva da massa."
+      },
+      {
+        "size": 11,
+        "text": "Enquadramento pendente"
+      },
+      {
+        "size": 11,
+        "text": "Frente 5,00 m"
+      },
+      {
+        "size": 11,
+        "text": "Laterais 3,00 m"
+      },
+      {
+        "size": 11,
+        "text": "Fundos 5,00 m"
+      },
+      {
+        "size": 11,
+        "text": "Valores do último pavimento. As linhas do envelope e a massa acompanham os recuos de cada "
+      }
+    ],
+    "tinyTextCount": 17,
+    "title": "O que este terreno pode se tornar? | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 320,
+    "requestedWidth": 320
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 374,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "O que este terreno pode se tornar?"
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 2.6258613589374526,
+      "interactions": [
+        32,
+        48,
+        48,
+        32,
+        32,
+        48,
+        48,
+        48
+      ],
+      "lcp": 92
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "studio-after",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 10,
+        "text": "NO MODELO 3D"
+      },
+      {
+        "size": 11,
+        "text": "18 m de altura simulada · 3 m por pavimento"
+      },
+      {
+        "size": 10,
+        "text": "LIMITE PARA ESTE TERRENO"
+      },
+      {
+        "size": 11,
+        "text": "Depende do gabarito e das restrições aplicáveis ao lote."
+      },
+      {
+        "size": 11,
+        "text": "Cotas: térreo"
+      },
+      {
+        "size": 11,
+        "text": "Terreno plano assumido · massa conceitual"
+      },
+      {
+        "size": 10,
+        "text": "Norte de referência"
+      },
+      {
+        "size": 11,
+        "text": "Frente"
+      },
+      {
+        "size": 11,
+        "text": "Laterais"
+      },
+      {
+        "size": 11,
+        "text": "Fundos"
+      },
+      {
+        "size": 11,
+        "text": "Envelope por pavimento"
+      },
+      {
+        "size": 10,
+        "text": "Cotas no terreno: térreo · distância mínima exigida, não a distância efetiva da massa."
+      },
+      {
+        "size": 11,
+        "text": "Enquadramento pendente"
+      },
+      {
+        "size": 11,
+        "text": "Frente 5,00 m"
+      },
+      {
+        "size": 11,
+        "text": "Laterais 3,00 m"
+      },
+      {
+        "size": 11,
+        "text": "Fundos 5,00 m"
+      },
+      {
+        "size": 11,
+        "text": "Valores do último pavimento. As linhas do envelope e a massa acompanham os recuos de cada "
+      }
+    ],
+    "tinyTextCount": 17,
+    "title": "O que este terreno pode se tornar? | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 374,
+    "requestedWidth": 375
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 390,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "O que este terreno pode se tornar?"
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 2.633078722250988,
+      "interactions": [
+        32,
+        48,
+        48,
+        32,
+        32,
+        48,
+        48,
+        48
+      ],
+      "lcp": 92
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "studio-after",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 10,
+        "text": "NO MODELO 3D"
+      },
+      {
+        "size": 11,
+        "text": "18 m de altura simulada · 3 m por pavimento"
+      },
+      {
+        "size": 10,
+        "text": "LIMITE PARA ESTE TERRENO"
+      },
+      {
+        "size": 11,
+        "text": "Depende do gabarito e das restrições aplicáveis ao lote."
+      },
+      {
+        "size": 11,
+        "text": "Cotas: térreo"
+      },
+      {
+        "size": 11,
+        "text": "Terreno plano assumido · massa conceitual"
+      },
+      {
+        "size": 10,
+        "text": "Norte de referência"
+      },
+      {
+        "size": 11,
+        "text": "Frente"
+      },
+      {
+        "size": 11,
+        "text": "Laterais"
+      },
+      {
+        "size": 11,
+        "text": "Fundos"
+      },
+      {
+        "size": 11,
+        "text": "Envelope por pavimento"
+      },
+      {
+        "size": 10,
+        "text": "Cotas no terreno: térreo · distância mínima exigida, não a distância efetiva da massa."
+      },
+      {
+        "size": 11,
+        "text": "Enquadramento pendente"
+      },
+      {
+        "size": 11,
+        "text": "Frente 5,00 m"
+      },
+      {
+        "size": 11,
+        "text": "Laterais 3,00 m"
+      },
+      {
+        "size": 11,
+        "text": "Fundos 5,00 m"
+      },
+      {
+        "size": 11,
+        "text": "Valores do último pavimento. As linhas do envelope e a massa acompanham os recuos de cada "
+      }
+    ],
+    "tinyTextCount": 17,
+    "title": "O que este terreno pode se tornar? | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 390,
+    "requestedWidth": 390
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 768,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "O que este terreno pode se tornar?"
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 3.1136963897315133,
+      "interactions": [
+        32,
+        48,
+        48,
+        32,
+        32,
+        48,
+        48,
+        48
+      ],
+      "lcp": 92
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "studio-after",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 10,
+        "text": "NO MODELO 3D"
+      },
+      {
+        "size": 11,
+        "text": "18 m de altura simulada · 3 m por pavimento"
+      },
+      {
+        "size": 10,
+        "text": "LIMITE PARA ESTE TERRENO"
+      },
+      {
+        "size": 11,
+        "text": "Depende do gabarito e das restrições aplicáveis ao lote."
+      },
+      {
+        "size": 11,
+        "text": "Cotas: térreo"
+      },
+      {
+        "size": 10,
+        "text": "Norte de referência"
+      },
+      {
+        "size": 11,
+        "text": "Frente"
+      },
+      {
+        "size": 11,
+        "text": "Laterais"
+      },
+      {
+        "size": 11,
+        "text": "Fundos"
+      },
+      {
+        "size": 11,
+        "text": "Envelope por pavimento"
+      },
+      {
+        "size": 10,
+        "text": "Cotas no terreno: térreo · distância mínima exigida, não a distância efetiva da massa."
+      },
+      {
+        "size": 11,
+        "text": "Enquadramento pendente"
+      },
+      {
+        "size": 11,
+        "text": "Frente 5,00 m"
+      },
+      {
+        "size": 11,
+        "text": "Laterais 3,00 m"
+      },
+      {
+        "size": 11,
+        "text": "Fundos 5,00 m"
+      },
+      {
+        "size": 11,
+        "text": "Valores do último pavimento. As linhas do envelope e a massa acompanham os recuos de cada "
+      }
+    ],
+    "tinyTextCount": 16,
+    "title": "O que este terreno pode se tornar? | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 768,
+    "requestedWidth": 768
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 1024,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "O que este terreno pode se tornar?"
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 3.986413115639886,
+      "interactions": [
+        32,
+        48,
+        48,
+        32,
+        32,
+        48,
+        48,
+        48
+      ],
+      "lcp": 92
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "studio-after",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 10,
+        "text": "NO MODELO 3D"
+      },
+      {
+        "size": 11,
+        "text": "18 m de altura simulada · 3 m por pavimento"
+      },
+      {
+        "size": 10,
+        "text": "LIMITE PARA ESTE TERRENO"
+      },
+      {
+        "size": 11,
+        "text": "Depende do gabarito e das restrições aplicáveis ao lote."
+      },
+      {
+        "size": 11,
+        "text": "Cotas: térreo"
+      },
+      {
+        "size": 10,
+        "text": "Norte de referência"
+      },
+      {
+        "size": 11,
+        "text": "Frente"
+      },
+      {
+        "size": 11,
+        "text": "Laterais"
+      },
+      {
+        "size": 11,
+        "text": "Fundos"
+      },
+      {
+        "size": 11,
+        "text": "Envelope por pavimento"
+      },
+      {
+        "size": 10,
+        "text": "Cotas no terreno: térreo · distância mínima exigida, não a distância efetiva da massa."
+      },
+      {
+        "size": 11,
+        "text": "Enquadramento pendente"
+      },
+      {
+        "size": 11,
+        "text": "Frente 5,00 m"
+      },
+      {
+        "size": 11,
+        "text": "Laterais 3,00 m"
+      },
+      {
+        "size": 11,
+        "text": "Fundos 5,00 m"
+      },
+      {
+        "size": 11,
+        "text": "Valores do último pavimento. As linhas do envelope e a massa acompanham os recuos de cada "
+      }
+    ],
+    "tinyTextCount": 16,
+    "title": "O que este terreno pode se tornar? | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1024,
+    "requestedWidth": 1024
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 1280,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "O que este terreno pode se tornar?"
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 4.184989177122354,
+      "interactions": [
+        32,
+        48,
+        48,
+        32,
+        32,
+        48,
+        48,
+        48
+      ],
+      "lcp": 92
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "studio-after",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 10,
+        "text": "NO MODELO 3D"
+      },
+      {
+        "size": 11,
+        "text": "18 m de altura simulada · 3 m por pavimento"
+      },
+      {
+        "size": 10,
+        "text": "LIMITE PARA ESTE TERRENO"
+      },
+      {
+        "size": 11,
+        "text": "Depende do gabarito e das restrições aplicáveis ao lote."
+      },
+      {
+        "size": 11,
+        "text": "Cotas: térreo"
+      },
+      {
+        "size": 10,
+        "text": "Norte de referência"
+      },
+      {
+        "size": 11,
+        "text": "Frente"
+      },
+      {
+        "size": 11,
+        "text": "Laterais"
+      },
+      {
+        "size": 11,
+        "text": "Fundos"
+      },
+      {
+        "size": 11,
+        "text": "Envelope por pavimento"
+      },
+      {
+        "size": 10,
+        "text": "Cotas no terreno: térreo · distância mínima exigida, não a distância efetiva da massa."
+      },
+      {
+        "size": 11,
+        "text": "Enquadramento pendente"
+      },
+      {
+        "size": 11,
+        "text": "Frente 5,00 m"
+      },
+      {
+        "size": 11,
+        "text": "Laterais 3,00 m"
+      },
+      {
+        "size": 11,
+        "text": "Fundos 5,00 m"
+      },
+      {
+        "size": 11,
+        "text": "Valores do último pavimento. As linhas do envelope e a massa acompanham os recuos de cada "
+      }
+    ],
+    "tinyTextCount": 16,
+    "title": "O que este terreno pode se tornar? | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1280,
+    "requestedWidth": 1280
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 1440,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "O que este terreno pode se tornar?"
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 4.252887588600834,
+      "interactions": [
+        32,
+        48,
+        48,
+        32,
+        32,
+        48,
+        48,
+        48
+      ],
+      "lcp": 92
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "studio-after",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 10,
+        "text": "NO MODELO 3D"
+      },
+      {
+        "size": 11,
+        "text": "18 m de altura simulada · 3 m por pavimento"
+      },
+      {
+        "size": 10,
+        "text": "LIMITE PARA ESTE TERRENO"
+      },
+      {
+        "size": 11,
+        "text": "Depende do gabarito e das restrições aplicáveis ao lote."
+      },
+      {
+        "size": 11,
+        "text": "Cotas: térreo"
+      },
+      {
+        "size": 10,
+        "text": "Norte de referência"
+      },
+      {
+        "size": 11,
+        "text": "Frente"
+      },
+      {
+        "size": 11,
+        "text": "Laterais"
+      },
+      {
+        "size": 11,
+        "text": "Fundos"
+      },
+      {
+        "size": 11,
+        "text": "Envelope por pavimento"
+      },
+      {
+        "size": 10,
+        "text": "Cotas no terreno: térreo · distância mínima exigida, não a distância efetiva da massa."
+      },
+      {
+        "size": 11,
+        "text": "Enquadramento pendente"
+      },
+      {
+        "size": 11,
+        "text": "Frente 5,00 m"
+      },
+      {
+        "size": 11,
+        "text": "Laterais 3,00 m"
+      },
+      {
+        "size": 11,
+        "text": "Fundos 5,00 m"
+      },
+      {
+        "size": 11,
+        "text": "Valores do último pavimento. As linhas do envelope e a massa acompanham os recuos de cada "
+      }
+    ],
+    "tinyTextCount": 16,
+    "title": "O que este terreno pode se tornar? | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1440,
+    "requestedWidth": 1440
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 1920,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "O que este terreno pode se tornar?"
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 4.469506557494596,
+      "interactions": [
+        32,
+        48,
+        48,
+        32,
+        32,
+        48,
+        48,
+        48
+      ],
+      "lcp": 92
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "studio-after",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 10,
+        "text": "NO MODELO 3D"
+      },
+      {
+        "size": 11,
+        "text": "18 m de altura simulada · 3 m por pavimento"
+      },
+      {
+        "size": 10,
+        "text": "LIMITE PARA ESTE TERRENO"
+      },
+      {
+        "size": 11,
+        "text": "Depende do gabarito e das restrições aplicáveis ao lote."
+      },
+      {
+        "size": 11,
+        "text": "Cotas: térreo"
+      },
+      {
+        "size": 10,
+        "text": "Norte de referência"
+      },
+      {
+        "size": 11,
+        "text": "Frente"
+      },
+      {
+        "size": 11,
+        "text": "Laterais"
+      },
+      {
+        "size": 11,
+        "text": "Fundos"
+      },
+      {
+        "size": 11,
+        "text": "Envelope por pavimento"
+      },
+      {
+        "size": 10,
+        "text": "Cotas no terreno: térreo · distância mínima exigida, não a distância efetiva da massa."
+      },
+      {
+        "size": 11,
+        "text": "Enquadramento pendente"
+      },
+      {
+        "size": 11,
+        "text": "Frente 5,00 m"
+      },
+      {
+        "size": 11,
+        "text": "Laterais 3,00 m"
+      },
+      {
+        "size": 11,
+        "text": "Fundos 5,00 m"
+      },
+      {
+        "size": 11,
+        "text": "Valores do último pavimento. As linhas do envelope e a massa acompanham os recuos de cada "
+      }
+    ],
+    "tinyTextCount": 16,
+    "title": "O que este terreno pode se tornar? | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1920,
+    "requestedWidth": 1920
+  }
+]

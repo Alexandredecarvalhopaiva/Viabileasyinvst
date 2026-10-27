@@ -1,0 +1,750 @@
+[
+  {
+    "bodyState": "ready",
+    "contentWidth": 320,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H2",
+        "text": "Veja o terreno e marque o ponto."
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 12.279660646456591,
+      "interactions": [
+        48,
+        40,
+        40,
+        24,
+        24,
+        24,
+        32,
+        32,
+        32,
+        32,
+        48,
+        48,
+        32,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        32,
+        32,
+        24,
+        40,
+        40,
+        40,
+        64,
+        64,
+        64,
+        40,
+        40,
+        40
+      ],
+      "lcp": null
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "map-after",
+    "renderer": "ready",
+    "smallTargets": [
+      {
+        "h": 12,
+        "label": "Leaflet",
+        "w": 30
+      },
+      {
+        "h": 12,
+        "label": "Filipeia/SEPLAN/PMJP",
+        "w": 103
+      }
+    ],
+    "tinyText": [
+      {
+        "size": 11,
+        "text": "50 m"
+      },
+      {
+        "size": 10,
+        "text": "Leaflet | Filipeia/SEPLAN/PMJP · Ortofoto 2021"
+      },
+      {
+        "size": 10,
+        "text": "Leaflet"
+      },
+      {
+        "size": 10,
+        "text": "Filipeia/SEPLAN/PMJP"
+      },
+      {
+        "size": 10,
+        "text": "João Pessoa / PB"
+      }
+    ],
+    "tinyTextCount": 5,
+    "title": "Descubra o potencial do seu terreno. | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 320,
+    "requestedWidth": 320
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 374,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H2",
+        "text": "Veja o terreno e marque o ponto."
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 12.469276701037227,
+      "interactions": [
+        48,
+        40,
+        40,
+        24,
+        24,
+        24,
+        32,
+        32,
+        32,
+        32,
+        48,
+        48,
+        32,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        32,
+        32,
+        24,
+        40,
+        40,
+        40,
+        64,
+        64,
+        64,
+        40,
+        40,
+        40
+      ],
+      "lcp": null
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "map-after",
+    "renderer": "ready",
+    "smallTargets": [
+      {
+        "h": 12,
+        "label": "Leaflet",
+        "w": 30
+      },
+      {
+        "h": 12,
+        "label": "Filipeia/SEPLAN/PMJP",
+        "w": 103
+      }
+    ],
+    "tinyText": [
+      {
+        "size": 11,
+        "text": "50 m"
+      },
+      {
+        "size": 10,
+        "text": "Leaflet | Filipeia/SEPLAN/PMJP · Ortofoto 2021"
+      },
+      {
+        "size": 10,
+        "text": "Leaflet"
+      },
+      {
+        "size": 10,
+        "text": "Filipeia/SEPLAN/PMJP"
+      },
+      {
+        "size": 10,
+        "text": "João Pessoa / PB"
+      }
+    ],
+    "tinyTextCount": 5,
+    "title": "Descubra o potencial do seu terreno. | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 374,
+    "requestedWidth": 375
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 390,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H2",
+        "text": "Veja o terreno e marque o ponto."
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 12.48842561123736,
+      "interactions": [
+        48,
+        40,
+        40,
+        24,
+        24,
+        24,
+        32,
+        32,
+        32,
+        32,
+        48,
+        48,
+        32,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        32,
+        32,
+        24,
+        40,
+        40,
+        40,
+        64,
+        64,
+        64,
+        40,
+        40,
+        40
+      ],
+      "lcp": null
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "map-after",
+    "renderer": "ready",
+    "smallTargets": [
+      {
+        "h": 12,
+        "label": "Leaflet",
+        "w": 30
+      },
+      {
+        "h": 12,
+        "label": "Filipeia/SEPLAN/PMJP",
+        "w": 103
+      }
+    ],
+    "tinyText": [
+      {
+        "size": 11,
+        "text": "50 m"
+      },
+      {
+        "size": 10,
+        "text": "Leaflet | Filipeia/SEPLAN/PMJP · Ortofoto 2021"
+      },
+      {
+        "size": 10,
+        "text": "Leaflet"
+      },
+      {
+        "size": 10,
+        "text": "Filipeia/SEPLAN/PMJP"
+      },
+      {
+        "size": 10,
+        "text": "João Pessoa / PB"
+      }
+    ],
+    "tinyTextCount": 5,
+    "title": "Descubra o potencial do seu terreno. | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 390,
+    "requestedWidth": 390
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 768,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H2",
+        "text": "Veja o terreno e marque o ponto."
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 12.916239463595424,
+      "interactions": [
+        48,
+        40,
+        40,
+        24,
+        24,
+        24,
+        32,
+        32,
+        32,
+        32,
+        48,
+        48,
+        32,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        32,
+        32,
+        24,
+        40,
+        40,
+        40,
+        64,
+        64,
+        64,
+        40,
+        40,
+        40
+      ],
+      "lcp": null
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "map-after",
+    "renderer": "ready",
+    "smallTargets": [
+      {
+        "h": 13,
+        "label": "Leaflet",
+        "w": 33
+      },
+      {
+        "h": 13,
+        "label": "Filipeia/SEPLAN/PMJP",
+        "w": 113
+      }
+    ],
+    "tinyText": [
+      {
+        "size": 11,
+        "text": "50 m"
+      },
+      {
+        "size": 11,
+        "text": "Leaflet | Filipeia/SEPLAN/PMJP · Ortofoto 2021"
+      },
+      {
+        "size": 11,
+        "text": "Leaflet"
+      },
+      {
+        "size": 11,
+        "text": "Filipeia/SEPLAN/PMJP"
+      }
+    ],
+    "tinyTextCount": 4,
+    "title": "Descubra o potencial do seu terreno. | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 768,
+    "requestedWidth": 768
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 1024,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H2",
+        "text": "Veja o terreno e marque o ponto."
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 13.916239463595424,
+      "interactions": [
+        48,
+        40,
+        40,
+        24,
+        24,
+        24,
+        32,
+        32,
+        32,
+        32,
+        48,
+        48,
+        32,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        32,
+        32,
+        24,
+        40,
+        40,
+        40,
+        64,
+        64,
+        64,
+        40,
+        40,
+        40
+      ],
+      "lcp": null
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "map-after",
+    "renderer": "ready",
+    "smallTargets": [
+      {
+        "h": 13,
+        "label": "Leaflet",
+        "w": 33
+      },
+      {
+        "h": 13,
+        "label": "Filipeia/SEPLAN/PMJP",
+        "w": 113
+      }
+    ],
+    "tinyText": [
+      {
+        "size": 11,
+        "text": "50 m"
+      },
+      {
+        "size": 11,
+        "text": "Leaflet | Filipeia/SEPLAN/PMJP · Ortofoto 2021"
+      },
+      {
+        "size": 11,
+        "text": "Leaflet"
+      },
+      {
+        "size": 11,
+        "text": "Filipeia/SEPLAN/PMJP"
+      }
+    ],
+    "tinyTextCount": 4,
+    "title": "Descubra o potencial do seu terreno. | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1024,
+    "requestedWidth": 1024
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 1280,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H2",
+        "text": "Veja o terreno e marque o ponto."
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 14.110229134897804,
+      "interactions": [
+        48,
+        40,
+        40,
+        24,
+        24,
+        24,
+        32,
+        32,
+        32,
+        32,
+        48,
+        48,
+        32,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        32,
+        32,
+        24,
+        40,
+        40,
+        40,
+        64,
+        64,
+        64,
+        40,
+        40,
+        40
+      ],
+      "lcp": null
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "map-after",
+    "renderer": "ready",
+    "smallTargets": [
+      {
+        "h": 13,
+        "label": "Leaflet",
+        "w": 33
+      },
+      {
+        "h": 13,
+        "label": "Filipeia/SEPLAN/PMJP",
+        "w": 113
+      }
+    ],
+    "tinyText": [
+      {
+        "size": 11,
+        "text": "50 m"
+      },
+      {
+        "size": 11,
+        "text": "Leaflet | Filipeia/SEPLAN/PMJP · Ortofoto 2021"
+      },
+      {
+        "size": 11,
+        "text": "Leaflet"
+      },
+      {
+        "size": 11,
+        "text": "Filipeia/SEPLAN/PMJP"
+      }
+    ],
+    "tinyTextCount": 4,
+    "title": "Descubra o potencial do seu terreno. | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1280,
+    "requestedWidth": 1280
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 1440,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H2",
+        "text": "Veja o terreno e marque o ponto."
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 14.212723005746346,
+      "interactions": [
+        48,
+        40,
+        40,
+        24,
+        24,
+        24,
+        32,
+        32,
+        32,
+        32,
+        48,
+        48,
+        32,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        32,
+        32,
+        24,
+        40,
+        40,
+        40,
+        64,
+        64,
+        64,
+        40,
+        40,
+        40
+      ],
+      "lcp": null
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "map-after",
+    "renderer": "ready",
+    "smallTargets": [
+      {
+        "h": 13,
+        "label": "Leaflet",
+        "w": 33
+      },
+      {
+        "h": 13,
+        "label": "Filipeia/SEPLAN/PMJP",
+        "w": 113
+      }
+    ],
+    "tinyText": [
+      {
+        "size": 11,
+        "text": "50 m"
+      },
+      {
+        "size": 11,
+        "text": "Leaflet | Filipeia/SEPLAN/PMJP · Ortofoto 2021"
+      },
+      {
+        "size": 11,
+        "text": "Leaflet"
+      },
+      {
+        "size": 11,
+        "text": "Filipeia/SEPLAN/PMJP"
+      }
+    ],
+    "tinyTextCount": 4,
+    "title": "Descubra o potencial do seu terreno. | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1440,
+    "requestedWidth": 1440
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 1920,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H2",
+        "text": "Veja o terreno e marque o ponto."
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 14.436143291732426,
+      "interactions": [
+        48,
+        40,
+        40,
+        24,
+        24,
+        24,
+        32,
+        32,
+        32,
+        32,
+        48,
+        48,
+        32,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        32,
+        32,
+        24,
+        40,
+        40,
+        40,
+        64,
+        64,
+        64,
+        40,
+        40,
+        40
+      ],
+      "lcp": null
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "map-after",
+    "renderer": "ready",
+    "smallTargets": [
+      {
+        "h": 13,
+        "label": "Leaflet",
+        "w": 33
+      },
+      {
+        "h": 13,
+        "label": "Filipeia/SEPLAN/PMJP",
+        "w": 113
+      }
+    ],
+    "tinyText": [
+      {
+        "size": 11,
+        "text": "50 m"
+      },
+      {
+        "size": 11,
+        "text": "Leaflet | Filipeia/SEPLAN/PMJP · Ortofoto 2021"
+      },
+      {
+        "size": 11,
+        "text": "Leaflet"
+      },
+      {
+        "size": 11,
+        "text": "Filipeia/SEPLAN/PMJP"
+      }
+    ],
+    "tinyTextCount": 4,
+    "title": "Descubra o potencial do seu terreno. | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1920,
+    "requestedWidth": 1920
+  }
+]

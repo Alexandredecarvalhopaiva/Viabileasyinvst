@@ -4,15 +4,14 @@ Protótipo navegável criado a partir da **Especificação Técnica Consolidada 
 
 ## Abrir
 
-Abra `URBA-Prototipo.html` diretamente no navegador. Esse arquivo reúne a interface, os estilos e o código. Fontes externas são opcionais; há fontes de sistema como alternativa.
+A versão atual usa **Node.js 24+**, com contas e estudos privados no servidor.
 
-Para servir a versão organizada em arquivos, execute na pasta do projeto:
+    npm install
+    npm run prototype
 
-```sh
-npm run prototype
-```
+Abra http://127.0.0.1:4173 e use **Criar conta**. Para ativar o Google e a entrega de e-mails de redefinição, siga [CONFIGURAR-ACESSO.md](CONFIGURAR-ACESSO.md).
 
-Abra o endereço local exibido no terminal. O projeto não exige instalação de dependências. O servidor usa somente módulos nativos do Node.js.
+O HTML independente e os arquivos ZIP preservam a demonstração anterior, sem contas. As seções de versões abaixo são o histórico do protótipo; o comportamento atual de acesso e salvamento é descrito na versão 0.13 ao final.
 
 ## Explorar
 
@@ -35,13 +34,13 @@ O importador recebe um único GeoJSON Polygon, sem furos, em WGS84, com anel fec
 - Atualização de pavimentos, ocupação, área da unidade e uso residencial/misto.
 - Comparação de três cenários e sandbox econômico com sensibilidade.
 - Relatório com mapa, massa, premissas, pendências e origem da informação.
-- Exportação JSON e salvamento temporário na biblioteca da sessão.
+- Exportação JSON e estudos persistidos na conta autenticada.
 
 ## Limites do protótipo
 
 Todos os lotes de exemplo, índices, zonas, custos e preços são demonstrativos. Nenhum artigo foi homologado. O mapa não possui conexão cadastral. As referências externas vieram do documento fornecido e aparecem como pendentes de validação.
 
-Não há autenticação, back-end, banco de dados, persistência entre sessões, consulta GIS oficial, motor jurídico, simulação topográfica, insolação, projeto arquitetônico, dimensionamento de garagem, fluxo mensal, VPL, TIR, outorga ou elegibilidade bancária. O exemplo de orla sinaliza o resultado jurídico como bloqueado e mantém a massa apenas como hipótese ilustrativa.
+Há autenticação e persistência por conta no servidor Node.js/SQLite. Ainda não há consulta GIS cadastral oficial, motor jurídico homologado, simulação topográfica, insolação, projeto arquitetônico, dimensionamento de garagem, fluxo mensal, VPL, TIR, outorga ou elegibilidade bancária. O exemplo de orla sinaliza o resultado jurídico como bloqueado e mantém a massa apenas como hipótese ilustrativa.
 
 O cálculo usa o menor limite entre TO, recuos simplificados e CA máximo dividido pelos pavimentos. A área vendável considera unidades inteiras e uma loja ilustrativa quando o uso é misto. Custos diretos usam a área construída total simplificada, explicitada na tela. A simulação econômica não é uma recomendação de compra.
 
@@ -198,3 +197,70 @@ Conferência no navegador: 320 × 568, 392 × 844, 768 × 1024, 1024 × 768, 118
 Removida a área fixa reservada atrás do menu flutuante no celular e tablet. O conteúdo rolável agora se estende até a base da tela e aparece por trás do liquid glass. A folga necessária ao menu passou para o final do conteúdo e para o scroll-padding do próprio main, preservando a possibilidade de posicionar campos e botões acima da navegação.
 
 Conferência visual em 392 × 844 px: main até a base da tela, faixa fixa ausente e desfoque do dock preservado. Conferidos também 320 × 568 e 1024 × 768 px, sem transbordamento horizontal. Botão de análise visível acima do dock ao receber foco; painel abre e fecha por Escape. Em 1280 × 960 px, a reserva do rodapé de desktop permanece. Sem erros de JavaScript observados.
+
+## Contas, perfil e estudos privados (v0.13)
+
+Cadastro e entrada por e-mail/senha, integração Google OAuth, perfil com edição de nome, envio/remoção de foto e redefinição de senha. As telas incluem confirmação de envio e tratamento de links inválidos, expirados ou já utilizados. O perfil está disponível pelo avatar no cabeçalho e pela conta na navegação.
+
+Os estudos passam a ser persistidos em SQLite e associados à conta autenticada. A biblioteca começa vazia, recupera geometria e cenário após recarregar e mantém os terrenos demonstrativos disponíveis na visão geral.
+
+O Google depende de credenciais OAuth e o envio real de e-mails depende de SMTP. Sem SMTP no desenvolvimento, as mensagens ficam em uma caixa local fora da pasta pública. Não há login Google simulado. Consulte [configuração e operação](CONFIGURAR-ACESSO.md).
+
+Verificação: testes de integração de contas e privacidade, verificação numérica da geometria e conferência no navegador de login, sessão após recarregar, edição do perfil, upload de foto, salvamento/recuperação de terreno e abertura dos links de redefinição. O Google real e a entrega SMTP aguardam as credenciais dos serviços.
+
+
+### Estudos recentes na tela inicial
+
+A seção “Continue seus estudos” apresenta os seis estudos salvos ou acessados mais recentemente pela conta. Os cartões mostram nome, área, produto, data/hora da última atividade e acesso direto ao cenário salvo em 3D. “Ver todos” abre a biblioteca completa. A ordem persiste após recarregar ou entrar novamente.
+
+Abrir um estudo registra somente a data de acesso; as alterações do cenário continuam dependendo de “Salvar estudo”. Contas novas recebem um estado vazio com atalho para criar a primeira análise. O banco anterior é atualizado automaticamente, preservando os estudos existentes.
+
+
+## Recuos documentais e representação por pavimento
+
+Depois de confirmar o terreno, use **Recuos para construir**. Informe a zona, situação de orla e cenário de aplicação geral; em “Confrontações”, marque outras frentes e rodovias. A opção de documento permite informar valores e identificar a certidão de referência. “Aplicar recuos” recalcula o terreno e o 3D; “Salvar estudo” persiste o enquadramento e uma cópia das regras aplicadas.
+
+O catálogo inicial cobre as regras gerais de **ZH1 a ZH5 de João Pessoa**, conforme o Anexo IV da LC 169/2024, os arts. 68 e 77 da LC 166/2024 e a nota de frentes rodoviárias. Não há detecção automática de zona por bairro ou coordenada. Orla, regimes especiais, zonas não contempladas e versões documentais diferentes ficam pendentes, sem declarar conformidade. Faculdades de colagem e a alternativa H3 da nota B não são aplicadas automaticamente.
+
+O 3D mostra as faixas de frente, laterais e fundos com cores e cotas no térreo. A massa e o envelope se ajustam por pavimento; a área computável é a soma das lâminas. Cada lâmina fica dentro de seu envelope, limitada ainda pelas hipóteses de TO, CA e produto. Esses outros índices continuam demonstrativos: o resultado não constitui aprovação urbanística.
+
+Em terrenos convexos, o recorte usa afastamentos perpendiculares por lado. Terrenos côncavos e fundos sem identificação recebem aproximação uniforme conservadora, explicitada na tela e no relatório. Não há aplicação automática das exceções dos arts. 78–81, análise de aberturas, geminação, subsolo, múltiplos blocos ou estruturas em madeira.
+
+Fontes, tabelas, ressalvas e situação normativa pesquisada: [base documental](docs/research/recuos-joao-pessoa.md). O estudo salvo e a exportação incluem a versão, os inputs e os valores por pavimento. O relatório também apresenta as fontes e recuos por lado.
+
+Verificação específica: npm run test:setbacks. As verificações anteriores continuam disponíveis em npm run verify:geometry e npm run test:accounts.
+
+
+### Pavimentos no modelo 3D
+
+A volumetria identifica o térreo e os andares, mostra a contagem total e a altura simulada (premissa de 3 m por pavimento). O controle é uma faixa de simulação, sem equivalência a autorização urbanística.
+
+O quadro “Limite para este terreno” fica a confirmar até que seja informada uma referência documental com número máximo de pavimentos e identificação da fonte. O cenário pode ser ajustado à referência com um botão. Se excedê-la, os pavimentos acima do limite ficam em laranja e o aviso também aparece em texto. Limite documental informado não é homologado pelo protótipo. O sistema não converte automaticamente altura legal em quantidade de andares.
+
+A referência é guardada no estudo por conta e incluída no relatório/JSON. Quando a geometria do terreno muda, precisa ser informada novamente. A análise das fontes de João Pessoa está em `docs/research/pavimentos-joao-pessoa.md`.
+
+Validação: `npm run test:capacity`, `npm run test:setbacks`, `npm run verify:geometry` e `npm run test:accounts` (este último abre um servidor temporário local).
+
+
+### Site público e ferramentas com login
+
+Visitantes abrem uma página pública com a apresentação dos recursos e o passo a passo de uso. “Começar uma análise”, modelagem 3D, cenários e “Meus estudos” solicitam autenticação. Entrar e criar conta ficam disponíveis no site; a tela de acesso permite voltar à visita sem fazer login.
+
+Após autenticar, o usuário segue para a análise ou biblioteca solicitada. Ao sair, volta ao site público; o estado do terreno, estudos e perfil é limpo da interface. O workspace e suas entradas de teclado, formulários e menus permanecem bloqueados sem sessão. As APIs de estudos e perfil continuam exigindo autenticação no servidor.
+
+Conferência no navegador: visita sem login, convite de acesso nas ferramentas, retorno ao site, login abrindo a biblioteca, análise liberada, sessão após recarregar e saída removendo os dados da conta. A página pública foi verificada também em largura de 373 px, sem transbordamento horizontal. `npm run test:accounts` cobre as recusas de leitura e escrita anônimas.
+
+
+### Hero pública interativa
+
+A página inicial agora apresenta “Seu terreno. Muito além do óbvio.” com cinco alternativas 3D, cotas do envelope, sequência de 18 segundos, controles de câmera e comparação financeira ilustrativa. No celular, os cenários ficam em um carrossel horizontal. **Analisar meu terreno** mantém o acesso autenticado; **Veja acontecer** inicia a demonstração pública sem criar estudos pessoais.
+
+A comparação informa VGV, custos, residual e retorno sobre custo, com as premissas e o critério de destaque disponíveis em **Como calculamos**. Todos os valores da hero são fictícios. Detalhes: [experiência 3D](docs/experience3d.md) e [comparação da hero](docs/hero-comparison.md). Validação: `npm run test:experience`.
+
+## Interface compartilhada e revisão de UI/UX
+
+Os tokens e componentes da revisão estão em `dist/design-tokens.css` e `dist/ui-system.css`; as convenções estão em [docs/design-system.md](docs/design-system.md). O [relatório da revisão](docs/qa/revisao-ui-ux-2026-10-26.md) registra alterações, testes e limites da validação.
+
+A página pública é pré-renderizada com os mesmos templates usados no navegador para reduzir mudanças de layout. Execute `npm run build:public` após alterar os templates/dados da experiência. `npm run prototype` já executa essa geração antes de iniciar.
+
+Para repetir a auditoria visual em um ambiente isolado: `node scripts/ui-audit-preview.mjs`, abrindo `http://127.0.0.1:4181/__audit`. A fixture usa banco temporário, conta de teste e envio de e-mail simulado; não acessa os estudos do servidor principal. O botão “Medir 8 larguras” coleta reflow, rótulos, alvos e contrastes de texto sólido. Use a medição separada de carregamento para observar o CLS sem incluir redimensionamentos deliberados.

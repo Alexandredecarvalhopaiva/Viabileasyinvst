@@ -1,0 +1,41 @@
+.setback-panel{padding:24px;margin:22px 0;border:1px solid #cddfe8}
+.setback-panel-heading{display:flex;justify-content:space-between;align-items:center;gap:14px}
+.setback-panel-heading h2{font:650 22px var(--display);margin-top:5px;letter-spacing:-.5px}
+.setback-status{font-size:11px;line-height:1.6;border-radius:20px;padding:7px 11px;background:#fff3da;color:#77541b}
+.setback-status.ready{background:#e9f6f0;color:#1d6350}
+.setback-intro{font-size:13px;color:#526779;line-height:1.8;margin:16px 0}
+.setback-form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.setback-field{display:flex;flex-direction:column;gap:8px;font-size:12px;font-weight:600;min-width:0}
+.setback-field input,.setback-field select,.setback-edge-input select{width:100%;min-width:0;border:1px solid #cddfe8;border-radius:8px;min-height:45px;padding:10px 12px;color:#0f2d4a;background:#fff;font-size:13px;font-weight:400}
+.setback-help,.setback-source{font-size:12px;color:#526779;line-height:1.8;margin-top:14px;overflow-wrap:anywhere}
+.setback-source a{color:#146c65;text-decoration:underline;text-underline-offset:3px}
+.setback-frontages,.setback-manual{border:1px solid #dce7ec;border-radius:10px;padding:13px 16px;margin:16px 0}
+.setback-frontages summary,.setback-manual summary{cursor:pointer;font-size:13px;font-weight:600;min-height:28px}
+.setback-frontages p,.setback-manual p{font-size:12px;line-height:1.7;color:#526779;margin:10px 0 15px}
+.setback-edge-input{display:grid;grid-template-columns:minmax(0,1fr) 145px;align-items:center;gap:12px;margin-top:10px}
+.setback-edge-input label{display:flex;align-items:center;gap:9px;font-size:12px;line-height:1.6}
+.setback-edge-input input{width:18px;height:18px;flex-shrink:0;accent-color:#126c57}
+.setback-manual-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin-bottom:15px}
+.setback-current-status{font-size:12px;color:#526779;line-height:1.8;padding:13px;background:#f1f7f9;border-radius:8px;margin:16px 0}
+.setback-model-summary{border-top:1px solid #dce7ec;padding-top:20px;margin-top:18px}
+.setback-model-summary>div:first-child strong{display:block;font-size:14px}
+.setback-model-summary>div:first-child>span{display:block;font-size:11px;line-height:1.7;color:#526779;margin-top:5px}
+.setback-values{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:14px 0}
+.setback-values>span{font-size:11px;color:#526779}
+.setback-values b{display:block;font-size:15px;color:#0f2d4a;margin-top:4px}
+.setback-model-summary>p{font-size:11px!important;line-height:1.8;color:#526779;margin:12px 0}
+.setback-model-summary>.btn{font-size:12px;min-height:44px}
+.setback-scene-legend{display:flex;flex-wrap:wrap;gap:10px 16px;padding:14px 18px;background:#f7fafb;border-top:1px solid #dce7ec}
+.setback-scene-legend>span{display:flex;align-items:center;gap:6px;font-size:11px;color:#334155}
+.setback-scene-legend i{width:12px;height:8px;border-radius:2px;display:inline-block}
+.setback-scene-legend .front{background:#e4a14c}.setback-scene-legend .side{background:#7db4cf}.setback-scene-legend .back{background:#b69ad2}.setback-scene-legend .envelope{border:1px dashed #146c65;background:#e7f4ed}
+.setback-scene-legend small{flex-basis:100%;font-size:10px;line-height:1.8;color:#526779}
+.setback-report table{margin:15px 0}
+@media(max-width:700px){.setback-panel{padding:18px}.setback-panel-heading{align-items:flex-start;flex-direction:column}.setback-panel-heading h2{font-size:20px}.setback-form-grid{grid-template-columns:minmax(0,1fr);gap:14px}.setback-edge-input{grid-template-columns:minmax(0,1fr) 115px;gap:8px}.setback-edge-input select{padding:10px 6px;font-size:12px}.setback-manual-grid{gap:8px}.setback-manual-grid input{padding:10px 8px}.setback-frontages,.setback-manual{padding:12px}.setback-scene-legend{padding:12px 14px;gap:9px}.setback-values b{font-size:14px}}
+
+.setback-backdrop{grid-template-columns:minmax(0,1fr);padding:16px}
+.modal.wide-modal.setback-modal{width:min(760px,calc(100vw - 32px));max-width:100%;min-width:0}
+#setback-rule-form>.btn{white-space:normal;min-width:0;max-width:100%;min-height:48px;line-height:1.5;justify-content:center}
+@media(max-width:700px){#setback-rule-form>.btn{width:100%}}
+
+.setback-canvas-tag{display:inline-flex;align-items:center;padding:6px 9px;margin-left:8px;border:1px solid #dce7ec;border-radius:6px;background:#ffffffeb;font-size:11px;color:#526779}

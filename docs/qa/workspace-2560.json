@@ -1,0 +1,52 @@
+[
+  {
+    "bodyState": "ready",
+    "contentWidth": 2560,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "O que este terreno pode se tornar?"
+      },
+      {
+        "level": "H2",
+        "text": "Estudo de potencial construtivo"
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 15.034682427449756,
+      "interactions": [
+        32,
+        48,
+        48,
+        32,
+        32,
+        48,
+        48,
+        48,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "lcp": 92
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "report-after",
+    "smallTargets": [],
+    "tinyText": [],
+    "tinyTextCount": 0,
+    "title": "O que este terreno pode se tornar? | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 2560,
+    "requestedWidth": 2560
+  }
+]

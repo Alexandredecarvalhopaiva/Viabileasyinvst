@@ -1,0 +1,322 @@
+[
+  {
+    "bodyState": "ready",
+    "contentWidth": 320,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Meus estudos"
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 2.2088759548363854,
+      "interactions": [
+        48,
+        40,
+        40
+      ],
+      "lcp": null
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "projects-after",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 11,
+        "text": "PRELIMINAR"
+      }
+    ],
+    "tinyTextCount": 1,
+    "title": "Meus estudos | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 320,
+    "requestedWidth": 320
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 374,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Meus estudos"
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 2.2451908841599937,
+      "interactions": [
+        48,
+        40,
+        40
+      ],
+      "lcp": null
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "projects-after",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 11,
+        "text": "PRELIMINAR"
+      }
+    ],
+    "tinyTextCount": 1,
+    "title": "Meus estudos | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 374,
+    "requestedWidth": 375
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 390,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Meus estudos"
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 2.247434459873864,
+      "interactions": [
+        48,
+        40,
+        40
+      ],
+      "lcp": null
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "projects-after",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 11,
+        "text": "PRELIMINAR"
+      }
+    ],
+    "tinyTextCount": 1,
+    "title": "Meus estudos | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 390,
+    "requestedWidth": 390
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 768,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Meus estudos"
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 2.9004263382643782,
+      "interactions": [
+        48,
+        40,
+        40
+      ],
+      "lcp": null
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "projects-after",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 11,
+        "text": "PRELIMINAR"
+      }
+    ],
+    "tinyTextCount": 1,
+    "title": "Meus estudos | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 768,
+    "requestedWidth": 768
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 1024,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Meus estudos"
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 3.0997616187033645,
+      "interactions": [
+        48,
+        40,
+        40
+      ],
+      "lcp": null
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "projects-after",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 11,
+        "text": "PRELIMINAR"
+      }
+    ],
+    "tinyTextCount": 1,
+    "title": "Meus estudos | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1024,
+    "requestedWidth": 1024
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 1280,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Meus estudos"
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 3.2937557593283646,
+      "interactions": [
+        48,
+        40,
+        40
+      ],
+      "lcp": null
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "projects-after",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 11,
+        "text": "PRELIMINAR"
+      }
+    ],
+    "tinyTextCount": 1,
+    "title": "Meus estudos | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1280,
+    "requestedWidth": 1280
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 1440,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Meus estudos"
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 3.3587956139440847,
+      "interactions": [
+        48,
+        40,
+        40
+      ],
+      "lcp": null
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "projects-after",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 11,
+        "text": "PRELIMINAR"
+      }
+    ],
+    "tinyTextCount": 1,
+    "title": "Meus estudos | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1440,
+    "requestedWidth": 1440
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 1920,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Meus estudos"
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 3.5754145828378463,
+      "interactions": [
+        48,
+        40,
+        40
+      ],
+      "lcp": null
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "projects-after",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 11,
+        "text": "PRELIMINAR"
+      }
+    ],
+    "tinyTextCount": 1,
+    "title": "Meus estudos | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1920,
+    "requestedWidth": 1920
+  }
+]

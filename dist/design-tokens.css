@@ -1,0 +1,10 @@
+/* Shared UI vocabulary. Brand hues live in brand.css; component spacing follows 4 px. */
+:root{
+ --space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:20px;--space-6:24px;--space-8:32px;--space-10:40px;--space-12:48px;--space-16:64px;
+ --text-xs:.75rem;--text-sm:.875rem;--text-base:1rem;--text-lg:1.125rem;
+ --radius-control:10px;--radius-card:16px;--radius-dialog:24px;
+ --surface:#fff;--surface-soft:#f5f9f7;--text-primary:#0f2d4a;--text-secondary:#455c55;--text-quiet:#52665b;--border-ui:#bacbc3;
+ --focus-ring:#176c91;--danger-ui:#97332a;--content-width:1360px;--workspace-width:1600px;
+ --page-gutter:clamp(16px,3vw,48px);--section-gap:clamp(32px,5vw,64px);
+ --shadow-card:0 4px 20px #0f2d4a08;--shadow-dialog:0 24px 80px #0f2d4a30;
+}

@@ -122,6 +122,29 @@
   .glass-function-icon .icon{width:20px;height:20px}
   .glass-menu-footer button{font-size:11px;padding:6px}
 }
+/* Expanded mobile navigation opens as a vertical panel on the left. */
+@media screen and (max-width:1279px), screen and (max-width:1440px) and (hover:none) and (pointer:coarse){
+  .sidebar,.sidebar.mobile-open{
+    inset:0 auto 0 0;
+    width:min(340px,100%);
+    max-width:none;height:auto;max-height:none;margin:0;
+    padding:calc(22px + env(safe-area-inset-top,0px)) 16px calc(16px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));
+    border:0;border-right:1px solid #dce8ed;border-radius:0;background:#f1f8fb;
+    box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;
+    transform:translateX(calc(-100% - 32px));
+  }
+  .sidebar.mobile-open{transform:translateX(0)}
+  .sidebar::before{display:none}
+  .sidebar .brand,.sidebar.mobile-open .brand{width:150px;margin-bottom:24px}
+  .sidebar .drawer-close{top:calc(20px + env(safe-area-inset-top,0px));right:16px}
+  .glass-menu-heading h2{font-size:22px}
+  .glass-function-grid{grid-template-columns:minmax(0,1fr);gap:8px}
+  .glass-function{flex-direction:row;align-items:center;gap:12px;min-height:64px;padding:10px 12px;border-radius:16px}
+  .glass-function-icon{width:34px;height:34px}
+  .glass-function strong{font-size:13px}
+  .glass-function small{display:block;font-size:11px}
+  .glass-menu-footer{flex-wrap:wrap;gap:6px}
+}
 @media(hover:hover){
   .liquid-dock>button:hover{background:#ffffffad}
   .liquid-dock>button.is-active:hover{background:#a8edd3c9}

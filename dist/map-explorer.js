@@ -10,9 +10,27 @@ function mapCameraControls(){return `<div class="picker-camera" id="picker-camer
 function isMapExplorer(){return ['relief','terrain'].includes(locationPicker?.view)}
 function updateMapViewButtons(){const p=locationPicker;if(!p)return;$$('[data-picker-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.pickerView===p.view)));$('#picker-imagery-note').textContent=mapExplorerViews[p.view].help;$('#picker-camera').hidden=!isMapExplorer();$('#picker-camera').classList.toggle('is-relief',p.view==='relief')}
 function closeMapExplorer(){const p=locationPicker;if(!p?.gl)return;const map=p.gl;p.gl=null;clearTimeout(p.glTimeout);map.remove();$('#location-explorer-map').hidden=true;$('#location-picker-map').hidden=false;p.moving=false}
-function openMapExplorer(view){
+let mapLibraryLoad = null, mapExplorerIntent = 0;
+function loadMapExplorerLibrary(){
+ if(window.maplibregl)return Promise.resolve();
+ if(mapLibraryLoad)return mapLibraryLoad;
+ mapLibraryLoad=new Promise((resolve,reject)=>{
+  const script=document.createElement('script');script.src='./vendor/maplibre/maplibre-gl.js';script.async=true;
+  const timeout=setTimeout(()=>{script.remove();mapLibraryLoad=null;reject(new Error('Tempo esgotado ao preparar o relevo.'));},15000);
+  script.onload=()=>{clearTimeout(timeout);resolve()};
+  script.onerror=()=>{clearTimeout(timeout);script.remove();mapLibraryLoad=null;reject(new Error('Não foi possível carregar o relevo.'))};
+  document.head.append(script);
+ });
+ return mapLibraryLoad;
+}
+async function openMapExplorer(view){
  const p=locationPicker;if(!p)return;
- if(!window.maplibregl){notify('Este navegador não disponibilizou o relevo 3D. A vista aérea e as ruas continuam disponíveis.');return}
+ const intent=++mapExplorerIntent;
+ if(!window.maplibregl){
+  notify('Preparando a visualização de relevo…');
+  try{await loadMapExplorerLibrary()}catch{if(intent===mapExplorerIntent)notify('O relevo não pôde carregar. Você pode continuar pela vista aérea ou ruas.');return}
+  if(intent!==mapExplorerIntent||locationPicker!==p)return;
+ }
  const center=p.preservedCenter||(p.gl?p.gl.getCenter():p.map.getCenter()),zoom=p.gl?p.gl.getZoom():p.map.getZoom();
  closeMapExplorer();p.preservedCenter={lat:center.lat,lng:center.lng};p.view=view;p.ready=false;p.moving=false;p.glFailed=false;p.glComplete=false;
  $('#location-picker-map').hidden=true;$('#location-explorer-map').hidden=false;$('#picker-map-error').hidden=true;
@@ -54,7 +72,7 @@ function updateMapExplorer(){
  updateMapCamera();
 }
 document.addEventListener('click',e=>{
- const v=e.target.closest('[data-picker-view]');if(v&&locationPicker){const id=v.dataset.pickerView;if(id===locationPicker.view)return;if(['terrain','relief'].includes(id))openMapExplorer(id);else setLocationPickerBasemap(id);return}
+ const v=e.target.closest('[data-picker-view]');if(v&&locationPicker){const id=v.dataset.pickerView;mapExplorerIntent++;if(id===locationPicker.view)return;if(['terrain','relief'].includes(id))openMapExplorer(id);else setLocationPickerBasemap(id);return}
  const b=e.target.closest('[data-camera]'),p=locationPicker;if(!b||!p?.gl)return;const map=p.gl;
  switch(b.dataset.camera){case 'neighborhood':map.jumpTo({zoom:14});break;case 'left':map.jumpTo({bearing:map.getBearing()-45});break;case 'right':map.jumpTo({bearing:map.getBearing()+45});break;case 'north':map.jumpTo({bearing:0});break;case 'pitch':map.jumpTo({pitch:map.getPitch()<30?55:0});break}
 });

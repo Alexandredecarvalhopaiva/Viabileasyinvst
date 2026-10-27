@@ -49,23 +49,31 @@ const ParcelGeometry=(()=>{
  function convex(p){const sign=Math.sign(signedArea(p));return p.every((a,i)=>cross(a,p[(i+1)%p.length],p[(i+2)%p.length])*sign>=-EPS)}
  function halfPlane(poly,a,b,offset){if(!poly.length)return [];const sign=1,dx=b[0]-a[0],dy=b[1]-a[1],len=distance(a,b),f=p=>((-dy)*(p[0]-a[0])+dx*(p[1]-a[1]))/len-offset;let out=[];for(let i=0;i<poly.length;i++){const p=poly[i],q=poly[(i+1)%poly.length],u=f(p),v=f(q);if(u>=-EPS)out.push(p);if((u>=0)!==(v>=0)){const t=u/(u-v);out.push([p[0]+(q[0]-p[0])*t,p[1]+(q[1]-p[1])*t])}}return out}
  function inset(g,front=5,back=5,side=3){
-  if(!g?.valid)return {paths:[],area:0,largest:0,method:'invalid'};
-  const source=g.vertices,ccw=signedArea(source)>0;
-  let paths=[],method;
-  if(convex(source)){
-   let p=source.map(v=>[...v]);for(let i=0;i<source.length;i++){const d=g.back==null?Math.max(front,back,side):i===g.front?front:i===g.back?back:side,a=source[i],b=source[(i+1)%source.length];p=halfPlane(p,ccw?a:b,ccw?b:a,d)}if(p.length>=3&&area(p)>.001)paths=[p];method=g.back==null?'conservative_uniform':'edge_setbacks';
+  if(!g?.valid)return {paths:[],area:0,largest:0,method:'invalid',edgeOffsets:[],key:'invalid'};
+  const options=typeof front==='object'&&front!==null?front:null;
+  const explicit=Array.isArray(options?.edgeOffsets);
+  if(options){front=options.front??5;back=options.back??5;side=options.side??3}
+  const source=g.vertices,ccw=signedArea(source)>0,isConvex=convex(source);
+  const requested=explicit?[...options.edgeOffsets]:source.map((_,i)=>g.back==null?Math.max(front,back,side):i===g.front?front:i===g.back?back:side);
+  if(requested.length!==source.length||requested.some(v=>!Number.isFinite(v)||v<0))return {paths:[],area:0,largest:0,method:'invalid',edgeOffsets:[],key:'invalid'};
+  const uniform=!isConvex||(!explicit&&g.back==null);
+  const edgeOffsets=uniform?source.map(()=>Math.max(...requested)):requested;
+  let paths=[],method=uniform?'conservative_uniform':'edge_setbacks';
+  if(isConvex){
+   let p=source.map(v=>[...v]);for(let i=0;i<source.length;i++){const a=source[i],b=source[(i+1)%source.length];p=halfPlane(p,ccw?a:b,ccw?b:a,edgeOffsets[i])}if(p.length>=3&&area(p)>.001)paths=[p];
   }else{
-   const scale=10000,co=new ClipperLib.ClipperOffset(2,.01*scale),path=source.map(([x,y])=>({X:Math.round(x*scale),Y:Math.round(y*scale)}));if(!ClipperLib.Clipper.Orientation(path))path.reverse();co.AddPath(path,ClipperLib.JoinType.jtMiter,ClipperLib.EndType.etClosedPolygon);const result=new ClipperLib.Paths();co.Execute(result,-Math.max(front,back,side)*scale);paths=result.map(p=>p.map(v=>[v.X/scale,v.Y/scale])).filter(p=>p.length>=3&&area(p)>.001);method='conservative_uniform';
+   const scale=10000,co=new ClipperLib.ClipperOffset(2,.01*scale),path=source.map(([x,y])=>({X:Math.round(x*scale),Y:Math.round(y*scale)}));if(!ClipperLib.Clipper.Orientation(path))path.reverse();co.AddPath(path,ClipperLib.JoinType.jtMiter,ClipperLib.EndType.etClosedPolygon);const result=new ClipperLib.Paths();co.Execute(result,-Math.max(...edgeOffsets)*scale);paths=result.map(p=>p.map(v=>[v.X/scale,v.Y/scale])).filter(p=>p.length>=3&&area(p)>.001);
   }
-  paths.sort((a,b)=>area(b)-area(a));return {paths,area:paths.reduce((s,p)=>s+area(p),0),largest:paths.length?area(paths[0]):0,method,reason:convex(source)?g.back==null?'back_unspecified':null:'concave',uniform:method==='conservative_uniform'?Math.max(front,back,side):null};
+  paths.sort((a,b)=>area(b)-area(a));return {paths,area:paths.reduce((s,p)=>s+area(p),0),largest:paths.length?area(paths[0]):0,method,reason:uniform?(isConvex?'back_unspecified':'concave'):null,uniform:uniform?Math.max(...edgeOffsets):null,edgeOffsets,requestedOffsets:requested,key:edgeOffsets.join(',')};
  }
  const footprintCache=new WeakMap();
- function footprint(g,target){
-  const cached=footprintCache.get(g);if(cached?.target===target)return cached.paths;
-  const env=inset(g);if(!env.paths.length||target<=0)return [];const p=env.paths[0];if(target>=area(p)-.001)return [p];
+ function footprint(g,target,envelope=null){
+  const env=envelope||inset(g);
+  const cached=footprintCache.get(g);if(cached?.target===target&&cached.key===env.key)return cached.paths;
+  if(!env.paths.length||target<=0)return [];const p=env.paths[0];if(target>=area(p)-.001)return [p];
   const scale=10000,path=p.map(([x,y])=>({X:Math.round(x*scale),Y:Math.round(y*scale)})),xmin=Math.min(...p.map(v=>v[0])),ymin=Math.min(...p.map(v=>v[1]))-1,ymax=Math.max(...p.map(v=>v[1]))+1;
   const clip=x=>{if(convex(p)){const q=halfPlane(p,[x,0],[x,1],0);return q.length>=3?[q]:[]}const cutter=[[xmin-1,ymin],[x,ymin],[x,ymax],[xmin-1,ymax]].map(([X,Y])=>({X:Math.round(X*scale),Y:Math.round(Y*scale)}));const c=new ClipperLib.Clipper(),out=new ClipperLib.Paths();c.AddPath(path,ClipperLib.PolyType.ptSubject,true);c.AddPath(cutter,ClipperLib.PolyType.ptClip,true);c.Execute(ClipperLib.ClipType.ctIntersection,out,ClipperLib.PolyFillType.pftNonZero,ClipperLib.PolyFillType.pftNonZero);return out.map(q=>q.map(v=>[v.X/scale,v.Y/scale]))};
-  let lo=xmin,hi=Math.max(...p.map(v=>v[0])),result=[];for(let i=0;i<40;i++){const x=(lo+hi)/2,paths=clip(x),a=paths.reduce((s,q)=>s+area(q),0);if(a>target)hi=x;else lo=x;result=paths}footprintCache.set(g,{target,paths:result});return result;
+  let lo=xmin,hi=Math.max(...p.map(v=>v[0])),result=[];for(let i=0;i<40;i++){const x=(lo+hi)/2,paths=clip(x),a=paths.reduce((s,q)=>s+area(q),0);if(a>target)hi=x;else lo=x;result=paths}footprintCache.set(g,{target,key:env.key,paths:result});return result;
  }
  function label(g,i){if(i===g.front)return 'Frente';if(i===g.back)return 'Fundos';if(g.kind==='rectangle'||g.kind==='trapezoid')return i===1?'Lateral direita':'Lateral esquerda';return g.back!=null?`Lateral ${i+1}`:`Limite ${i+1}`}
  return {UTM,num,distance,signedArea,area,validate,build,rectangle,trapezoid,fromGeographic,fromCoordinates,fromSegments,geographic,convex,inset,footprint,label};

@@ -1,0 +1,24 @@
+#building-capacity-header{order:-2}
+.floor-model-header{order:-2;display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:22px;padding:22px;background:#fff;border-bottom:1px solid #cddfe8}
+.floor-kicker{display:block;font-size:10px;font-weight:700;letter-spacing:1px;color:#526779}
+.floor-count{display:flex;align-items:center;gap:12px;margin-top:5px;color:#0f2d4a}
+.floor-count>strong{font:650 56px/1.1 var(--display);letter-spacing:-2px}
+.floor-count>span{font-size:15px;font-weight:600;line-height:1.7}
+.floor-count small{display:block;font-size:12px;font-weight:400;color:#526779}
+.floor-current>p,.floor-limit>p{font-size:11px;line-height:1.7;color:#526779;margin:8px 0 0}
+.floor-limit{border-left:1px solid #dce7ec;padding-left:22px;min-width:0}
+.floor-limit>strong{display:block;font:650 23px/1.4 var(--display);letter-spacing:-.5px;color:#0f2d4a;margin-top:7px}
+.floor-limit-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.floor-limit-actions .btn{font-size:11px;min-height:36px;padding:7px 10px;white-space:normal;text-align:left}
+.floor-limit.over-limit{border-left-color:#cb6b45}
+.floor-limit .floor-limit-warning{color:#a33f26;font-weight:650;display:flex;align-items:flex-start;gap:6px}
+.floor-limit-warning .icon,.floor-geometry-warning .icon{width:16px;min-width:16px;height:16px;margin-top:2px}
+.floor-geometry-warning{grid-column:1/-1;font-size:12px;line-height:1.7;display:flex;gap:8px;color:#a33f26}
+#building-capacity-header~.studio-top{position:relative;top:auto;left:auto;order:-1;padding:10px 16px;background:#f5f9fb;width:100%;max-width:none;border-bottom:1px solid #dce7ec}
+#building-limit-form{display:grid;gap:16px;margin-top:20px}
+#building-limit-form .setback-help{margin-top:-5px}
+#building-limit-form .setback-current-status{margin:0}
+.floor-form-actions{display:flex;flex-wrap:wrap;gap:10px}
+.floor-form-actions .btn{white-space:normal}
+.floor-form-error{font-size:13px;color:#a33f26;line-height:1.7}
+@media(max-width:600px){.floor-model-header{padding:16px;gap:16px;grid-template-columns:minmax(0,1fr)}.floor-limit{padding:14px 0 0;border-left:0;border-top:1px solid #dce7ec}.floor-count>strong{font-size:46px}.floor-limit>strong{font-size:21px}.floor-limit-actions .btn{min-height:44px;font-size:12px}#building-capacity-header~.studio-top{padding:10px 12px;flex-wrap:wrap}.floor-form-actions .btn{width:100%}}

@@ -1,0 +1,322 @@
+[
+  {
+    "bodyState": "ready",
+    "contentWidth": 320,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H2",
+        "text": "Meu perfil"
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 0.08202886283584858,
+      "interactions": [
+        32,
+        48,
+        48
+      ],
+      "lcp": 92
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "profile-after",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 10,
+        "text": "SUA CONTA"
+      }
+    ],
+    "tinyTextCount": 1,
+    "title": "Um novo olhar sobre cada terreno. | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 320,
+    "requestedWidth": 320
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 374,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H2",
+        "text": "Meu perfil"
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 0.16630185207807102,
+      "interactions": [
+        32,
+        48,
+        48
+      ],
+      "lcp": 92
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "profile-after",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 10,
+        "text": "SUA CONTA"
+      }
+    ],
+    "tinyTextCount": 1,
+    "title": "Um novo olhar sobre cada terreno. | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 374,
+    "requestedWidth": 375
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 390,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H2",
+        "text": "Meu perfil"
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 0.17065827305760953,
+      "interactions": [
+        32,
+        48,
+        48
+      ],
+      "lcp": 92
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "profile-after",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 10,
+        "text": "SUA CONTA"
+      }
+    ],
+    "tinyTextCount": 1,
+    "title": "Um novo olhar sobre cada terreno. | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 390,
+    "requestedWidth": 390
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 768,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H2",
+        "text": "Meu perfil"
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 0.6256098923309112,
+      "interactions": [
+        32,
+        48,
+        48
+      ],
+      "lcp": 92
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "profile-after",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 10,
+        "text": "SUA CONTA"
+      }
+    ],
+    "tinyTextCount": 1,
+    "title": "Um novo olhar sobre cada terreno. | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 768,
+    "requestedWidth": 768
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 1024,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H2",
+        "text": "Meu perfil"
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 0.8542890690863373,
+      "interactions": [
+        32,
+        48,
+        48
+      ],
+      "lcp": 92
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "profile-after",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 10,
+        "text": "SUA CONTA"
+      }
+    ],
+    "tinyTextCount": 1,
+    "title": "Um novo olhar sobre cada terreno. | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1024,
+    "requestedWidth": 1024
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 1280,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H2",
+        "text": "Meu perfil"
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 1.0482832097113373,
+      "interactions": [
+        32,
+        48,
+        48
+      ],
+      "lcp": 92
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "profile-after",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 10,
+        "text": "SUA CONTA"
+      }
+    ],
+    "tinyTextCount": 1,
+    "title": "Um novo olhar sobre cada terreno. | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1280,
+    "requestedWidth": 1280
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 1440,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H2",
+        "text": "Meu perfil"
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 1.1281798030779049,
+      "interactions": [
+        32,
+        48,
+        48
+      ],
+      "lcp": 92
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "profile-after",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 10,
+        "text": "SUA CONTA"
+      }
+    ],
+    "tinyTextCount": 1,
+    "title": "Um novo olhar sobre cada terreno. | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1440,
+    "requestedWidth": 1440
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 1920,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H2",
+        "text": "Meu perfil"
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 1.3447987719716663,
+      "interactions": [
+        32,
+        48,
+        48
+      ],
+      "lcp": 92
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "profile-after",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 10,
+        "text": "SUA CONTA"
+      }
+    ],
+    "tinyTextCount": 1,
+    "title": "Um novo olhar sobre cada terreno. | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1920,
+    "requestedWidth": 1920
+  }
+]

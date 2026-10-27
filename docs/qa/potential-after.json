@@ -1,0 +1,1270 @@
+[
+  {
+    "bodyState": "ready",
+    "contentWidth": 320,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Possibilidades para o seu terreno."
+      },
+      {
+        "level": "H2",
+        "text": "Recuos para construir"
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 10.27679125233805,
+      "interactions": [
+        24,
+        24,
+        24,
+        32,
+        32,
+        24,
+        24,
+        24,
+        40,
+        40,
+        40,
+        32,
+        32,
+        40,
+        40,
+        40,
+        40,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        48,
+        48,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        48,
+        48,
+        48,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "lcp": 116
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "depois-possibilidades",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 11,
+        "text": "Enquadramento pendente"
+      },
+      {
+        "size": 11,
+        "text": "Área total do terreno"
+      },
+      {
+        "size": 11,
+        "text": "Interior do perímetro informado"
+      },
+      {
+        "size": 11,
+        "text": "Área após recuos no térreo"
+      },
+      {
+        "size": 11,
+        "text": "Último pavimento: 720,00 m²"
+      },
+      {
+        "size": 11,
+        "text": "Projeção ocupável no térreo"
+      },
+      {
+        "size": 11,
+        "text": "Recuos, TO e limite global de área"
+      },
+      {
+        "size": 11,
+        "text": "Área construída computável"
+      },
+      {
+        "size": 11,
+        "text": "Soma das lâminas por pavimento, limitada pelo CA"
+      },
+      {
+        "size": 11,
+        "text": "Início"
+      },
+      {
+        "size": 11,
+        "text": "Terreno"
+      },
+      {
+        "size": 11,
+        "text": "3D"
+      },
+      {
+        "size": 11,
+        "text": "Estudos"
+      },
+      {
+        "size": 11,
+        "text": "Menu"
+      }
+    ],
+    "tinyTextCount": 14,
+    "title": "Possibilidades para o seu terreno. | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 320,
+    "requestedWidth": 320
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 374,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Possibilidades para o seu terreno."
+      },
+      {
+        "level": "H2",
+        "text": "Recuos para construir"
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 10.411534828514297,
+      "interactions": [
+        24,
+        24,
+        24,
+        32,
+        32,
+        24,
+        24,
+        24,
+        40,
+        40,
+        40,
+        32,
+        32,
+        40,
+        40,
+        40,
+        40,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        48,
+        48,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        48,
+        48,
+        48,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "lcp": 116
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "depois-possibilidades",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 11,
+        "text": "Enquadramento pendente"
+      },
+      {
+        "size": 11,
+        "text": "Área total do terreno"
+      },
+      {
+        "size": 11,
+        "text": "Interior do perímetro informado"
+      },
+      {
+        "size": 11,
+        "text": "Área após recuos no térreo"
+      },
+      {
+        "size": 11,
+        "text": "Último pavimento: 720,00 m²"
+      },
+      {
+        "size": 11,
+        "text": "Projeção ocupável no térreo"
+      },
+      {
+        "size": 11,
+        "text": "Recuos, TO e limite global de área"
+      },
+      {
+        "size": 11,
+        "text": "Área construída computável"
+      },
+      {
+        "size": 11,
+        "text": "Soma das lâminas por pavimento, limitada pelo CA"
+      },
+      {
+        "size": 11,
+        "text": "Início"
+      },
+      {
+        "size": 11,
+        "text": "Terreno"
+      },
+      {
+        "size": 11,
+        "text": "3D"
+      },
+      {
+        "size": 11,
+        "text": "Estudos"
+      },
+      {
+        "size": 11,
+        "text": "Menu"
+      }
+    ],
+    "tinyTextCount": 14,
+    "title": "Possibilidades para o seu terreno. | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 374,
+    "requestedWidth": 375
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 390,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Possibilidades para o seu terreno."
+      },
+      {
+        "level": "H2",
+        "text": "Recuos para construir"
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 10.440734649010992,
+      "interactions": [
+        24,
+        24,
+        24,
+        32,
+        32,
+        24,
+        24,
+        24,
+        40,
+        40,
+        40,
+        32,
+        32,
+        40,
+        40,
+        40,
+        40,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        48,
+        48,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        48,
+        48,
+        48,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "lcp": 116
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "depois-possibilidades",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 11,
+        "text": "Enquadramento pendente"
+      },
+      {
+        "size": 11,
+        "text": "Área total do terreno"
+      },
+      {
+        "size": 11,
+        "text": "Interior do perímetro informado"
+      },
+      {
+        "size": 11,
+        "text": "Área após recuos no térreo"
+      },
+      {
+        "size": 11,
+        "text": "Último pavimento: 720,00 m²"
+      },
+      {
+        "size": 11,
+        "text": "Projeção ocupável no térreo"
+      },
+      {
+        "size": 11,
+        "text": "Recuos, TO e limite global de área"
+      },
+      {
+        "size": 11,
+        "text": "Área construída computável"
+      },
+      {
+        "size": 11,
+        "text": "Soma das lâminas por pavimento, limitada pelo CA"
+      },
+      {
+        "size": 11,
+        "text": "Início"
+      },
+      {
+        "size": 11,
+        "text": "Terreno"
+      },
+      {
+        "size": 11,
+        "text": "3D"
+      },
+      {
+        "size": 11,
+        "text": "Estudos"
+      },
+      {
+        "size": 11,
+        "text": "Menu"
+      }
+    ],
+    "tinyTextCount": 14,
+    "title": "Possibilidades para o seu terreno. | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 390,
+    "requestedWidth": 390
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 768,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Possibilidades para o seu terreno."
+      },
+      {
+        "level": "H2",
+        "text": "Recuos para construir"
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 11.000974115696293,
+      "interactions": [
+        24,
+        24,
+        24,
+        32,
+        32,
+        24,
+        24,
+        24,
+        40,
+        40,
+        40,
+        32,
+        32,
+        40,
+        40,
+        40,
+        40,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        48,
+        48,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        48,
+        48,
+        48,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "lcp": 116
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "depois-possibilidades",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 11,
+        "text": "Enquadramento pendente"
+      },
+      {
+        "size": 11,
+        "text": "Área total do terreno"
+      },
+      {
+        "size": 11,
+        "text": "Interior do perímetro informado"
+      },
+      {
+        "size": 11,
+        "text": "Área após recuos no térreo"
+      },
+      {
+        "size": 11,
+        "text": "Último pavimento: 720,00 m²"
+      },
+      {
+        "size": 11,
+        "text": "Projeção ocupável no térreo"
+      },
+      {
+        "size": 11,
+        "text": "Recuos, TO e limite global de área"
+      },
+      {
+        "size": 11,
+        "text": "Área construída computável"
+      },
+      {
+        "size": 11,
+        "text": "Soma das lâminas por pavimento, limitada pelo CA"
+      }
+    ],
+    "tinyTextCount": 9,
+    "title": "Possibilidades para o seu terreno. | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 768,
+    "requestedWidth": 768
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 1024,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Possibilidades para o seu terreno."
+      },
+      {
+        "level": "H2",
+        "text": "Recuos para construir"
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 11.583533546464995,
+      "interactions": [
+        24,
+        24,
+        24,
+        32,
+        32,
+        24,
+        24,
+        24,
+        40,
+        40,
+        40,
+        32,
+        32,
+        40,
+        40,
+        40,
+        40,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        48,
+        48,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        48,
+        48,
+        48,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "lcp": 116
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "depois-possibilidades",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 11,
+        "text": "Enquadramento pendente"
+      },
+      {
+        "size": 11,
+        "text": "Área total do terreno"
+      },
+      {
+        "size": 11,
+        "text": "Interior do perímetro informado"
+      },
+      {
+        "size": 11,
+        "text": "Área após recuos no térreo"
+      },
+      {
+        "size": 11,
+        "text": "Último pavimento: 720,00 m²"
+      },
+      {
+        "size": 11,
+        "text": "Projeção ocupável no térreo"
+      },
+      {
+        "size": 11,
+        "text": "Recuos, TO e limite global de área"
+      },
+      {
+        "size": 11,
+        "text": "Área construída computável"
+      },
+      {
+        "size": 11,
+        "text": "Soma das lâminas por pavimento, limitada pelo CA"
+      }
+    ],
+    "tinyTextCount": 9,
+    "title": "Possibilidades para o seu terreno. | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1024,
+    "requestedWidth": 1024
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 1280,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Possibilidades para o seu terreno."
+      },
+      {
+        "level": "H2",
+        "text": "Recuos para construir"
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 11.777527687089997,
+      "interactions": [
+        24,
+        24,
+        24,
+        32,
+        32,
+        24,
+        24,
+        24,
+        40,
+        40,
+        40,
+        32,
+        32,
+        40,
+        40,
+        40,
+        40,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        48,
+        48,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        48,
+        48,
+        48,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "lcp": 116
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "depois-possibilidades",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 11,
+        "text": "Estudos pessoais"
+      },
+      {
+        "size": 11,
+        "text": "ÁREA DE TRABALHO"
+      },
+      {
+        "size": 11,
+        "text": "0"
+      },
+      {
+        "size": 11,
+        "text": "Recorte inicial do produto"
+      },
+      {
+        "size": 10,
+        "text": "Meu perfil e acesso"
+      },
+      {
+        "size": 11,
+        "text": "Enquadramento pendente"
+      },
+      {
+        "size": 11,
+        "text": "Área total do terreno"
+      },
+      {
+        "size": 11,
+        "text": "Interior do perímetro informado"
+      },
+      {
+        "size": 11,
+        "text": "Área após recuos no térreo"
+      },
+      {
+        "size": 11,
+        "text": "Último pavimento: 720,00 m²"
+      },
+      {
+        "size": 11,
+        "text": "Projeção ocupável no térreo"
+      },
+      {
+        "size": 11,
+        "text": "Recuos, TO e limite global de área"
+      },
+      {
+        "size": 11,
+        "text": "Área construída computável"
+      },
+      {
+        "size": 11,
+        "text": "Soma das lâminas por pavimento, limitada pelo CA"
+      },
+      {
+        "size": 10,
+        "text": "LAYOUT DO PROTÓTIPO"
+      }
+    ],
+    "tinyTextCount": 15,
+    "title": "Possibilidades para o seu terreno. | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1280,
+    "requestedWidth": 1280
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 1440,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Possibilidades para o seu terreno."
+      },
+      {
+        "level": "H2",
+        "text": "Recuos para construir"
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 11.847302583251096,
+      "interactions": [
+        24,
+        24,
+        24,
+        32,
+        32,
+        24,
+        24,
+        24,
+        40,
+        40,
+        40,
+        32,
+        32,
+        40,
+        40,
+        40,
+        40,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        48,
+        48,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        48,
+        48,
+        48,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "lcp": 116
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "depois-possibilidades",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 11,
+        "text": "Estudos pessoais"
+      },
+      {
+        "size": 11,
+        "text": "ÁREA DE TRABALHO"
+      },
+      {
+        "size": 11,
+        "text": "0"
+      },
+      {
+        "size": 11,
+        "text": "Recorte inicial do produto"
+      },
+      {
+        "size": 10,
+        "text": "Meu perfil e acesso"
+      },
+      {
+        "size": 11,
+        "text": "Enquadramento pendente"
+      },
+      {
+        "size": 11,
+        "text": "Área total do terreno"
+      },
+      {
+        "size": 11,
+        "text": "Interior do perímetro informado"
+      },
+      {
+        "size": 11,
+        "text": "Área após recuos no térreo"
+      },
+      {
+        "size": 11,
+        "text": "Último pavimento: 720,00 m²"
+      },
+      {
+        "size": 11,
+        "text": "Projeção ocupável no térreo"
+      },
+      {
+        "size": 11,
+        "text": "Recuos, TO e limite global de área"
+      },
+      {
+        "size": 11,
+        "text": "Área construída computável"
+      },
+      {
+        "size": 11,
+        "text": "Soma das lâminas por pavimento, limitada pelo CA"
+      },
+      {
+        "size": 10,
+        "text": "LAYOUT DO PROTÓTIPO"
+      }
+    ],
+    "tinyTextCount": 15,
+    "title": "Possibilidades para o seu terreno. | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1440,
+    "requestedWidth": 1440
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 1920,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Possibilidades para o seu terreno."
+      },
+      {
+        "level": "H2",
+        "text": "Recuos para construir"
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 12.07370894981464,
+      "interactions": [
+        24,
+        24,
+        24,
+        32,
+        32,
+        24,
+        24,
+        24,
+        40,
+        40,
+        40,
+        32,
+        32,
+        40,
+        40,
+        40,
+        40,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        48,
+        48,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        48,
+        48,
+        48,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "lcp": 116
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "depois-possibilidades",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 11,
+        "text": "Estudos pessoais"
+      },
+      {
+        "size": 11,
+        "text": "ÁREA DE TRABALHO"
+      },
+      {
+        "size": 11,
+        "text": "0"
+      },
+      {
+        "size": 11,
+        "text": "Recorte inicial do produto"
+      },
+      {
+        "size": 10,
+        "text": "Meu perfil e acesso"
+      },
+      {
+        "size": 11,
+        "text": "Enquadramento pendente"
+      },
+      {
+        "size": 11,
+        "text": "Área total do terreno"
+      },
+      {
+        "size": 11,
+        "text": "Interior do perímetro informado"
+      },
+      {
+        "size": 11,
+        "text": "Área após recuos no térreo"
+      },
+      {
+        "size": 11,
+        "text": "Último pavimento: 720,00 m²"
+      },
+      {
+        "size": 11,
+        "text": "Projeção ocupável no térreo"
+      },
+      {
+        "size": 11,
+        "text": "Recuos, TO e limite global de área"
+      },
+      {
+        "size": 11,
+        "text": "Área construída computável"
+      },
+      {
+        "size": 11,
+        "text": "Soma das lâminas por pavimento, limitada pelo CA"
+      },
+      {
+        "size": 10,
+        "text": "LAYOUT DO PROTÓTIPO"
+      }
+    ],
+    "tinyTextCount": 15,
+    "title": "Possibilidades para o seu terreno. | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1920,
+    "requestedWidth": 1920
+  }
+]

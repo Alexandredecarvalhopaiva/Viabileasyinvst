@@ -1,0 +1,75 @@
+[
+  {
+    "bodyState": "guest",
+    "contentWidth": 370,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "O futurotoma forma."
+      },
+      {
+        "level": "H2",
+        "text": "O que pode nascer aqui?"
+      },
+      {
+        "level": "H2",
+        "text": "Casa · R$ 4,21 mi de VGV ilustrativo"
+      },
+      {
+        "level": "H2",
+        "text": "Mais área nem sempresignifica mais oportunidade."
+      },
+      {
+        "level": "H2",
+        "text": "Conheça o que você pode explorar."
+      },
+      {
+        "level": "H2",
+        "text": "Da primeira ideiaao próximo estudo."
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 0.8313955470694534,
+      "interactions": [],
+      "lcp": 64
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "antes",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 11,
+        "text": "Casa ↗"
+      },
+      {
+        "size": 11,
+        "text": "Residencial ↗"
+      },
+      {
+        "size": 11,
+        "text": "Comercial ↗"
+      },
+      {
+        "size": 11,
+        "text": "Flats ↗"
+      },
+      {
+        "size": 11,
+        "text": "Uso misto ↗"
+      }
+    ],
+    "tinyTextCount": 5,
+    "title": "ViabilEasy — Um novo olhar sobre cada terreno",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 390,
+    "requestedWidth": 390
+  }
+]

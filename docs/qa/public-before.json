@@ -1,0 +1,4499 @@
+[
+  {
+    "bodyState": "guest",
+    "contentWidth": 300,
+    "contrast": [
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(106, 121, 113)",
+        "ratio": 4.36,
+        "size": 14,
+        "text": "Descubra o que o seu terreno pode se tornar."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(122, 136, 126)",
+        "ratio": 3.54,
+        "size": 11,
+        "text": "Explore livremente. Entre para analisar e salvar seus terrenos."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(129, 145, 126)",
+        "ratio": 3.18,
+        "size": 12,
+        "text": "O que pode nascer aqui?"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "2 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "576 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "8 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "3.168 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "5 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "2.640 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "6 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "2.880 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "7 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "3.542 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(105, 130, 124)",
+        "ratio": 3.93,
+        "size": 11,
+        "text": "Deslize para explorar as cinco alternativas."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(106, 130, 126)",
+        "ratio": 3.92,
+        "size": 8,
+        "text": "CENÁRIO 01 / 05"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(106, 130, 126)",
+        "ratio": 3.92,
+        "size": 8,
+        "text": "01 / 05"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(99, 123, 116)",
+        "ratio": 4.33,
+        "size": 12,
+        "text": "-14,3% de retorno sobre custo no exemplo. Resultado do projeto, sem taxa anual."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(100, 119, 132)",
+        "ratio": 4.43,
+        "size": 12,
+        "text": "Compare as alternativas com as mesmas premissas de terreno e margem. Todos os valores abai"
+      },
+      {
+        "background": [
+          238,
+          247,
+          242
+        ],
+        "color": "rgb(77, 121, 117)",
+        "ratio": 4.46,
+        "size": 9,
+        "text": "Simulação ilustrativa"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(110, 133, 131)",
+        "ratio": 3.93,
+        "size": 10,
+        "text": "Preservando 18% de margem sobre vendas"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Alternativa"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Potencial construtivo"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Unidades"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "VGV"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Custo total"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Residual do terreno"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Retorno sobre custo"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Resultado no exemplo"
+      },
+      {
+        "background": [
+          240,
+          248,
+          243
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.01,
+        "size": 9,
+        "text": "2 pav. · CA 0,5×"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.33,
+        "size": 9,
+        "text": "8 pav. · CA 2,6×"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.33,
+        "size": 9,
+        "text": "5 pav. · CA 2,2×"
+      },
+      {
+        "background": [
+          240,
+          242,
+          237
+        ],
+        "color": "rgb(104, 118, 100)",
+        "ratio": 4.27,
+        "size": 9,
+        "text": "Abaixo da margem alvo"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.33,
+        "size": 9,
+        "text": "6 pav. · CA 2,4×"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.33,
+        "size": 9,
+        "text": "7 pav. · CA 3×"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(111, 130, 132)",
+        "ratio": 3.84,
+        "size": 10,
+        "text": "Custo total inclui construção, custos indiretos, comercialização e o terreno assumido em R"
+      },
+      {
+        "background": [
+          234,
+          242,
+          239
+        ],
+        "color": "rgb(78, 119, 111)",
+        "ratio": 4.4,
+        "size": 9,
+        "text": "COMECE PELO SEU TERRENO"
+      }
+    ],
+    "contrastCount": 36,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "O futurotoma forma."
+      },
+      {
+        "level": "H2",
+        "text": "O que pode nascer aqui?"
+      },
+      {
+        "level": "H2",
+        "text": "Casa · R$ 4,21 mi de VGV ilustrativo"
+      },
+      {
+        "level": "H2",
+        "text": "Mais área nem sempresignifica mais oportunidade."
+      },
+      {
+        "level": "H2",
+        "text": "Conheça o que você pode explorar."
+      },
+      {
+        "level": "H2",
+        "text": "Da primeira ideiaao próximo estudo."
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 0.8992723293120406,
+      "interactions": [],
+      "lcp": 84
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "antes",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 8,
+        "text": "VIABILIDADE QUE VOCÊ CONSEGUE VER"
+      },
+      {
+        "size": 11,
+        "text": "Analisar meu terreno"
+      },
+      {
+        "size": 11,
+        "text": "Explore livremente. Entre para analisar e salvar seus terrenos."
+      },
+      {
+        "size": 8,
+        "text": "Simulação ilustrativa"
+      },
+      {
+        "size": 9,
+        "text": "03 · Residência unifamiliar"
+      },
+      {
+        "size": 10,
+        "text": "Arraste para girar · + e − para aproximar"
+      },
+      {
+        "size": 8,
+        "text": "N"
+      },
+      {
+        "size": 11,
+        "text": "Terreno"
+      },
+      {
+        "size": 11,
+        "text": "Envelope"
+      },
+      {
+        "size": 11,
+        "text": "Construção"
+      },
+      {
+        "size": 11,
+        "text": "Cotas"
+      },
+      {
+        "size": 9,
+        "text": "Visualização"
+      },
+      {
+        "size": 10,
+        "text": "2 pav."
+      },
+      {
+        "size": 10,
+        "text": "2"
+      },
+      {
+        "size": 10,
+        "text": "576 m²"
+      },
+      {
+        "size": 10,
+        "text": "576"
+      },
+      {
+        "size": 10,
+        "text": "8 pav."
+      },
+      {
+        "size": 10,
+        "text": "8"
+      },
+      {
+        "size": 10,
+        "text": "3.168 m²"
+      },
+      {
+        "size": 10,
+        "text": "3.168"
+      },
+      {
+        "size": 10,
+        "text": "5 pav."
+      },
+      {
+        "size": 10,
+        "text": "5"
+      },
+      {
+        "size": 10,
+        "text": "2.640 m²"
+      },
+      {
+        "size": 10,
+        "text": "2.640"
+      },
+      {
+        "size": 10,
+        "text": "6 pav."
+      },
+      {
+        "size": 10,
+        "text": "6"
+      },
+      {
+        "size": 10,
+        "text": "2.880 m²"
+      },
+      {
+        "size": 10,
+        "text": "2.880"
+      },
+      {
+        "size": 10,
+        "text": "7 pav."
+      },
+      {
+        "size": 10,
+        "text": "7"
+      }
+    ],
+    "tinyTextCount": 109,
+    "title": "ViabilEasy — Um novo olhar sobre cada terreno",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 320,
+    "requestedWidth": 320
+  },
+  {
+    "bodyState": "guest",
+    "contentWidth": 354,
+    "contrast": [
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(106, 121, 113)",
+        "ratio": 4.36,
+        "size": 14,
+        "text": "Descubra o que o seu terreno pode se tornar."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(122, 136, 126)",
+        "ratio": 3.54,
+        "size": 11,
+        "text": "Explore livremente. Entre para analisar e salvar seus terrenos."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(129, 145, 126)",
+        "ratio": 3.18,
+        "size": 12,
+        "text": "O que pode nascer aqui?"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "2 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "576 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "8 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "3.168 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "5 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "2.640 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "6 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "2.880 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "7 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "3.542 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(105, 130, 124)",
+        "ratio": 3.93,
+        "size": 11,
+        "text": "Deslize para explorar as cinco alternativas."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(106, 130, 126)",
+        "ratio": 3.92,
+        "size": 8,
+        "text": "CENÁRIO 01 / 05"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(106, 130, 126)",
+        "ratio": 3.92,
+        "size": 8,
+        "text": "01 / 05"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(99, 123, 116)",
+        "ratio": 4.33,
+        "size": 12,
+        "text": "-14,3% de retorno sobre custo no exemplo. Resultado do projeto, sem taxa anual."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(100, 119, 132)",
+        "ratio": 4.43,
+        "size": 12,
+        "text": "Compare as alternativas com as mesmas premissas de terreno e margem. Todos os valores abai"
+      },
+      {
+        "background": [
+          238,
+          247,
+          242
+        ],
+        "color": "rgb(77, 121, 117)",
+        "ratio": 4.46,
+        "size": 9,
+        "text": "Simulação ilustrativa"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(110, 133, 131)",
+        "ratio": 3.93,
+        "size": 10,
+        "text": "Preservando 18% de margem sobre vendas"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Alternativa"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Potencial construtivo"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Unidades"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "VGV"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Custo total"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Residual do terreno"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Retorno sobre custo"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Resultado no exemplo"
+      },
+      {
+        "background": [
+          240,
+          248,
+          243
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.01,
+        "size": 9,
+        "text": "2 pav. · CA 0,5×"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.33,
+        "size": 9,
+        "text": "8 pav. · CA 2,6×"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.33,
+        "size": 9,
+        "text": "5 pav. · CA 2,2×"
+      },
+      {
+        "background": [
+          240,
+          242,
+          237
+        ],
+        "color": "rgb(104, 118, 100)",
+        "ratio": 4.27,
+        "size": 9,
+        "text": "Abaixo da margem alvo"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.33,
+        "size": 9,
+        "text": "6 pav. · CA 2,4×"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.33,
+        "size": 9,
+        "text": "7 pav. · CA 3×"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(111, 130, 132)",
+        "ratio": 3.84,
+        "size": 10,
+        "text": "Custo total inclui construção, custos indiretos, comercialização e o terreno assumido em R"
+      },
+      {
+        "background": [
+          234,
+          242,
+          239
+        ],
+        "color": "rgb(78, 119, 111)",
+        "ratio": 4.4,
+        "size": 9,
+        "text": "COMECE PELO SEU TERRENO"
+      }
+    ],
+    "contrastCount": 36,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "O futurotoma forma."
+      },
+      {
+        "level": "H2",
+        "text": "O que pode nascer aqui?"
+      },
+      {
+        "level": "H2",
+        "text": "Casa · R$ 4,21 mi de VGV ilustrativo"
+      },
+      {
+        "level": "H2",
+        "text": "Mais área nem sempresignifica mais oportunidade."
+      },
+      {
+        "level": "H2",
+        "text": "Conheça o que você pode explorar."
+      },
+      {
+        "level": "H2",
+        "text": "Da primeira ideiaao próximo estudo."
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 0.9519279458021102,
+      "interactions": [],
+      "lcp": 84
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "antes",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 9,
+        "text": "VIABILIDADE QUE VOCÊ CONSEGUE VER"
+      },
+      {
+        "size": 11,
+        "text": "Explore livremente. Entre para analisar e salvar seus terrenos."
+      },
+      {
+        "size": 8,
+        "text": "Simulação ilustrativa"
+      },
+      {
+        "size": 9,
+        "text": "03 · Residência unifamiliar"
+      },
+      {
+        "size": 10,
+        "text": "Arraste para girar · + e − para aproximar"
+      },
+      {
+        "size": 8,
+        "text": "N"
+      },
+      {
+        "size": 11,
+        "text": "Terreno"
+      },
+      {
+        "size": 11,
+        "text": "Envelope"
+      },
+      {
+        "size": 11,
+        "text": "Construção"
+      },
+      {
+        "size": 11,
+        "text": "Cotas"
+      },
+      {
+        "size": 9,
+        "text": "Visualização"
+      },
+      {
+        "size": 10,
+        "text": "2 pav."
+      },
+      {
+        "size": 10,
+        "text": "2"
+      },
+      {
+        "size": 10,
+        "text": "576 m²"
+      },
+      {
+        "size": 10,
+        "text": "576"
+      },
+      {
+        "size": 10,
+        "text": "8 pav."
+      },
+      {
+        "size": 10,
+        "text": "8"
+      },
+      {
+        "size": 10,
+        "text": "3.168 m²"
+      },
+      {
+        "size": 10,
+        "text": "3.168"
+      },
+      {
+        "size": 10,
+        "text": "5 pav."
+      },
+      {
+        "size": 10,
+        "text": "5"
+      },
+      {
+        "size": 10,
+        "text": "2.640 m²"
+      },
+      {
+        "size": 10,
+        "text": "2.640"
+      },
+      {
+        "size": 10,
+        "text": "6 pav."
+      },
+      {
+        "size": 10,
+        "text": "6"
+      },
+      {
+        "size": 10,
+        "text": "2.880 m²"
+      },
+      {
+        "size": 10,
+        "text": "2.880"
+      },
+      {
+        "size": 10,
+        "text": "7 pav."
+      },
+      {
+        "size": 10,
+        "text": "7"
+      },
+      {
+        "size": 10,
+        "text": "3.542 m²"
+      }
+    ],
+    "tinyTextCount": 108,
+    "title": "ViabilEasy — Um novo olhar sobre cada terreno",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 374,
+    "requestedWidth": 375
+  },
+  {
+    "bodyState": "guest",
+    "contentWidth": 370,
+    "contrast": [
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(106, 121, 113)",
+        "ratio": 4.36,
+        "size": 14,
+        "text": "Descubra o que o seu terreno pode se tornar."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(122, 136, 126)",
+        "ratio": 3.54,
+        "size": 11,
+        "text": "Explore livremente. Entre para analisar e salvar seus terrenos."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(129, 145, 126)",
+        "ratio": 3.18,
+        "size": 12,
+        "text": "O que pode nascer aqui?"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "2 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "576 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "8 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "3.168 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "5 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "2.640 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "6 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "2.880 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "7 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "3.542 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(105, 130, 124)",
+        "ratio": 3.93,
+        "size": 11,
+        "text": "Deslize para explorar as cinco alternativas."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(106, 130, 126)",
+        "ratio": 3.92,
+        "size": 8,
+        "text": "CENÁRIO 01 / 05"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(106, 130, 126)",
+        "ratio": 3.92,
+        "size": 8,
+        "text": "01 / 05"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(99, 123, 116)",
+        "ratio": 4.33,
+        "size": 12,
+        "text": "-14,3% de retorno sobre custo no exemplo. Resultado do projeto, sem taxa anual."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(100, 119, 132)",
+        "ratio": 4.43,
+        "size": 12,
+        "text": "Compare as alternativas com as mesmas premissas de terreno e margem. Todos os valores abai"
+      },
+      {
+        "background": [
+          238,
+          247,
+          242
+        ],
+        "color": "rgb(77, 121, 117)",
+        "ratio": 4.46,
+        "size": 9,
+        "text": "Simulação ilustrativa"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(110, 133, 131)",
+        "ratio": 3.93,
+        "size": 10,
+        "text": "Preservando 18% de margem sobre vendas"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Alternativa"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Potencial construtivo"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Unidades"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "VGV"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Custo total"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Residual do terreno"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Retorno sobre custo"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Resultado no exemplo"
+      },
+      {
+        "background": [
+          240,
+          248,
+          243
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.01,
+        "size": 9,
+        "text": "2 pav. · CA 0,5×"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.33,
+        "size": 9,
+        "text": "8 pav. · CA 2,6×"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.33,
+        "size": 9,
+        "text": "5 pav. · CA 2,2×"
+      },
+      {
+        "background": [
+          240,
+          242,
+          237
+        ],
+        "color": "rgb(104, 118, 100)",
+        "ratio": 4.27,
+        "size": 9,
+        "text": "Abaixo da margem alvo"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.33,
+        "size": 9,
+        "text": "6 pav. · CA 2,4×"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.33,
+        "size": 9,
+        "text": "7 pav. · CA 3×"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(111, 130, 132)",
+        "ratio": 3.84,
+        "size": 10,
+        "text": "Custo total inclui construção, custos indiretos, comercialização e o terreno assumido em R"
+      },
+      {
+        "background": [
+          234,
+          242,
+          239
+        ],
+        "color": "rgb(78, 119, 111)",
+        "ratio": 4.4,
+        "size": 9,
+        "text": "COMECE PELO SEU TERRENO"
+      }
+    ],
+    "contrastCount": 36,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "O futurotoma forma."
+      },
+      {
+        "level": "H2",
+        "text": "O que pode nascer aqui?"
+      },
+      {
+        "level": "H2",
+        "text": "Casa · R$ 4,21 mi de VGV ilustrativo"
+      },
+      {
+        "level": "H2",
+        "text": "Mais área nem sempresignifica mais oportunidade."
+      },
+      {
+        "level": "H2",
+        "text": "Conheça o que você pode explorar."
+      },
+      {
+        "level": "H2",
+        "text": "Da primeira ideiaao próximo estudo."
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 0.9613481869502216,
+      "interactions": [],
+      "lcp": 84
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "antes",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 9,
+        "text": "VIABILIDADE QUE VOCÊ CONSEGUE VER"
+      },
+      {
+        "size": 11,
+        "text": "Explore livremente. Entre para analisar e salvar seus terrenos."
+      },
+      {
+        "size": 8,
+        "text": "Simulação ilustrativa"
+      },
+      {
+        "size": 9,
+        "text": "03 · Residência unifamiliar"
+      },
+      {
+        "size": 10,
+        "text": "Arraste para girar · + e − para aproximar"
+      },
+      {
+        "size": 8,
+        "text": "N"
+      },
+      {
+        "size": 11,
+        "text": "Terreno"
+      },
+      {
+        "size": 11,
+        "text": "Envelope"
+      },
+      {
+        "size": 11,
+        "text": "Construção"
+      },
+      {
+        "size": 11,
+        "text": "Cotas"
+      },
+      {
+        "size": 9,
+        "text": "Visualização"
+      },
+      {
+        "size": 10,
+        "text": "2 pav."
+      },
+      {
+        "size": 10,
+        "text": "2"
+      },
+      {
+        "size": 10,
+        "text": "576 m²"
+      },
+      {
+        "size": 10,
+        "text": "576"
+      },
+      {
+        "size": 10,
+        "text": "8 pav."
+      },
+      {
+        "size": 10,
+        "text": "8"
+      },
+      {
+        "size": 10,
+        "text": "3.168 m²"
+      },
+      {
+        "size": 10,
+        "text": "3.168"
+      },
+      {
+        "size": 10,
+        "text": "5 pav."
+      },
+      {
+        "size": 10,
+        "text": "5"
+      },
+      {
+        "size": 10,
+        "text": "2.640 m²"
+      },
+      {
+        "size": 10,
+        "text": "2.640"
+      },
+      {
+        "size": 10,
+        "text": "6 pav."
+      },
+      {
+        "size": 10,
+        "text": "6"
+      },
+      {
+        "size": 10,
+        "text": "2.880 m²"
+      },
+      {
+        "size": 10,
+        "text": "2.880"
+      },
+      {
+        "size": 10,
+        "text": "7 pav."
+      },
+      {
+        "size": 10,
+        "text": "7"
+      },
+      {
+        "size": 10,
+        "text": "3.542 m²"
+      }
+    ],
+    "tinyTextCount": 108,
+    "title": "ViabilEasy — Um novo olhar sobre cada terreno",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 390,
+    "requestedWidth": 390
+  },
+  {
+    "bodyState": "guest",
+    "contentWidth": 748,
+    "contrast": [
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(106, 121, 113)",
+        "ratio": 4.36,
+        "size": 16,
+        "text": "Antes da primeira obra, um novo olhar. Descubra o que o seu terreno pode se tornar."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(122, 136, 126)",
+        "ratio": 3.54,
+        "size": 11,
+        "text": "Explore livremente. Entre para analisar e salvar seus terrenos."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(129, 145, 126)",
+        "ratio": 3.18,
+        "size": 12,
+        "text": "O que pode nascer aqui?"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "2 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "576 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "8 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "3.168 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "5 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "2.640 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "6 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "2.880 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "7 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "3.542 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(106, 130, 126)",
+        "ratio": 3.92,
+        "size": 8,
+        "text": "CENÁRIO 01 / 05"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(106, 130, 126)",
+        "ratio": 3.92,
+        "size": 8,
+        "text": "01 / 05"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(99, 123, 116)",
+        "ratio": 4.33,
+        "size": 12,
+        "text": "-14,3% de retorno sobre custo no exemplo. Resultado do projeto, sem taxa anual."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(100, 119, 132)",
+        "ratio": 4.43,
+        "size": 12,
+        "text": "Compare as alternativas com as mesmas premissas de terreno e margem. Todos os valores abai"
+      },
+      {
+        "background": [
+          238,
+          247,
+          242
+        ],
+        "color": "rgb(77, 121, 117)",
+        "ratio": 4.46,
+        "size": 10,
+        "text": "Simulação ilustrativa"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(110, 133, 131)",
+        "ratio": 3.93,
+        "size": 10,
+        "text": "Preservando 18% de margem sobre vendas"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Alternativa"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Potencial construtivo"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Unidades"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "VGV"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Custo total"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Residual do terreno"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Retorno sobre custo"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Resultado no exemplo"
+      },
+      {
+        "background": [
+          240,
+          248,
+          243
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.01,
+        "size": 9,
+        "text": "2 pav. · CA 0,5×"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.33,
+        "size": 9,
+        "text": "8 pav. · CA 2,6×"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.33,
+        "size": 9,
+        "text": "5 pav. · CA 2,2×"
+      },
+      {
+        "background": [
+          240,
+          242,
+          237
+        ],
+        "color": "rgb(104, 118, 100)",
+        "ratio": 4.27,
+        "size": 9,
+        "text": "Abaixo da margem alvo"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.33,
+        "size": 9,
+        "text": "6 pav. · CA 2,4×"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.33,
+        "size": 9,
+        "text": "7 pav. · CA 3×"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(111, 130, 132)",
+        "ratio": 3.84,
+        "size": 10,
+        "text": "Custo total inclui construção, custos indiretos, comercialização e o terreno assumido em R"
+      },
+      {
+        "background": [
+          234,
+          242,
+          239
+        ],
+        "color": "rgb(78, 119, 111)",
+        "ratio": 4.4,
+        "size": 10,
+        "text": "COMECE PELO SEU TERRENO"
+      }
+    ],
+    "contrastCount": 35,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "O futurotoma forma."
+      },
+      {
+        "level": "H2",
+        "text": "O que pode nascer aqui?"
+      },
+      {
+        "level": "H2",
+        "text": "Casa · R$ 4,21 mi de VGV ilustrativo"
+      },
+      {
+        "level": "H2",
+        "text": "Mais área nem sempresignifica mais oportunidade."
+      },
+      {
+        "level": "H2",
+        "text": "Conheça o que você pode explorar."
+      },
+      {
+        "level": "H2",
+        "text": "Da primeira ideiaao próximo estudo."
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 1.913197316663862,
+      "interactions": [],
+      "lcp": 6604
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "antes",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 8,
+        "text": "VIABILIDADE QUE VOCÊ CONSEGUE VER"
+      },
+      {
+        "size": 11,
+        "text": "Explore livremente. Entre para analisar e salvar seus terrenos."
+      },
+      {
+        "size": 9,
+        "text": "Simulação ilustrativa"
+      },
+      {
+        "size": 10,
+        "text": "03 · Residência unifamiliar"
+      },
+      {
+        "size": 10,
+        "text": "Arraste para girar · + e − para aproximar"
+      },
+      {
+        "size": 9,
+        "text": "N"
+      },
+      {
+        "size": 9,
+        "text": "Arraste. Gire. Descubra."
+      },
+      {
+        "size": 11,
+        "text": "Terreno"
+      },
+      {
+        "size": 11,
+        "text": "Envelope"
+      },
+      {
+        "size": 11,
+        "text": "Construção"
+      },
+      {
+        "size": 11,
+        "text": "Cotas"
+      },
+      {
+        "size": 11,
+        "text": "Visualização"
+      },
+      {
+        "size": 10,
+        "text": "2 pav."
+      },
+      {
+        "size": 10,
+        "text": "2"
+      },
+      {
+        "size": 10,
+        "text": "576 m²"
+      },
+      {
+        "size": 10,
+        "text": "576"
+      },
+      {
+        "size": 10,
+        "text": "8 pav."
+      },
+      {
+        "size": 10,
+        "text": "8"
+      },
+      {
+        "size": 10,
+        "text": "3.168 m²"
+      },
+      {
+        "size": 10,
+        "text": "3.168"
+      },
+      {
+        "size": 10,
+        "text": "5 pav."
+      },
+      {
+        "size": 10,
+        "text": "5"
+      },
+      {
+        "size": 10,
+        "text": "2.640 m²"
+      },
+      {
+        "size": 10,
+        "text": "2.640"
+      },
+      {
+        "size": 10,
+        "text": "6 pav."
+      },
+      {
+        "size": 10,
+        "text": "6"
+      },
+      {
+        "size": 10,
+        "text": "2.880 m²"
+      },
+      {
+        "size": 10,
+        "text": "2.880"
+      },
+      {
+        "size": 10,
+        "text": "7 pav."
+      },
+      {
+        "size": 10,
+        "text": "7"
+      }
+    ],
+    "tinyTextCount": 110,
+    "title": "ViabilEasy — Um novo olhar sobre cada terreno",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 768,
+    "requestedWidth": 768
+  },
+  {
+    "bodyState": "guest",
+    "contentWidth": 1004,
+    "contrast": [
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(106, 121, 113)",
+        "ratio": 4.36,
+        "size": 16,
+        "text": "Antes da primeira obra, um novo olhar. Descubra o que o seu terreno pode se tornar."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(122, 136, 126)",
+        "ratio": 3.54,
+        "size": 11,
+        "text": "Explore livremente. Entre para analisar e salvar seus terrenos."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(129, 145, 126)",
+        "ratio": 3.18,
+        "size": 12,
+        "text": "O que pode nascer aqui?"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "2 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "576 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "8 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "3.168 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "5 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "2.640 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "6 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "2.880 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "7 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "3.542 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(106, 130, 126)",
+        "ratio": 3.92,
+        "size": 8,
+        "text": "CENÁRIO 01 / 05"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(106, 130, 126)",
+        "ratio": 3.92,
+        "size": 8,
+        "text": "01 / 05"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(99, 123, 116)",
+        "ratio": 4.33,
+        "size": 12,
+        "text": "-14,3% de retorno sobre custo no exemplo. Resultado do projeto, sem taxa anual."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(100, 119, 132)",
+        "ratio": 4.43,
+        "size": 12,
+        "text": "Compare as alternativas com as mesmas premissas de terreno e margem. Todos os valores abai"
+      },
+      {
+        "background": [
+          238,
+          247,
+          242
+        ],
+        "color": "rgb(77, 121, 117)",
+        "ratio": 4.46,
+        "size": 10,
+        "text": "Simulação ilustrativa"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(110, 133, 131)",
+        "ratio": 3.93,
+        "size": 10,
+        "text": "Preservando 18% de margem sobre vendas"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Alternativa"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Potencial construtivo"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Unidades"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "VGV"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Custo total"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Residual do terreno"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Retorno sobre custo"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Resultado no exemplo"
+      },
+      {
+        "background": [
+          240,
+          248,
+          243
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.01,
+        "size": 9,
+        "text": "2 pav. · CA 0,5×"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.33,
+        "size": 9,
+        "text": "8 pav. · CA 2,6×"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.33,
+        "size": 9,
+        "text": "5 pav. · CA 2,2×"
+      },
+      {
+        "background": [
+          240,
+          242,
+          237
+        ],
+        "color": "rgb(104, 118, 100)",
+        "ratio": 4.27,
+        "size": 9,
+        "text": "Abaixo da margem alvo"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.33,
+        "size": 9,
+        "text": "6 pav. · CA 2,4×"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.33,
+        "size": 9,
+        "text": "7 pav. · CA 3×"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(111, 130, 132)",
+        "ratio": 3.84,
+        "size": 10,
+        "text": "Custo total inclui construção, custos indiretos, comercialização e o terreno assumido em R"
+      },
+      {
+        "background": [
+          234,
+          242,
+          239
+        ],
+        "color": "rgb(78, 119, 111)",
+        "ratio": 4.4,
+        "size": 10,
+        "text": "COMECE PELO SEU TERRENO"
+      }
+    ],
+    "contrastCount": 35,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "O futurotoma forma."
+      },
+      {
+        "level": "H2",
+        "text": "O que pode nascer aqui?"
+      },
+      {
+        "level": "H2",
+        "text": "Casa · R$ 4,21 mi de VGV ilustrativo"
+      },
+      {
+        "level": "H2",
+        "text": "Mais área nem sempresignifica mais oportunidade."
+      },
+      {
+        "level": "H2",
+        "text": "Conheça o que você pode explorar."
+      },
+      {
+        "level": "H2",
+        "text": "Da primeira ideiaao próximo estudo."
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 2.1524712941169,
+      "interactions": [],
+      "lcp": 6604
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "antes",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 8,
+        "text": "VIABILIDADE QUE VOCÊ CONSEGUE VER"
+      },
+      {
+        "size": 11,
+        "text": "Explore livremente. Entre para analisar e salvar seus terrenos."
+      },
+      {
+        "size": 9,
+        "text": "Simulação ilustrativa"
+      },
+      {
+        "size": 10,
+        "text": "03 · Residência unifamiliar"
+      },
+      {
+        "size": 10,
+        "text": "Arraste para girar · + e − para aproximar"
+      },
+      {
+        "size": 9,
+        "text": "N"
+      },
+      {
+        "size": 9,
+        "text": "Arraste. Gire. Descubra."
+      },
+      {
+        "size": 11,
+        "text": "Terreno"
+      },
+      {
+        "size": 11,
+        "text": "Envelope"
+      },
+      {
+        "size": 11,
+        "text": "Construção"
+      },
+      {
+        "size": 11,
+        "text": "Cotas"
+      },
+      {
+        "size": 11,
+        "text": "Visualização"
+      },
+      {
+        "size": 10,
+        "text": "2 pav."
+      },
+      {
+        "size": 10,
+        "text": "2"
+      },
+      {
+        "size": 10,
+        "text": "576 m²"
+      },
+      {
+        "size": 10,
+        "text": "576"
+      },
+      {
+        "size": 10,
+        "text": "8 pav."
+      },
+      {
+        "size": 10,
+        "text": "8"
+      },
+      {
+        "size": 10,
+        "text": "3.168 m²"
+      },
+      {
+        "size": 10,
+        "text": "3.168"
+      },
+      {
+        "size": 10,
+        "text": "5 pav."
+      },
+      {
+        "size": 10,
+        "text": "5"
+      },
+      {
+        "size": 10,
+        "text": "2.640 m²"
+      },
+      {
+        "size": 10,
+        "text": "2.640"
+      },
+      {
+        "size": 10,
+        "text": "6 pav."
+      },
+      {
+        "size": 10,
+        "text": "6"
+      },
+      {
+        "size": 10,
+        "text": "2.880 m²"
+      },
+      {
+        "size": 10,
+        "text": "2.880"
+      },
+      {
+        "size": 10,
+        "text": "7 pav."
+      },
+      {
+        "size": 10,
+        "text": "7"
+      }
+    ],
+    "tinyTextCount": 110,
+    "title": "ViabilEasy — Um novo olhar sobre cada terreno",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1024,
+    "requestedWidth": 1024
+  },
+  {
+    "bodyState": "guest",
+    "contentWidth": 1260,
+    "contrast": [
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(106, 121, 113)",
+        "ratio": 4.36,
+        "size": 14.72,
+        "text": "Antes da primeira obra, um novo olhar. Descubra o que o seu terreno pode se tornar."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(122, 136, 126)",
+        "ratio": 3.54,
+        "size": 11,
+        "text": "Explore livremente. Entre para analisar e salvar seus terrenos."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(129, 145, 126)",
+        "ratio": 3.18,
+        "size": 12,
+        "text": "O que pode nascer aqui?"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "2 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "576 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "8 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "3.168 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "5 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "2.640 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "6 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "2.880 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "7 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "3.542 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(106, 130, 126)",
+        "ratio": 3.92,
+        "size": 8,
+        "text": "CENÁRIO 01 / 05"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(106, 130, 126)",
+        "ratio": 3.92,
+        "size": 8,
+        "text": "01 / 05"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(99, 123, 116)",
+        "ratio": 4.33,
+        "size": 12,
+        "text": "-14,3% de retorno sobre custo no exemplo. Resultado do projeto, sem taxa anual."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(100, 119, 132)",
+        "ratio": 4.43,
+        "size": 12,
+        "text": "Compare as alternativas com as mesmas premissas de terreno e margem. Todos os valores abai"
+      },
+      {
+        "background": [
+          238,
+          247,
+          242
+        ],
+        "color": "rgb(77, 121, 117)",
+        "ratio": 4.46,
+        "size": 10,
+        "text": "Simulação ilustrativa"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(110, 133, 131)",
+        "ratio": 3.93,
+        "size": 10,
+        "text": "Preservando 18% de margem sobre vendas"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Alternativa"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Potencial construtivo"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Unidades"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "VGV"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Custo total"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Residual do terreno"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Retorno sobre custo"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Resultado no exemplo"
+      },
+      {
+        "background": [
+          240,
+          248,
+          243
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.01,
+        "size": 9,
+        "text": "2 pav. · CA 0,5×"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.33,
+        "size": 9,
+        "text": "8 pav. · CA 2,6×"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.33,
+        "size": 9,
+        "text": "5 pav. · CA 2,2×"
+      },
+      {
+        "background": [
+          240,
+          242,
+          237
+        ],
+        "color": "rgb(104, 118, 100)",
+        "ratio": 4.27,
+        "size": 9,
+        "text": "Abaixo da margem alvo"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.33,
+        "size": 9,
+        "text": "6 pav. · CA 2,4×"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.33,
+        "size": 9,
+        "text": "7 pav. · CA 3×"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(111, 130, 132)",
+        "ratio": 3.84,
+        "size": 10,
+        "text": "Custo total inclui construção, custos indiretos, comercialização e o terreno assumido em R"
+      },
+      {
+        "background": [
+          234,
+          242,
+          239
+        ],
+        "color": "rgb(78, 119, 111)",
+        "ratio": 4.4,
+        "size": 10,
+        "text": "COMECE PELO SEU TERRENO"
+      }
+    ],
+    "contrastCount": 35,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "O futurotoma forma."
+      },
+      {
+        "level": "H2",
+        "text": "O que pode nascer aqui?"
+      },
+      {
+        "level": "H2",
+        "text": "Casa · R$ 4,21 mi de VGV ilustrativo"
+      },
+      {
+        "level": "H2",
+        "text": "Mais área nem sempresignifica mais oportunidade."
+      },
+      {
+        "level": "H2",
+        "text": "Conheça o que você pode explorar."
+      },
+      {
+        "level": "H2",
+        "text": "Da primeira ideiaao próximo estudo."
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 2.73206765644628,
+      "interactions": [],
+      "lcp": 6604
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "antes",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 10,
+        "text": "VIABILIDADE QUE VOCÊ CONSEGUE VER"
+      },
+      {
+        "size": 11,
+        "text": "Explore livremente. Entre para analisar e salvar seus terrenos."
+      },
+      {
+        "size": 9,
+        "text": "Simulação ilustrativa"
+      },
+      {
+        "size": 10,
+        "text": "03 · Residência unifamiliar"
+      },
+      {
+        "size": 10,
+        "text": "Arraste para girar · + e − para aproximar"
+      },
+      {
+        "size": 9,
+        "text": "N"
+      },
+      {
+        "size": 9,
+        "text": "Arraste. Gire. Descubra."
+      },
+      {
+        "size": 11,
+        "text": "Terreno"
+      },
+      {
+        "size": 11,
+        "text": "Envelope"
+      },
+      {
+        "size": 11,
+        "text": "Construção"
+      },
+      {
+        "size": 11,
+        "text": "Cotas"
+      },
+      {
+        "size": 11,
+        "text": "Visualização"
+      },
+      {
+        "size": 10,
+        "text": "2 pav."
+      },
+      {
+        "size": 10,
+        "text": "2"
+      },
+      {
+        "size": 10,
+        "text": "576 m²"
+      },
+      {
+        "size": 10,
+        "text": "576"
+      },
+      {
+        "size": 10,
+        "text": "8 pav."
+      },
+      {
+        "size": 10,
+        "text": "8"
+      },
+      {
+        "size": 10,
+        "text": "3.168 m²"
+      },
+      {
+        "size": 10,
+        "text": "3.168"
+      },
+      {
+        "size": 10,
+        "text": "5 pav."
+      },
+      {
+        "size": 10,
+        "text": "5"
+      },
+      {
+        "size": 10,
+        "text": "2.640 m²"
+      },
+      {
+        "size": 10,
+        "text": "2.640"
+      },
+      {
+        "size": 10,
+        "text": "6 pav."
+      },
+      {
+        "size": 10,
+        "text": "6"
+      },
+      {
+        "size": 10,
+        "text": "2.880 m²"
+      },
+      {
+        "size": 10,
+        "text": "2.880"
+      },
+      {
+        "size": 10,
+        "text": "7 pav."
+      },
+      {
+        "size": 10,
+        "text": "7"
+      }
+    ],
+    "tinyTextCount": 110,
+    "title": "ViabilEasy — Um novo olhar sobre cada terreno",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1280,
+    "requestedWidth": 1280
+  },
+  {
+    "bodyState": "guest",
+    "contentWidth": 1420,
+    "contrast": [
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(106, 121, 113)",
+        "ratio": 4.36,
+        "size": 16.56,
+        "text": "Antes da primeira obra, um novo olhar. Descubra o que o seu terreno pode se tornar."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(122, 136, 126)",
+        "ratio": 3.54,
+        "size": 11,
+        "text": "Explore livremente. Entre para analisar e salvar seus terrenos."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(129, 145, 126)",
+        "ratio": 3.18,
+        "size": 12,
+        "text": "O que pode nascer aqui?"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "2 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "576 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "8 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "3.168 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "5 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "2.640 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "6 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "2.880 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "7 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "3.542 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(106, 130, 126)",
+        "ratio": 3.92,
+        "size": 8,
+        "text": "CENÁRIO 01 / 05"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(106, 130, 126)",
+        "ratio": 3.92,
+        "size": 8,
+        "text": "01 / 05"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(99, 123, 116)",
+        "ratio": 4.33,
+        "size": 12,
+        "text": "-14,3% de retorno sobre custo no exemplo. Resultado do projeto, sem taxa anual."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(100, 119, 132)",
+        "ratio": 4.43,
+        "size": 12,
+        "text": "Compare as alternativas com as mesmas premissas de terreno e margem. Todos os valores abai"
+      },
+      {
+        "background": [
+          238,
+          247,
+          242
+        ],
+        "color": "rgb(77, 121, 117)",
+        "ratio": 4.46,
+        "size": 10,
+        "text": "Simulação ilustrativa"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(110, 133, 131)",
+        "ratio": 3.93,
+        "size": 10,
+        "text": "Preservando 18% de margem sobre vendas"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Alternativa"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Potencial construtivo"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Unidades"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "VGV"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Custo total"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Residual do terreno"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Retorno sobre custo"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Resultado no exemplo"
+      },
+      {
+        "background": [
+          240,
+          248,
+          243
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.01,
+        "size": 9,
+        "text": "2 pav. · CA 0,5×"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.33,
+        "size": 9,
+        "text": "8 pav. · CA 2,6×"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.33,
+        "size": 9,
+        "text": "5 pav. · CA 2,2×"
+      },
+      {
+        "background": [
+          240,
+          242,
+          237
+        ],
+        "color": "rgb(104, 118, 100)",
+        "ratio": 4.27,
+        "size": 9,
+        "text": "Abaixo da margem alvo"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.33,
+        "size": 9,
+        "text": "6 pav. · CA 2,4×"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.33,
+        "size": 9,
+        "text": "7 pav. · CA 3×"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(111, 130, 132)",
+        "ratio": 3.84,
+        "size": 10,
+        "text": "Custo total inclui construção, custos indiretos, comercialização e o terreno assumido em R"
+      },
+      {
+        "background": [
+          234,
+          242,
+          239
+        ],
+        "color": "rgb(78, 119, 111)",
+        "ratio": 4.4,
+        "size": 10,
+        "text": "COMECE PELO SEU TERRENO"
+      }
+    ],
+    "contrastCount": 35,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "O futurotoma forma."
+      },
+      {
+        "level": "H2",
+        "text": "O que pode nascer aqui?"
+      },
+      {
+        "level": "H2",
+        "text": "Casa · R$ 4,21 mi de VGV ilustrativo"
+      },
+      {
+        "level": "H2",
+        "text": "Mais área nem sempresignifica mais oportunidade."
+      },
+      {
+        "level": "H2",
+        "text": "Conheça o que você pode explorar."
+      },
+      {
+        "level": "H2",
+        "text": "Da primeira ideiaao próximo estudo."
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 2.8353247920627136,
+      "interactions": [],
+      "lcp": 6604
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "antes",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 10,
+        "text": "VIABILIDADE QUE VOCÊ CONSEGUE VER"
+      },
+      {
+        "size": 11,
+        "text": "Explore livremente. Entre para analisar e salvar seus terrenos."
+      },
+      {
+        "size": 9,
+        "text": "Simulação ilustrativa"
+      },
+      {
+        "size": 10,
+        "text": "03 · Residência unifamiliar"
+      },
+      {
+        "size": 10,
+        "text": "Arraste para girar · + e − para aproximar"
+      },
+      {
+        "size": 9,
+        "text": "N"
+      },
+      {
+        "size": 9,
+        "text": "Arraste. Gire. Descubra."
+      },
+      {
+        "size": 11,
+        "text": "Terreno"
+      },
+      {
+        "size": 11,
+        "text": "Envelope"
+      },
+      {
+        "size": 11,
+        "text": "Construção"
+      },
+      {
+        "size": 11,
+        "text": "Cotas"
+      },
+      {
+        "size": 11,
+        "text": "Visualização"
+      },
+      {
+        "size": 10,
+        "text": "2 pav."
+      },
+      {
+        "size": 10,
+        "text": "2"
+      },
+      {
+        "size": 10,
+        "text": "576 m²"
+      },
+      {
+        "size": 10,
+        "text": "576"
+      },
+      {
+        "size": 10,
+        "text": "8 pav."
+      },
+      {
+        "size": 10,
+        "text": "8"
+      },
+      {
+        "size": 10,
+        "text": "3.168 m²"
+      },
+      {
+        "size": 10,
+        "text": "3.168"
+      },
+      {
+        "size": 10,
+        "text": "5 pav."
+      },
+      {
+        "size": 10,
+        "text": "5"
+      },
+      {
+        "size": 10,
+        "text": "2.640 m²"
+      },
+      {
+        "size": 10,
+        "text": "2.640"
+      },
+      {
+        "size": 10,
+        "text": "6 pav."
+      },
+      {
+        "size": 10,
+        "text": "6"
+      },
+      {
+        "size": 10,
+        "text": "2.880 m²"
+      },
+      {
+        "size": 10,
+        "text": "2.880"
+      },
+      {
+        "size": 10,
+        "text": "7 pav."
+      },
+      {
+        "size": 10,
+        "text": "7"
+      }
+    ],
+    "tinyTextCount": 110,
+    "title": "ViabilEasy — Um novo olhar sobre cada terreno",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1440,
+    "requestedWidth": 1440
+  },
+  {
+    "bodyState": "guest",
+    "contentWidth": 1900,
+    "contrast": [
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(106, 121, 113)",
+        "ratio": 4.36,
+        "size": 18,
+        "text": "Antes da primeira obra, um novo olhar. Descubra o que o seu terreno pode se tornar."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(122, 136, 126)",
+        "ratio": 3.54,
+        "size": 11,
+        "text": "Explore livremente. Entre para analisar e salvar seus terrenos."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(129, 145, 126)",
+        "ratio": 3.18,
+        "size": 12,
+        "text": "O que pode nascer aqui?"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "2 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "576 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "8 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "3.168 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "5 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "2.640 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "6 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "2.880 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "7 pav."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(137, 149, 129)",
+        "ratio": 2.99,
+        "size": 10,
+        "text": "3.542 m²"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(106, 130, 126)",
+        "ratio": 3.92,
+        "size": 8,
+        "text": "CENÁRIO 01 / 05"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(106, 130, 126)",
+        "ratio": 3.92,
+        "size": 8,
+        "text": "01 / 05"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(99, 123, 116)",
+        "ratio": 4.33,
+        "size": 12,
+        "text": "-14,3% de retorno sobre custo no exemplo. Resultado do projeto, sem taxa anual."
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(100, 119, 132)",
+        "ratio": 4.43,
+        "size": 12,
+        "text": "Compare as alternativas com as mesmas premissas de terreno e margem. Todos os valores abai"
+      },
+      {
+        "background": [
+          238,
+          247,
+          242
+        ],
+        "color": "rgb(77, 121, 117)",
+        "ratio": 4.46,
+        "size": 10,
+        "text": "Simulação ilustrativa"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(110, 133, 131)",
+        "ratio": 3.93,
+        "size": 10,
+        "text": "Preservando 18% de margem sobre vendas"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Alternativa"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Potencial construtivo"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Unidades"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "VGV"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Custo total"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Residual do terreno"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Retorno sobre custo"
+      },
+      {
+        "background": [
+          251,
+          253,
+          251
+        ],
+        "color": "rgb(102, 127, 125)",
+        "ratio": 4.2,
+        "size": 9,
+        "text": "Resultado no exemplo"
+      },
+      {
+        "background": [
+          240,
+          248,
+          243
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.01,
+        "size": 9,
+        "text": "2 pav. · CA 0,5×"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.33,
+        "size": 9,
+        "text": "8 pav. · CA 2,6×"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.33,
+        "size": 9,
+        "text": "5 pav. · CA 2,2×"
+      },
+      {
+        "background": [
+          240,
+          242,
+          237
+        ],
+        "color": "rgb(104, 118, 100)",
+        "ratio": 4.27,
+        "size": 9,
+        "text": "Abaixo da margem alvo"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.33,
+        "size": 9,
+        "text": "6 pav. · CA 2,4×"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(107, 125, 123)",
+        "ratio": 4.33,
+        "size": 9,
+        "text": "7 pav. · CA 3×"
+      },
+      {
+        "background": [
+          247,
+          250,
+          249
+        ],
+        "color": "rgb(111, 130, 132)",
+        "ratio": 3.84,
+        "size": 10,
+        "text": "Custo total inclui construção, custos indiretos, comercialização e o terreno assumido em R"
+      },
+      {
+        "background": [
+          234,
+          242,
+          239
+        ],
+        "color": "rgb(78, 119, 111)",
+        "ratio": 4.4,
+        "size": 10,
+        "text": "COMECE PELO SEU TERRENO"
+      }
+    ],
+    "contrastCount": 35,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "O futurotoma forma."
+      },
+      {
+        "level": "H2",
+        "text": "O que pode nascer aqui?"
+      },
+      {
+        "level": "H2",
+        "text": "Casa · R$ 4,21 mi de VGV ilustrativo"
+      },
+      {
+        "level": "H2",
+        "text": "Mais área nem sempresignifica mais oportunidade."
+      },
+      {
+        "level": "H2",
+        "text": "Conheça o que você pode explorar."
+      },
+      {
+        "level": "H2",
+        "text": "Da primeira ideiaao próximo estudo."
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 3.1815044056951987,
+      "interactions": [],
+      "lcp": 6604
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "antes",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 10,
+        "text": "VIABILIDADE QUE VOCÊ CONSEGUE VER"
+      },
+      {
+        "size": 11,
+        "text": "Explore livremente. Entre para analisar e salvar seus terrenos."
+      },
+      {
+        "size": 9,
+        "text": "Simulação ilustrativa"
+      },
+      {
+        "size": 10,
+        "text": "03 · Residência unifamiliar"
+      },
+      {
+        "size": 10,
+        "text": "Arraste para girar · + e − para aproximar"
+      },
+      {
+        "size": 9,
+        "text": "N"
+      },
+      {
+        "size": 9,
+        "text": "Arraste. Gire. Descubra."
+      },
+      {
+        "size": 11,
+        "text": "Terreno"
+      },
+      {
+        "size": 11,
+        "text": "Envelope"
+      },
+      {
+        "size": 11,
+        "text": "Construção"
+      },
+      {
+        "size": 11,
+        "text": "Cotas"
+      },
+      {
+        "size": 11,
+        "text": "Visualização"
+      },
+      {
+        "size": 10,
+        "text": "2 pav."
+      },
+      {
+        "size": 10,
+        "text": "2"
+      },
+      {
+        "size": 10,
+        "text": "576 m²"
+      },
+      {
+        "size": 10,
+        "text": "576"
+      },
+      {
+        "size": 10,
+        "text": "8 pav."
+      },
+      {
+        "size": 10,
+        "text": "8"
+      },
+      {
+        "size": 10,
+        "text": "3.168 m²"
+      },
+      {
+        "size": 10,
+        "text": "3.168"
+      },
+      {
+        "size": 10,
+        "text": "5 pav."
+      },
+      {
+        "size": 10,
+        "text": "5"
+      },
+      {
+        "size": 10,
+        "text": "2.640 m²"
+      },
+      {
+        "size": 10,
+        "text": "2.640"
+      },
+      {
+        "size": 10,
+        "text": "6 pav."
+      },
+      {
+        "size": 10,
+        "text": "6"
+      },
+      {
+        "size": 10,
+        "text": "2.880 m²"
+      },
+      {
+        "size": 10,
+        "text": "2.880"
+      },
+      {
+        "size": 10,
+        "text": "7 pav."
+      },
+      {
+        "size": 10,
+        "text": "7"
+      }
+    ],
+    "tinyTextCount": 110,
+    "title": "ViabilEasy — Um novo olhar sobre cada terreno",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1920,
+    "requestedWidth": 1920
+  }
+]

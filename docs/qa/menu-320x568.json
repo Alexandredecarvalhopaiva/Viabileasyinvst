@@ -1,0 +1,104 @@
+[
+  {
+    "bodyState": "ready",
+    "contentWidth": 320,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H2",
+        "text": "O que você quer explorar?"
+      }
+    ],
+    "height": 568,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 16.372675169681695,
+      "interactions": [
+        32,
+        48,
+        48,
+        32,
+        32,
+        48,
+        48,
+        48,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        48,
+        48,
+        48
+      ],
+      "lcp": 92
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "report-after",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 0,
+        "text": "Fechar menu"
+      },
+      {
+        "size": 9,
+        "text": "SEU TERRENO, MAIS POSSIBILIDADES"
+      },
+      {
+        "size": 11,
+        "text": "Coordenadas ou matrícula"
+      },
+      {
+        "size": 11,
+        "text": "Possibilidades do lote"
+      },
+      {
+        "size": 11,
+        "text": "Explore a massa do edifício"
+      },
+      {
+        "size": 11,
+        "text": "Casa, salas, aptos e flats"
+      },
+      {
+        "size": 11,
+        "text": "Premissas de receita e custo"
+      },
+      {
+        "size": 11,
+        "text": "Visualizar e exportar"
+      },
+      {
+        "size": 11,
+        "text": "Retome seus terrenos"
+      },
+      {
+        "size": 11,
+        "text": "Consulte as referências"
+      },
+      {
+        "size": 11,
+        "text": "Seu espaço de trabalho"
+      },
+      {
+        "size": 11,
+        "text": "Layouts do protótipo"
+      },
+      {
+        "size": 11,
+        "text": "Ajuda"
+      }
+    ],
+    "tinyTextCount": 13,
+    "title": "O que este terreno pode se tornar? | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 320,
+    "requestedWidth": 320
+  }
+]

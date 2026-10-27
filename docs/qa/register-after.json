@@ -1,0 +1,386 @@
+[
+  {
+    "bodyState": "signin",
+    "contentWidth": 300,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Crie sua conta."
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 3.7118618963689567,
+      "interactions": [
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "lcp": 80
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "register-after",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 10,
+        "text": "SEU ESPAÇO DE POSSIBILIDADES"
+      }
+    ],
+    "tinyTextCount": 1,
+    "title": "Criar conta | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 320,
+    "requestedWidth": 320
+  },
+  {
+    "bodyState": "signin",
+    "contentWidth": 354,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Crie sua conta."
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 3.7142588109167303,
+      "interactions": [
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "lcp": 80
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "register-after",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 10,
+        "text": "SEU ESPAÇO DE POSSIBILIDADES"
+      }
+    ],
+    "tinyTextCount": 1,
+    "title": "Criar conta | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 374,
+    "requestedWidth": 375
+  },
+  {
+    "bodyState": "signin",
+    "contentWidth": 370,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Crie sua conta."
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 3.714720749041261,
+      "interactions": [
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "lcp": 80
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "register-after",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 10,
+        "text": "SEU ESPAÇO DE POSSIBILIDADES"
+      }
+    ],
+    "tinyTextCount": 1,
+    "title": "Criar conta | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 390,
+    "requestedWidth": 390
+  },
+  {
+    "bodyState": "signin",
+    "contentWidth": 748,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H2",
+        "text": "Cada terreno,um mundo depossibilidades."
+      },
+      {
+        "level": "H1",
+        "text": "Crie sua conta."
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 3.714720749041261,
+      "interactions": [
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "lcp": 80
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "register-after",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 10,
+        "text": "INTELIGÊNCIA URBANÍSTICA"
+      },
+      {
+        "size": 10,
+        "text": "SEU ESPAÇO DE POSSIBILIDADES"
+      }
+    ],
+    "tinyTextCount": 2,
+    "title": "Criar conta | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 768,
+    "requestedWidth": 768
+  },
+  {
+    "bodyState": "signin",
+    "contentWidth": 1004,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H2",
+        "text": "Cada terreno,um mundo depossibilidades."
+      },
+      {
+        "level": "H1",
+        "text": "Crie sua conta."
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 3.819203079658496,
+      "interactions": [
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "lcp": 80
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "register-after",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 10,
+        "text": "INTELIGÊNCIA URBANÍSTICA"
+      },
+      {
+        "size": 10,
+        "text": "SEU ESPAÇO DE POSSIBILIDADES"
+      }
+    ],
+    "tinyTextCount": 2,
+    "title": "Criar conta | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1024,
+    "requestedWidth": 1024
+  },
+  {
+    "bodyState": "signin",
+    "contentWidth": 1260,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H2",
+        "text": "Cada terreno,um mundo depossibilidades."
+      },
+      {
+        "level": "H1",
+        "text": "Crie sua conta."
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 3.939124925915381,
+      "interactions": [
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "lcp": 80
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "register-after",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 10,
+        "text": "INTELIGÊNCIA URBANÍSTICA"
+      },
+      {
+        "size": 10,
+        "text": "SEU ESPAÇO DE POSSIBILIDADES"
+      }
+    ],
+    "tinyTextCount": 2,
+    "title": "Criar conta | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1280,
+    "requestedWidth": 1280
+  },
+  {
+    "bodyState": "signin",
+    "contentWidth": 1420,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H2",
+        "text": "Cada terreno,um mundo depossibilidades."
+      },
+      {
+        "level": "H1",
+        "text": "Crie sua conta."
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 3.984689528358949,
+      "interactions": [
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "lcp": 80
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "register-after",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 10,
+        "text": "INTELIGÊNCIA URBANÍSTICA"
+      },
+      {
+        "size": 10,
+        "text": "SEU ESPAÇO DE POSSIBILIDADES"
+      }
+    ],
+    "tinyTextCount": 2,
+    "title": "Criar conta | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1440,
+    "requestedWidth": 1440
+  },
+  {
+    "bodyState": "signin",
+    "contentWidth": 1900,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H2",
+        "text": "Cada terreno,um mundo depossibilidades."
+      },
+      {
+        "level": "H1",
+        "text": "Crie sua conta."
+      }
+    ],
+    "height": 844,
+    "mapLibraryLoaded": false,
+    "metrics": {
+      "cls": 4.090166491655956,
+      "interactions": [
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "lcp": 80
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "register-after",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 10,
+        "text": "INTELIGÊNCIA URBANÍSTICA"
+      },
+      {
+        "size": 10,
+        "text": "SEU ESPAÇO DE POSSIBILIDADES"
+      }
+    ],
+    "tinyTextCount": 2,
+    "title": "Criar conta | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1920,
+    "requestedWidth": 1920
+  }
+]

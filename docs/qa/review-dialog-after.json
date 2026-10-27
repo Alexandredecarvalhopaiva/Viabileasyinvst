@@ -1,0 +1,589 @@
+[
+  {
+    "bodyState": "ready",
+    "contentWidth": 320,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H2",
+        "text": "Revise o terreno antes de analisar."
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 9.32145441976898,
+      "interactions": [
+        48,
+        40,
+        40,
+        24,
+        24,
+        24,
+        32,
+        32,
+        32,
+        32,
+        48,
+        48,
+        32,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        32,
+        32,
+        24,
+        40,
+        40,
+        40
+      ],
+      "lcp": null
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "review-dialog-after",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 11,
+        "text": "Formato / método"
+      },
+      {
+        "size": 11,
+        "text": "Retangular"
+      },
+      {
+        "size": 11,
+        "text": "Área total"
+      },
+      {
+        "size": 11,
+        "text": "360,00 m²"
+      },
+      {
+        "size": 11,
+        "text": "Perímetro"
+      },
+      {
+        "size": 11,
+        "text": "84,00 m"
+      },
+      {
+        "size": 11,
+        "text": "Testada principal"
+      },
+      {
+        "size": 11,
+        "text": "Lado 1 · 12,00 m"
+      },
+      {
+        "size": 11,
+        "text": "Referência geométrica"
+      },
+      {
+        "size": 11,
+        "text": "Referencial local em metros"
+      }
+    ],
+    "tinyTextCount": 10,
+    "title": "Descubra o potencial do seu terreno. | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 320,
+    "requestedWidth": 320
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 374,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H2",
+        "text": "Revise o terreno antes de analisar."
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 9.415736558375976,
+      "interactions": [
+        48,
+        40,
+        40,
+        24,
+        24,
+        24,
+        32,
+        32,
+        32,
+        32,
+        48,
+        48,
+        32,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        32,
+        32,
+        24,
+        40,
+        40,
+        40
+      ],
+      "lcp": null
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "review-dialog-after",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 11,
+        "text": "Formato / método"
+      },
+      {
+        "size": 11,
+        "text": "Retangular"
+      },
+      {
+        "size": 11,
+        "text": "Área total"
+      },
+      {
+        "size": 11,
+        "text": "360,00 m²"
+      },
+      {
+        "size": 11,
+        "text": "Perímetro"
+      },
+      {
+        "size": 11,
+        "text": "84,00 m"
+      },
+      {
+        "size": 11,
+        "text": "Testada principal"
+      },
+      {
+        "size": 11,
+        "text": "Lado 1 · 12,00 m"
+      },
+      {
+        "size": 11,
+        "text": "Referência geométrica"
+      },
+      {
+        "size": 11,
+        "text": "Referencial local em metros"
+      }
+    ],
+    "tinyTextCount": 10,
+    "title": "Descubra o potencial do seu terreno. | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 374,
+    "requestedWidth": 375
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 390,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H2",
+        "text": "Revise o terreno antes de analisar."
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 9.43557931502117,
+      "interactions": [
+        48,
+        40,
+        40,
+        24,
+        24,
+        24,
+        32,
+        32,
+        32,
+        32,
+        48,
+        48,
+        32,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        32,
+        32,
+        24,
+        40,
+        40,
+        40
+      ],
+      "lcp": null
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "review-dialog-after",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [
+      {
+        "size": 11,
+        "text": "Formato / método"
+      },
+      {
+        "size": 11,
+        "text": "Retangular"
+      },
+      {
+        "size": 11,
+        "text": "Área total"
+      },
+      {
+        "size": 11,
+        "text": "360,00 m²"
+      },
+      {
+        "size": 11,
+        "text": "Perímetro"
+      },
+      {
+        "size": 11,
+        "text": "84,00 m"
+      },
+      {
+        "size": 11,
+        "text": "Testada principal"
+      },
+      {
+        "size": 11,
+        "text": "Lado 1 · 12,00 m"
+      },
+      {
+        "size": 11,
+        "text": "Referência geométrica"
+      },
+      {
+        "size": 11,
+        "text": "Referencial local em metros"
+      }
+    ],
+    "tinyTextCount": 10,
+    "title": "Descubra o potencial do seu terreno. | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 390,
+    "requestedWidth": 390
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 768,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H2",
+        "text": "Revise o terreno antes de analisar."
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 9.901126083198337,
+      "interactions": [
+        48,
+        40,
+        40,
+        24,
+        24,
+        24,
+        32,
+        32,
+        32,
+        32,
+        48,
+        48,
+        32,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        32,
+        32,
+        24,
+        40,
+        40,
+        40
+      ],
+      "lcp": null
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "review-dialog-after",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [],
+    "tinyTextCount": 0,
+    "title": "Descubra o potencial do seu terreno. | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 768,
+    "requestedWidth": 768
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 1024,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H2",
+        "text": "Revise o terreno antes de analisar."
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 10.901126083198337,
+      "interactions": [
+        48,
+        40,
+        40,
+        24,
+        24,
+        24,
+        32,
+        32,
+        32,
+        32,
+        48,
+        48,
+        32,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        32,
+        32,
+        24,
+        40,
+        40,
+        40
+      ],
+      "lcp": null
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "review-dialog-after",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [],
+    "tinyTextCount": 0,
+    "title": "Descubra o potencial do seu terreno. | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1024,
+    "requestedWidth": 1024
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 1280,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H2",
+        "text": "Revise o terreno antes de analisar."
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 11.095115754500718,
+      "interactions": [
+        48,
+        40,
+        40,
+        24,
+        24,
+        24,
+        32,
+        32,
+        32,
+        32,
+        48,
+        48,
+        32,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        32,
+        32,
+        24,
+        40,
+        40,
+        40
+      ],
+      "lcp": null
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "review-dialog-after",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [],
+    "tinyTextCount": 0,
+    "title": "Descubra o potencial do seu terreno. | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1280,
+    "requestedWidth": 1280
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 1440,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H2",
+        "text": "Revise o terreno antes de analisar."
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 11.19760962534926,
+      "interactions": [
+        48,
+        40,
+        40,
+        24,
+        24,
+        24,
+        32,
+        32,
+        32,
+        32,
+        48,
+        48,
+        32,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        32,
+        32,
+        24,
+        40,
+        40,
+        40
+      ],
+      "lcp": null
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "review-dialog-after",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [],
+    "tinyTextCount": 0,
+    "title": "Descubra o potencial do seu terreno. | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1440,
+    "requestedWidth": 1440
+  },
+  {
+    "bodyState": "ready",
+    "contentWidth": 1920,
+    "contrast": [],
+    "contrastCount": 0,
+    "headings": [
+      {
+        "level": "H2",
+        "text": "Revise o terreno antes de analisar."
+      }
+    ],
+    "height": 844,
+    "metrics": {
+      "cls": 11.42102991133534,
+      "interactions": [
+        48,
+        40,
+        40,
+        24,
+        24,
+        24,
+        32,
+        32,
+        32,
+        32,
+        48,
+        48,
+        32,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        32,
+        32,
+        24,
+        40,
+        40,
+        40
+      ],
+      "lcp": null
+    },
+    "missingAlt": 0,
+    "overflow": [],
+    "pageOverflow": false,
+    "phase": "review-dialog-after",
+    "renderer": "ready",
+    "smallTargets": [],
+    "tinyText": [],
+    "tinyTextCount": 0,
+    "title": "Descubra o potencial do seu terreno. | ViabilEasy",
+    "unlabelledFields": [],
+    "unnamed": [],
+    "width": 1920,
+    "requestedWidth": 1920
+  }
+]
