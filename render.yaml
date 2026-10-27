@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: viabileasy
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m backend
+    healthCheckPath: /api/ready
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.14.6
+      - key: APP_ENV
+        value: production
+      - key: HOST
+        value: 0.0.0.0
+      # Only safe behind Render's managed ingress; localhost uses a restricted default.
+      - key: FORWARDED_ALLOW_IPS
+        value: "*"
+      - key: DATABASE_URL
+        sync: false
+      # A verified sender is required. RESEND_API_KEY remains supported as an alternative.
+      - key: BREVO_API_KEY
+        sync: false
+      - key: MAIL_FROM
+        sync: false

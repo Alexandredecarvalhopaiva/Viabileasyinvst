@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-27",
+  "backend": "Python/FastAPI",
+  "python_version": "3.14.6",
+  "databases": [
+    "SQLite",
+    "PostgreSQL 17.10"
+  ],
+  "backend_tests": {
+    "collected": 67,
+    "passed": 63,
+    "skipped_not_applicable": 4,
+    "failures": 0,
+    "errors": 0
+  },
+  "frontend_tests_passed": 35,
+  "geometry_checks_passed": 144,
+  "local_server": "http://127.0.0.1:4173",
+  "health": "ok",
+  "readiness": "ready",
+  "external_google_verified": false,
+  "external_email_verified": false,
+  "cloud_deployed": false,
+  "docker_build_verified": false,
+  "github_ci_executed": false,
+  "production_mode_postgresql_test": "passed",
+  "email_adapters_tested": [
+    "Brevo HTTPS (mock transport)",
+    "Resend HTTPS (mock transport)"
+  ],
+  "github_ci_note": "Este resumo registra o estado local anterior ao envio; consultar Actions para a validação remota."
+}

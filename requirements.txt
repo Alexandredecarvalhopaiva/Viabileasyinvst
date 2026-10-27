@@ -1,0 +1,11 @@
+# Runtime Python; dependências transitivas fixadas no ambiente validado.
+-c requirements.lock
+fastapi==0.162.0
+uvicorn==0.54.0
+SQLAlchemy==2.1.6
+psycopg[binary]==3.3.6
+httpx==0.28.1
+python-dotenv==1.2.4
+google-auth==2.62.0
+requests==2.34.2
+Pillow==13.0.0

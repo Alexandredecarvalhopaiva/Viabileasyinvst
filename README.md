@@ -2,16 +2,47 @@
 
 Protótipo navegável criado a partir da **Especificação Técnica Consolidada de Viabilidade Urbanística v3.0**, de 16 de outubro de 2026. O nome URBA e a identidade visual são propostas para esta demonstração.
 
-## Abrir
+## Executar a versão atual (v0.15)
 
-A versão atual usa **Node.js 24+**, com contas e estudos privados no servidor.
+O backend HTTP agora é **Python/FastAPI**, com **SQLite local** ou **PostgreSQL em produção**. O frontend HTML/CSS/JavaScript e o 3D permanecem no navegador. O backend Node foi substituído; Node.js 24+ é usado apenas nos comandos de build e nos testes do frontend.
 
-    npm install
-    npm run prototype
+```sh
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements-dev.txt
+.venv/bin/python -m backend
+```
 
-Abra http://127.0.0.1:4173 e use **Criar conta**. Para ativar o Google e a entrega de e-mails de redefinição, siga [CONFIGURAR-ACESSO.md](CONFIGURAR-ACESSO.md).
+No Windows, substitua `.venv/bin/python` por `.venv\Scripts\python.exe`.
 
-O HTML independente e os arquivos ZIP preservam a demonstração anterior, sem contas. As seções de versões abaixo são o histórico do protótipo; o comportamento atual de acesso e salvamento é descrito na versão 0.13 ao final.
+Abra http://127.0.0.1:4173. A documentação HTTP fica em `/api/docs`; os checks operacionais ficam em `/api/health` e `/api/ready`. `npm run prototype` também inicia o backend Python quando `.venv` já estiver instalado.
+
+A instalação local reutiliza `.data/accounts.sqlite`, incluindo contas e senhas anteriores. Faça um backup antes de mudar a instalação:
+
+```sh
+.venv/bin/python -m backend.cli backup backups/antes-do-python.sqlite
+```
+
+Cadastre uma conta pela interface e configure a primeira conta administrativa por uma operação local:
+
+```sh
+.venv/bin/python -m backend.cli set-role pessoa@exemplo.com super_admin
+```
+
+Outros cadastros aguardam aprovação e créditos do administrador. Não há senha administrativa padrão. Para contas e Google, consulte [CONFIGURAR-ACESSO.md](CONFIGURAR-ACESSO.md).
+
+## Publicação, testes e lacunas
+
+- [Backend Python, migração, backup e publicação gratuita](docs/backend-python.md).
+- [Conferência funcional e pendências reais para operação](docs/qa/prontidao-python-2026-10-27.md).
+- `npm test`: backend Python, testes do frontend e 144 verificações geométricas.
+- `.venv/bin/python -m pytest -q`: integração HTTP e persistência local.
+- `PG_TEST_DATABASE_URL=postgresql+psycopg://usuario:senha@localhost:5432/banco_teste .venv/bin/python -m pytest -q`: repete os testes em PostgreSQL local descartável, em schemas isolados.
+
+O `render.yaml` prepara um serviço gratuito com frontend e backend na mesma origem, usando PostgreSQL externo e envio de e-mail por HTTPS. **A publicação real depende da configuração das contas, banco e remetente.** O Blueprint usa `BREVO_API_KEY` e `MAIL_FROM`; Resend também é suportado como alternativa. Confira as pendências sem expor segredos com `.venv/bin/python -m backend.cli check-deploy`. Não use SQLite no filesystem efêmero do Render.
+
+Os cálculos de geometria, recuos, capacidade e comparação 3D continuam no frontend, com seus testes preservados. Os dados salvos passam por validação no Python, mas os valores geométricos e os resultados do navegador não são uma certificação do servidor. O projeto continua sendo uma simulação preliminar com índices demonstrativos.
+
+As seções de versões abaixo preservam o histórico do protótipo. As referências antigas a Node como servidor, ausência de contas ou armazenamento exclusivamente no navegador foram substituídas pelo comportamento da v0.15 descrito acima.
 
 ## Explorar
 
@@ -40,7 +71,7 @@ O importador recebe um único GeoJSON Polygon, sem furos, em WGS84, com anel fec
 
 Todos os lotes de exemplo, índices, zonas, custos e preços são demonstrativos. Nenhum artigo foi homologado. O mapa não possui conexão cadastral. As referências externas vieram do documento fornecido e aparecem como pendentes de validação.
 
-Há autenticação e persistência por conta no servidor Node.js/SQLite. Ainda não há consulta GIS cadastral oficial, motor jurídico homologado, simulação topográfica, insolação, projeto arquitetônico, dimensionamento de garagem, fluxo mensal, VPL, TIR, outorga ou elegibilidade bancária. O exemplo de orla sinaliza o resultado jurídico como bloqueado e mantém a massa apenas como hipótese ilustrativa.
+Há autenticação e persistência por conta no backend Python com SQLite/PostgreSQL. Ainda não há consulta GIS cadastral oficial, motor jurídico homologado, simulação topográfica, insolação, projeto arquitetônico, dimensionamento de garagem, fluxo mensal, VPL, TIR, outorga ou elegibilidade bancária. O exemplo de orla sinaliza o resultado jurídico como bloqueado e mantém a massa apenas como hipótese ilustrativa.
 
 O cálculo usa o menor limite entre TO, recuos simplificados e CA máximo dividido pelos pavimentos. A área vendável considera unidades inteiras e uma loja ilustrativa quando o uso é misto. Custos diretos usam a área construída total simplificada, explicitada na tela. A simulação econômica não é uma recomendação de compra.
 
@@ -263,4 +294,4 @@ Os tokens e componentes da revisão estão em `dist/design-tokens.css` e `dist/u
 
 A página pública é pré-renderizada com os mesmos templates usados no navegador para reduzir mudanças de layout. Execute `npm run build:public` após alterar os templates/dados da experiência. `npm run prototype` já executa essa geração antes de iniciar.
 
-Para repetir a auditoria visual em um ambiente isolado: `node scripts/ui-audit-preview.mjs`, abrindo `http://127.0.0.1:4181/__audit`. A fixture usa banco temporário, conta de teste e envio de e-mail simulado; não acessa os estudos do servidor principal. O botão “Medir 8 larguras” coleta reflow, rótulos, alvos e contrastes de texto sólido. Use a medição separada de carregamento para observar o CLS sem incluir redimensionamentos deliberados.
+Para repetir a auditoria visual em um ambiente isolado: `npm run audit:ui`, abrindo `http://127.0.0.1:4181/__audit`. A fixture usa banco temporário, conta de teste e envio de e-mail simulado; não acessa os estudos do servidor principal. O botão “Medir 8 larguras” coleta reflow, rótulos, alvos e contrastes de texto sólido. Use a medição separada de carregamento para observar o CLS sem incluir redimensionamentos deliberados.

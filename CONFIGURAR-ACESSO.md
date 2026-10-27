@@ -1,13 +1,14 @@
 # Contas do ViabilEasy
 
-A versão 0.13 usa um servidor Node.js 24+, SQLite e cookies de sessão HttpOnly. Cadastro com e-mail/senha, perfil, fotos e estudos privados já funcionam localmente. Google e entrega de e-mails reais dependem das credenciais abaixo.
+A versão 0.15 usa backend Python 3.12+/FastAPI, SQLite local ou PostgreSQL em produção e cookies de sessão HttpOnly. Cadastro com e-mail/senha, perfil, fotos e estudos privados já funcionam localmente. Google e entrega de e-mails reais dependem das credenciais abaixo.
 
 ## Rodar
 
 Na pasta do projeto:
 
-    npm install
-    npm run prototype
+    python3 -m venv .venv
+    .venv/bin/python -m pip install -r requirements-dev.txt
+    .venv/bin/python -m backend
 
 Abra http://127.0.0.1:4173. A apresentação do site é pública; usar as ferramentas exige uma conta aprovada e login. Use “Criar minha conta” ou “Entrar → Criar conta” para solicitar seu acesso. Novos cadastros aguardam validação do superadministrador. Não existe senha padrão ou usuário administrativo pré-configurado.
 
@@ -48,13 +49,13 @@ Use as credenciais SMTP do seu provedor de e-mail transacional. Preencha em .env
 
 A porta 587 usa STARTTLS obrigatório; para TLS desde a conexão, use a porta 465 e SMTP_SECURE=true. Configure o remetente e o domínio no provedor.
 
-Sem SMTP, apenas no desenvolvimento, o servidor grava as mensagens em .data/mail/*.json, com acesso restrito ao usuário do sistema. Abra o arquivo mais recente para testar o link. Nenhum e-mail é enviado para a internet e não há rota HTTP para consultar essa caixa.
+Sem SMTP, apenas no desenvolvimento, o servidor grava as mensagens em .data/mail/*.json, com acesso restrito ao usuário do sistema. Não habilite esse modo para uso público. Abra o arquivo mais recente para testar o link. Nenhum e-mail é enviado para a internet e não há rota HTTP para consultar essa caixa.
 
 O fluxo é: informar e-mail → confirmação genérica → abrir link → nova senha e confirmação → voltar ao login. O link expira em 30 minutos, funciona uma única vez e é removido da barra de endereço ao abrir. Redefinir a senha revoga todas as sessões e os demais links daquela conta. A resposta não confirma se um e-mail está cadastrado.
 
 Contas criadas com Google também podem solicitar esse e-mail para estabelecer uma senha.
 
-Documentação SMTP: https://nodemailer.com/smtp
+O backend Python usa SMTP com TLS via biblioteca padrão. No Render gratuito, configure BREVO_API_KEY (ou RESEND_API_KEY) e MAIL_FROM para envio por HTTPS; consulte docs/backend-python.md.
 
 ## Fotos e estudos
 
@@ -69,7 +70,7 @@ Documentação SMTP: https://nodemailer.com/smtp
 
 ## Armazenamento e operação
 
-O banco fica em .data/accounts.sqlite, fora da pasta pública dist. .env, .data e node_modules estão no .gitignore. Senhas usam scrypt com salt individual; sessões e links de recuperação são armazenados como hashes. Há limites de tentativas, verificação de origem nas alterações e consultas de estudos filtradas pelo usuário autenticado.
+No desenvolvimento sem DATABASE_URL, o banco fica em .data/accounts.sqlite, fora da pasta pública dist. .env, .data e node_modules estão no .gitignore. Senhas usam scrypt com salt individual; sessões e links de recuperação são armazenados como hashes. Há limites de tentativas, verificação de origem nas alterações e consultas de estudos filtradas pelo usuário autenticado.
 
 ## Acesso de superadministrador
 
@@ -79,7 +80,7 @@ Contas novas recebem o perfil `user`. O operador local pode atribuir o perfil ad
 npm run account:role -- pessoa@exemplo.com super_admin
 ```
 
-O comando usa o mesmo `DATA_DIR` do servidor (por padrão, `.data`), salva o perfil no SQLite e preserva a senha e os estudos. Para retirar o perfil administrativo, execute o comando com `user`; a conta continuará sendo uma conta comum aprovada. Não existe atribuição de perfil pelo formulário de cadastro ou edição do perfil.
+O comando usa a mesma `DATABASE_URL` ou o mesmo `DATA_DIR` do servidor (por padrão, `.data`), salva o perfil no SQLite e preserva a senha e os estudos. Para retirar o perfil administrativo, execute o comando com `user`; a conta continuará sendo uma conta comum aprovada. Não existe atribuição de perfil pelo formulário de cadastro ou edição do perfil.
 
 Em uma instalação nova, ainda sem superadministrador ativo, o operador local usa esse comando para ativar a primeira conta de superadministrador já cadastrada e pendente. Essa configuração inicial exige acesso ao servidor; o cadastro público não ativa o primeiro usuário automaticamente. Quando já existe um superadministrador ativo, atribuir o perfil por esse comando preserva a pendência do cadastro, que deve ser analisado pelo superadministrador.
 
@@ -107,7 +108,7 @@ Verificação: `npm run test:documents` cobre upload, validação, persistência
 
 Use o mesmo endereço de APP_URL no navegador. localhost e 127.0.0.1 têm origens e cookies diferentes.
 
-Para publicar, configure NODE_ENV=production, APP_URL=https://seu-dominio, SMTP, uma pasta persistente em DATA_DIR, backup e o redirecionamento HTTPS correspondente no Google. O servidor recusa produção sem HTTPS e SMTP. O padrão escuta somente em 127.0.0.1; para colocar atrás de um proxy/container, configure HOST de forma adequada.
+Para publicar, configure APP_ENV=production, APP_URL=https://endereco-do-servico, DATABASE_URL PostgreSQL persistente, BREVO_API_KEY ou RESEND_API_KEY (ou SMTP em hospedagem compatível), MAIL_FROM validado, backup e o redirecionamento HTTPS correspondente no Google. O servidor recusa produção sem HTTPS, banco PostgreSQL ou provedor de e-mail. O padrão escuta em 127.0.0.1; no Render use HOST=0.0.0.0. Consulte docs/backend-python.md para migração, bootstrap administrativo e configuração de proxy.
 
 O SQLite fica no computador/servidor em que a aplicação roda. Acesso em vários dispositivos exige hospedar esse mesmo servidor em um endereço acessível aos dispositivos.
 
@@ -118,6 +119,6 @@ O HTML independente e os ZIPs antigos preservam a demonstração anterior e não
     npm run test:accounts
     npm run verify:geometry
 
-Os testes de contas usam banco temporário, mensagens capturadas e um adaptador Google de teste. Cobrem cadastro, cookies, senha incorreta, isolamento entre contas, estudos, perfil, rejeição de fotos inválidas, persistência, links expirados/reutilizados, revogação de sessões, state/PKCE, conflito de e-mails, conexão Google e logout.
+Os testes Python de contas usam banco temporário, mensagens capturadas e um adaptador Google de teste. Com PG_TEST_DATABASE_URL, também são executados em PostgreSQL local com schemas descartáveis. Cobrem cadastro, cookies, senha incorreta, isolamento entre contas, estudos, perfil, rejeição de fotos inválidas, persistência, links expirados/reutilizados, revogação de sessões, state/PKCE, conflito de e-mails, conexão Google e logout.
 
 O login real no Google e a entrega SMTP precisam ser conferidos depois de configurar credenciais válidas.

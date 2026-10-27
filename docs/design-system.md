@@ -37,6 +37,6 @@ As cores oficiais da marca continuam disponíveis como `--brand-*`. Estados posi
 2. Alterar componentes compartilhados em `ui-system.css`.
 3. Manter regras de layouts específicos nos respectivos módulos.
 4. Ao editar templates públicos, executar `npm run build:public`. `npm run prototype` já executa essa geração antes de iniciar.
-5. Usar `node scripts/ui-audit-preview.mjs` para a fixture local com banco temporário. Ela não usa os estudos da instalação principal.
+5. Usar `npm run audit:ui` para a fixture local com banco temporário. Ela não usa os estudos da instalação principal.
 
 A camada final mantém compatibilidade com os estilos anteriores. A remoção integral das regras históricas não faz parte desta revisão, para evitar regressões nos três layouts do protótipo.

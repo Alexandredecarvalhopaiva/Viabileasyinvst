@@ -1,0 +1,13 @@
+.git
+.env
+.env.*
+.data
+.venv
+node_modules
+backups
+__pycache__
+.pytest_cache
+.ruff_cache
+docs/qa
+URBA-Prototipo.html
+URBA-Prototipo.zip
