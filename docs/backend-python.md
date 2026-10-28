@@ -89,6 +89,9 @@ A importação trabalha sobre um snapshot, inicializa o schema de destino e impo
 
 ## Publicação gratuita preparada
 
+Checklist atualizado, credenciais e sequência do primeiro deploy:
+[primeiro-deploy-render.md](primeiro-deploy-render.md).
+
 `render.yaml` descreve **um único serviço Free** Python com frontend e backend na mesma origem. A documentação oficial confirma [FastAPI no Render](https://render.com/docs/deploy-fastapi). O banco é externo: o [filesystem gratuito é efêmero e as portas SMTP usuais são bloqueadas](https://render.com/docs/free).
 
 Passos que exigem suas contas:
@@ -96,7 +99,7 @@ Passos que exigem suas contas:
 1. Criar um projeto Free no Neon. Copiar sua conexão PostgreSQL para o campo privado `DATABASE_URL` do Render. Se usar o pooler do Neon, preserve os parâmetros SSL fornecidos. [Plano gratuito do Neon](https://neon.com/blog/neon-free-plan-1-gb-per-project).
 2. Configurar um provedor de e-mail. O Blueprint usa `BREVO_API_KEY` por HTTPS, com `MAIL_FROM` de um remetente verificado. A [documentação do Brevo](https://help.brevo.com/hc/en-us/articles/208836149-Create-a-new-sender-From-name-and-From-email) descreve a verificação do remetente por código quando o domínio não está autenticado; disponibilidade e entrega dependem da aprovação/configuração da conta do provedor. `RESEND_API_KEY` continua disponível como alternativa: nesse caso substitua a variável Brevo no serviço. Para envio real no Resend, use domínio validado. SMTP TLS também funciona em hospedagens que permitem essas portas.
 3. Criar o serviço pelo Blueprint do Render e preencher `DATABASE_URL`, `BREVO_API_KEY` e `MAIL_FROM`. O serviço usa `RENDER_EXTERNAL_URL` automaticamente se `APP_URL` estiver vazio. Se configurar `APP_URL`, use exatamente o endereço HTTPS público.
-4. Antes de iniciar, execute `.venv/bin/python -m backend.cli check-deploy` com as configurações de destino no ambiente privado: o comando lista todas as pendências e não altera banco nem imprime segredos. O serviço inicia com `APP_ENV=production`, `HOST=0.0.0.0` e a porta informada pelo provedor. SQLite em produção é recusado para impedir perda acidental de dados no Render.
+4. Antes de iniciar, execute `.venv/bin/python -m backend.cli --env-file .env.production check-deploy --check-database` com as configurações de destino no arquivo privado: o comando lista pendências e testa conexão sem alterar o banco nem imprimir segredos. Variáveis do processo têm prioridade sobre o arquivo. O preflight exige `APP_ENV=production`; o serviço usa `HOST=0.0.0.0` e a porta informada pelo provedor. SQLite em produção é recusado para impedir perda acidental de dados no Render. Sem `--check-database`, só a configuração é verificada. No Render, o `.env` local é ignorado e `MAIL_REQUIRE_HTTPS=true` exige uma API de e-mail.
 5. Se necessário, cadastrar os valores Google e o URI `https://endereco-publico/api/auth/google/callback` no Google Cloud. Isso é opcional para login por senha.
 6. Criar a primeira conta, atribuir `super_admin` pelo CLI local, entrar e conferir cadastro/aprovação, créditos, documentos, estudos e recuperação real de senha.
 

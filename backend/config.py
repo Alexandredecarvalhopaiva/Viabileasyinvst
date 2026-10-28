@@ -27,15 +27,21 @@ class Settings:
     mail_from: str = "ViabilEasy <contato@example.test>"
     resend_api_key: str = ""
     brevo_api_key: str = ""
+    mail_require_https: bool = False
 
     @classmethod
-    def from_env(cls):
-        load_dotenv(ROOT / ".env", override=False)
+    def from_env(cls, env_file=None):
+        # Render supplies its own environment; a development file must not shadow
+        # RENDER_EXTERNAL_URL or silently supply credentials on the hosted service.
+        if env_file is not None or os.getenv("RENDER") != "true":
+            load_dotenv(env_file if env_file is not None else ROOT / ".env", override=False)
         return cls(
-            app_url=(os.getenv("APP_URL") or os.getenv("RENDER_EXTERNAL_URL") or cls.app_url).rstrip("/"),
-            database_url=os.getenv("DATABASE_URL", ""),
+            app_url=(os.getenv("APP_URL", "").strip() or os.getenv("RENDER_EXTERNAL_URL") or cls.app_url)
+            .strip()
+            .rstrip("/"),
+            database_url=os.getenv("DATABASE_URL", "").strip(),
             data_dir=Path(os.getenv("DATA_DIR", str(ROOT / ".data"))).resolve(),
-            environment=os.getenv("APP_ENV", os.getenv("NODE_ENV", "development")),
+            environment=os.getenv("APP_ENV", os.getenv("NODE_ENV", "development")).strip().lower(),
             google_client_id=os.getenv("GOOGLE_CLIENT_ID", ""),
             google_client_secret=os.getenv("GOOGLE_CLIENT_SECRET", ""),
             smtp_host=os.getenv("SMTP_HOST", ""),
@@ -44,8 +50,9 @@ class Settings:
             smtp_user=os.getenv("SMTP_USER", ""),
             smtp_pass=os.getenv("SMTP_PASS", ""),
             mail_from=os.getenv("MAIL_FROM", cls.mail_from),
-            resend_api_key=os.getenv("RESEND_API_KEY", ""),
-            brevo_api_key=os.getenv("BREVO_API_KEY", ""),
+            resend_api_key=os.getenv("RESEND_API_KEY", "").strip(),
+            brevo_api_key=os.getenv("BREVO_API_KEY", "").strip(),
+            mail_require_https=os.getenv("MAIL_REQUIRE_HTTPS", "false").strip().lower() == "true",
         )
 
     @property
@@ -62,6 +69,8 @@ class Settings:
 
     def validation_errors(self):
         errors = []
+        if self.environment not in ("development", "test", "production"):
+            errors.append("APP_ENV precisa ser development, test ou production.")
         try:
             url = urlsplit(self.app_url)
             valid_port = url.port is None or 1 <= url.port <= 65535
@@ -85,6 +94,10 @@ class Settings:
             if not (self.smtp_host or self.resend_api_key or self.brevo_api_key):
                 errors.append(
                     "Produção exige BREVO_API_KEY, RESEND_API_KEY ou SMTP para recuperação de senha."
+                )
+            if self.mail_require_https and not (self.brevo_api_key or self.resend_api_key):
+                errors.append(
+                    "MAIL_REQUIRE_HTTPS exige BREVO_API_KEY ou RESEND_API_KEY; SMTP não atende este deploy."
                 )
             if not self.database_url.startswith(("postgresql://", "postgres://", "postgresql+psycopg://")):
                 errors.append("Produção exige DATABASE_URL PostgreSQL persistente.")

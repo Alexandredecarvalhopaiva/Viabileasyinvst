@@ -159,7 +159,9 @@ class Database:
             url,
             pool_pre_ping=True,
             hide_parameters=True,
-            connect_args={"check_same_thread": False, "timeout": 15} if self.sqlite else {},
+            connect_args={"check_same_thread": False, "timeout": 15}
+            if self.sqlite
+            else {"connect_timeout": 10},
         )
         if self.sqlite:
 

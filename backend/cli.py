@@ -119,10 +119,18 @@ def migrate_sqlite(settings, source_path):
 
 def main():
     parser = argparse.ArgumentParser(description="Operação do backend ViabilEasy")
+    parser.add_argument(
+        "--env-file", type=Path, help="Arquivo privado de configuração; variáveis do processo têm prioridade"
+    )
     commands = parser.add_subparsers(dest="command", required=True)
     commands.add_parser("init-db", help="Criar/atualizar o esquema sem apagar dados")
-    commands.add_parser(
+    check = commands.add_parser(
         "check-deploy", help="Verificar configuração de produção sem expor segredos nem modificar o banco"
+    )
+    check.add_argument(
+        "--check-database",
+        action="store_true",
+        help="Testar conexão PostgreSQL com SELECT 1, sem criar tabelas",
     )
     role = commands.add_parser("set-role", help="Atribuir perfil por operação local")
     role.add_argument("email")
@@ -132,14 +140,31 @@ def main():
     migrate = commands.add_parser("migrate-sqlite", help="Importar SQLite para PostgreSQL vazio")
     migrate.add_argument("source")
     args = parser.parse_args()
-    settings = Settings.from_env()
+    if args.env_file is not None and not args.env_file.is_file():
+        parser.error("Arquivo de configuração não encontrado.")
+    settings = Settings.from_env(args.env_file)
     if args.command == "check-deploy":
         errors = replace(settings, environment="production").validation_errors()
+        if not settings.production:
+            errors.insert(0, "Defina APP_ENV=production para ativar as proteções de produção.")
         if errors:
             print("Configurações pendentes para produção:")
             for error in errors:
                 print("-", error)
             raise SystemExit(1)
+        if args.check_database:
+            db = None
+            try:
+                db = Database(settings)
+                with db.engine.connect() as conn:
+                    execute(conn, "SELECT 1")
+            except Exception:
+                print("Conexão PostgreSQL falhou. Confira credenciais, host, SSL e acesso de rede.")
+                raise SystemExit(1) from None
+            finally:
+                if db is not None:
+                    db.engine.dispose()
+            print("Conexão PostgreSQL confirmada; nenhuma tabela foi criada ou alterada.")
         print(
             "Configuração de produção válida. Ainda é necessário conferir conexão, entrega de e-mail e /api/ready no provedor."
         )

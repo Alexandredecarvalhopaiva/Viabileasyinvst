@@ -136,3 +136,117 @@ def test_full_production_mode_uses_postgres_https_and_secure_sessions(system):
         assert response.status_code == 200
         assert "Secure" in response.headers["set-cookie"]
         assert client.get("/api/admin/overview").status_code == 200
+
+
+def test_environment_typo_cannot_disable_production_checks():
+    assert any("APP_ENV" in error for error in Settings(environment="prodution").validation_errors())
+
+
+def test_render_does_not_import_local_development_dotenv(monkeypatch, tmp_path):
+    (tmp_path / ".env").write_text("APP_URL=http://127.0.0.1:4173\nDATABASE_URL=sqlite:///local.sqlite\n")
+    monkeypatch.setattr("backend.config.ROOT", tmp_path)
+    for key in ("APP_URL", "DATABASE_URL"):
+        monkeypatch.delenv(key, raising=False)
+    monkeypatch.setenv("RENDER", "true")
+    monkeypatch.setenv("RENDER_EXTERNAL_URL", "https://deploy.onrender.com")
+    settings = Settings.from_env()
+    assert settings.app_url == "https://deploy.onrender.com"
+    assert settings.database_url == ""
+
+
+def test_render_mail_policy_rejects_smtp_only(monkeypatch):
+    monkeypatch.setattr("backend.config.load_dotenv", lambda *args, **kwargs: None)
+    monkeypatch.setenv("APP_ENV", "production")
+    monkeypatch.setenv("MAIL_REQUIRE_HTTPS", "true")
+    monkeypatch.setenv("SMTP_HOST", "smtp.sender.test")
+    monkeypatch.setenv("BREVO_API_KEY", "")
+    monkeypatch.setenv("RESEND_API_KEY", "")
+    settings = Settings.from_env()
+    assert any("MAIL_REQUIRE_HTTPS" in error for error in settings.validation_errors())
+    assert not any(
+        "MAIL_REQUIRE_HTTPS" in error
+        for error in replace(settings, brevo_api_key="test-key").validation_errors()
+    )
+
+
+def production_settings(**changes):
+    return Settings(
+        app_url="https://deploy.onrender.com",
+        environment="production",
+        database_url="postgresql://app:private-placeholder@db.test/app?sslmode=require",
+        brevo_api_key="test-key",
+        mail_from="ViabilEasy <sender@sender.test>",
+        **changes,
+    )
+
+
+def test_cli_explicit_env_file_does_not_load_development_file(monkeypatch, tmp_path, capsys):
+    from backend.cli import main
+
+    for key in ("APP_URL", "APP_ENV", "DATABASE_URL", "BREVO_API_KEY", "MAIL_FROM"):
+        monkeypatch.delenv(key, raising=False)
+    config = tmp_path / "production.env"
+    config.write_text(
+        "APP_URL=https://deploy.onrender.com\nAPP_ENV=production\n"
+        "DATABASE_URL=postgresql://app:private-placeholder@db.test/app?sslmode=require\n"
+        "BREVO_API_KEY=test-key\nMAIL_FROM=ViabilEasy <sender@sender.test>\n"
+    )
+    monkeypatch.setattr("sys.argv", ["cli", "--env-file", str(config), "check-deploy"])
+    main()
+    output = capsys.readouterr().out
+    assert "válida" in output
+    assert "private-placeholder" not in output
+
+
+def test_cli_database_failure_is_redacted(monkeypatch, capsys):
+    from backend.cli import main
+
+    monkeypatch.setattr(Settings, "from_env", lambda *args: production_settings())
+    monkeypatch.setattr("sys.argv", ["cli", "check-deploy", "--check-database"])
+
+    def fail(settings):
+        raise RuntimeError("private-placeholder: SQL and provider details")
+
+    monkeypatch.setattr("backend.cli.Database", fail)
+    with pytest.raises(SystemExit) as error:
+        main()
+    assert error.value.code == 1
+    output = capsys.readouterr().out
+    assert "Conexão PostgreSQL falhou" in output
+    assert "private-placeholder" not in output
+
+
+def test_cli_database_probe_does_not_initialize_schema(system, monkeypatch, capsys):
+    if system["database"] != "postgresql":
+        pytest.skip("Checagem de produção exige PostgreSQL.")
+    from backend.cli import main
+    from backend.db import Database
+
+    url = make_url(system["settings"].database_url)
+    if not url.username:
+        url = url.set(username=getpass.getuser())
+    settings = replace(
+        production_settings(data_dir=system["settings"].data_dir),
+        database_url=url.render_as_string(hide_password=False),
+    )
+    monkeypatch.setattr(Settings, "from_env", lambda *args: settings)
+    monkeypatch.setattr("sys.argv", ["cli", "check-deploy", "--check-database"])
+
+    def forbidden(self):
+        pytest.fail("A checagem não pode inicializar nem migrar o schema.")
+
+    monkeypatch.setattr(Database, "initialize", forbidden)
+    main()
+    assert "Conexão PostgreSQL confirmada" in capsys.readouterr().out
+
+
+def test_cli_does_not_approve_development_mode_as_production(monkeypatch, capsys):
+    from backend.cli import main
+
+    settings = replace(production_settings(), environment="development")
+    monkeypatch.setattr(Settings, "from_env", lambda *args: settings)
+    monkeypatch.setattr("sys.argv", ["cli", "check-deploy"])
+    with pytest.raises(SystemExit) as error:
+        main()
+    assert error.value.code == 1
+    assert "APP_ENV=production" in capsys.readouterr().out

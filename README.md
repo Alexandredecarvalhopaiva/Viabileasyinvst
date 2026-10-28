@@ -6,6 +6,8 @@ Protótipo navegável criado a partir da **Especificação Técnica Consolidada 
 
 O backend HTTP agora é **Python/FastAPI**, com **SQLite local** ou **PostgreSQL em produção**. O frontend HTML/CSS/JavaScript e o 3D permanecem no navegador. O backend Node foi substituído; Node.js 24+ é usado apenas nos comandos de build e nos testes do frontend.
 
+Para publicar, consulte o [checklist do primeiro deploy no Render](docs/primeiro-deploy-render.md), com credenciais externas, validações e ativação do primeiro administrador.
+
 ```sh
 python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements-dev.txt
