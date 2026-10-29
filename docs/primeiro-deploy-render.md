@@ -29,7 +29,7 @@ das contas e credenciais abaixo. Nenhum recurso externo foi criado nesta revisã
 | Item | Onde obter/configurar | Obrigatório |
 |---|---|---|
 | Repositório atualizado | Publicar estas alterações no GitHub e autorizar o Render a acessar o repositório | Sim |
-| `DATABASE_URL` | Criar PostgreSQL persistente, por exemplo no Neon; copiar URI com usuário, senha, banco e `sslmode=require` | Sim |
+| `DATABASE_URL` | Criar PostgreSQL persistente no Supabase ou Neon; copiar URI com usuário, senha, banco e `sslmode=require`. Para Supabase, seguir [supabase.md](supabase.md) antes de inicializar | Sim |
 | `BREVO_API_KEY` | Chave da API transacional HTTPS do Brevo, com a conta habilitada para envio | Sim, ou Resend |
 | `RESEND_API_KEY` | Alternativa ao Brevo; cadastrar manualmente no Render e deixar `BREVO_API_KEY` vazia/removida | Alternativa |
 | `MAIL_FROM` | Nome e e-mail de remetente verificado no provedor, por exemplo `ViabilEasy <acesso@DOMINIO-VERIFICADO>` | Sim |
@@ -48,6 +48,8 @@ cadastro e login com senha e exige os dois valores juntos.
 1. Crie o PostgreSQL de destino. Se quiser preservar os dados locais, faça backup
    e importe o SQLite **antes de criar contas no destino**; a importação exige um
    banco vazio. Instruções em [backend-python.md](backend-python.md#migrar-sqlite-para-postgresql).
+   No Supabase, use um projeto dedicado, desative a Data API antes de criar tabelas
+   e copie a conexão **Session pooler** conforme [o guia específico](supabase.md).
 2. Publique o código no repositório GitHub e, no Render, crie um **Blueprint** a
    partir dele, usando `render.yaml`. A raiz é a pasta deste repositório; não
    configure `rootDir: prototipo-urba` quando usar o repositório Viabileasyinvst.

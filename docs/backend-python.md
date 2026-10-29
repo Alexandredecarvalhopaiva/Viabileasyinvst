@@ -75,11 +75,11 @@ O comando de backup usa a API SQLite para incluir WAL, verifica integridade e cr
 3. Entre na aplicação. O primeiro superadministrador pode ser ativado pelo operador local. Depois de existir um administrador ativo, atribuir esse perfil não aprova cadastros pendentes automaticamente.
 4. Aprove outros cadastros e libere seus usos na Administração. Contas comuns começam com zero; o administrador usa sem limite.
 
-No Render gratuito, execute o comando no seu computador com `DATABASE_URL` do Neon configurada em um arquivo `.env` privado. O Render gratuito não oferece shell SSH. Não coloque a URL com senha no código nem no comando compartilhado no chat.
+No Render gratuito, execute o comando no seu computador com a mesma `DATABASE_URL` PostgreSQL configurada no servidor, em um arquivo `.env` privado. O Render gratuito não oferece shell SSH. Não coloque a URL com senha no código nem no comando compartilhado no chat. Para Supabase, veja [supabase.md](supabase.md).
 
 ## Migrar SQLite para PostgreSQL
 
-Crie um banco vazio no Neon e configure a conexão PostgreSQL em `DATABASE_URL`, incluindo `sslmode=require`. Não a grave no Git. Pause gravações na origem para o corte definitivo.
+Crie um banco vazio no provedor escolhido e configure a conexão PostgreSQL em `DATABASE_URL`, incluindo `sslmode=require`. No Supabase, use projeto dedicado e desative a Data API antes de inicializar o banco, conforme [supabase.md](supabase.md). Não grave credenciais no Git. Pause gravações na origem para o corte definitivo.
 
 ```sh
 .venv/bin/python -m backend.cli migrate-sqlite /caminho/privado/accounts.sqlite
@@ -96,7 +96,7 @@ Checklist atualizado, credenciais e sequência do primeiro deploy:
 
 Passos que exigem suas contas:
 
-1. Criar um projeto Free no Neon. Copiar sua conexão PostgreSQL para o campo privado `DATABASE_URL` do Render. Se usar o pooler do Neon, preserve os parâmetros SSL fornecidos. [Plano gratuito do Neon](https://neon.com/blog/neon-free-plan-1-gb-per-project).
+1. Criar PostgreSQL persistente no Supabase ou Neon e copiar a conexão para o campo privado `DATABASE_URL` do Render. Para Supabase, siga [supabase.md](supabase.md), usando Session pooler e Data API desativada. No Neon, preserve os parâmetros SSL fornecidos pelo provedor.
 2. Configurar um provedor de e-mail. O Blueprint usa `BREVO_API_KEY` por HTTPS, com `MAIL_FROM` de um remetente verificado. A [documentação do Brevo](https://help.brevo.com/hc/en-us/articles/208836149-Create-a-new-sender-From-name-and-From-email) descreve a verificação do remetente por código quando o domínio não está autenticado; disponibilidade e entrega dependem da aprovação/configuração da conta do provedor. `RESEND_API_KEY` continua disponível como alternativa: nesse caso substitua a variável Brevo no serviço. Para envio real no Resend, use domínio validado. SMTP TLS também funciona em hospedagens que permitem essas portas.
 3. Criar o serviço pelo Blueprint do Render e preencher `DATABASE_URL`, `BREVO_API_KEY` e `MAIL_FROM`. O serviço usa `RENDER_EXTERNAL_URL` automaticamente se `APP_URL` estiver vazio. Se configurar `APP_URL`, use exatamente o endereço HTTPS público.
 4. Antes de iniciar, execute `.venv/bin/python -m backend.cli --env-file .env.production check-deploy --check-database` com as configurações de destino no arquivo privado: o comando lista pendências e testa conexão sem alterar o banco nem imprimir segredos. Variáveis do processo têm prioridade sobre o arquivo. O preflight exige `APP_ENV=production`; o serviço usa `HOST=0.0.0.0` e a porta informada pelo provedor. SQLite em produção é recusado para impedir perda acidental de dados no Render. Sem `--check-database`, só a configuração é verificada. No Render, o `.env` local é ignorado e `MAIL_REQUIRE_HTTPS=true` exige uma API de e-mail.

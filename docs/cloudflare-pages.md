@@ -33,6 +33,7 @@ da Cloudflare; confira os limites da sua conta antes de uso operacional.
 
 Conclua [o primeiro deploy do Render](primeiro-deploy-render.md), incluindo
 `DATABASE_URL` com SSL, `BREVO_API_KEY` (ou Resend) e `MAIL_FROM` verificado.
+O PostgreSQL pode ser Supabase; nesse caso siga [supabase.md](supabase.md) antes da inicialização.
 Depois que o endereço Pages for conhecido, defina **no Render**:
 
 ```text
