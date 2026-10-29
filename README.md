@@ -8,6 +8,8 @@ O backend HTTP agora é **Python/FastAPI**, com **SQLite local** ou **PostgreSQL
 
 Para publicar, consulte o [checklist do primeiro deploy no Render](docs/primeiro-deploy-render.md), com credenciais externas, validações e ativação do primeiro administrador.
 
+Para frontend no Cloudflare Pages com a API FastAPI no Render, use a [configuração integrada](docs/cloudflare-pages.md).
+
 ```sh
 python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements-dev.txt

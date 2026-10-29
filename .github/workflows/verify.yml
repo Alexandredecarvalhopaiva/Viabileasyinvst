@@ -41,6 +41,8 @@ jobs:
       - run: npm run verify:geometry
       - run: npm run build:public
       - run: git diff --exit-code -- dist/index.html
+      - name: Compile Cloudflare Pages API function
+        run: npx --yes wrangler@4.155.0 pages functions build --outdir "$RUNNER_TEMP/viabileasy-pages-functions" --compatibility-date 2026-10-28
       - name: Build Linux production image
         run: docker build -t viabileasy-ci .
       - name: Start production container and verify readiness
