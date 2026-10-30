@@ -1,4 +1,5 @@
-/** Same-origin bridge: Pages serves the frontend; Render runs FastAPI. */
+import {supabaseAPI} from '../../server/pages-supabase.mjs';
+/** Supabase runs directly on Pages; the old Render adapter remains opt-in for existing deployments. */
 export async function proxyAPI(request, env, fetcher = fetch) {
   const unavailable = () => new Response(
     JSON.stringify({error: 'O serviço está temporariamente indisponível. Tente novamente em instantes.'}),
@@ -38,5 +39,6 @@ export async function proxyAPI(request, env, fetcher = fetch) {
 }
 
 export function onRequest({request, env}) {
+  if (env.BACKEND === 'supabase' || env.SUPABASE_URL) return supabaseAPI(request, env);
   return proxyAPI(request, env);
 }

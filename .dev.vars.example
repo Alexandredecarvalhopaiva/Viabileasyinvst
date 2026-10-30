@@ -1,0 +1,6 @@
+# Pages Functions only. Copy to .dev.vars (ignored by Git) for Wrangler.
+BACKEND=supabase
+APP_URL=https://YOUR-PRODUCTION-HOST.pages.dev
+SUPABASE_URL=https://YOUR-PROJECT.supabase.co
+SUPABASE_PUBLISHABLE_KEY=YOUR-PUBLISHABLE-OR-ANON-KEY
+# No database password, Google secret or service-role key belongs here.

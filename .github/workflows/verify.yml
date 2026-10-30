@@ -33,9 +33,15 @@ jobs:
           node-version: "24"
           cache: npm
       - run: python -m pip install -r requirements-dev.txt
-      - run: ruff check backend tests/python
-      - run: ruff format --check backend tests/python
+      - run: ruff check backend tests/python tests/supabase
+      - run: ruff format --check backend tests/python tests/supabase
       - run: python -m pytest -q
+      - name: Verify Supabase migration on disposable PostgreSQL
+        env:
+          PG_BIN: /usr/lib/postgresql/16/bin
+        run: |
+          test -x "$PG_BIN/initdb"
+          python -m pytest -q tests/supabase/test_database.py
       - run: npm ci --ignore-scripts
       - run: npm run test:frontend
       - run: npm run verify:geometry

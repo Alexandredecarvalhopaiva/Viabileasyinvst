@@ -1,4 +1,15 @@
-# PostgreSQL do ViabilEasy no Supabase
+# Supabase no ViabilEasy
+
+Para a publicação nova com **apenas Supabase e Cloudflare Pages**, siga
+[cloudflare-pages.md](cloudflare-pages.md): login com e-mail e senha, Pages Functions e
+migração SQL própria. Nesse modo, a Data API é necessária e só deve ser habilitada
+após a migração e a revisão de permissões.
+
+## Configuração anterior: Python no Render
+
+As instruções abaixo pertencem à configuração Python/Render, mantida para
+instalações existentes. A orientação de desativar Data API abaixo não se aplica
+à configuração nova.
 
 O backend FastAPI existente usa SQLAlchemy e psycopg para conectar ao PostgreSQL.
 O Supabase pode fornecer esse banco sem trocar o sistema de contas, sessões,

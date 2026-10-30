@@ -2,7 +2,19 @@
 
 Protótipo navegável criado a partir da **Especificação Técnica Consolidada de Viabilidade Urbanística v3.0**, de 16 de outubro de 2026. O nome URBA e a identidade visual são propostas para esta demonstração.
 
-## Executar a versão atual (v0.15)
+## Publicação com apenas Cloudflare Pages e Supabase
+
+A implementação de nuvem usa Pages Functions, Supabase Auth com e-mail e senha e
+PostgreSQL. Não exige Render nem provedor de e-mail. Mantém aprovação de contas,
+créditos, estudos, perfil e documentos privados. Veja o [guia completo](docs/cloudflare-pages.md)
+e a [migração SQL](supabase/migrations/202610300001_pages.sql).
+
+A publicação exige aplicar a migração e criar as contas administrativas no Auth e configurar variáveis no
+Pages. Os arquivos locais não comprovam um deploy funcional. Contas e estudos do
+backend Python não são transferidos automaticamente; a instalação local abaixo
+continua disponível com seus dados atuais.
+
+## Executar localmente com o backend Python (v0.15)
 
 O backend HTTP agora é **Python/FastAPI**, com **SQLite local** ou **PostgreSQL em produção**. O frontend HTML/CSS/JavaScript e o 3D permanecem no navegador. O backend Node foi substituído; Node.js 24+ é usado apenas nos comandos de build e nos testes do frontend.
 

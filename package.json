@@ -20,7 +20,8 @@
     "test:backend": "node scripts/python.mjs -m pytest -q",
     "test:frontend": "node --test test/*.test.cjs test/*.test.mjs",
     "test": "npm run test:backend && npm run test:frontend && npm run verify:geometry",
-    "audit:ui": "node scripts/python.mjs -m backend.preview"
+    "audit:ui": "node scripts/python.mjs -m backend.preview",
+    "test:supabase": "node --test test/pages-supabase.test.mjs && node scripts/python.mjs -m pytest -q tests/supabase/test_database.py"
   },
   "dependencies": {
     "three": "0.186.1"
