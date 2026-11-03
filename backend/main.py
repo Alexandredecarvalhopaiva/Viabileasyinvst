@@ -9,7 +9,7 @@ from starlette.concurrency import run_in_threadpool
 from starlette.exceptions import HTTPException
 from starlette.staticfiles import StaticFiles
 
-from . import accounts, admin, documents, studies
+from . import accounts, admin, documents, studies, territory
 from .config import ROOT, Settings
 from .db import Database, execute, one
 from .mail import Mailer
@@ -166,7 +166,7 @@ def create_app(
         except Exception:
             return JSONResponse({"status": "unavailable"}, 503)
 
-    for router in (accounts.router, studies.router, documents.router, admin.router, *additional_routers):
+    for router in (accounts.router, studies.router, documents.router, admin.router, territory.router, *additional_routers):
         app.include_router(router)
 
     # The frontend's JSON contract is documented even though parsing/limits are shared dependencies.
