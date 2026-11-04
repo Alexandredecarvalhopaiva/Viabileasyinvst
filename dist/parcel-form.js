@@ -32,7 +32,7 @@ async function confirmParcelAnalysis(){const g=parcelDraftGeometry();if(!g.valid
 function parcelMapSvgPoints(g){const xs=g.vertices.map(p=>p[0]),ys=g.vertices.map(p=>p[1]),w=Math.max(...xs)-Math.min(...xs),h=Math.max(...ys)-Math.min(...ys),s=Math.min(150/w,150/h);return g.vertices.map(p=>[386+(p[0]-(Math.max(...xs)+Math.min(...xs))/2)*s,245-(p[1]-(Math.max(...ys)+Math.min(...ys))/2)*s])}
 function getLotGeometry(lot=state.lot){return lot.geometry||ParcelGeometry.rectangle(lot.width,lot.depth)}
 function parcelStudyEntry(){
- const entry=JSON.parse(JSON.stringify({lot:state.lot,polygon:state.customPolygon,draft:parcelDraft(),context:state.lookupContext,scenario:Object.fromEntries(['floors','to','efficiency','unitArea','use','price','cost','landPrice','indirect','profit'].map(k=>[k,state[k]]))}));
+ const entry=JSON.parse(JSON.stringify({lot:state.lot,polygon:state.customPolygon,draft:parcelDraft(),context:state.lookupContext,scenario:Object.fromEntries(['floors','to','efficiency','unitArea','use','price','cost','landPrice','indirect','profit','finance','regimeVariant','balconyProjectionMeters'].map(k=>[k,state[k]]))}));
  if(entry.lot.urbanContext)entry.lot.urbanContext.ruleSnapshot=calc().setbackRule;
  return entry;
 }

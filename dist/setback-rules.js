@@ -28,10 +28,11 @@ const SetbackRules=(()=>{
   else if(!geometry?.valid)reason='Confirme a geometria e identifique a frente do terreno.';
   else {status='conditional';source={...catalog,zone:context.zone,verified:false};reason='Regra geral da zona informada, aplicada por pavimento. Enquadramento do lote e permissões ainda dependem de confirmação.'}
   const resolved=status==='conditional'||status==='document';
+  const noteB=status==='conditional'&&config.regimeVariant==='note-b'&&config.use==='H3'&&floors<=4&&['local','collector'].includes(context.roadClass);
   const roads=context.roads&&typeof context.roads==='object'?context.roads:{};
   const fronts=new Set([geometry?.front||0,...(Array.isArray(context.streetEdges)?context.streetEdges.filter(i=>Number.isInteger(i)&&i>=0&&i<(geometry?.vertices.length||0)):[])]);
   const levels=Array.from({length:floors},(_,index)=>{
-   const n=index+1,values=status==='conditional'?minimum(context.zone,n):status==='document'?{front:Number(context.front),side:Number(context.side),back:Number(context.back)}:defaults;
+   const n=index+1,values=noteB?{front:5,side:1.5,back:floors<=3?2:3}:status==='conditional'?minimum(context.zone,n):status==='document'?{front:Number(context.front),side:Number(context.side),back:Number(context.back)}:defaults;
    const edges=(geometry?.vertices||[]).map((_,i)=>{
     const isFront=fronts.has(i),role=isFront?(i===geometry.front?'Frente':'Outra frente'):i===geometry.back?'Fundos':'Lateral';
     const highway=status==='conditional'&&isFront&&roads[i]==='highway';
@@ -45,8 +46,8 @@ const SetbackRules=(()=>{
   });
   const warnings=[];
   if(status==='conditional'){
-   warnings.push('N inclui o térreo. Não foram aplicadas faculdades de colagem, geminação, subsolos ou a alternativa H3 da nota B.');
-   warnings.push('Os demais índices (TO, CA, permeabilidade e altura permitida) continuam demonstrativos e independentes destes recuos.');
+   warnings.push('N inclui o térreo. Não foram aplicadas faculdades de colagem, geminação ou subsolos. '+(noteB?'Nota B aplicada condicionalmente: H3 em via local/coletora.':'Nota B é comparada separadamente para H3 em via local/coletora.'));
+   warnings.push('Uso, macrozona, altura e condições especiais exigem confirmação independente dos recuos.');
    if(context.zone==='ZH2')warnings.push('ZH2 exige conferência específica de patrimônio e do perímetro de incidência.');
    if(config.use==='Flats')warnings.push('O enquadramento de flats como residência ou hospedagem não foi confirmado.');
   }

@@ -1,6 +1,7 @@
 import json
 import math
 import re
+from datetime import date
 from uuid import uuid4
 
 from fastapi import APIRouter, Depends, Request
@@ -75,6 +76,45 @@ def study_of(identifier, data):
     if scenario.get("use") not in ("H1", "H3", "Comercial", "Flats", "Misto"):
         raise APIError(400, "Produto inválido.")
     cleaned["use"] = scenario["use"]
+    variant = scenario.get("regimeVariant", "general")
+    if variant not in ("general", "note-b"):
+        raise APIError(400, "Regime de cenário inválido.")
+    cleaned["regimeVariant"] = variant
+    if "balconyProjectionMeters" in scenario:
+        projection = scenario["balconyProjectionMeters"]
+        if not finite(projection) or not 0 <= projection <= 0.5:
+            raise APIError(400, "Balanço de varanda inválido.")
+        cleaned["balconyProjectionMeters"] = projection
+    if "finance" in scenario:
+        finance = scenario["finance"]
+        if not isinstance(finance, dict):
+            raise APIError(400, "Premissas financeiras inválidas.")
+        result = {}
+        for key in ("elevatorCost", "generatorCost", "projectsFloor", "registrationCost", "outorgaCost"):
+            if key in finance:
+                if not finite(finance[key]) or not 0 <= finance[key] <= 1e9:
+                    raise APIError(400, "Orçamento inválido.")
+                result[key] = finance[key]
+        for key in ("constructionMonths", "salesStartMonth", "salesMonths"):
+            if key in finance:
+                v = finance[key]
+                if not finite(v) or v % 1 or not (0 if key == "salesStartMonth" else 1) <= v <= 120:
+                    raise APIError(400, "Cronograma financeiro inválido.")
+                result[key] = v
+        if "discount" in finance:
+            discount = finance["discount"]
+            if (not isinstance(discount, dict) or not finite(discount.get("annualRate"))
+                    or not 0 <= discount["annualRate"] <= 1
+                    or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(discount.get("date", "")))
+                    or not isinstance(discount.get("source"), str)
+                    or not 0 < len(discount["source"]) <= 250):
+                raise APIError(400, "Referência de TMA inválida.")
+            try:
+                date.fromisoformat(discount["date"])
+            except ValueError:
+                raise APIError(400, "Data da referência de TMA inválida.") from None
+            result["discount"] = {k: discount[k] for k in ("annualRate", "date", "source")}
+        cleaned["finance"] = result
     payload = {
         "lot": lot,
         "scenario": cleaned,

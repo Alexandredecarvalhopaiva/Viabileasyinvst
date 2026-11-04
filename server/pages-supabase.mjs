@@ -1,3 +1,4 @@
+import {calculateAnalysis} from './calculate.mjs';
 /** Pages runtime: password login + HttpOnly sessions, Supabase RPC with the user's JWT.
  * No database password, service-role key, mail provider or Python service is used.
  */
@@ -157,6 +158,13 @@ export async function supabaseAPI(request, env, fetcher = fetch) {
         if (!result.ok && ![401, 403].includes(result.status)) throw new APIError(503, 'Não foi possível sair agora. Tente novamente.');
       }
       outgoing.push(...clearSession(), cookie('pkce', '', 0)); response = json({ok: true});
+    } else if (path === '/api/calculate' && method === 'POST') {
+      await authenticate();
+      const session = await rpc('session', {}, access);
+      if (session.user?.accountStatus !== 'approved') throw new APIError(403, 'Aguarde a liberação de acesso.', 'ACCOUNT_PENDING');
+      const data = await boundedJSON(request, 150000);
+      try { response = json(calculateAnalysis(data)); }
+      catch { throw new APIError(400, 'Geometria ou premissas do cenário inválidas.'); }
     } else if (/^\/api\/auth\//.test(path)) {
       throw new APIError(404, 'Para criar ou recuperar sua conta, fale com o administrador.', 'CONTACT_ADMIN');
     } else {

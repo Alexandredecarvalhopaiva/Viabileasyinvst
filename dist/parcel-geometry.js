@@ -1,5 +1,7 @@
 /* Metric parcel geometry. No cadastral, topographic or legal validation is implied. */
 const ParcelGeometry=(()=>{
+ const proj4=globalThis.proj4||(typeof require==='function'?require('./vendor/geometry/proj4.js'):null);
+ const ClipperLib=globalThis.ClipperLib||(typeof require==='function'?require('./vendor/geometry/clipper.js'):null);
  const EPS=1e-8,UTM='EPSG:31985';
  proj4.defs('EPSG:32725','+proj=utm +zone=25 +south +datum=WGS84 +units=m +no_defs');
  proj4.defs(UTM,'+proj=utm +zone=25 +south +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs');
