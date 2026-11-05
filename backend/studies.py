@@ -71,6 +71,10 @@ def study_of(identifier, data):
         or cleaned["unitArea"] <= 0
         or not 0 < cleaned["efficiency"] <= 100
         or cleaned["to"] > 100
+        or cleaned["profit"] > 100
+        or cleaned["unitArea"] > 1e6
+        or cleaned["price"] > 1e9
+        or cleaned["cost"] > 1e9
     ):
         raise APIError(400, "Cenário inválido.")
     if scenario.get("use") not in ("H1", "H3", "Comercial", "Flats", "Misto"):

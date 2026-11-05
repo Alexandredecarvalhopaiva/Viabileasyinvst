@@ -57,3 +57,9 @@ test('Valor presente exige todos os orçamentos e Selic com data; despesas são 
  assert.equal(ctx.calculate(fixture(),{...config,finance:{...finance,discount:{...finance.discount,date:'2026-02-31'}}}).residual,null);
  assert.throws(()=>ctx.calculate(fixture(),{...config,finance:{...finance,constructionMonths:1.5}}));
 });
+test('Nota B não mistura TO/TAP especiais com recuos pendentes de orla ou regime',()=>{
+ for(const override of [{coastal:''},{coastal:'inside'},{regime:'special'},{mode:'demo'},{mode:'manual',front:7,side:2,back:3,reference:'Documento informado'}]){
+  const l=fixture();Object.assign(l.urbanContext,override);const r=ctx.calculate(l,{...config,floors:4,to:55,regimeVariant:'note-b'});
+  assert.equal(r.regimeVariant,'general');assert.equal(r.permeability,10);assert.equal(r.toMax,50);assert.equal(r.noteB.result,null);
+ }
+});

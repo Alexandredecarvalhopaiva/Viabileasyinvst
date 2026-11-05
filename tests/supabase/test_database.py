@@ -14,7 +14,6 @@ import pytest
 from psycopg.types.json import Jsonb
 
 ROOT = Path(__file__).resolve().parents[2]
-MIGRATION = ROOT / "supabase/migrations/202610300001_pages.sql"
 
 
 @pytest.fixture(scope="session")
@@ -55,7 +54,8 @@ def database():
                 create function auth.uid() returns uuid language sql stable as
                   $$ select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid $$;
             """)
-            conn.execute(MIGRATION.read_text(), prepare=False)
+            for migration in sorted((ROOT / "supabase/migrations").glob("*.sql")):
+                conn.execute(migration.read_text(), prepare=False)
         yield dsn
     finally:
         if started:
@@ -117,7 +117,8 @@ def study(identifier="lot1", width=12):
 
 def test_grants_and_reapply(database):
     with psycopg.connect(database) as conn:
-        conn.execute(MIGRATION.read_text(), prepare=False)
+        for migration in sorted((ROOT / "supabase/migrations").glob("*.sql")):
+            conn.execute(migration.read_text(), prepare=False)
         conn.execute("set local role anon")
         assert conn.execute("select public.viabil_ready()").fetchone()[0] == {"status": "ready"}
         with pytest.raises(psycopg.errors.InsufficientPrivilege):
@@ -126,6 +127,7 @@ def test_grants_and_reapply(database):
         "select * from viabil_private.profiles",
         "select * from viabil_private.documents",
         "select viabil_private.fail(400,'injected')",
+        "select viabil_private.validate_report_assumptions()",
     ]:
         with psycopg.connect(database) as conn:
             conn.execute("set local role authenticated")
@@ -209,6 +211,37 @@ def test_study_isolation_validation_and_delete(database):
     assert call(database, owner, "studies")["studies"] == []
 
 
+def test_report_assumptions_validate_without_spending_credits(database):
+    owner = account(database, approved=True, balance=1)
+    invalid = [
+        {"profit": 101}, {"price": 1e10}, {"unitArea": 1e7}, {"regimeVariant": "other"},
+        {"balconyProjectionMeters": 0.6}, {"finance": []}, {"finance": {"elevatorCost": -1}},
+        {"finance": {"salesMonths": 0}}, {"finance": {"constructionMonths": 2.5}},
+        {"finance": {"discount": {"annualRate": 0.1, "date": "2026-02-31", "source": "Teste"}}},
+        {"finance": {"discount": {"annualRate": 0.1}}},
+    ]
+    for i, values in enumerate(invalid):
+        payload = study(f"invalid-report-{i}")
+        payload["scenario"].update(values)
+        assert call(database, owner, "save-study", payload).get("status") == 400, values
+    assert call(database, owner, "usage")["usage"]["balance"] == 1
+    payload = study("report-assumptions")
+    extra = {"regimeVariant": "note-b", "balconyProjectionMeters": 0.5, "finance": {
+        "projectsFloor": 12000, "registrationCost": 8000, "outorgaCost": 0,
+        "constructionMonths": 24, "salesStartMonth": 0, "salesMonths": 12,
+        "discount": {"annualRate": 0.1, "date": "2026-11-01", "source": "Teste sintético"},
+    }}
+    payload["scenario"].update(extra)
+    saved = call(database, owner, "save-study", payload)
+    assert "study" in saved, saved
+    for key, value in extra.items():
+        assert saved["study"]["scenario"][key] == value
+    payload["scenario"]["finance"]["projectsFloor"] = -1
+    assert call(database, owner, "save-study", payload)["status"] == 400
+    assert call(database, owner, "study", {"id": payload["id"]})["study"]["scenario"]["finance"]["projectsFloor"] == 12000
+    assert call(database, owner, "usage")["usage"]["balance"] == 0
+
+
 def document(scope="lot"):
     return {
         "scope": scope,
@@ -270,8 +303,9 @@ def test_study_quota_does_not_debit_and_rounded_geometry_is_same_analysis(databa
     with psycopg.connect(database) as conn:
         conn.execute(
             """insert into viabil_private.studies(user_id,id,payload,identity,updated_at)
-          select %s,'seed-'||n,'{}'::jsonb,'{}'::jsonb,1 from generate_series(1,499) n""",
-            (uid,),
+          select %s,'seed-'||n,jsonb_set(%s::jsonb,'{lot,id}',to_jsonb('seed-'||n)),'{}'::jsonb,1
+          from generate_series(1,499) n""",
+            (uid, Jsonb({key: value for key, value in study().items() if key != "id"})),
         )
     assert call(database, uid, "save-study", study("over-quota"))["status"] == 409
     assert call(database, uid, "usage")["usage"] == {"balance": 2, "used": 1, "unlimited": False}

@@ -22,7 +22,7 @@ function setbackReport(){
 }
 document.addEventListener('submit',event=>{
  if(!['setback-rule-form','dialog-setback-rule-form'].includes(event.target.id))return;
- event.preventDefault();const values=new FormData(event.target),g=getLotGeometry(),context={...state.lot.urbanContext,macrozone:values.get('macrozone'),roadClass:values.get('roadClass'),mode:values.get('mode'),zone:values.get('zone'),coastal:values.get('coastal'),regime:values.get('regime'),catalogId:SetbackRules.catalog.id,reference:String(values.get('reference')||'').trim(),url:String(values.get('url')||'').trim(),streetEdges:[g.front],roads:{}};
+ event.preventDefault();const values=new FormData(event.target),g=getLotGeometry(),context={...state.lot.urbanContext,origin:'user',userConfirmed:true,macrozone:values.get('macrozone'),roadClass:values.get('roadClass'),mode:values.get('mode'),zone:values.get('zone'),coastal:values.get('coastal'),regime:values.get('regime'),catalogId:SetbackRules.catalog.id,reference:String(values.get('reference')||'').trim(),url:String(values.get('url')||'').trim(),streetEdges:[g.front],roads:{}};
  for(const key of ['front','side','back'])context[key]=ParcelGeometry.num(values.get(key));
  for(let i=0;i<g.vertices.length;i++){if(values.has('street-'+i)&&i!==g.front)context.streetEdges.push(i);context.roads[i]=values.get('road-'+i)||'urban'}
  const previous=state.lot.urbanContext;state.lot.urbanContext=context;

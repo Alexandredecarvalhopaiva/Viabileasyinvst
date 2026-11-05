@@ -14,6 +14,13 @@ Pages. Os arquivos locais não comprovam um deploy funcional. Contas e estudos d
 backend Python não são transferidos automaticamente; a instalação local abaixo
 continua disponível com seus dados atuais.
 
+## Revisão funcional e pendências
+
+A [revisão de 05/11/2026](docs/review-2026-11-05.md) registra o estado de cada
+área, as correções verificadas e o que falta para publicação e análise normativa.
+O relatório usa o contrato compartilhado `VIABILEASY_ANALYSIS_V1`; a
+Base_Regras_JP v1.1 ainda precisa ser integrada.
+
 ## Executar localmente com o backend Python (v0.15)
 
 O backend HTTP agora é **Python/FastAPI**, com **SQLite local** ou **PostgreSQL em produção**. O frontend HTML/CSS/JavaScript e o 3D permanecem no navegador. O backend Node foi substituído; Node.js 24+ é usado apenas nos comandos de build e nos testes do frontend.
@@ -56,7 +63,7 @@ Outros cadastros aguardam aprovação e créditos do administrador. Não há sen
 
 O `render.yaml` prepara um serviço gratuito com frontend e backend na mesma origem, usando PostgreSQL externo e envio de e-mail por HTTPS. **A publicação real depende da configuração das contas, banco e remetente.** O Blueprint usa `BREVO_API_KEY` e `MAIL_FROM`; Resend também é suportado como alternativa. Confira as pendências sem expor segredos com `.venv/bin/python -m backend.cli check-deploy`. Não use SQLite no filesystem efêmero do Render.
 
-Os cálculos de geometria, recuos, capacidade e comparação 3D continuam no frontend, com seus testes preservados. Os dados salvos passam por validação no Python, mas os valores geométricos e os resultados do navegador não são uma certificação do servidor. O projeto continua sendo uma simulação preliminar com índices demonstrativos.
+No Pages/Supabase, `/api/calculate` reconstrói a geometria e executa o módulo demonstrativo compartilhado com a prévia local. O backend Python conserva a prévia no navegador. Estudos passam por validação no respectivo backend; o banco Supabase exige as duas migrações citadas no guia. O cálculo e a procedência das fontes não constituem homologação normativa. Detalhes em [correções do relatório](docs/report-feedback.md).
 
 As seções de versões abaixo preservam o histórico do protótipo. As referências antigas a Node como servidor, ausência de contas ou armazenamento exclusivamente no navegador foram substituídas pelo comportamento da v0.15 descrito acima.
 
@@ -267,7 +274,7 @@ Abrir um estudo registra somente a data de acesso; as alterações do cenário c
 
 Depois de confirmar o terreno, use **Recuos para construir**. Informe a zona, situação de orla e cenário de aplicação geral; em “Confrontações”, marque outras frentes e rodovias. A opção de documento permite informar valores e identificar a certidão de referência. “Aplicar recuos” recalcula o terreno e o 3D; “Salvar estudo” persiste o enquadramento e uma cópia das regras aplicadas.
 
-O catálogo inicial cobre as regras gerais de **ZH1 a ZH5 de João Pessoa**, conforme o Anexo IV da LC 169/2024, os arts. 68 e 77 da LC 166/2024 e a nota de frentes rodoviárias. Não há detecção automática de zona por bairro ou coordenada. Orla, regimes especiais, zonas não contempladas e versões documentais diferentes ficam pendentes, sem declarar conformidade. Faculdades de colagem e a alternativa H3 da nota B não são aplicadas automaticamente.
+O catálogo inicial cobre as regras gerais de **ZH1 a ZH5 de João Pessoa**, conforme o Anexo IV da LC 169/2024, os arts. 68 e 77 da LC 166/2024 e a nota de frentes rodoviárias. A consulta automática usa a camada municipal de zoneamento e cruza o perímetro geográfico; um ponto apenas sugere a zona. Veja [consulta automática](docs/automatic-zoning.md). Orla, regimes especiais, zonas não contempladas e versões documentais diferentes ficam pendentes, sem declarar conformidade. Faculdades de colagem não são aplicadas. A alternativa H3 da nota B é comparada condicionalmente quando o enquadramento e a classe de via estão confirmados.
 
 O 3D mostra as faixas de frente, laterais e fundos com cores e cotas no térreo. A massa e o envelope se ajustam por pavimento; a área computável é a soma das lâminas. Cada lâmina fica dentro de seu envelope, limitada ainda pelas hipóteses de TO, CA e produto. Esses outros índices continuam demonstrativos: o resultado não constitui aprovação urbanística.
 

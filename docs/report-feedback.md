@@ -1,5 +1,5 @@
 As correções do feedback de 03/11/2026 são executadas por `ReportEngine.calculate`,
-em `dist/report-engine.js`. A versão é `feedback-demo-1.0`. Este módulo **não é**
+em `dist/report-engine.js`. A versão é `feedback-demo-1.1`. Este módulo **não é**
 a Base_Regras_JP v1.1: o motor e as 302 regras citadas no feedback não foram
 fornecidos no repositório ou nos anexos disponíveis.
 
@@ -68,3 +68,7 @@ em 1440×1000 e 390×844; impressão A4 e exportação JSON. A validação do na
 usa o módulo canônico no interceptador de `/api/calculate`; o endpoint real é
 testado separadamente com o provedor de autenticação simulado. Nenhuma conta,
 crédito ou estudo de produção é alterado pela verificação.
+
+As correções de concorrência, preservação de condições e orçamento por terreno
+e a migração de validação de premissas estão descritas na
+[revisão de 05/11/2026](review-2026-11-05.md).

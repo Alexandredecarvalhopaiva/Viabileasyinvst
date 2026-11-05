@@ -1,7 +1,7 @@
 /* One deterministic calculation interface for server results and the explicitly labelled demo fallback.
  * This is NOT Base_Regras_JP v1.1: that external rule set has not been supplied to this repository. */
 const ReportEngine=(()=>{
- const VERSION='feedback-demo-1.0',SCHEMA='VIABILEASY_ANALYSIS_V1';
+ const VERSION='feedback-demo-1.1',SCHEMA='VIABILEASY_ANALYSIS_V1';
  const norm={occupation:'https://planodiretor.joaopessoa.pb.gov.br/wp-content/uploads/2025/01/LC169-2024_AlteraLUOS.pdf#page=4',
   parking:'https://planodiretor.joaopessoa.pb.gov.br/wp-content/uploads/2025/01/LC169-2024_AlteraLUOS.pdf#page=5',
   director:'https://www.joaopessoa.pb.gov.br/wp-content/uploads/2024/10/Lei-Complementar-no-164-2024.pdf',amendment:'https://sapl.joaopessoa.pb.leg.br/norma/22012'};
@@ -70,9 +70,10 @@ const ReportEngine=(()=>{
   }
   const pendings=[],supported=Boolean(profiles[zone]),floors=config.floors,profile=profiles[zone];
   const highwayFront=[g.front,...(Array.isArray(context.streetEdges)?context.streetEdges:[])].some(i=>context.roads?.[i]==='highway');
-  const noteEligible=config.use==='H3'&&['local','collector'].includes(context.roadClass)&&!highwayFront;
+  const generalSetbacks=R.resolve(lot,{...config,regimeVariant:'general'},g);
+  const noteEligible=config.use==='H3'&&['local','collector'].includes(context.roadClass)&&!highwayFront&&generalSetbacks.status==='conditional';
   const noteRequested=config.regimeVariant==='note-b',noteApplied=noteRequested&&noteEligible&&floors<=4&&supported;
-  if(noteRequested&&!noteApplied)pendings.push({id:'note-b',status:'pending',message:'Nota B não aplicada: confirme H3, via local/coletora e até quatro pavimentos.',source:evidence('LC 169/2024 · Anexo IV, nota B',norm.occupation)});
+  if(noteRequested&&!noteApplied)pendings.push({id:'note-b',status:'pending',message:'Nota B não aplicada: confirme H3, via local/coletora, até quatro pavimentos e enquadramento documental fora de regimes especiais.',source:evidence('LC 169/2024 · Anexo IV, nota B',norm.occupation)});
   let toMax=profile?.to??null,permeability=profile?.tap??null;
   if(noteApplied){toMax=floors<=3?50:55;permeability=5;}
   if(config.use==='H1'&&supported)toMax=60;
@@ -112,6 +113,7 @@ const ReportEngine=(()=>{
   if(excessArea>1e-6)pendings.push({id:'outorga-regulation',status:'pending',message:outorga.message+' Custo '+(outorga.status==='pending'?'não incluído.':'informado como hipótese; não homologado.'),source:outorga.source});
   if(highwayFront&&['local','collector'].includes(context.roadClass))pendings.push({id:'road-conflict',status:'pending',message:'Classe local/coletora conflita com frente rodoviária. Nota B não aplicada; confirmar hierarquia e alinhamento.',source:evidence('LC 169/2024 · notas B e C',norm.occupation)});
   if(!supported)pendings.push({id:'zone',status:'pending',message:'Zona fora do recorte de cálculo: apenas identificação, sem estimativa de unidades ou viabilidade.',source:evidence('Cobertura ZH1–ZH5',norm.occupation)});
+  if(lot.territory?.contextConflict)pendings.push({id:'zone-conflict',status:'pending',message:'A zona confirmada no estudo diverge da consulta espacial. O enquadramento informado foi preservado e precisa de conferência.',source:evidence('Filipeia/SEPLAN/PMJP','https://filipeia.joaopessoa.pb.gov.br/')});
   const coastal=lot.coastal||context.coastal==='inside';
   pendings.push({id:'coastal',status:coastal?'special_review':context.coastal==='outside'?'informed':'pending',message:coastal?'Altura em revisão especial na faixa de 500 m da orla. Não há autorização de altura neste estudo.':'Situação de orla informada ou pendente; sem confirmação espacial de todas as restrições.',source:evidence('LUOS art. 62 e efeitos normativos/judiciais a verificar',norm.occupation)});
   pendings.push({id:'use',status:'pending',message:'Permissão de uso depende da zona e classe da via no Anexo III. Flats e salas não são usos automaticamente permitidos.',source:evidence('LC 169/2024 · Anexo III',norm.occupation)});
@@ -136,7 +138,7 @@ const ReportEngine=(()=>{
    result.financial={...financialResult,complete:false,vgv:null,nonLand:null,residualStatic:null,residualNPV:null,cashflow:[]};
   }
   if(includeNoteB&&config.use==='H3')result.noteB=noteEligible&&supported?{status:'conditional',source:evidence('LC 169/2024 · Anexo IV, nota B',norm.occupation),result:calculate(lot,{...config,floors:4,to:55,regimeVariant:'note-b'},deps,{includeNoteB:false,execution})}:
-   {status:'pending',result:null,message:'Nota B deve ser comparada: confirme classe de via local/coletora e cobertura da zona. Não foi escolhido um melhor cenário.'};
+   {status:'pending',result:null,message:'Nota B deve ser comparada: confirme classe de via local/coletora, zona e enquadramento documental fora de regimes especiais. Não foi escolhido um melhor cenário.'};
   return result;
  }
  return {VERSION,SCHEMA,calculate,minimumParking};

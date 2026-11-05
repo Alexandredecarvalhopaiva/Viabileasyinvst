@@ -24,7 +24,8 @@ def test_feedback_assumptions_survive_save_and_reopen(system, accounts):
     reopened = c.get("/api/studies/lot-1").json()["study"]["scenario"]
     assert all(reopened[key] == value for key, value in extra.items())
     for invalid in ({"finance": {"elevatorCost": -1}}, {"finance": {"salesMonths": 0}},
-                    {"regimeVariant": "other"}, {"balconyProjectionMeters": 0.6}):
+                    {"regimeVariant": "other"}, {"balconyProjectionMeters": 0.6},
+                    {"profit": 101}, {"unitArea": 1e7}, {"price": 1e10}, {"cost": 1e10}):
         malformed = study()
         malformed["scenario"].update(invalid)
         assert call(c, "/api/studies/lot-1", "PUT", malformed).status_code == 400

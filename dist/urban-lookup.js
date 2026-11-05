@@ -70,12 +70,16 @@ const UrbanLookup=(()=>{
  }
  function apply(lot,result){
   if(result.key!==key(lot))return false;
+  const context=lot.urbanContext;
+  const preserve=context&&(context.origin!=='territory'||context.mode==='manual'||context.userConfirmed||context.coastal||context.regime||context.macrozone||context.roadClass||context.reference);
+  result.contextPreserved=Boolean(preserve);
+  result.contextConflict=Boolean(preserve&&result.status==='identified'&&context.zone&&zoneName(context.zone)!==result.zone);
   lot.territory=result;
-  if(result.status!=='identified'&&lot.urbanContext?.origin==='territory'){
+  if(result.status!=='identified'&&context?.origin==='territory'&&!preserve){
    delete lot.urbanContext;lot.zone='Não identificado';
   }
   // A point is a suggestion, not proof of the parcel's zoning. Never overwrite a technical override.
-  if(result.status==='identified'&&(!lot.urbanContext||lot.urbanContext.origin==='territory')){
+  if(result.status==='identified'&&!preserve){
    lot.urbanContext={mode:'catalog',zone:result.zone,origin:'territory',coastal:'',regime:'',catalogId:typeof SetbackRules!=='undefined'?SetbackRules.catalog.id:undefined};
    lot.zone=result.zone;
   }

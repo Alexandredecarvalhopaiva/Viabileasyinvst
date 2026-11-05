@@ -25,7 +25,15 @@ promessa de recuperação automática por e-mail nesta modalidade.
 
 Use o projeto dedicado `viabileasy`. Execute no SQL Editor do Supabase:
 
-`supabase/migrations/202610300001_pages.sql`
+Para uma instalação nova, execute nesta ordem:
+
+1. `supabase/migrations/202610300001_pages.sql`
+2. `supabase/migrations/202611050001_report_assumptions.sql`
+
+Em instalação já preparada com e-mail/senha, aplique o segundo arquivo. Ele
+valida as premissas financeiras nas próximas gravações, sem reescrever estudos
+ou contas existentes. Pode ser reaplicado. O pacote de frontend/Worker não aplica
+migrações SQL automaticamente.
 
 Se aplicou a versão inicial com Google obrigatório, reaplique este arquivo atual:
 ele atualiza as funções sem apagar contas, estudos ou documentos. Não utilize
@@ -37,9 +45,11 @@ Confira:
 select public.viabil_ready();
 select has_function_privilege('anon','public.viabil_api(text,jsonb)','execute');
 select has_function_privilege('authenticated','public.viabil_api(text,jsonb)','execute');
+select exists(select 1 from pg_trigger where tgname='validate_report_assumptions'
+  and tgrelid='viabil_private.studies'::regclass and tgenabled='O');
 ```
 
-Os resultados devem ser `{"status":"ready"}`, `false`, `true`.
+Os resultados devem ser `{"status":"ready"}`, `false`, `true`, `true`.
 
 Esta arquitetura exige Data API ativada **depois** da migração e da revisão das
 permissões. Não exponha `viabil_private`. Se houver tabelas antigas em `public`,

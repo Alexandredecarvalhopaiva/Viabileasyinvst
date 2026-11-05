@@ -57,3 +57,15 @@ test('Nova consulta ambígua ou indisponível remove seleção automática anter
  U.apply(l,{key:U.key(l),status:'ambiguous'});assert.equal(l.urbanContext,undefined);
  l.urbanContext={mode:'manual',front:8};U.apply(l,{key:U.key(l),status:'error'});assert.equal(l.urbanContext.front,8);
 });
+test('Atualização preserva condições confirmadas e identifica divergência com a zona consultada',()=>{
+ const l=lot();U.apply(l,U.resolve(l,data([feature('ZH1')])));
+ Object.assign(l.urbanContext,{coastal:'outside',regime:'ordinary',macrozone:'MAD1',roadClass:'local'});
+ U.apply(l,U.resolve(l,data([feature('ZH2')])));
+ assert.equal(l.urbanContext.zone,'ZH1');assert.equal(l.urbanContext.macrozone,'MAD1');assert.equal(l.urbanContext.coastal,'outside');
+ assert.equal(l.territory.contextConflict,true);
+ U.apply(l,{key:U.key(l),status:'error'});assert.equal(l.urbanContext.regime,'ordinary');
+});
+test('Documento técnico não volta a automático mesmo quando um estudo antigo conservou origin=territory',()=>{
+ const l=lot();l.urbanContext={origin:'territory',mode:'manual',front:7,side:2,back:4,reference:'Certidão do usuário'};
+ U.apply(l,U.resolve(l,data([feature('ZH1')])));assert.equal(l.urbanContext.mode,'manual');assert.equal(l.urbanContext.front,7);
+});

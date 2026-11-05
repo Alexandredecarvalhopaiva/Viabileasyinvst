@@ -28,9 +28,9 @@ const SetbackRules=(()=>{
   else if(!geometry?.valid)reason='Confirme a geometria e identifique a frente do terreno.';
   else {status='conditional';source={...catalog,zone:context.zone,verified:false};reason='Regra geral da zona informada, aplicada por pavimento. Enquadramento do lote e permissões ainda dependem de confirmação.'}
   const resolved=status==='conditional'||status==='document';
-  const noteB=status==='conditional'&&config.regimeVariant==='note-b'&&config.use==='H3'&&floors<=4&&['local','collector'].includes(context.roadClass);
   const roads=context.roads&&typeof context.roads==='object'?context.roads:{};
   const fronts=new Set([geometry?.front||0,...(Array.isArray(context.streetEdges)?context.streetEdges.filter(i=>Number.isInteger(i)&&i>=0&&i<(geometry?.vertices.length||0)):[])]);
+  const noteB=status==='conditional'&&config.regimeVariant==='note-b'&&config.use==='H3'&&floors<=4&&['local','collector'].includes(context.roadClass)&&![...fronts].some(i=>roads[i]==='highway');
   const levels=Array.from({length:floors},(_,index)=>{
    const n=index+1,values=noteB?{front:5,side:1.5,back:floors<=3?2:3}:status==='conditional'?minimum(context.zone,n):status==='document'?{front:Number(context.front),side:Number(context.side),back:Number(context.back)}:defaults;
    const edges=(geometry?.vertices||[]).map((_,i)=>{
