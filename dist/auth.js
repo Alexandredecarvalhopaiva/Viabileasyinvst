@@ -22,6 +22,7 @@
     state.savedCustom = {};
   }
   function resetWorkspace() {
+    if(typeof EngineResults!=='undefined')EngineResults.retry();
     lots.splice(0, lots.length, ...JSON.parse(initialLots));
     for (const key of Object.keys(state)) delete state[key];
     Object.assign(state, JSON.parse(initialAccountState));

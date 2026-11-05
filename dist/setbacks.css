@@ -39,3 +39,5 @@
 @media(max-width:700px){#setback-rule-form>.btn{width:100%}}
 
 .setback-canvas-tag{display:inline-flex;align-items:center;padding:6px 9px;margin-left:8px;border:1px solid #dce7ec;border-radius:6px;background:#ffffffeb;font-size:11px;color:#526779}
+.urban-lookup{margin:16px 0;padding:18px;border:1px solid var(--border,#d5e1e7);border-radius:14px;background:var(--surface,#fff)}
+.urban-lookup h3{margin:0 0 8px}.urban-lookup p{line-height:1.6}.urban-lookup-values{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin:16px 0}.urban-lookup-values div{padding:10px;background:#f2f7f5;border-radius:8px;color:#173b3a}.urban-lookup-values dt{font-size:13px}.urban-lookup-values dd{margin:6px 0 0;font-weight:600}

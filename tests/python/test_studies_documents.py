@@ -7,6 +7,30 @@ from backend.db import execute, one
 from backend.security import compact, now
 
 
+def test_feedback_assumptions_survive_save_and_reopen(system, accounts):
+    c = system["client"]
+    payload = study()
+    extra = {
+        "regimeVariant": "note-b",
+        "balconyProjectionMeters": 0.5,
+        "finance": {
+            "projectsFloor": 12000, "registrationCost": 8000, "outorgaCost": 0,
+            "constructionMonths": 24, "salesStartMonth": 12, "salesMonths": 12,
+            "discount": {"annualRate": 0.12, "date": "2026-10-01", "source": "Teste sintético"},
+        },
+    }
+    payload["scenario"].update(extra)
+    assert call(c, "/api/studies/lot-1", "PUT", payload).status_code == 200
+    reopened = c.get("/api/studies/lot-1").json()["study"]["scenario"]
+    assert all(reopened[key] == value for key, value in extra.items())
+    for invalid in ({"finance": {"elevatorCost": -1}}, {"finance": {"salesMonths": 0}},
+                    {"regimeVariant": "other"}, {"balconyProjectionMeters": 0.6},
+                    {"profit": 101}, {"unitArea": 1e7}, {"price": 1e10}, {"cost": 1e10}):
+        malformed = study()
+        malformed["scenario"].update(invalid)
+        assert call(c, "/api/studies/lot-1", "PUT", malformed).status_code == 400
+
+
 def test_study_credit_idempotency_and_geometry_changes(system, accounts):
     c = system["client"]
     assert grant(system, accounts["user"]).json()["usage"]["balance"] == 2

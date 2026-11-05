@@ -1,4 +1,5 @@
 import {supabaseAPI} from '../../server/pages-supabase.mjs';
+import {territoryAPI} from '../../server/territory.mjs';
 /** Supabase runs directly on Pages; the old Render adapter remains opt-in for existing deployments. */
 export async function proxyAPI(request, env, fetcher = fetch) {
   const unavailable = () => new Response(
@@ -39,6 +40,7 @@ export async function proxyAPI(request, env, fetcher = fetch) {
 }
 
 export function onRequest({request, env}) {
+  if (new URL(request.url).pathname === '/api/territory') return territoryAPI(request);
   if (env.BACKEND === 'supabase' || env.SUPABASE_URL) return supabaseAPI(request, env);
   return proxyAPI(request, env);
 }

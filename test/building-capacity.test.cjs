@@ -29,7 +29,8 @@ test('Cálculo de um terreno mantém limite documental separado da capacidade ge
  const ctx={proj4:require('../dist/vendor/geometry/proj4.js'),ClipperLib:require('../dist/vendor/geometry/clipper.js'),module:{exports:{}},BuildingCapacity:B};vm.createContext(ctx);
  vm.runInContext(fs.readFileSync('dist/parcel-geometry.js','utf8')+'\nthis.G=ParcelGeometry;',ctx);
  vm.runInContext(fs.readFileSync('dist/setback-rules.js','utf8'),ctx);
- const app=fs.readFileSync('dist/app.js','utf8');ctx.getLotGeometry=lot=>lot.geometry;
+ vm.runInContext(fs.readFileSync('dist/report-engine.js','utf8'),ctx);
+const app=fs.readFileSync('dist/app.js','utf8');ctx.getLotGeometry=lot=>lot.geometry;
  vm.runInContext(app.slice(app.indexOf('function calc('),app.indexOf('function miniMap('))+'\nthis.calculate=calc;',ctx);
  const lot={area:600,geometry:ctx.G.rectangle(20,30),buildingLimit:{...reference,maxFloors:4},urbanContext:{mode:'catalog',zone:'ZH1',coastal:'outside',regime:'ordinary'}};
  const config={floors:8,to:50,efficiency:76,unitArea:70,use:'H3',price:8200,cost:2700,landPrice:100000,indirect:22,profit:18};

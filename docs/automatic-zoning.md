@@ -1,0 +1,15 @@
+# Consulta automática de zoneamento
+
+Ao confirmar um terreno novo, a aplicação consulta `/api/territory`. Pages Functions e o backend Python atendem ao mesmo contrato, sem exigir configuração adicional de chaves. O adaptador consulta somente a camada pública `digeoc:zoneamento2024` do GeoServer Filipeia, em recorte pequeno, com timeout, limite de 50 feições e 4 MB. Não encaminha cookies ou credenciais ao provedor. Respostas truncadas, inválidas ou indisponíveis não geram zona presumida.
+
+O navegador intersecta o perímetro geográfico inteiro com as feições recebidas usando Clipper. Cobertura parcial, mais de uma zona ou contato numérico com a borda resultam em pendência. Um ponto sem perímetro apenas sugere zona; não confirma o lote. Medidas locais sem localização não disparam consulta.
+
+Para ZH1–ZH5, a zona identificada vem selecionada no enquadramento. O quadro mostra ocupação, permeabilidade e recuos documentais; a ocupação da simulação recebe o valor geral na primeira consulta. Uma atualização explícita não apaga a ocupação que a pessoa ajustou. Orla, regime especial e demais permissões não são inferidos. O formulário de exceções fica recolhido, disponível para condições que ainda precisem de confirmação.
+
+Fonte dos percentuais gerais: [LC 169/2024, Anexo IV, p. 4](https://planodiretor.joaopessoa.pb.gov.br/wp-content/uploads/2025/01/LC169-2024_AlteraLUOS.pdf#page=4), conferida visualmente em 03/11/2026. TO/TAP: ZH1 50/10%, ZH2 55/5%, ZH3 50/5%, ZH4 e ZH5 50/15%. As alternativas das notas não são ativadas automaticamente. A camada espacial não comprova a consolidação normativa. CA, altura, usos e restrições adicionais continuam sem homologação automática; os parâmetros demonstrativos preexistentes do simulador continuam identificados como tal.
+
+A consulta fica registrada no terreno/JSON e no relatório: camada, origem, data e referência do quadro. Estudos salvos conservam o snapshot até atualização explícita. Mudar coordenadas, geometria ou testadas invalida o enquadramento anterior, mesmo com dimensões iguais. Respostas atrasadas não alteram outro terreno. Exceções técnicas e condições já confirmadas pelo usuário não são sobrescritas. Se a zona consultada divergir do enquadramento confirmado, a tela e o relatório mostram o conflito; a condição informada é preservada até revisão. Nenhuma camada completa é incorporada ao repositório.
+
+O aviso de uso do [Filipeia](https://filipeia.joaopessoa.pb.gov.br/) contém condições de utilização e atribuição; compatibilidade com exploração comercial continua dependendo de esclarecimento/autorização do operador. Esta mudança entrega integração técnica, sem certificar conformidade urbanística ou licença de redistribuição comercial.
+
+Validação: `npm test`; testes específicos em `test/urban-lookup*.test.cjs`, `test/territory.test.mjs` e `tests/python/test_territory.py`. A jornada de navegador também foi exercitada com conta sintética no backend local, importação de GeoJSON, consulta real ao Filipeia, pré-seleção ZH2, salvamento e relatório em desktop/celular.

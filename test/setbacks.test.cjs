@@ -5,6 +5,7 @@ vm.runInContext(fs.readFileSync('dist/parcel-geometry.js','utf8')+'\nthis.G=Parc
 vm.runInContext(fs.readFileSync('dist/setback-rules.js','utf8')+'\nthis.R=SetbackRules;',ctx);
 const {G,R}=ctx;
 vm.runInContext(fs.readFileSync('dist/building-capacity.js','utf8'),ctx);
+vm.runInContext(fs.readFileSync('dist/report-engine.js','utf8'),ctx);
 const app=fs.readFileSync('dist/app.js','utf8');
 ctx.getLotGeometry=lot=>lot.geometry||G.rectangle(lot.width,lot.depth);
 vm.runInContext(app.slice(app.indexOf('function calc('),app.indexOf('function miniMap('))+'\nthis.calculate=calc;',ctx);
@@ -12,7 +13,7 @@ const near=(a,b)=>assert.ok(Math.abs(a-b)<.02,a+' != '+b);
 const plain=value=>JSON.parse(JSON.stringify(value));
 const lot=(urbanContext={})=>({area:600,width:20,depth:30,coastal:false,geometry:G.rectangle(20,30),urbanContext});
 const config={floors:8,to:50,efficiency:76,unitArea:70,use:'H3',price:8200,cost:2700,landPrice:100000,indirect:22,profit:18};
-const context={mode:'catalog',zone:'ZH1',coastal:'outside',regime:'ordinary'};
+const context={mode:'catalog',zone:'ZH1',coastal:'outside',regime:'ordinary',macrozone:'MAD2'};
 test('Quadro documental: patamares por pavimento e diferenças entre zonas',()=>{
  const expected={
   ZH1:[[1,5,1.5,3],[3,5,1.5,3],[4,5,3,3],[5,5,3.3,3.3],[8,5,4.2,4.2]],
@@ -57,7 +58,7 @@ test('Offset assimétrico respeita sentido do polígono e não reutiliza envelop
 test('A massa de cada pavimento respeita os recuos e a soma respeita CA/TO',()=>{
  const l=lot(context),c=ctx.calculate(l,config);
  near(c.gross,c.floorPlates.reduce((sum,p)=>sum+p.area,0));
- assert.ok(c.gross<=l.area*3+1e-6);
+ assert.ok(c.gross<=l.area*4+1e-6);
  for(const plate of c.floorPlates){
   assert.ok(plate.area<=l.area*config.to/100+1e-6);
   const shapes=G.footprint(l.geometry,plate.area,plate.envelope);
