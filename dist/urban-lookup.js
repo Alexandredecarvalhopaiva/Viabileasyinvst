@@ -66,7 +66,7 @@ const UrbanLookup=(()=>{
   if(!candidates.length)return {...base,status:'not_found',candidates:[]};
   if(candidates.length!==1||candidates[0].boundary||(q.polygon&&Math.abs(candidates[0].coverage-1)>1e-6))return {...base,status:'ambiguous',candidates:candidates.map(c=>c.zone)};
   const zone=candidates[0].zone;
-  return {...base,status:q.polygon?'identified':'approximate',zone,candidates:[zone],occupation:occupation[zone]?{...occupation[zone],source:catalog}:null};
+  return {...base,status:q.polygon?'identified':'approximate',zone,candidates:[zone],occupation:occupation[zone]?{...occupation[zone],source:{...catalog}}:null};
  }
  function apply(lot,result){
   if(result.key!==key(lot))return false;

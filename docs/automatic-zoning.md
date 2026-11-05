@@ -32,17 +32,30 @@ foram reproduzidas antes da correção em `test/urban-lookup-ui.test.cjs`.
   preservado. O limite documental continua registrado separadamente.
 
 Os testes usam respostas territoriais sintéticas. A suíte frontend passou com
-98 testes, a suíte Python com 52 testes e as verificações geométricas com 144
+102 testes, a suíte Python com 52 testes e as verificações geométricas com 144
 casos. Quatro integrações Python exigem PostgreSQL ou ferramentas de migração
 e foram puladas. Ruff e `git diff --check` passaram.
 
 Na verificação de navegador desta rodada, o login foi exercitado no backend
 Python local com conta sintética descartável. Território usou fixture sintética
 ZH2 e `/api/calculate` foi interceptado pelo módulo canônico de cálculo. Foram
-conferidos desktop 1440×1000, celular 390×844, carregamento, conflito com exceção
+conferidos desktop 1440×1000, celulares 390×844 e 320×844, carregamento, conflito com exceção
 manual preservada, ausência de transbordamento horizontal, acionamento da
 reconsulta por teclado e fonte/conflito no HTML do relatório. O console ficou
 sem erros. Essa verificação se limita ao ambiente local e à fixture descrita.
+
+As consultas de Produto e UX na issue orientaram ajustes adicionais. O ponto
+mostra apenas a zona sugerida na tela e no relatório. Coordenadas conhecidas
+fora do recorte recebem estado próprio de falta de cobertura. O conflito mostra
+as duas zonas e abre o campo de revisão. Durante a confirmação, a etapa atual
+mostra o andamento e desabilita o envio duplicado. As referências de ocupação
+recebem indicação de aplicação e vigência pendentes.
+
+A fonte de ocupação é copiada para o snapshot, e seus links e títulos são lidos
+desse registro pela tela e pelo relatório. Um teste modifica o catálogo corrente
+e comprova a preservação da origem registrada. O teste de link aceita somente
+HTTP e HTTPS. A reprodução integral com todas as fontes versionadas, uso e data
+continua condicionada ao contrato normativo descrito abaixo.
 
 ### Aceite ainda pendente
 
