@@ -1,15 +1,118 @@
 /* Administrative data is authorized on the server and is never stored in the browser. */
 (() => {
   let requestVersion = 0, accounts = new Map();
+  function accountActions(account) {
+    if (account.role === 'super_admin') return '';
+    return `<div class="admin-review-actions">
+      <button class="btn" data-account-link="${esc(account.id)}"
+        ${['blocked','rejected'].includes(account.accountStatus) ? 'disabled' : ''}>Gerar link de acesso</button>
+      <button class="btn" data-account-status="${esc(account.id)}">
+        ${account.accountStatus === 'blocked' ? 'Desbloquear' : 'Bloquear'}
+      </button>
+    </div>`;
+  }
+  function privateLink(result) {
+    if (!result.accessLink) {
+      closeModal();
+      notify('Operação já registrada. Para obter outro link, use Gerar link de acesso.');
+      return;
+    }
+    modal('Link privado de acesso', `
+      <p role="status">Conta preparada. Copie este link agora e entregue à pessoa por um canal privado.
+        O link é exibido uma única vez e expira em 30 minutos.</p>
+      <p>Esta operação não enviou e-mail. A aprovação e a liberação de usos são feitas separadamente.</p>
+      <label class="setback-field" for="private-access-link">Link de uso único
+        <input id="private-access-link" type="text" readonly value="${esc(result.accessLink)}"
+          autocomplete="off" spellcheck="false">
+      </label>
+      <button type="button" class="btn primary" data-copy-access-link>Copiar link privado</button>
+      <p role="status" data-copy-status></p>`);
+    document.querySelector('#modal-root .modal').classList.add('admin-account-modal');
+  }
+  function accountForm(action, account) {
+    const create = action === 'create';
+    const title = create ? 'Cadastrar pessoa'
+      : action === 'link' ? 'Gerar link privado de acesso'
+      : account.accountStatus === 'blocked' ? 'Desbloquear conta' : 'Bloquear conta';
+    const fields = create ? `
+      <p>A pessoa definirá a própria senha pelo link temporário. A conta começa pendente e com 0 usos.</p>
+      <label class="setback-field" for="admin-new-name">Nome
+        <input id="admin-new-name" name="name" autocomplete="name" minlength="2" maxlength="100" required>
+      </label>
+      <label class="setback-field" for="admin-new-email">E-mail
+        <input id="admin-new-email" name="email" type="email" autocomplete="email" maxlength="254" required>
+      </label>` : `
+      <p>${esc(account.name)} · ${esc(account.email)}</p>
+      <p>${action === 'link'
+        ? 'O link anterior será invalidado. Confirme a identidade da pessoa antes da entrega privada.'
+        : 'As sessões atuais serão encerradas. O desbloqueio preserva a decisão de aprovação anterior.'}</p>
+      <label class="setback-field" for="admin-account-note">Motivo
+        <input id="admin-account-note" name="note" minlength="3" maxlength="250" required>
+      </label>`;
+    modal(title, `
+      <form id="admin-account-form" data-operation="${action}" data-account-id="${esc(account?.id || '')}"
+        data-blocked="${account?.accountStatus !== 'blocked'}" data-request-key="${crypto.randomUUID()}">
+        ${fields}
+        <p role="alert" class="auth-message" hidden></p>
+        <button type="submit" class="btn primary">${title}</button>
+      </form>`);
+    document.querySelector('#modal-root .modal').classList.add('admin-account-modal');
+  }
+  document.addEventListener('submit', async event => {
+    if (event.target.id !== 'admin-account-form') return;
+    event.preventDefault();
+    const form = event.target, button = form.querySelector('[type=submit]');
+    if (button.disabled || !window.ViabilAuth?.isSuperAdmin()) return;
+    const accountId = window.ViabilAuth.accountId();
+    const data = Object.fromEntries(new FormData(form));
+    data.requestKey = form.dataset.requestKey;
+    const action = form.dataset.operation;
+    const endpoint = action === 'create' ? '/api/admin/users' : '/api/admin/users/' + encodeURIComponent(form.dataset.accountId) + (action === 'link' ? '/access-link' : '/status');
+    if (action === 'status') data.blocked = form.dataset.blocked === 'true';
+    button.disabled = true;
+    form.setAttribute('aria-busy', 'true');
+    const feedback = form.querySelector('[role=alert]');
+    feedback.hidden = true;
+    try {
+      const response = await fetch(endpoint, {method: 'POST', credentials: 'same-origin', headers: {'Content-Type': 'application/json', 'X-Viabileasy-Request': '1'}, body: JSON.stringify(data)});
+      const result = await response.json();
+      if (window.ViabilAuth.accountId() !== accountId || !window.ViabilAuth.isSuperAdmin()) return;
+      if (!response.ok) throw Error(result.error || 'Não foi possível concluir a operação.');
+      await mount();
+      if (!form.isConnected || window.ViabilAuth.accountId() !== accountId) return;
+      if (action === 'status') { closeModal(); notify('Situação de acesso atualizada.'); }
+      else privateLink(result);
+    } catch (error) {
+      if (form.isConnected && window.ViabilAuth.accountId() === accountId) {
+        feedback.hidden = false;
+        feedback.textContent = error.message;
+        button.disabled = false;
+      }
+    } finally { form.removeAttribute('aria-busy'); }
+  });
+  document.addEventListener('click', async event => {
+    if (!window.ViabilAuth?.isSuperAdmin()) return;
+    if (event.target.closest('[data-create-account]')) return accountForm('create');
+    const link = event.target.closest('[data-account-link]');
+    const status = event.target.closest('[data-account-status]');
+    if (link && !link.disabled) return accountForm('link', accounts.get(link.dataset.accountLink));
+    if (status) return accountForm('status', accounts.get(status.dataset.accountStatus));
+    if (event.target.closest('[data-copy-access-link]')) {
+      const input = document.getElementById('private-access-link');
+      const feedback = document.querySelector('[data-copy-status]');
+      try { await navigator.clipboard.writeText(input.value); feedback.textContent = 'Link copiado. Entregue por um canal privado.'; }
+      catch { input.select(); feedback.textContent = 'Selecione e copie o link com o teclado.'; }
+    }
+  });
   function usageSection(data){return `<section class="panel admin-section" aria-labelledby="admin-usage-title"><div class="panel-title"><h2 id="admin-usage-title">Gerenciar usos por usuário</h2><span>Sem renovação mensal</span></div><p class="admin-approval-intro">Cada conta começa com 0 usos. Após aprovar o cadastro, libere a quantidade de análises para aquela pessoa. O superadministrador possui uso sem limite.</p><div class="admin-usage-list">${data.users.filter(account=>account.role!=='super_admin').map(account=>`<article class="admin-usage-card"><div><h3>${esc(account.name)}</h3><p>${esc(account.email)}</p><span class="account-approval" data-status="${esc(account.accountStatus)}">${approvalLabel(account.accountStatus)}</span></div><div class="admin-usage-summary"><strong>${number(account.creditBalance)} <small>disponíveis</small></strong><span>${number(account.usedCredits)} análises consumidas</span></div><button class="btn primary" data-manage-credits="${esc(account.id)}" ${account.accountStatus!=='approved'?'disabled':''} aria-label="Liberar usos para ${esc(account.name)}">${account.accountStatus==='approved'?'Liberar usos':'Aguarda aprovação'}</button></article>`).join('')||'<p class="admin-empty">Novos usuários aparecerão aqui para a liberação individual de usos.</p>'}</div></section>`;}
-  const approvalLabel = value => ({approved:'Aprovado',pending:'Pendente',rejected:'Recusado'}[value] || 'Pendente');
+  const approvalLabel = value => ({approved:'Aprovado',pending:'Pendente',rejected:'Recusado',blocked:'Bloqueado'}[value] || 'Pendente');
   function pendingSection(data) {
     return `<section class="panel admin-section" aria-labelledby="admin-pending-title"><div class="panel-title"><h2 id="admin-pending-title">Cadastros aguardando aprovação</h2><span>${number(data.totals.pendingUsers)} ${data.totals.pendingUsers===1?'pendente':'pendentes'}</span></div>${data.pendingUsers.length ? `<p class="admin-approval-intro">Confira nome e e-mail antes de liberar o acesso. A fila mostra até 100 pedidos, dos mais antigos aos mais recentes.</p><div class="admin-pending-list">${data.pendingUsers.map(account=>`<article class="admin-pending-account" data-review-card><div><h3>${esc(account.name)}</h3><p>${esc(account.email)}</p><small>Perfil: ${account.role==='super_admin'?'Superadministrador':'Usuário'} · Solicitado em ${date(account.createdAt)}</small></div><div class="admin-review-actions"><button class="btn primary" data-account-review="${esc(account.id)}" data-decision="approved" aria-label="Aprovar acesso de ${esc(account.name)}">Aprovar acesso</button><button class="btn" data-account-review="${esc(account.id)}" data-decision="rejected" aria-label="Recusar cadastro de ${esc(account.name)}">Recusar</button></div></article>`).join('')}</div>` : '<p class="admin-empty">Nenhum cadastro pendente. Novos pedidos aparecerão aqui para sua análise.</p>'}</section>`;
   }
   const date = value => new Intl.DateTimeFormat('pt-BR', {dateStyle:'short'}).format(new Date(value));
   function view() {
     if (!window.ViabilAuth?.isSuperAdmin()) return `${heading('ACESSO RESTRITO','Administração.','Esta área exige o perfil de superadministrador.')}`;
-    return `${heading('ADMINISTRAÇÃO · SUPERADMINISTRADOR','Visão geral do sistema.','Acompanhe as contas e os estudos salvos no ViabilEasy.','<button class="btn primary" data-open-documents>'+icon('upload')+'Documentos oficiais</button><button class="btn" data-admin-refresh>'+icon('rotate')+'Atualizar dados</button>')}<p id="admin-feedback" class="admin-feedback" role="status" aria-live="polite" hidden></p><div id="admin-content" aria-live="polite" aria-busy="true"><p class="panel admin-loading" role="status">Carregando os dados do sistema…</p></div>`;
+    return `${heading('ADMINISTRAÇÃO · SUPERADMINISTRADOR','Visão geral do sistema.','Acompanhe as contas e os estudos salvos no ViabilEasy.','<button class="btn primary" data-create-account>Cadastrar pessoa</button><button class="btn" data-open-documents>'+icon('upload')+'Documentos oficiais</button><button class="btn" data-admin-refresh>'+icon('rotate')+'Atualizar dados</button>')}<p id="admin-feedback" class="admin-feedback" role="status" aria-live="polite" hidden></p><div id="admin-content" aria-live="polite" aria-busy="true"><p class="panel admin-loading" role="status">Carregando os dados do sistema…</p></div>`;
   }
   async function mount() {
     const node = document.getElementById('admin-content');
@@ -21,7 +124,7 @@
       if (!node.isConnected || version !== requestVersion || window.ViabilAuth.accountId() !== accountId || !window.ViabilAuth.isSuperAdmin()) return;
       if (!response.ok) throw Error(data.error || 'Não foi possível carregar os dados.');
       accounts=new Map(data.users.map(account=>[account.id,account]));
-      node.innerHTML = `<div class="overview-stats admin-stats">${metric('CONTAS CADASTRADAS',number(data.totals.users),'Todas as contas do sistema')}${metric('ESTUDOS SALVOS',number(data.totals.studies),'Total de estudos das contas')}${metric('CADASTROS PENDENTES',number(data.totals.pendingUsers),'Aguardando sua aprovação')}${metric(data.totals.sessionLabel||'SESSÕES ATIVAS',number(data.totals.activeSessions),data.totals.sessionDescription||'Sessões dentro do prazo de acesso')}</div>${pendingSection(data)}${usageSection(data)}<section class="panel admin-section" aria-labelledby="admin-users-title"><div class="panel-title"><h2 id="admin-users-title">Contas do sistema</h2><span>Até 100 cadastros mais recentes</span></div><div class="table-scroll"><table class="admin-table"><thead><tr><th scope="col">Conta</th><th scope="col">Perfil</th><th scope="col">Aprovação</th><th scope="col">Estudos</th><th scope="col">Cadastro</th></tr></thead><tbody>${data.users.map(account=>`<tr><td><strong>${esc(account.name)}</strong><span class="admin-email">${esc(account.email)}</span></td><td><span class="account-badge">${account.role==='super_admin'?'Superadministrador':'Usuário'}</span></td><td><span class="account-approval" data-status="${esc(account.accountStatus)}">${approvalLabel(account.accountStatus)}</span>${account.reviewedAt?`<small class="admin-email">${date(account.reviewedAt)} · ${esc(account.reviewerName||'Superadministrador')}</small>`:''}</td><td>${number(account.studyCount)}</td><td>${date(account.createdAt)}</td></tr>`).join('') || '<tr><td colspan="5">Nenhuma conta cadastrada.</td></tr>'}</tbody></table></div></section><section class="panel admin-section" aria-labelledby="admin-studies-title"><div class="panel-title"><h2 id="admin-studies-title">Últimos estudos salvos</h2><span>Até 20 estudos mais recentes</span></div>${data.recentStudies.length?`<div class="table-scroll"><table class="admin-table"><thead><tr><th scope="col">Estudo</th><th scope="col">Responsável</th><th scope="col">Atualização</th></tr></thead><tbody>${data.recentStudies.map(study=>`<tr><td><strong>${esc(study.name)}</strong><span class="admin-email">${esc(study.id)}</span></td><td>${esc(study.ownerName)}<span class="admin-email">${esc(study.ownerEmail)}</span></td><td>${date(study.updatedAt)}</td></tr>`).join('')}</tbody></table></div>`:'<p class="admin-empty">Os estudos aparecerão aqui quando forem salvos pelas contas.</p>'}</section>`;
+      node.innerHTML = `<div class="overview-stats admin-stats">${metric('CONTAS CADASTRADAS',number(data.totals.users),'Todas as contas do sistema')}${metric('ESTUDOS SALVOS',number(data.totals.studies),'Total de estudos das contas')}${metric('CADASTROS PENDENTES',number(data.totals.pendingUsers),'Aguardando sua aprovação')}${metric(data.totals.sessionLabel||'SESSÕES ATIVAS',number(data.totals.activeSessions),data.totals.sessionDescription||'Sessões dentro do prazo de acesso')}</div>${pendingSection(data)}${usageSection(data)}<section class="panel admin-section" aria-labelledby="admin-users-title"><div class="panel-title"><h2 id="admin-users-title">Contas do sistema</h2><span>Até 100 cadastros mais recentes</span></div><div class="table-scroll"><table class="admin-table"><thead><tr><th scope="col">Conta</th><th scope="col">Perfil</th><th scope="col">Aprovação</th><th scope="col">Estudos</th><th scope="col">Cadastro</th><th scope="col">Acesso</th></tr></thead><tbody>${data.users.map(account=>`<tr><td><strong>${esc(account.name)}</strong><span class="admin-email">${esc(account.email)}</span></td><td><span class="account-badge">${account.role==='super_admin'?'Superadministrador':'Usuário'}</span></td><td><span class="account-approval" data-status="${esc(account.accountStatus)}">${approvalLabel(account.accountStatus)}</span>${account.reviewedAt?`<small class="admin-email">${date(account.reviewedAt)} · ${esc(account.reviewerName||'Superadministrador')}</small>`:''}</td><td>${number(account.studyCount)}</td><td>${date(account.createdAt)}</td><td><span class="admin-email">${account.hasPassword ? 'Senha definida' : 'Senha pendente'} · ${account.emailVerified ? 'E-mail verificado' : 'E-mail sem verificação independente'}</span>${accountActions(account)}</td></tr>`).join('') || '<tr><td colspan="6">Nenhuma conta cadastrada.</td></tr>'}</tbody></table></div></section><section class="panel admin-section" aria-labelledby="admin-studies-title"><div class="panel-title"><h2 id="admin-studies-title">Últimos estudos salvos</h2><span>Até 20 estudos mais recentes</span></div>${data.recentStudies.length?`<div class="table-scroll"><table class="admin-table"><thead><tr><th scope="col">Estudo</th><th scope="col">Responsável</th><th scope="col">Atualização</th></tr></thead><tbody>${data.recentStudies.map(study=>`<tr><td><strong>${esc(study.name)}</strong><span class="admin-email">${esc(study.id)}</span></td><td>${esc(study.ownerName)}<span class="admin-email">${esc(study.ownerEmail)}</span></td><td>${date(study.updatedAt)}</td></tr>`).join('')}</tbody></table></div>`:'<p class="admin-empty">Os estudos aparecerão aqui quando forem salvos pelas contas.</p>'}</section>`;
     } catch (error) {
       if (node.isConnected && version === requestVersion) node.innerHTML = `<p class="admin-empty" role="alert">${esc(error.message)}</p><button class="btn" data-admin-refresh>Tentar novamente</button>`;
     } finally { if (node.isConnected && version === requestVersion) node.setAttribute('aria-busy','false'); }
@@ -40,7 +143,7 @@
   });
   document.addEventListener('click', async event => {
     const manage=event.target.closest('[data-manage-credits]');
-    if(manage&&!manage.disabled){const account=accounts.get(manage.dataset.manageCredits);if(!account)return;modal('Liberar usos para '+esc(account.name),`<p>Saldo atual: <strong>${number(account.creditBalance)} usos</strong>. Cada análise nova consome 1 uso.</p><form id="grant-uses-form" data-account-id="${esc(account.id)}" data-request-key="${crypto.randomUUID()}"><label class="setback-field" for="grant-uses-amount">Quantidade de usos a adicionar<input id="grant-uses-amount" name="amount" type="number" min="1" max="1000" step="1" required placeholder="Ex.: 5"></label><label class="setback-field" for="grant-uses-note">Identificação da liberação (opcional)<input id="grant-uses-note" name="note" maxlength="250" placeholder="Ex.: liberação avulsa acordada"></label><p role="alert" class="auth-message" hidden></p><button class="btn primary" type="submit">Adicionar usos ao saldo</button></form>`);return;}
+    if(manage&&!manage.disabled){const account=accounts.get(manage.dataset.manageCredits);if(!account)return;modal('Liberar usos para '+esc(account.name),`<p>Saldo atual: <strong>${number(account.creditBalance)} usos</strong>. Cada análise nova consome 1 uso.</p><form id="grant-uses-form" data-account-id="${esc(account.id)}" data-request-key="${crypto.randomUUID()}"><label class="setback-field" for="grant-uses-amount">Quantidade de usos a adicionar<input id="grant-uses-amount" name="amount" type="number" min="1" max="1000" step="1" required placeholder="Ex.: 5"></label><label class="setback-field" for="grant-uses-note">Motivo da liberação<input id="grant-uses-note" name="note" minlength="3" maxlength="250" required placeholder="Ex.: liberação avulsa acordada"></label><p role="alert" class="auth-message" hidden></p><button class="btn primary" type="submit">Adicionar usos ao saldo</button></form>`);return;}
 
     const button = event.target.closest('[data-account-review]');
     if (button && !button.disabled && state.page === 'admin') {
@@ -50,7 +153,7 @@
       buttons.forEach(item=>item.disabled=true);
       feedback.hidden=false; feedback.setAttribute('role','status'); feedback.textContent='Salvando a decisão…';
       try {
-        const response = await fetch('/api/admin/users/'+encodeURIComponent(button.dataset.accountReview)+'/review',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json','X-Viabileasy-Request':'1'},body:JSON.stringify({decision:button.dataset.decision})});
+        const response = await fetch('/api/admin/users/'+encodeURIComponent(button.dataset.accountReview)+'/review',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json','X-Viabileasy-Request':'1'},body:JSON.stringify({decision:button.dataset.decision,requestKey:button.dataset.requestKey ||= crypto.randomUUID(),note:'Revisão administrativa pelo painel'})});
         const data = await response.json();
         if (!response.ok) throw Error(data.error || 'Não foi possível validar o cadastro.');
         if (feedback.isConnected) feedback.textContent=button.dataset.decision==='approved'?`Acesso de ${name} aprovado. A pessoa já pode entrar; libere os usos na seção de gerenciamento.`:`Cadastro de ${name} recusado. O acesso permanece bloqueado.`;

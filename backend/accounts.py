@@ -47,6 +47,8 @@ def auth_rate(request, label, maximum, duration):
 
 
 def approval_error(user):
+    if user["disabled_at"]:
+        raise APIError(403, "Seu acesso foi bloqueado. Fale com o administrador.", "ACCOUNT_BLOCKED")
     if user["account_status"] != "approved":
         rejected = user["account_status"] == "rejected"
         raise APIError(
@@ -65,11 +67,19 @@ def session(request: Request):
         return {
             "user": public_user(conn, user) if user else None,
             "googleEnabled": request.app.state.settings.google_enabled,
+            "registrationMode": request.app.state.settings.registration_mode,
+            "passwordRecovery": bool(
+                request.app.state.settings.smtp_host
+                or request.app.state.settings.resend_api_key
+                or request.app.state.settings.brevo_api_key
+            ),
         }
 
 
 @router.post("/auth/register", status_code=201)
 def register(request: Request, data: dict = Depends(body)):
+    if request.app.state.settings.registration_mode == "admin":
+        raise APIError(403, "Para criar sua conta, fale com o administrador.", "CONTACT_ADMIN")
     auth_rate(request, "register", 10, 3_600_000)
     email = email_of(data.get("email"))
     name = field(data.get("name"), 100, "nome", 2)
@@ -145,6 +155,10 @@ def forgot(request: Request, data: dict = Depends(body)):
         user = one(conn, "SELECT * FROM users WHERE email=?", (email,))
         if not user:
             return result
+        user = request.app.state.db.lock_user(conn, user["id"])
+        if user["disabled_at"] or user["account_status"] == "rejected":
+            return result
+        execute(conn, "DELETE FROM resets WHERE user_id=?", (user["id"],))
         execute(
             conn,
             "INSERT INTO resets(hash,user_id,expires_at) VALUES(?,?,?)",
@@ -167,7 +181,11 @@ def forgot(request: Request, data: dict = Depends(body)):
 def reset_record(conn, data):
     secret = data.get("token")
     row = (
-        one(conn, "SELECT * FROM resets WHERE hash=? AND expires_at>?", (digest(secret), now()))
+        one(
+            conn,
+            "SELECT r.* FROM resets r JOIN users u ON u.id=r.user_id WHERE r.hash=? AND r.expires_at>? AND u.disabled_at IS NULL AND u.account_status<>'rejected'",
+            (digest(secret), now()),
+        )
         if isinstance(secret, str)
         else None
     )
@@ -195,6 +213,23 @@ def reset_password(request: Request, data: dict = Depends(body)):
     with db.transaction() as conn:
         db.lock_user(conn, pending["user_id"])
         current = reset_record(conn, data)
+        issuer = one(
+            conn,
+            "SELECT actor_id FROM account_events WHERE user_id=? AND action IN ('created','access-link') ORDER BY created_at DESC LIMIT 1",
+            (current["user_id"],),
+        )
+        execute(
+            conn,
+            "INSERT INTO account_events(id,user_id,actor_id,action,operation_key,note,created_at) VALUES(?,?,?,'password-defined',?,?,?)",
+            (
+                str(uuid4()),
+                current["user_id"],
+                issuer["actor_id"] if issuer else current["user_id"],
+                "password:" + current["hash"],
+                "Senha definida pelo portador do link privado",
+                now(),
+            ),
+        )
         execute(
             conn,
             "UPDATE users SET password_hash=?,updated_at=? WHERE id=?",
@@ -389,7 +424,7 @@ def google_callback(request: Request):
                 )
                 user = one(conn, "SELECT * FROM users WHERE id=?", (user_id,))
             user = db.lock_user(conn, user["id"])
-            if user["account_status"] != "approved":
+            if user["account_status"] != "approved" or user["disabled_at"]:
                 return redirect(
                     "approval_rejected" if user["account_status"] == "rejected" else "approval_pending"
                 )

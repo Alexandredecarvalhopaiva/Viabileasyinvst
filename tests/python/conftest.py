@@ -54,6 +54,7 @@ def system(request, tmp_path):
         app_url=ORIGIN,
         data_dir=Path(tmp_path),
         database_url=database_url,
+        registration_mode="approval",
         google_client_id="test-client",
         google_client_secret="test-secret",
     )

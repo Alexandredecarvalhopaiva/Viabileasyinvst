@@ -296,6 +296,9 @@ body[data-auth=ready] .source-card .document-notes{font-size:var(--text-sm);line
 .admin-pending-account p{font-size:var(--text-sm);line-height:1.8;overflow-wrap:anywhere}
 .admin-pending-account small{font-size:var(--text-xs);color:var(--text-secondary)}
 .admin-review-actions{display:flex;flex-wrap:wrap;gap:var(--space-3);flex-shrink:0}
+.modal.admin-account-modal{width:min(560px,calc(100vw - 32px));min-width:0}
+.admin-account-modal form{display:grid;gap:var(--space-4);min-width:0}
+.admin-account-modal .btn{justify-self:start;max-width:100%}
 .account-approval{display:inline-flex;border-radius:24px;background:#e8f8f1;color:#245347;padding:4px 10px;font-size:var(--text-xs);white-space:nowrap}
 .account-approval[data-status=pending]{background:#fff3d9;color:#72520c}
 .account-approval[data-status=rejected]{background:#fff0eb;color:#993b30}

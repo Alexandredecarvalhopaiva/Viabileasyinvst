@@ -45,6 +45,9 @@ users = table(
     Column("role", String, nullable=False, server_default="user"),
     Column("account_status", String, nullable=False, server_default="pending"),
     Column("reviewed_at", BigInteger),
+    Column("disabled_at", BigInteger),
+    Column("email_verified_at", BigInteger),
+    Column("creation_key", String, unique=True),
     Column(
         "reviewed_by",
         String,
@@ -126,6 +129,17 @@ table(
     UniqueConstraint("user_id", "kind", "operation_key"),
 )
 table("schema_versions", Column("version", Integer, primary_key=True))
+table(
+    "account_events",
+    Column("id", String, primary_key=True),
+    Column("user_id", String, ForeignKey("users.id"), nullable=False),
+    Column("actor_id", String, ForeignKey("users.id"), nullable=False),
+    Column("action", String, nullable=False),
+    Column("operation_key", String, nullable=False),
+    Column("note", Text, nullable=False),
+    Column("created_at", BigInteger, nullable=False),
+    UniqueConstraint("user_id", "operation_key"),
+)
 
 
 def execute(conn, sql, params=()):
@@ -186,9 +200,13 @@ class Database:
             for name, definition in {
                 "reviewed_at": "BIGINT",
                 "reviewed_by": "TEXT REFERENCES users(id) ON DELETE SET NULL",
+                "disabled_at": "BIGINT",
+                "email_verified_at": "BIGINT",
+                "creation_key": "TEXT",
             }.items():
                 if name not in cols:
                     execute(conn, f"ALTER TABLE users ADD COLUMN {name} {definition}")
+            execute(conn, "CREATE UNIQUE INDEX IF NOT EXISTS users_creation_key ON users(creation_key)")
             if "last_opened_at" not in {c["name"] for c in inspect(conn).get_columns("studies")}:
                 execute(conn, "ALTER TABLE studies ADD COLUMN last_opened_at BIGINT")
             execute(conn, "CREATE INDEX IF NOT EXISTS documents_lot ON documents(user_id,lot_id,created_at)")

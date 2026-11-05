@@ -3,4 +3,6 @@ BACKEND=supabase
 APP_URL=https://YOUR-PRODUCTION-HOST.pages.dev
 SUPABASE_URL=https://YOUR-PROJECT.supabase.co
 SUPABASE_PUBLISHABLE_KEY=YOUR-PUBLISHABLE-OR-ANON-KEY
-# No database password, Google secret or service-role key belongs here.
+# Server-only secret for managed account creation and private first-access links.
+# Configure as an encrypted Pages Function secret. Never include it in dist/.
+SUPABASE_SECRET_KEY=YOUR-SERVER-ONLY-SECRET-OR-SERVICE-ROLE-KEY

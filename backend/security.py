@@ -96,12 +96,12 @@ def active_user(conn, request, required=True, lock=False):
     user = one(
         conn,
         """SELECT users.* FROM sessions JOIN users ON users.id=sessions.user_id
-        WHERE sessions.hash=? AND sessions.expires_at>? AND users.account_status='approved'""",
+        WHERE sessions.hash=? AND sessions.expires_at>? AND users.account_status='approved' AND users.disabled_at IS NULL""",
         (session_hash(request), now()),
     )
     if user and lock:
         user = request.app.state.db.lock_user(conn, user["id"])
-        if user["account_status"] != "approved":
+        if user["account_status"] != "approved" or user["disabled_at"]:
             user = None
     if required and not user:
         raise APIError(401, "Sua sessão terminou. Entre novamente para continuar.")
@@ -133,7 +133,8 @@ def public_user(conn, user):
         "email": user["email"],
         "name": user["name"],
         "role": user["role"],
-        "accountStatus": user["account_status"],
+        "accountStatus": "blocked" if user["disabled_at"] else user["account_status"],
+        "emailVerified": bool(user["email_verified_at"]),
         "usage": usage(conn, user)
         if user["account_status"] == "approved"
         else {"unlimited": False, "balance": 0, "used": 0},

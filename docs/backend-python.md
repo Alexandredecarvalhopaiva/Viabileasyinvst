@@ -35,7 +35,7 @@ Documentação HTTP: `/api/docs`; schema OpenAPI: `/api/openapi.json`. Os objeto
 | Rotas | Comportamento |
 |---|---|
 | `GET /api/auth/session` | Sessão da conta e disponibilidade do Google |
-| `POST /api/auth/register` | Cadastro pendente, sem sessão e sem escolha de perfil |
+| `POST /api/auth/register` | Cadastro pendente quando `REGISTRATION_MODE=approval`, fechado no padrão `admin` |
 | `POST /api/auth/login`, `/api/auth/logout` | Sessões HttpOnly; logout revoga a sessão |
 | `POST /api/auth/forgot-password`, `/api/auth/reset/check`, `/api/auth/reset-password` | Resposta genérica, tokens expirantes e uso único; troca de senha revoga sessões |
 | `GET /api/auth/google`, `/api/auth/google/callback` | OAuth com state, PKCE S256, nonce e ID token verificado |
@@ -45,10 +45,13 @@ Documentação HTTP: `/api/docs`; schema OpenAPI: `/api/openapi.json`. Os objeto
 | `GET /api/usage` | Saldo e consumo da própria conta |
 | `GET/POST /api/documents`, `GET /api/documents/{id}/file`, `DELETE /api/documents/{id}` | PDFs privados e biblioteca legislativa compartilhada |
 | `GET /api/admin/overview` | Contas, pendências, créditos, sessões e estudos; sem segredos |
+| `POST /api/admin/users`, `/api/admin/users/{id}/access-link`, `/api/admin/users/{id}/status` | Cadastro administrado, recuperação privada e bloqueio com revogação |
 | `POST /api/admin/users/{id}/review`, `/api/admin/users/{id}/credits` | Exclusivo do superadministrador |
 | `GET /api/health`, `/api/ready` | Processo e conexão/esquema do banco |
 
 Todas as alterações em `/api/*` exigem `Origin` igual a `APP_URL` e `X-Viabileasy-Request: 1`. Há limite de corpo também para uploads fragmentados. PDFs têm até 10 MB e quota por conta; imagens de perfil têm até 450 KB após processamento no frontend. Dados do usuário não são incluídos em mensagens internas de erro. Os endpoints novos de exclusão não acrescentam botões de exclusão à interface nesta entrega.
+
+O procedimento de cadastro, primeiro acesso, aprovação, saldo, bloqueio e retorno está em [administracao-contas.md](administracao-contas.md).
 
 ## Contas existentes e SQLite
 

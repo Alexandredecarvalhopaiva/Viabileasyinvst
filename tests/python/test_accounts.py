@@ -284,7 +284,7 @@ def test_readiness_detects_missing_schema_version(system):
 def test_production_requires_persistent_database_https_and_email(tmp_path):
     from backend.config import Settings
 
-    s = Settings(data_dir=tmp_path, environment="production")
+    s = Settings(data_dir=tmp_path, environment="production", registration_mode="approval")
     with pytest.raises(ValueError, match="HTTPS"):
         s.validate()
     s = replace(s, app_url="https://example.test")

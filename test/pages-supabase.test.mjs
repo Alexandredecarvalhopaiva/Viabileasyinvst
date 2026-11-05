@@ -72,7 +72,7 @@ test('Session exposes only application data and refreshes expired tokens on the 
     return response({user:{id:identity.id,accountStatus:'approved'}});
   });
   assert.equal(res.status,200);
-  assert.deepEqual(await res.json(),{user:{id:identity.id,accountStatus:'approved'},googleEnabled:false,googleOnly:false,passwordEnabled:true,registrationMode:'admin',passwordRecovery:false});
+  assert.deepEqual(await res.json(),{user:{id:identity.id,accountStatus:'approved'},googleEnabled:false,googleOnly:false,passwordEnabled:true,registrationMode:'admin',passwordRecovery:false,passwordMaxBytes:72});
   assert.equal(res.headers.getSetCookie().length,2);
   assert.match(res.headers.get('Cache-Control'),/no-store/);
 });
@@ -205,4 +205,101 @@ test('Refreshing a browser-only password session does not turn it into a persist
   });
   assert.equal(res.status,200);
   assert.ok(res.headers.getSetCookie().every(value=>!value.includes('Max-Age=')));
+});
+
+const adminSession = '00000000-0000-4000-8000-000000000001';
+const adminToken = 'header.' + Buffer.from(JSON.stringify({session_id: adminSession})).toString('base64url') + '.signature';
+const managedEnv = {...env, SUPABASE_SECRET_KEY: 'sb_secret_synthetic_test'};
+const adminRequest = (path, data) => request(path, 'POST', data, {Cookie: '__Host-ve_access=' + adminToken});
+
+test('Managed account creation is authorized first and its server secret stays out of responses', async () => {
+  let storedHash;
+  const res = await supabaseAPI(adminRequest('/api/admin/users', {name: 'Nova Pessoa', email: ' New@Example.Test ', requestKey: 'create-1', role: 'super_admin', balance: 1000}), managedEnv, async (url, options) => {
+    if (url.endsWith('/auth/v1/user')) return response(identity);
+    const data = JSON.parse(options.body);
+    if (url.endsWith('/viabil_api')) {
+      assert.equal(data.operation, 'account-admin');
+      assert.equal(options.headers.Authorization, 'Bearer ' + adminToken);
+      return response({user: {id: 'admin-id'}});
+    }
+    assert.equal(options.headers.apikey, managedEnv.SUPABASE_SECRET_KEY);
+    assert.equal(options.headers.Authorization, undefined);
+    if (url.endsWith('/admin/users')) {
+      assert.equal(data.email, 'new@example.test');
+      assert.equal(data.email_confirm, false);
+      assert.equal(data.password.length, 43);
+      assert.equal(data.app_metadata.viabil_actor, 'admin-id');
+      assert.equal(data.role, undefined);
+      return response({id: 'new-id'});
+    }
+    assert.equal(data.payload.sessionId, adminSession);
+    if (data.operation === 'lookup') return response({userId: null});
+    assert.equal(data.operation, 'provision');
+    assert.match(data.payload.hash, /^[a-f0-9]{64}$/);
+    storedHash = data.payload.hash;
+    return response({user: {id: 'new-id', role: 'user', accountStatus: 'pending'}, expiresAt: 1});
+  });
+  assert.equal(res.status, 201);
+  const data = await res.json();
+  assert.equal(data.delivery, 'manual');
+  const token = new URL(data.accessLink).hash.slice('#reset='.length);
+  assert.equal(Buffer.from(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(token))).toString('hex'), storedHash);
+  assert.doesNotMatch(JSON.stringify(data), /sb_secret|password|access_token|refresh_token/);
+});
+
+test('Ordinary and anonymous users cannot reach account provisioning or private link generation', async () => {
+  for (const path of ['/api/admin/users', '/api/admin/users/person/access-link']) {
+    let calls = 0;
+    const denied = await supabaseAPI(adminRequest(path, {requestKey: 'forged'}), managedEnv, async (url) => {
+      calls++;
+      if (url.endsWith('/auth/v1/user')) return response(identity);
+      assert.ok(url.endsWith('/viabil_api'));
+      return response({error: 'Acesso restrito', status: 403});
+    });
+    assert.equal(denied.status, 403);
+    assert.equal(calls, 2);
+    const anonymous = await supabaseAPI(request(path, 'POST', {}, {Cookie: ''}), managedEnv, () => assert.fail('No provider call'));
+    assert.equal(anonymous.status, 401);
+  }
+});
+
+test('Password definition consumes the link before changing provider credentials and returning to login', async () => {
+  const operations = [];
+  const res = await supabaseAPI(request('/api/auth/reset-password', 'POST', {token: 'x'.repeat(43), password: 'Senha individual de teste'}), managedEnv, async (url, options) => {
+    const data = JSON.parse(options.body);
+    if (url.endsWith('/admin/users/person-id')) {
+      operations.push('provider-password');
+      assert.equal(options.method, 'PUT');
+      assert.equal(data.email_confirm, true);
+      return response({id: 'person-id'});
+    }
+    operations.push(data.operation);
+    assert.match(data.payload.hash, /^[a-f0-9]{64}$/);
+    assert.equal(data.payload.password, undefined);
+    return response(data.operation === 'consume' ? {userId: 'person-id'} : {ok: true});
+  });
+  assert.equal(res.status, 200);
+  assert.deepEqual(operations, ['consume', 'provider-password', 'complete']);
+  assert.ok(res.headers.getSetCookie().every(value => value.includes('Max-Age=0')));
+  assert.doesNotMatch(await res.text(), /Senha individual|xxxxxxxx|access_token/);
+});
+
+test('Provider password failure leaves the account closed and does not complete activation', async () => {
+  const operations = [];
+  const res = await supabaseAPI(request('/api/auth/reset-password', 'POST', {token: 'x'.repeat(43), password: 'Senha individual de teste'}), managedEnv, async (url, options) => {
+    if (url.endsWith('/admin/users/person-id')) return response({error: 'private diagnostic'}, 500);
+    const data = JSON.parse(options.body);
+    operations.push(data.operation);
+    return response({userId: 'person-id'});
+  });
+  assert.equal(res.status, 503);
+  assert.deepEqual(operations, ['consume']);
+  assert.doesNotMatch(await res.text(), /private diagnostic|Senha individual/);
+});
+
+test('Malformed links and passwords beyond the real provider limit cannot consume a link', async () => {
+  for (const data of [{token: 'broken', password: 'valid test password'}, {token: 'x'.repeat(43), password: 'a'.repeat(73)}, {token: 'x'.repeat(43), password: 'á'.repeat(37)}]) {
+    const res = await supabaseAPI(request('/api/auth/reset-password', 'POST', data), managedEnv, () => assert.fail('Must validate before consuming'));
+    assert.equal(res.status, 400);
+  }
 });
