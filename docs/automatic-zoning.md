@@ -13,3 +13,53 @@ A consulta fica registrada no terreno/JSON e no relatório: camada, origem, data
 O aviso de uso do [Filipeia](https://filipeia.joaopessoa.pb.gov.br/) contém condições de utilização e atribuição; compatibilidade com exploração comercial continua dependendo de esclarecimento/autorização do operador. Esta mudança entrega integração técnica, sem certificar conformidade urbanística ou licença de redistribuição comercial.
 
 Validação: `npm test`; testes específicos em `test/urban-lookup*.test.cjs`, `test/territory.test.mjs` e `tests/python/test_territory.py`. A jornada de navegador também foi exercitada com conta sintética no backend local, importação de GeoJSON, consulta real ao Filipeia, pré-seleção ZH2, salvamento e relatório em desktop/celular.
+
+## Continuidade da CPTECH-3 em 05/11/2026
+
+A implementação do PR #1 foi reutilizada em branch isolada. Quatro regressões
+foram reproduzidas antes da correção em `test/urban-lookup-ui.test.cjs`.
+
+- A primeira consulta apagava exceções manuais de estudos antigos que conservavam
+  `origin=territory`. A aplicação passa pelo mesmo método de preservação usado
+  na resposta, mantendo o documento e indicando divergências de zona.
+- Um erro recebido durante edição aplicava um estado de falha ao contexto
+  confirmado. A proteção de edição agora cobre sucesso e erro.
+- Respostas descartadas deixavam o snapshot em carregamento. Ao descartar uma
+  resposta, o snapshot anterior da mesma identidade é restaurado. Sem snapshot
+  anterior, uma consulta posterior pode tentar novamente.
+- O preenchimento inicial substituía a ocupação ajustada durante a requisição.
+  A ocupação solicitada é conservada quando mudou ou quando há contexto técnico
+  preservado. O limite documental continua registrado separadamente.
+
+Os testes usam respostas territoriais sintéticas. A suíte frontend passou com
+98 testes, a suíte Python com 52 testes e as verificações geométricas com 144
+casos. Quatro integrações Python exigem PostgreSQL ou ferramentas de migração
+e foram puladas. Ruff e `git diff --check` passaram.
+
+Na verificação de navegador desta rodada, o login foi exercitado no backend
+Python local com conta sintética descartável. Território usou fixture sintética
+ZH2 e `/api/calculate` foi interceptado pelo módulo canônico de cálculo. Foram
+conferidos desktop 1440×1000, celular 390×844, carregamento, conflito com exceção
+manual preservada, ausência de transbordamento horizontal, acionamento da
+reconsulta por teclado e fonte/conflito no HTML do relatório. O console ficou
+sem erros. Essa verificação se limita ao ambiente local e à fixture descrita.
+
+### Aceite ainda pendente
+
+AUT-01, AUT-02, AUT-04 e AUT-07 dependem da base normativa revisada, de vigência,
+licença e cobertura territorial comprovadas. A Base_Regras_JP de 302 regras
+continua ausente dos arquivos versionados inspecionados. O motor existente
+permanece demonstrativo e registra `validatedRuleCount=0`.
+
+AUT-05 tem cobertura sintética para multizona, borda, ausência de cobertura e
+polígono coberto. A validação profissional com fontes homologadas continua
+pendente. AUT-06 cobre posição, geometria, testadas e respostas atrasadas.
+Seleção de data normativa e versões de fontes por estudo requer contrato com
+Backend e Mika. A chave espacial atual não representa esse contrato completo.
+AUT-08 preserva exceções, mas ainda precisa do registro completo de autoria e
+versão do ajuste. AUT-03 e AUT-09 continuam sujeitos à revisão de produto e UX.
+
+A próxima dependência é disponibilizar o pacote revisado com matriz de fontes,
+vigência, licença e casos profissionais, e combinar seu contrato de resolução
+com Backend e Mika. Esta rodada entrega correções revisáveis de preservação do
+contexto e concorrência. A conclusão da automação normativa permanece pendente.

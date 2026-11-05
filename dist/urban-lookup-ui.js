@@ -27,20 +27,27 @@ async function refreshUrbanLookup(force=false){
  if(!q){UrbanLookup.apply(lot,{key:identity,status:'no_location'});render();return;}
  const controller=new AbortController(),task={lot,key:identity,controller};urbanLookupPending=task;
  const firstLookup=!existing||existing.key!==identity;
- if(firstLookup&&lot.urbanContext?.origin==='territory'){delete lot.urbanContext;lot.zone='Não identificado';}
- lot.territory={key:identity,status:'loading'};render();
+ const requestedOccupancy=state.to;
+ const loading={key:identity,status:'loading'};
+ if(firstLookup)UrbanLookup.apply(lot,loading);
+ else lot.territory=loading;
+ render();
  try{
   const response=await fetch('/api/territory?'+q.search,{signal:controller.signal,credentials:'same-origin',cache:'no-store'});
   if(!response.ok)throw Error('lookup');
   const result=UrbanLookup.resolve(lot,await response.json());
   if(urbanLookupPending!==task||state.lot!==lot||UrbanLookup.key(lot)!==identity||state.lookupDirty||state.parcelDirty)return;
   UrbanLookup.apply(lot,result);
-  if(firstLookup&&result.status==='identified'&&result.occupation&&lot.urbanContext?.origin==='territory'){
+  if(firstLookup&&state.to===requestedOccupancy&&result.status==='identified'&&result.occupation&&!result.contextPreserved&&lot.urbanContext?.origin==='territory'){
    state.to=result.occupation.to;result.occupationApplied=true;
   }
  }catch(error){
-  if(urbanLookupPending===task&&state.lot===lot&&UrbanLookup.key(lot)===identity&&error.name!=='AbortError')UrbanLookup.apply(lot,{key:identity,status:'error'});
+  if(urbanLookupPending===task&&state.lot===lot&&UrbanLookup.key(lot)===identity&&!state.lookupDirty&&!state.parcelDirty&&error.name!=='AbortError')UrbanLookup.apply(lot,{key:identity,status:'error'});
  }finally{
+  if(lot.territory===loading){
+   if(existing?.key===identity)lot.territory=existing;
+   else delete lot.territory;
+  }
   if(urbanLookupPending===task){urbanLookupPending=null;if(state.lot===lot)render();}
  }
 }

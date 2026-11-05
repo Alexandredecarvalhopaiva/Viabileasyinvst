@@ -36,3 +36,41 @@ test('Sem localização não consulta nem inventa zona; edição durante consult
  ctx.state.lot=lot();const p=ctx.refreshUrbanLookup();ctx.state.parcelDirty=true;
  calls[0].resolve(response('ZH1'));await p;assert.equal(ctx.state.lot.urbanContext,undefined);
 });
+test('Primeira consulta preserva exceção manual herdada e registra divergência',async()=>{
+ const {ctx,calls}=harness();ctx.state.lot=lot();
+ ctx.state.lot.urbanContext={origin:'territory',mode:'manual',zone:'ZH1',front:7,reference:'Certidão confirmada'};
+ const pending=ctx.refreshUrbanLookup();
+ calls[0].resolve(response('ZH2'));await pending;
+ assert.equal(ctx.state.lot.urbanContext.mode,'manual');
+ assert.equal(ctx.state.lot.urbanContext.front,7);
+ assert.equal(ctx.state.lot.territory.contextConflict,true);
+ assert.equal(ctx.state.to,40);
+});
+test('Falha tardia durante edição preserva o snapshot anterior',async()=>{
+ const {ctx,calls}=harness();ctx.state.lot=lot();
+ let pending=ctx.refreshUrbanLookup();calls[0].resolve(response('ZH1'));await pending;
+ pending=ctx.refreshUrbanLookup(true);ctx.state.parcelDirty=true;
+ calls[1].resolve({ok:false});await pending;
+ assert.equal(ctx.state.lot.urbanContext.zone,'ZH1');
+ assert.equal(ctx.state.lot.territory.status,'identified');
+});
+test('Consulta descartada por edição permite retry e conserva snapshot confirmado',async()=>{
+ const {ctx,calls}=harness();ctx.state.lot=lot();
+ let pending=ctx.refreshUrbanLookup();calls[0].resolve(response('ZH1'));await pending;
+ pending=ctx.refreshUrbanLookup(true);ctx.state.lookupDirty=true;
+ calls[1].resolve(response('ZH2'));await pending;
+ assert.equal(ctx.state.lot.territory.status,'identified');
+ assert.equal(ctx.state.lot.territory.zone,'ZH1');
+ ctx.state.lookupDirty=false;await ctx.refreshUrbanLookup();
+ assert.equal(calls.length,2);
+ pending=ctx.refreshUrbanLookup(true);calls[2].resolve(response('ZH2'));await pending;
+ assert.equal(ctx.state.lot.territory.zone,'ZH2');
+});
+test('Ocupação ajustada durante primeira consulta continua hipótese do usuário',async()=>{
+ const {ctx,calls}=harness();ctx.state.lot=lot();
+ const pending=ctx.refreshUrbanLookup();ctx.state.to=35;
+ calls[0].resolve(response('ZH2'));await pending;
+ assert.equal(ctx.state.to,35);
+ assert.equal(ctx.state.lot.territory.occupation.to,55);
+ assert.notEqual(ctx.state.lot.territory.occupationApplied,true);
+});
