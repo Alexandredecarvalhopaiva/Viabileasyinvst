@@ -17,6 +17,7 @@ class Settings:
     database_url: str = ""
     data_dir: Path = ROOT / ".data"
     environment: str = "development"
+    registration_mode: str = "admin"
     google_client_id: str = ""
     google_client_secret: str = ""
     smtp_host: str = ""
@@ -42,6 +43,7 @@ class Settings:
             database_url=os.getenv("DATABASE_URL", "").strip(),
             data_dir=Path(os.getenv("DATA_DIR", str(ROOT / ".data"))).resolve(),
             environment=os.getenv("APP_ENV", os.getenv("NODE_ENV", "development")).strip().lower(),
+            registration_mode=os.getenv("REGISTRATION_MODE", "admin"),
             google_client_id=os.getenv("GOOGLE_CLIENT_ID", ""),
             google_client_secret=os.getenv("GOOGLE_CLIENT_SECRET", ""),
             smtp_host=os.getenv("SMTP_HOST", ""),
@@ -71,6 +73,8 @@ class Settings:
         errors = []
         if self.environment not in ("development", "test", "production"):
             errors.append("APP_ENV precisa ser development, test ou production.")
+        if self.registration_mode not in ("admin", "approval"):
+            errors.append("REGISTRATION_MODE precisa ser admin ou approval.")
         try:
             url = urlsplit(self.app_url)
             valid_port = url.port is None or 1 <= url.port <= 65535
@@ -91,7 +95,9 @@ class Settings:
         if self.production:
             if url.scheme != "https":
                 errors.append("Produção exige APP_URL HTTPS.")
-            if not (self.smtp_host or self.resend_api_key or self.brevo_api_key):
+            if self.registration_mode != "admin" and not (
+                self.smtp_host or self.resend_api_key or self.brevo_api_key
+            ):
                 errors.append(
                     "Produção exige BREVO_API_KEY, RESEND_API_KEY ou SMTP para recuperação de senha."
                 )
@@ -118,6 +124,11 @@ class Settings:
                     errors.append("DATABASE_URL PostgreSQL inválida; confira host, banco e usuário.")
             _, sender = parseaddr(self.mail_from)
             if (
+                self.registration_mode != "admin"
+                or self.smtp_host
+                or self.resend_api_key
+                or self.brevo_api_key
+            ) and (
                 not sender
                 or "@" not in sender
                 or "\r" in self.mail_from

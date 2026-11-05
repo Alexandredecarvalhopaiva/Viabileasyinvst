@@ -25,13 +25,14 @@ promessa de recuperação automática por e-mail nesta modalidade.
 
 Use o projeto dedicado `viabileasy`. Execute no SQL Editor do Supabase:
 
-`supabase/migrations/202610300001_pages.sql`
+1. `supabase/migrations/202610300001_pages.sql`
+2. `supabase/migrations/202611050001_accounts.sql`
 
-Se aplicou a versão inicial com Google obrigatório, reaplique este arquivo atual:
-ele atualiza as funções sem apagar contas, estudos ou documentos. Não utilize
+Se aplicou a versão inicial com Google obrigatório, reaplique ambos os arquivos atuais em ordem.
+As migrações atualizam funções e acrescentam campos preservando contas, estudos e documentos. Não utilize
 novamente o SQL antigo `202610300001_pages_google.sql`.
 
-Confira:
+Confira os resultados no SQL Editor privado.
 
 ```sql
 select public.viabil_ready();
@@ -54,22 +55,11 @@ cadastros não administrativos; não a desative como atalho para criar contas.
 Se o projeto for exclusivo desta instalação, desabilite o cadastro público para
 que contas só possam ser criadas pela administração do Supabase.
 
-Em **Authentication → Users → Add user → Create new user**:
-
-1. Informe o e-mail e a senha inicial da pessoa.
-2. Use a opção administrativa de confirmação automática apenas depois de
-   conferir a identidade/e-mail dessa pessoa por atendimento.
-3. Crie a conta diretamente, sem **Send invitation**, que depende de e-mail.
-4. A própria pessoa deve inserir a nova senha nos passos que exigem esse segredo;
-   nunca poste senhas no GitHub, em documentação ou neste chat.
-
-A criação de uma conta confirmada no Auth não dá perfil de administrador nem
-créditos automaticamente. No primeiro login o aplicativo cria o perfil pendente.
-
-Para redefinir uma senha sem e-mail, valide a identidade e use o fluxo administrativo
-de alteração de senha do Supabase. Revogue sessões anteriores conforme os controles
-disponíveis no painel antes de orientar a pessoa a entrar novamente. Não compartilhe
-credenciais do painel Supabase com usuários da aplicação.
+O primeiro administrador é preparado pelo responsável conforme a seção 4. As demais
+pessoas são cadastradas em **Administração → Cadastrar pessoa**. O painel apresenta
+um link privado de uso único para definição individual da senha. Aprovação e saldo
+são liberados separadamente. A recuperação usa **Gerar link de acesso** na conta.
+O procedimento completo está em [administracao-contas.md](administracao-contas.md).
 
 ## 3. Configurar Cloudflare Pages
 
@@ -81,9 +71,11 @@ No projeto Pages `viabileasy`, use o ambiente **Production**:
 | `APP_URL` | `https://viabileasy.pages.dev` (ou o domínio canônico real) |
 | `SUPABASE_URL` | `https://vdbxesoqtrdwxndlsxus.supabase.co` |
 | `SUPABASE_PUBLISHABLE_KEY` | Chave publishable/anon do projeto Supabase |
+| `SUPABASE_SECRET_KEY` | Segredo criptografado exclusivo das Pages Functions para administração de contas |
 
-A chave fica em **Supabase → Settings → API Keys**. Não use `service_role`,
-chave secret, senha do banco ou Client Secret Google no Pages. Não configure
+As chaves ficam em **Supabase → Settings → API Keys**. A chave secret atual, ou
+a chave JWT legada `service_role`, é configurada exclusivamente no segredo
+`SUPABASE_SECRET_KEY` do servidor. Os arquivos de `dist/` recebem apenas o código público. Não configure
 `DATABASE_URL`, `API_ORIGIN`, `BREVO_API_KEY` ou `RESEND_API_KEY` neste modo.
 Deixe `GOOGLE_LOGIN_ENABLED` ausente: o acesso Google fica desabilitado por padrão.
 

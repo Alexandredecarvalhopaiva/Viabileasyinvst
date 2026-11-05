@@ -72,7 +72,7 @@
     publicSite.hidden = true;
     root.hidden = false;
     renderGate();
-    document.title = ({login:'Entrar',register:'Criar conta',forgot:'Recuperar senha',sent:'Confira seu e-mail',reset:'Nova senha',expired:'Solicitar novo link',pending:'Cadastro em análise',rejected:'Cadastro não aprovado',offline:'Conectar'})[mode] + ' | ViabilEasy';
+    document.title = ({login:'Entrar',register:'Criar conta',forgot:'Recuperar senha',sent:'Confira seu e-mail',reset:'Nova senha',expired:'Solicitar novo link',pending:'Cadastro em análise',rejected:'Cadastro não aprovado',blocked:'Acesso bloqueado',offline:'Conectar'})[mode] + ' | ViabilEasy';
     if (notice) message(root, notice, good);
     window.scrollTo({top:0,behavior:'instant'});
     root.querySelector('h1')?.focus({ preventScroll: true });
@@ -84,7 +84,7 @@
     } catch { throw Error('Não foi possível conectar. Confira sua conexão e tente novamente.'); }
     const body = await response.json().catch(() => ({}));
     if (!response.ok) {
-      if (response.status === 401 && user && !path.includes('/auth/login')) {
+      if ((response.status === 401 || body.code === 'ACCOUNT_BLOCKED' || body.code === 'PASSWORD_REQUIRED') && user && !path.includes('/auth/login')) {
         user = null;
         resetWorkspace(); render();
         gate('login', 'Sua sessão terminou. Entre novamente para continuar.');
@@ -94,18 +94,18 @@
     return body;
   }
   const passwordIcon = revealed => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${revealed ? '<path d="m3 3 18 18M10.6 5.1A11 11 0 0 1 12 5c6.5 0 10 7 10 7a17.4 17.4 0 0 1-3 3.8M6.1 6.1A18 18 0 0 0 2 12s3.5 7 10 7a10.9 10.9 0 0 0 5.2-1.3M9.9 9.9a3 3 0 0 0 4.2 4.2"/>' : '<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>'}</svg>`;
-  const passwordField = (label, id, confirm = false) => `<div class="auth-field"><label for="${id}">${label}</label><span class="auth-password"><input id="${id}" name="${confirm ? 'confirmation' : 'password'}" type="password" autocomplete="${screen === 'login' ? 'current-password' : 'new-password'}" ${screen !== 'login' ? 'minlength="12"' : ''} maxlength="128" required aria-describedby="${screen !== 'login' ? 'password-hint' : 'auth-feedback'}"><button type="button" data-password="${id}" data-password-label="${confirm ? 'confirmação de senha' : label.toLowerCase()}" aria-label="Mostrar ${confirm ? 'confirmação de senha' : label.toLowerCase()}" aria-controls="${id}" title="Mostrar ${confirm ? 'confirmação de senha' : label.toLowerCase()}" aria-pressed="false">${passwordIcon(false)}</button></span></div>`;
+  const passwordField = (label, id, confirm = false) => `<div class="auth-field"><label for="${id}">${label}</label><span class="auth-password"><input id="${id}" name="${confirm ? 'confirmation' : 'password'}" type="password" autocomplete="${screen === 'login' ? 'current-password' : 'new-password'}" ${screen !== 'login' ? 'minlength="12"' : ''} maxlength="${screen === 'login' ? 128 : config.passwordMaxBytes || 128}" required aria-describedby="${screen !== 'login' ? 'password-hint' : 'auth-feedback'}"><button type="button" data-password="${id}" data-password-label="${confirm ? 'confirmação de senha' : label.toLowerCase()}" aria-label="Mostrar ${confirm ? 'confirmação de senha' : label.toLowerCase()}" aria-controls="${id}" title="Mostrar ${confirm ? 'confirmação de senha' : label.toLowerCase()}" aria-pressed="false">${passwordIcon(false)}</button></span></div>`;
   const googleButton = `<button type="button" class="auth-google" data-auth-google>${googleMark}<span>Continuar com Google</span></button>`;
   const emailField = `<label class="auth-field" for="auth-email">E-mail<input id="auth-email" name="email" type="email" autocomplete="email" placeholder="voce@exemplo.com" maxlength="254" required></label>`;
   function renderGate() {
     clearInterval(timer);
     let content = '';
-    if (config.registrationMode === 'admin' && ['login','register','forgot','reset','expired','sent'].includes(screen)) {
+    if (config.registrationMode === 'admin' && ['login','register','forgot','expired','sent'].includes(screen)) {
       if (screen === 'login') {
         content = `<div class="auth-kicker">SEU ESPAÇO DE POSSIBILIDADES</div><h1 tabindex="-1">Entre na sua conta.</h1><p class="auth-intro">Use o e-mail e a senha cadastrados para acessar seus estudos.</p><form id="auth-form" data-mode="login">${emailField}${passwordField('Senha', 'auth-password')}<div class="auth-options"><label><input name="remember" type="checkbox"> Manter conectado</label><button type="button" data-auth-view="forgot">Esqueci minha senha</button></div><p id="auth-feedback" data-auth-message class="auth-message" role="alert" hidden></p><button type="submit" class="auth-primary">Entrar na minha conta<span aria-hidden="true">→</span></button></form><p class="auth-footnote">Ainda não tem acesso? <button type="button" class="auth-text" data-auth-view="register">Saiba como solicitar</button></p>`;
       } else {
         const signup = screen === 'register';
-        content = `<div class="auth-kicker">${signup ? 'SOLICITAR ACESSO' : 'RECUPERAR ACESSO'}</div><h1 tabindex="-1">${signup ? 'Vamos preparar sua conta.' : 'Precisa de uma nova senha?'}</h1><p class="auth-intro">${signup ? 'Fale com o administrador do ViabilEasy e informe seu nome e e-mail. Ele cadastrará sua conta e orientará seu primeiro acesso.' : 'Fale com o administrador do ViabilEasy para confirmar sua identidade e solicitar uma nova senha.'}</p><div class="auth-callout">${signup ? 'Após receber seu acesso, entre com o e-mail e a senha cadastrados. A liberação das ferramentas e dos usos é feita pelo administrador.' : 'A recuperação é feita com atendimento do administrador. Esta tela não envia links por e-mail.'}</div><p data-auth-message class="auth-message" role="status" hidden></p><button type="button" class="auth-primary" data-auth-view="login">Voltar para entrar<span aria-hidden="true">→</span></button>`;
+        content = `<div class="auth-kicker">${signup ? 'SOLICITAR ACESSO' : 'RECUPERAR ACESSO'}</div><h1 tabindex="-1">${signup ? 'Vamos preparar sua conta.' : 'Precisa de uma nova senha?'}</h1><p class="auth-intro">${signup ? 'Fale com o administrador do ViabilEasy e informe seu nome e e-mail. Ele cadastrará sua conta e orientará seu primeiro acesso.' : 'Fale com o administrador do ViabilEasy para confirmar sua identidade e solicitar uma nova senha.'}</p><div class="auth-callout">${signup ? 'Ao receber o link privado, defina sua senha e entre com o mesmo e-mail. A liberação das ferramentas e dos usos é feita pelo administrador.' : 'A recuperação é feita com atendimento do administrador. Esta tela não envia links por e-mail.'}</div><p data-auth-message class="auth-message" role="status" hidden></p><button type="button" class="auth-primary" data-auth-view="login">Voltar para entrar<span aria-hidden="true">→</span></button>`;
       }
     } else if (config.googleOnly && ['login','register','forgot','reset','expired'].includes(screen)) {
       content = `<div class="auth-kicker">SEU ESPAÇO DE POSSIBILIDADES</div><h1 tabindex="-1">Entre com sua conta Google.</h1><p class="auth-intro">Use sua conta Google para acessar seus estudos ou solicitar seu primeiro acesso.</p>${config.googleEnabled ? googleButton : '<p class="auth-callout">O acesso está sendo configurado. Tente novamente em instantes.</p>'}<p data-auth-message class="auth-message" role="alert" hidden></p><p class="auth-footnote">Novos cadastros aguardam aprovação do administrador. Sua senha é gerenciada pelo Google.</p>`;
@@ -115,6 +115,8 @@
     } else if (screen === 'pending' || screen === 'rejected') {
       const pending = screen === 'pending';
       content = `<div class="auth-symbol" aria-hidden="true">${pending ? '◷' : '—'}</div><div class="auth-kicker">VALIDAÇÃO DO CADASTRO</div><h1 tabindex="-1">${pending ? 'Seu cadastro está em análise.' : 'Cadastro não aprovado.'}</h1><p class="auth-intro">${pending ? 'Seu pedido foi encaminhado ao superadministrador. Você poderá acessar as ferramentas depois que ele aprovar sua conta.' : 'O superadministrador não aprovou este cadastro. Fale com o responsável pelo sistema para esclarecer seu acesso.'}</p><div class="auth-callout">${pending ? (config.googleOnly ? 'Após a aprovação, volte e entre com a mesma conta Google.' : 'Após a aprovação, volte e entre com o mesmo e-mail e senha.') : 'Fale com o administrador para esclarecer a decisão sobre seu cadastro.'}</div><p data-auth-message class="auth-message" role="status" hidden></p><button type="button" class="auth-primary" data-auth-view="login">Voltar para entrar<span aria-hidden="true">→</span></button>`;
+    } else if (screen === 'blocked') {
+      content = '<h1 tabindex="-1">Acesso bloqueado.</h1><p class="auth-intro">Fale com o administrador para esclarecer a situação da sua conta.</p><p data-auth-message role="status" hidden></p><button type="button" class="auth-primary" data-auth-view="login">Voltar para entrar</button>';
     } else if (screen === 'forgot') {
       content = `<button type="button" class="auth-back" data-auth-view="login">← Voltar para entrar</button><div class="auth-symbol" aria-hidden="true">↗</div><h1 tabindex="-1">Esqueceu sua senha?</h1><p class="auth-intro">Acontece. Informe seu e-mail e enviaremos um link para criar uma nova senha.</p><form id="auth-form" data-mode="forgot">${emailField}<p data-auth-message class="auth-message" role="alert" hidden></p><button type="submit" class="auth-primary">Enviar link de recuperação<span aria-hidden="true">→</span></button></form><p class="auth-footnote">O link é válido por 30 minutos e pode ser usado uma única vez.</p>`;
     } else if (screen === 'sent') {
@@ -122,7 +124,7 @@
       let seconds = 60;
       timer = setInterval(() => { const button = root.querySelector('[data-auth-resend]'); if (!button) return clearInterval(timer); seconds--; button.textContent = seconds > 0 ? `Reenviar em ${seconds} s` : 'Reenviar link'; button.disabled = seconds > 0; if (!seconds) clearInterval(timer); }, 1000);
     } else if (screen === 'reset') {
-      content = `<div class="auth-kicker">RECUPERE SEU ACESSO</div><h1 tabindex="-1">Uma nova senha.<br>Um novo começo.</h1><p class="auth-intro">Escolha uma senha para voltar aos seus estudos.</p><form id="auth-form" data-mode="reset">${passwordField('Nova senha', 'reset-password')}<p class="auth-hint" id="password-hint">Use pelo menos 12 caracteres.</p>${passwordField('Confirme a nova senha', 'reset-confirm', true)}<p data-auth-message class="auth-message" role="alert" hidden></p><button type="submit" class="auth-primary">Salvar nova senha<span aria-hidden="true">→</span></button></form>`;
+      content = `<div class="auth-kicker">RECUPERE SEU ACESSO</div><h1 tabindex="-1">Uma nova senha.<br>Um novo começo.</h1><p class="auth-intro">Defina sua senha individual. A aprovação da conta e a liberação de usos são feitas pelo administrador.</p><form id="auth-form" data-mode="reset">${passwordField('Nova senha', 'reset-password')}<p class="auth-hint" id="password-hint">Use pelo menos 12 caracteres.${config.passwordMaxBytes ? ' O limite é 72 bytes. Acentos e emojis ocupam mais de um byte.' : ''}</p>${passwordField('Confirme a nova senha', 'reset-confirm', true)}<p data-auth-message class="auth-message" role="alert" hidden></p><button type="submit" class="auth-primary">Salvar nova senha<span aria-hidden="true">→</span></button></form>`;
     } else if (screen === 'expired') {
       content = '<div class="auth-symbol" aria-hidden="true">↻</div><h1 tabindex="-1">Vamos tentar de novo?</h1><p class="auth-intro">Este link expirou, já foi utilizado ou está incompleto. Peça outro para redefinir sua senha.</p><button type="button" class="auth-primary" data-auth-view="forgot">Solicitar novo link<span aria-hidden="true">→</span></button><button type="button" class="auth-text" data-auth-view="login">Voltar para entrar</button>';
     } else {
@@ -146,7 +148,7 @@
   async function enter(account) {
     if (account?.accountStatus !== 'approved') {
       user = null; resetWorkspace(); syncProfile();
-      gate(account?.accountStatus === 'rejected' ? 'rejected' : 'pending');
+      gate(account?.accountStatus === 'blocked' ? 'blocked' : account?.accountStatus === 'rejected' ? 'rejected' : 'pending');
       return;
     }
     user = account;
@@ -247,7 +249,7 @@
         const result = await request('/api/auth/' + mode, 'POST', { ...values, remember: fields.has('remember') });
         await enter(result.user);
       }
-    } catch (e) { if (e.code === 'ACCOUNT_PENDING' || e.code === 'ACCOUNT_REJECTED') { user = null; resetWorkspace(); syncProfile(); gate(e.code === 'ACCOUNT_PENDING' ? 'pending' : 'rejected'); } else message(root, e.message); }
+    } catch (e) { if (e.code === 'ACCOUNT_PENDING' || e.code === 'ACCOUNT_REJECTED' || e.code === 'ACCOUNT_BLOCKED') { user = null; resetWorkspace(); syncProfile(); gate(e.code === 'ACCOUNT_BLOCKED' ? 'blocked' : e.code === 'ACCOUNT_PENDING' ? 'pending' : 'rejected'); } else message(root, e.message); }
     finally { busy = false; button.disabled = false; button.innerHTML = label; form.removeAttribute('aria-busy'); }
   });
   profile.addEventListener('click', async event => {
@@ -310,7 +312,7 @@
       const session = await request('/api/auth/session');
       if (!session.user || session.user.id !== user.id) { user = null; syncProfile(); resetWorkspace(); render(); gate('login', 'Sua sessão mudou. Entre novamente para continuar.'); }
       else { const changed=session.user.role!==user.role; user=session.user; syncProfile(); if(changed){if(state.page==='admin'&&user.role!=='super_admin')state.page='overview';render();} }
-    } catch {}
+    } catch (error) { if (error.code === 'ACCOUNT_BLOCKED' || error.code === 'PASSWORD_REQUIRED') { user = null; resetWorkspace(); render(); gate('login', error.message); } }
   });
   window.ViabilAuth = {
     openProfile,

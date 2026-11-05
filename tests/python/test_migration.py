@@ -38,7 +38,7 @@ def test_node_hash_and_legacy_sqlite_migration(tmp_path):
             ("legacy", "legacy@example.test", "Pessoa Existente", encoded, now(), now()),
         )
         db.execute("INSERT INTO studies VALUES(?,?,?,?)", ("legacy", "lot-1", json.dumps(study()), now()))
-    app = create_app(Settings(app_url=ORIGIN, data_dir=tmp_path))
+    app = create_app(Settings(app_url=ORIGIN, data_dir=tmp_path, registration_mode="approval"))
     with TestClient(app, base_url=ORIGIN) as client:
         response = call(
             client, "/api/auth/login", "POST", {"email": "legacy@example.test", "password": PASSWORD}
@@ -53,7 +53,9 @@ def test_node_hash_and_legacy_sqlite_migration(tmp_path):
             {"email": "new@example.test", "name": "Nova Pessoa", "password": PASSWORD},
         )
         assert new.json()["user"]["accountStatus"] == "pending"
-    with TestClient(create_app(Settings(app_url=ORIGIN, data_dir=tmp_path)), base_url=ORIGIN) as client:
+    with TestClient(
+        create_app(Settings(app_url=ORIGIN, data_dir=tmp_path, registration_mode="approval")), base_url=ORIGIN
+    ) as client:
         assert (
             call(
                 client, "/api/auth/login", "POST", {"email": "new@example.test", "password": PASSWORD}

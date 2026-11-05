@@ -15,7 +15,7 @@ from backend.main import create_app
 
 
 def test_deploy_validation_lists_all_missing_settings(tmp_path):
-    settings = Settings(data_dir=tmp_path, environment="production")
+    settings = Settings(data_dir=tmp_path, environment="production", registration_mode="approval")
     errors = settings.validation_errors()
     for key in ("HTTPS", "PostgreSQL", "BREVO_API_KEY", "MAIL_FROM"):
         assert any(key in error for error in errors)
@@ -250,3 +250,18 @@ def test_cli_does_not_approve_development_mode_as_production(monkeypatch, capsys
         main()
     assert error.value.code == 1
     assert "APP_ENV=production" in capsys.readouterr().out
+
+
+def test_admin_registration_allows_production_with_private_manual_recovery(tmp_path):
+    settings = Settings(
+        app_url="https://example.test",
+        database_url="postgresql://app@localhost/viabileasy",
+        data_dir=tmp_path,
+        environment="production",
+        registration_mode="admin",
+    )
+    assert settings.validation_errors() == []
+    assert any(
+        "REGISTRATION_MODE" in error
+        for error in replace(settings, registration_mode="typo").validation_errors()
+    )
