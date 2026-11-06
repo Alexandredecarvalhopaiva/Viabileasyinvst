@@ -271,6 +271,7 @@
       location.assign('/api/auth/google?link=1'); return;
     }
     busy = true; button.disabled = true;
+    let operationGeneration = sessionGeneration;
     try {
       if (button.hasAttribute('data-photo-remove')) {
         const result = await request('/api/profile/photo', 'PUT', { image: null });
@@ -282,9 +283,11 @@
       }
       if (button.hasAttribute('data-auth-logout')) {
         showPublic();
+        operationGeneration = sessionGeneration;
         await request('/api/auth/logout', 'POST', {});
       }
     } catch (e) {
+      if (operationGeneration !== sessionGeneration) return;
       if (button.hasAttribute('data-auth-logout')) {
         showPublic('A saída no servidor ficou pendente. Entre novamente e tente sair para encerrar a sessão.');
       } else message(profile, e.message);

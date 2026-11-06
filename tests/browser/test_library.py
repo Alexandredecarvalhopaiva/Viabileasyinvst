@@ -282,6 +282,50 @@ def test_logout_failure_reports_pending_server_session(library_server):
         browser.close()
 
 
+@pytest.mark.parametrize("outcome", ["success", "http_error", "network_error"])
+def test_delayed_logout_preserves_new_account_and_filters(library_server, outcome):
+    with playwright.sync_playwright() as manager:
+        executable = os.getenv("PLAYWRIGHT_CHROMIUM_EXECUTABLE")
+        browser = manager.chromium.launch(**({"executable_path": executable} if executable else {}))
+        page = browser.new_page(viewport={"width": 390, "height": 844})
+        page.goto(library_server)
+
+        def login(email):
+            page.locator("[data-public-login]").first.click()
+            page.locator("#auth-email").fill(email)
+            page.locator("#auth-password").fill(PASSWORD)
+            page.locator('#auth-form [type="submit"]').press("Enter")
+            page.wait_for_selector('body[data-auth="ready"]')
+
+        login("library-a@example.test")
+        pending = []
+        page.route("**/api/auth/logout", lambda route: pending.append(route))
+        page.locator(".account-topbar").click()
+        page.locator("[data-auth-logout]").click()
+        page.wait_for_selector('body[data-auth="guest"]')
+        login("library-b@example.test")
+        assert pending
+        page.locator('#mobile-dock [data-mobile-destination="projects"]').click()
+        page.get_by_label("Buscar por nome").fill("Consulta privada da conta B")
+        assert page.evaluate("ViabilAuth.accountId()") == "library-b"
+        if outcome == "network_error":
+            pending[0].abort("failed")
+        else:
+            pending[0].fulfill(
+                status=200 if outcome == "success" else 503,
+                content_type="application/json",
+                body="{}",
+            )
+        page.wait_for_timeout(250)
+        assert page.evaluate("document.body.dataset.auth") == "ready"
+        assert page.evaluate("ViabilAuth.accountId()") == "library-b"
+        playwright.expect(page.get_by_label("Buscar por nome")).to_have_value("Consulta privada da conta B")
+        playwright.expect(page.locator("[data-public-status]")).not_to_contain_text(
+            "A saída no servidor ficou pendente"
+        )
+        browser.close()
+
+
 def test_search_blur_preserves_keyboard_activation(library_server):
     with playwright.sync_playwright() as manager:
         executable = os.getenv("PLAYWRIGHT_CHROMIUM_EXECUTABLE")
