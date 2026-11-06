@@ -6,8 +6,18 @@ returns trigger language plpgsql set search_path='' as $$
 declare
   scenario jsonb:=new.payload->'scenario'; sources jsonb; source jsonb;
   audit jsonb:=new.payload#>'{lot,urbanContext,overrideAudit}'; previous_audit jsonb; revisions jsonb; proposal jsonb;
+  previous_context jsonb; previous_identity jsonb;
   identifier text; field_name text; reference_date text; revision_index integer:=0; revision_number numeric;
 begin
+  if nullif(audit,'null'::jsonb) is null and new.payload#>>'{lot,urbanContext,mode}'='manual' then
+    -- UPSERT runs the INSERT trigger first, even for a previously saved study.
+    select saved.payload#>'{lot,urbanContext}',saved.identity into previous_context,previous_identity
+      from viabil_private.studies saved where saved.user_id=new.user_id and saved.id=new.id;
+    if previous_context is distinct from new.payload#>'{lot,urbanContext}'
+      or previous_identity is distinct from new.identity then
+      perform viabil_private.fail(400,'Registre responsável e justificativa para novos recuos manuais.');
+    end if;
+  end if;
   if tg_op='UPDATE' and old.identity=new.identity then
     previous_audit:=nullif(old.payload#>'{lot,urbanContext,overrideAudit}','null'::jsonb);
     if previous_audit is not null and previous_audit is distinct from audit then

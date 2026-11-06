@@ -188,10 +188,15 @@ def analysis_identity(lot):
     )
 
 
-def validate_override(lot, responsible):
+def validate_override(lot, responsible, previous=None):
     context = lot.get("urbanContext")
     audit = context.get("overrideAudit") if isinstance(context, dict) else None
     if audit is None:
+        if isinstance(context, dict) and context.get("mode") == "manual" and (
+            previous is None or previous.get("urbanContext") != context
+            or analysis_identity(previous) != analysis_identity(lot)
+        ):
+            raise APIError(400, "Registre responsável e justificativa para novos recuos manuais.")
         return
     revisions = audit.get("revisions") if isinstance(audit, dict) else None
     if (
@@ -295,15 +300,16 @@ def save_study(identifier: str, request: Request, data: dict = Depends(body)):
     with db.transaction() as conn:
         # Lock the owner for the full save/debit transaction, including on PostgreSQL.
         user = active_user(conn, request, lock=True)
-        validate_override(payload["lot"], user["id"])
         existing = one(
             conn,
             "SELECT payload,last_opened_at FROM studies WHERE user_id=? AND id=?",
             (user["id"], identifier),
         )
-        unchanged = existing and analysis_identity(json.loads(existing["payload"])["lot"]) == identity
+        previous_lot = json.loads(existing["payload"])["lot"] if existing else None
+        unchanged = previous_lot and analysis_identity(previous_lot) == identity
+        validate_override(payload["lot"], user["id"], previous_lot)
         if existing:
-            old_context = json.loads(existing["payload"])["lot"].get("urbanContext")
+            old_context = previous_lot.get("urbanContext")
             new_context = payload["lot"].get("urbanContext")
             old_audit = old_context.get("overrideAudit") if isinstance(old_context, dict) else None
             new_audit = new_context.get("overrideAudit") if isinstance(new_context, dict) else None

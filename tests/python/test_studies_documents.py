@@ -43,6 +43,29 @@ def test_normative_reference_validation(system, accounts):
         assert call(system["client"], "/api/studies/lot-1", "PUT", payload).status_code == 400
 
 
+def test_manual_setbacks_require_audit_but_preserve_unchanged_legacy(system, accounts):
+    payload = study()
+    context = {"mode": "manual", "front": 7, "side": 2, "back": 3, "reference": "Certidão antiga"}
+    payload["lot"]["urbanContext"] = context
+    client = system["client"]
+    assert call(client, "/api/studies/lot-1", "PUT", payload).status_code == 400
+
+    assert call(client, "/api/studies/lot-1", "PUT", study()).status_code == 200
+    # Simulate a study saved before audit metadata was introduced.
+    with system["app"].state.db.transaction() as conn:
+        execute(conn, "UPDATE studies SET payload=? WHERE user_id=? AND id=?",
+                (compact(payload), accounts["admin"]["id"], "lot-1"))
+    payload["scenario"]["price"] = 6000
+    assert call(client, "/api/studies/lot-1", "PUT", payload).status_code == 200
+    for changed in ({"front": 8}, {"reference": "Nova certidão"}):
+        edited = deepcopy(payload)
+        edited["lot"]["urbanContext"].update(changed)
+        assert call(client, "/api/studies/lot-1", "PUT", edited).status_code == 400
+    moved = deepcopy(payload)
+    moved["lot"]["lat"] = -7.11
+    assert call(client, "/api/studies/lot-1", "PUT", moved).status_code == 400
+
+
 def test_override_proposal_binds_author_to_session_and_preserves_review(system, accounts):
     payload = study()
     audit = {

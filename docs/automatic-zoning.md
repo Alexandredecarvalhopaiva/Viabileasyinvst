@@ -125,6 +125,14 @@ precisam revisar e aplicar a migração no ambiente hospedado para ativar a prot
 da RPC. Aprovar uma exceção técnica exige um fluxo servidor com autorização
 específica, ainda fora da proposta pendente implementada aqui.
 
+A revisão de persistência também cobre a omissão completa da auditoria. Novos
+recuos manuais e alterações de referências ou de terreno exigem o registro da
+proposta no Python e na RPC. Estudos legados com recuos manuais sem autoria
+continuam salváveis enquanto conservarem o enquadramento e o terreno anteriores.
+Os dois testes de regressão falharam antes da correção e passaram depois. A
+revalidação aprovou 55 testes Python e 14 testes da RPC em PostgreSQL descartável,
+com quatro integrações Python opcionais puladas, Ruff e whitespace aprovados.
+
 O painel também distingue área desconhecida de área calculada igual a zero.
 O aviso de recuos que eliminam a implantação exige um valor numérico conhecido.
 

@@ -324,6 +324,32 @@ def test_private_pdfs_library_and_duplicate_rules(database):
     assert "pdf" in call(database, owner, "file", {"id": library["id"]})
 
 
+def test_manual_setbacks_require_audit_but_preserve_unchanged_legacy(database):
+    uid = account(database, admin=True)
+    payload = study()
+    context = {"mode": "manual", "front": 7, "side": 2, "back": 3, "reference": "Certidão antiga"}
+    payload["lot"]["urbanContext"] = context
+    assert call(database, uid, "save-study", payload).get("status") == 400
+
+    assert "study" in call(database, uid, "save-study", study())
+    # Simulate a study that predates the validation trigger.
+    with psycopg.connect(database) as conn:
+        conn.execute("alter table viabil_private.studies disable trigger validate_normative_context")
+        conn.execute("""update viabil_private.studies
+            set payload=jsonb_set(payload,'{lot,urbanContext}',%s) where user_id=%s and id='lot1'""",
+                     (Jsonb(context), uid))
+        conn.execute("alter table viabil_private.studies enable trigger validate_normative_context")
+    payload["scenario"]["price"] = 6000
+    assert "study" in call(database, uid, "save-study", payload)
+    for changed in ({"front": 8}, {"reference": "Nova certidão"}):
+        edited = deepcopy(payload)
+        edited["lot"]["urbanContext"].update(changed)
+        assert call(database, uid, "save-study", edited).get("status") == 400
+    moved = deepcopy(payload)
+    moved["lot"]["lat"] = -7.11
+    assert call(database, uid, "save-study", moved).get("status") == 400
+
+
 def test_profile_photo_and_missing_payloads(database):
     uid = account(database, approved=True)
     assert (
