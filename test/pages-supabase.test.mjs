@@ -12,6 +12,21 @@ const request = (path,method='GET',data,extra={}) => new Request(app+path,{metho
   ...(method==='GET'?{}:{Origin:app,'X-Viabileasy-Request':'1','Content-Type':'application/json'}),...extra},
   ...(data ? {body:JSON.stringify(data)} : {})});
 
+test('Provider calls use Workers-compatible redirects and reject redirected responses',async()=>{
+  for (const status of [200, 302, 307]) {
+    let calls = 0;
+    const result = await supabaseAPI(request('/api/ready'), env, async (url, options) => {
+      calls++;
+      // Workers rejects redirect:error before making a network request.
+      if (options.redirect === 'error') throw new TypeError('Unsupported redirect mode');
+      assert.equal(options.redirect, 'manual');
+      return response({status:'ready'}, status);
+    });
+    assert.equal(calls, 1);
+    assert.equal(result.status, status === 200 ? 200 : 503);
+  }
+});
+
 test('Supabase mode fails closed for missing or unsafe config, preview origins and CSRF',async()=>{
   for(const overrides of [{SUPABASE_URL:''},{APP_URL:''},{SUPABASE_PUBLISHABLE_KEY:''},
     {SUPABASE_URL:'https://attacker.test'},{SUPABASE_URL:'https://project.supabase.co/path'},

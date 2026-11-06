@@ -4,6 +4,9 @@
   "private": true,
   "description": "Protótipo ViabilEasy: potencial construtivo do terreno por tipologia",
   "scripts": {
+    "lint:python": "node scripts/python.mjs -m ruff check backend tests/python tests/supabase && node scripts/python.mjs -m ruff format --check backend tests/python tests/supabase",
+    "test:database": "node scripts/python.mjs -m pytest -q tests/supabase",
+    "check": "npm run lint:python && npm test && npm run test:database",
     "prototype": "node scripts/python.mjs -m backend",
     "verify:geometry": "node verify-geometry.cjs",
     "test:accounts": "node scripts/python.mjs -m pytest -q tests/python/test_accounts.py tests/python/test_migration.py",
@@ -21,7 +24,7 @@
     "test:frontend": "node --test test/*.test.cjs test/*.test.mjs",
     "test": "npm run test:backend && npm run test:frontend && npm run verify:geometry",
     "audit:ui": "node scripts/python.mjs -m backend.preview",
-    "test:supabase": "node --test test/pages-supabase.test.mjs && node scripts/python.mjs -m pytest -q tests/supabase/test_database.py"
+    "test:supabase": "node --test test/pages-supabase.test.mjs && node scripts/python.mjs -m pytest -q tests/supabase"
   },
   "dependencies": {
     "three": "0.186.1"

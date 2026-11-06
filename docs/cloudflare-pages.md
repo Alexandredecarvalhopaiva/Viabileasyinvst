@@ -27,6 +27,12 @@ Use o projeto dedicado `viabileasy`. Execute no SQL Editor do Supabase:
 
 `supabase/migrations/202610300001_pages.sql`
 
+Depois execute `supabase/migrations/202610300002_signup_profiles.sql`.
+Essa segunda migração coloca novas contas de e-mail na fila imediatamente,
+sem exigir o primeiro login, e inclui contas existentes sem perfil. Perfis,
+papéis, saldos e decisões já registrados são preservados. O resultado final deve
+mostrar `trigger_active=true` e `accounts_without_profile=0`.
+
 Se aplicou a versão inicial com Google obrigatório, reaplique este arquivo atual:
 ele atualiza as funções sem apagar contas, estudos ou documentos. Não utilize
 novamente o SQL antigo `202610300001_pages_google.sql`.
@@ -64,7 +70,9 @@ Em **Authentication → Users → Add user → Create new user**:
    nunca poste senhas no GitHub, em documentação ou neste chat.
 
 A criação de uma conta confirmada no Auth não dá perfil de administrador nem
-créditos automaticamente. No primeiro login o aplicativo cria o perfil pendente.
+créditos automaticamente. Com a segunda migração aplicada, o perfil pendente é
+criado no cadastro e aparece na Administração antes do primeiro login. A confirmação
+de e-mail continua obrigatória para entrar, independentemente da aprovação.
 
 Para redefinir uma senha sem e-mail, valide a identidade e use o fluxo administrativo
 de alteração de senha do Supabase. Revogue sessões anteriores conforme os controles

@@ -123,7 +123,11 @@ def create_app(
             response = error_response(APIError(500, "Não foi possível concluir agora. Tente novamente."))
         response.headers["X-Content-Type-Options"] = "nosniff"
         response.headers["X-Frame-Options"] = "SAMEORIGIN" if allow_same_origin_frames else "DENY"
-        response.headers["Referrer-Policy"] = "same-origin"
+        response.headers["Referrer-Policy"] = (
+            "same-origin"
+            if request.url.path == "/api" or request.url.path.startswith("/api/")
+            else "strict-origin-when-cross-origin"
+        )
         response.headers["Cache-Control"] = "no-store"
         if settings.production:
             response.headers["Strict-Transport-Security"] = "max-age=31536000"
