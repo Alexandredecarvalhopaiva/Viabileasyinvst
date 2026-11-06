@@ -1,6 +1,7 @@
 import json
 import math
 import re
+import unicodedata
 from datetime import date
 from uuid import uuid4
 
@@ -10,6 +11,49 @@ from .db import all_rows, execute, one
 from .security import APIError, active_user, body, compact, digest, finite, now, usage
 
 router = APIRouter(prefix="/api", tags=["Estudos e usos"])
+
+
+def study_metadata(encoded="{}"):
+    return {
+        "schemaVersion": 1,
+        "stage": "triage",
+        "tags": [],
+        "note": "",
+        "revision": 0,
+        "updatedAt": None,
+        **json.loads(encoded),
+    }
+
+
+def validate_metadata(data):
+    revision, stage, tags, note = (
+        data.get("expectedRevision"),
+        data.get("stage"),
+        data.get("tags"),
+        data.get("note", ""),
+    )
+    if (
+        type(revision) is not int
+        or not 0 <= revision < 9007199254740991
+        or stage not in ("triage", "in_study", "waiting_information", "archived")
+        or not isinstance(tags, list)
+        or len(tags) > 10
+        or not isinstance(note, str)
+        or len(note.strip()) > 1000
+    ):
+        raise APIError(
+            400, "Confira a etapa, até 10 etiquetas e a nota de até 1.000 caracteres.", "INVALID_METADATA"
+        )
+    cleaned, seen = [], set()
+    for tag in tags:
+        if not isinstance(tag, str) or not 1 <= len(tag.strip()) <= 32:
+            raise APIError(400, "Cada etiqueta precisa ter entre 1 e 32 caracteres.", "INVALID_METADATA")
+        tag = tag.strip()
+        key = re.sub("[\u0300-\u036f]", "", unicodedata.normalize("NFD", tag)).lower()
+        if key not in seen:
+            seen.add(key)
+            cleaned.append(tag)
+    return {"schemaVersion": 1, "stage": stage, "tags": cleaned, "note": note.strip()}
 
 
 def study_id(value):
@@ -107,11 +151,14 @@ def study_of(identifier, data):
                 result[key] = v
         if "discount" in finance:
             discount = finance["discount"]
-            if (not isinstance(discount, dict) or not finite(discount.get("annualRate"))
-                    or not 0 <= discount["annualRate"] <= 1
-                    or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(discount.get("date", "")))
-                    or not isinstance(discount.get("source"), str)
-                    or not 0 < len(discount["source"]) <= 250):
+            if (
+                not isinstance(discount, dict)
+                or not finite(discount.get("annualRate"))
+                or not 0 <= discount["annualRate"] <= 1
+                or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(discount.get("date", "")))
+                or not isinstance(discount.get("source"), str)
+                or not 0 < len(discount["source"]) <= 250
+            ):
                 raise APIError(400, "Referência de TMA inválida.")
             try:
                 date.fromisoformat(discount["date"])
@@ -166,6 +213,7 @@ def analysis_identity(lot):
 def serialize_study(row):
     return {
         **json.loads(row["payload"]),
+        "metadata": study_metadata(row["metadata"]),
         "updatedAt": row["updated_at"],
         "lastOpenedAt": row["last_opened_at"],
     }
@@ -183,7 +231,7 @@ def list_studies(request: Request):
         user = active_user(conn, request)
         rows = all_rows(
             conn,
-            """SELECT payload,updated_at,last_opened_at FROM studies WHERE user_id=?
+            """SELECT payload,metadata,updated_at,last_opened_at FROM studies WHERE user_id=?
             ORDER BY CASE WHEN updated_at>COALESCE(last_opened_at,0) THEN updated_at ELSE COALESCE(last_opened_at,0) END DESC,updated_at DESC,id ASC""",
             (user["id"],),
         )
@@ -216,6 +264,43 @@ def open_study(identifier: str, request: Request, data: dict = Depends(body)):
         return {"updatedAt": row["updated_at"], "lastOpenedAt": row["last_opened_at"]}
 
 
+@router.get("/studies/{identifier}/metadata")
+def get_metadata(identifier: str, request: Request):
+    study_id(identifier)
+    with request.app.state.db.engine.connect() as conn:
+        user = active_user(conn, request)
+        row = one(conn, "SELECT metadata FROM studies WHERE user_id=? AND id=?", (user["id"], identifier))
+        if not row:
+            raise APIError(404, "Estudo não encontrado na sua conta.")
+        return {"metadata": study_metadata(row["metadata"])}
+
+
+@router.put("/studies/{identifier}/metadata")
+def save_metadata(identifier: str, request: Request, data: dict = Depends(body)):
+    study_id(identifier)
+    metadata = validate_metadata(data)
+    with request.app.state.db.transaction() as conn:
+        # Same owner lock as scenario saves, including the first write of a legacy study.
+        user = active_user(conn, request, lock=True)
+        row = one(conn, "SELECT metadata FROM studies WHERE user_id=? AND id=?", (user["id"], identifier))
+        if not row:
+            raise APIError(404, "Estudo não encontrado na sua conta.")
+        current = study_metadata(row["metadata"])
+        if data["expectedRevision"] != current["revision"]:
+            raise APIError(
+                409,
+                "Este estudo foi organizado em outra sessão. Carregue a revisão atual.",
+                "METADATA_CONFLICT",
+            )
+        metadata.update(revision=current["revision"] + 1, updatedAt=now())
+        execute(
+            conn,
+            "UPDATE studies SET metadata=? WHERE user_id=? AND id=?",
+            (compact(metadata), user["id"], identifier),
+        )
+        return {"metadata": metadata}
+
+
 @router.put("/studies/{identifier}")
 def save_study(identifier: str, request: Request, data: dict = Depends(body)):
     payload = study_of(identifier, data)
@@ -227,7 +312,7 @@ def save_study(identifier: str, request: Request, data: dict = Depends(body)):
         user = active_user(conn, request, lock=True)
         existing = one(
             conn,
-            "SELECT payload,last_opened_at FROM studies WHERE user_id=? AND id=?",
+            "SELECT payload,metadata,last_opened_at FROM studies WHERE user_id=? AND id=?",
             (user["id"], identifier),
         )
         unchanged = existing and analysis_identity(json.loads(existing["payload"])["lot"]) == identity
@@ -273,6 +358,7 @@ def save_study(identifier: str, request: Request, data: dict = Depends(body)):
         return {
             "study": {
                 **payload,
+                "metadata": study_metadata(existing["metadata"] if existing else "{}"),
                 "updatedAt": updated,
                 "lastOpenedAt": existing["last_opened_at"] if existing else None,
             },

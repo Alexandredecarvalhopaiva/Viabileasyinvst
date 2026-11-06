@@ -7,6 +7,7 @@
   const googleMark = '<svg width="20" height="20" viewBox="0 0 48 48" aria-hidden="true"><path fill="#4285F4" d="M43.6 24.5c0-1.4-.1-2.8-.4-4.1H24v7.8h11a9.5 9.5 0 0 1-4.1 6.3v5.2h6.6c3.9-3.6 6.1-8.9 6.1-15.2Z"/><path fill="#34A853" d="M24 44c5.5 0 10.2-1.8 13.6-5l-6.6-5.1c-1.8 1.2-4.1 1.9-7 1.9-5.3 0-9.8-3.6-11.4-8.4H5.8v5.3A20.5 20.5 0 0 0 24 44Z"/><path fill="#FBBC05" d="M12.6 27.4a12.4 12.4 0 0 1 0-7.8v-5.3H5.8a20 20 0 0 0 0 18.4l6.8-5.3Z"/><path fill="#EA4335" d="M24 11.2c3 0 5.6 1 7.7 3L37.4 8A19.8 19.8 0 0 0 24 3 20.5 20.5 0 0 0 5.8 14.3l6.8 5.3C14.2 14.8 18.7 11.2 24 11.2Z"/></svg>';
   const initialAccountState = JSON.stringify(state);
   const initialLots = JSON.stringify(lots);
+  let sessionGeneration = 0;
   let user = null, config = {googleOnly:false,registrationMode:'admin',passwordRecovery:false}, screen = 'login', resetToken = '', sentEmail = '', busy = false, timer, requestedPage = null, returnFocus = null;
   const avatar = (u, large = false) => `<span class="account-avatar${large ? ' large' : ''}">${u.avatar ? `<img src="${escape(u.avatar)}" alt="" referrerpolicy="no-referrer">` : escape(u.name.trim().split(/\s+/).slice(0,2).map(n => n[0]).join('').toUpperCase())}</span>`;
   const message = (target, text, good = false) => {
@@ -22,6 +23,8 @@
     state.savedCustom = {};
   }
   function resetWorkspace() {
+    sessionGeneration++;
+    window.StudyLibrary?.reset();
     if(typeof EngineResults!=='undefined')EngineResults.retry();
     lots.splice(0, lots.length, ...JSON.parse(initialLots));
     for (const key of Object.keys(state)) delete state[key];
@@ -79,11 +82,15 @@
     root.querySelector('h1')?.focus({ preventScroll: true });
   }
   async function request(path, method = 'GET', data) {
+    const generation = sessionGeneration;
     let response;
     try {
       response = await fetch(path, { method, credentials: 'same-origin', headers: { 'Content-Type':'application/json', 'X-Viabileasy-Request':'1' }, ...(data ? { body: JSON.stringify(data) } : {}) });
     } catch { throw Error('Não foi possível conectar. Confira sua conexão e tente novamente.'); }
     const body = await response.json().catch(() => ({}));
+    if (generation !== sessionGeneration) {
+      throw Object.assign(Error('A sessão mudou. Entre novamente.'), {code: 'SESSION_CHANGED'});
+    }
     if (!response.ok) {
       if (response.status === 401 && user && !path.includes('/auth/login')) {
         user = null;
@@ -152,8 +159,10 @@
     }
     user = account;
     resetWorkspace();
+    const generation = sessionGeneration;
     window.ViabilUsage?.set(user.usage,user.id);
     const data = await request('/api/studies');
+    if (generation !== sessionGeneration || user?.id !== account.id) return;
     restoreParcelStudies(data.studies);
     state.page = requestedPage || (user.role === 'super_admin' ? 'admin' : 'overview'); requestedPage = null;
     publicSite.hidden = true;
@@ -262,6 +271,7 @@
       location.assign('/api/auth/google?link=1'); return;
     }
     busy = true; button.disabled = true;
+    let operationGeneration = sessionGeneration;
     try {
       if (button.hasAttribute('data-photo-remove')) {
         const result = await request('/api/profile/photo', 'PUT', { image: null });
@@ -272,10 +282,16 @@
         message(profile, 'Solicitação recebida. Confira seu e-mail para criar uma nova senha.', true);
       }
       if (button.hasAttribute('data-auth-logout')) {
+        showPublic();
+        operationGeneration = sessionGeneration;
         await request('/api/auth/logout', 'POST', {});
-        user = null; showPublic();
       }
-    } catch (e) { message(profile, e.message); }
+    } catch (e) {
+      if (operationGeneration !== sessionGeneration) return;
+      if (button.hasAttribute('data-auth-logout')) {
+        showPublic('A saída no servidor ficou pendente. Entre novamente e tente sair para encerrar a sessão.');
+      } else message(profile, e.message);
+    }
     finally { busy = false; button.disabled = false; }
   });
   profile.addEventListener('change', async event => {
@@ -319,6 +335,16 @@
     isSuperAdmin: () => user?.role === 'super_admin' && user?.accountStatus === 'approved',
     accountId: () => user?.id,
     isAuthenticated: () => Boolean(user && document.body.dataset.auth === 'ready'),
+    async getStudyMetadata(id) {
+      if (!user) throw Error('Entre na sua conta para organizar estudos.');
+      const result = await request('/api/studies/' + encodeURIComponent(id) + '/metadata');
+      return result.metadata;
+    },
+    async saveStudyMetadata(id, data) {
+      if (!user) throw Error('Entre na sua conta para organizar estudos.');
+      const result = await request('/api/studies/' + encodeURIComponent(id) + '/metadata', 'PUT', data);
+      return result.metadata;
+    },
     async saveStudy(entry) {
       if (!user) { gate(); throw Error('Entre na sua conta para salvar o estudo.'); }
       const accountId=user.id;

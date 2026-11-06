@@ -1,7 +1,7 @@
 /* Saved studies and access times are supplied by the authenticated account. */
 function recentStudyCards(){
  const recent=Object.values(state.savedCustom)
-  .filter(entry=>state.saved.has(entry.lot.id))
+  .filter(entry=>state.saved.has(entry.lot.id)&&entry.metadata?.stage!=='archived')
   .sort((a,b)=>Math.max(b.updatedAt||0,b.lastOpenedAt||0)-Math.max(a.updatedAt||0,a.lastOpenedAt||0)||(b.updatedAt||0)-(a.updatedAt||0)||a.lot.id.localeCompare(b.lot.id))
   .slice(0,6);
  const cards=recent.map((entry,index)=>{

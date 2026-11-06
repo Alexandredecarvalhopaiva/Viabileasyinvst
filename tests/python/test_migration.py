@@ -46,6 +46,23 @@ def test_node_hash_and_legacy_sqlite_migration(tmp_path):
         assert response.status_code == 200
         assert response.json()["user"]["accountStatus"] == "approved"
         assert client.get("/api/studies").json()["studies"][0]["lot"]["id"] == "lot-1"
+        assert client.get("/api/studies/lot-1/metadata").json()["metadata"] == {
+            "schemaVersion": 1,
+            "stage": "triage",
+            "tags": [],
+            "note": "",
+            "revision": 0,
+            "updatedAt": None,
+        }
+        assert (
+            call(
+                client,
+                "/api/studies/lot-1/metadata",
+                "PUT",
+                {"expectedRevision": 0, "stage": "in_study", "tags": ["antigo"], "note": "Preservado"},
+            ).status_code
+            == 200
+        )
         new = call(
             client,
             "/api/auth/register",
@@ -54,6 +71,13 @@ def test_node_hash_and_legacy_sqlite_migration(tmp_path):
         )
         assert new.json()["user"]["accountStatus"] == "pending"
     with TestClient(create_app(Settings(app_url=ORIGIN, data_dir=tmp_path)), base_url=ORIGIN) as client:
+        assert (
+            call(
+                client, "/api/auth/login", "POST", {"email": "legacy@example.test", "password": PASSWORD}
+            ).status_code
+            == 200
+        )
+        assert client.get("/api/studies/lot-1/metadata").json()["metadata"]["note"] == "Preservado"
         assert (
             call(
                 client, "/api/auth/login", "POST", {"email": "new@example.test", "password": PASSWORD}
