@@ -30,6 +30,6 @@ const EngineResults=(()=>{
    finally{if(active())inFlight=null}
   },250);
  }
- return {get,schedule,get error(){return error},retry(){cancel();selectedKey=null;failedKey=null;cached=null;error=null}};
+ return {payload,get,schedule,get error(){return error},retry(){cancel();selectedKey=null;failedKey=null;cached=null;error=null}};
 })();
 if(typeof module!=='undefined')module.exports=EngineResults;
