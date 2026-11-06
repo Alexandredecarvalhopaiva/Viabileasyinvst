@@ -6,6 +6,7 @@ import shutil
 import subprocess
 import tempfile
 from concurrent.futures import ThreadPoolExecutor
+from copy import deepcopy
 from pathlib import Path
 from uuid import uuid4
 
@@ -113,6 +114,52 @@ def study(identifier="lot1", width=12):
             "use": "H1",
         },
     }
+
+
+def test_normative_metadata_and_proposals_are_validated_in_direct_rpc(database):
+    uid = account(database, approved=True, balance=1)
+    payload = study()
+    payload["scenario"].update({"analysisDate": "2026-11-05", "sourceVersions": {"fixture": {"version": "v1", "hash": "synthetic-v1"}}})
+    context = {"mode": "manual", "front": 7, "side": 2, "back": 3}
+    context["overrideAudit"] = {
+        "schema": "VIABILEASY_OVERRIDE_V1", "version": 1, "status": "pending_review", "legalValidation": False,
+        "original": {"values": {"front": None, "side": None, "back": None}},
+        "revisions": [{"version": 1, "status": "pending_review", "values": {"front": 7, "side": 2, "back": 3},
+                       "responsible": {"accountId": str(uid)}, "justification": "Fixture sintética", "recordedAt": "2026-11-05T00:00:00Z"}],
+    }
+    payload["lot"]["urbanContext"] = context
+    for mutate in (
+        lambda data: data["scenario"].update(analysisDate="2026-02-31"),
+        lambda data: data["scenario"].update(sourceVersions={"fixture": {"version": 2}}),
+        lambda data: data["lot"]["urbanContext"]["overrideAudit"].update(status="approved"),
+        lambda data: data["lot"]["urbanContext"]["overrideAudit"]["revisions"][0]["responsible"].update(accountId=str(uuid4())),
+        lambda data: data["lot"]["urbanContext"].update(front=8),
+    ):
+        malformed = deepcopy(payload)
+        mutate(malformed)
+        assert call(database, uid, "save-study", malformed)["status"] == 400
+        assert call(database, uid, "usage")["usage"]["balance"] == 1
+    saved = call(database, uid, "save-study", payload)
+    assert saved["study"]["scenario"]["sourceVersions"] == payload["scenario"]["sourceVersions"]
+    assert saved["study"]["lot"]["urbanContext"]["overrideAudit"] == context["overrideAudit"]
+    proposals = []
+    for front in (8, 9):
+        proposal = deepcopy(payload)
+        proposal["lot"]["urbanContext"]["front"] = front
+        audit = proposal["lot"]["urbanContext"]["overrideAudit"]
+        audit["version"] = 2
+        audit["revisions"].append({**deepcopy(audit["revisions"][0]), "version": 2, "values": {"front": front, "side": 2, "back": 3}})
+        proposals.append(proposal)
+    rewritten_original = deepcopy(proposals[0])
+    rewritten_original["lot"]["urbanContext"]["overrideAudit"]["original"]["values"]["front"] = 1
+    assert call(database, uid, "save-study", rewritten_original)["status"] == 409
+    with ThreadPoolExecutor(max_workers=2) as pool:
+        results = list(pool.map(lambda proposal: call(database, uid, "save-study", proposal), proposals))
+    assert sum("study" in result for result in results) == 1
+    assert sum(result.get("status") == 409 for result in results) == 1
+    winner = next(result["study"] for result in results if "study" in result)
+    assert call(database, uid, "save-study", {**winner, "id": "lot1"})["charged"] is False
+    assert call(database, uid, "study", {"id": "lot1"})["study"]["lot"]["urbanContext"]["overrideAudit"]["version"] == 2
 
 
 def test_grants_and_reapply(database):

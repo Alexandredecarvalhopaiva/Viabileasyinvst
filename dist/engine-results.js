@@ -1,6 +1,6 @@
 /* One current-result cache. A response for old inputs is never displayed for new inputs. */
 const EngineResults=(()=>{
- const keys=['floors','to','unitArea','use','price','cost','landPrice','profit','finance','regimeVariant','balconyProjectionMeters'];
+ const keys=['floors','to','unitArea','use','price','cost','landPrice','profit','finance','regimeVariant','balconyProjectionMeters','analysisDate','sourceVersions'];
  const payload=(lot,config)=>({lot,scenario:Object.fromEntries(keys.map(k=>[k,config[k]]))});
  const identity=(lot,config)=>JSON.stringify(payload(lot,config));
  let cached=null,inFlight=null,timer=null,scheduledKey=null,selectedKey=null,error=null,failedKey=null,generation=0;
@@ -22,11 +22,12 @@ const EngineResults=(()=>{
    const timeout=AbortSignal.timeout(10000);
    timeout.addEventListener('abort',()=>task.controller.abort(),{once:true});
    try{const response=await fetch('/api/calculate',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json','X-Viabileasy-Request':'1'},body:key,signal:task.controller.signal});
-    if(!response.ok)throw Error('Cálculo no servidor indisponível; prévia demonstrativa local.');
+    if(!response.ok)throw Error('Cálculo no servidor indisponível; mantendo a proteção normativa local.');
     const text=await response.text();if(text.length>4000000)throw Error('Resposta de cálculo excede o limite.');const result=JSON.parse(text);
-    if(result.schema!=='VIABILEASY_ANALYSIS_V1'||!result.engine?.version||!Array.isArray(result.floorPlates)||!Array.isArray(result.pendings)||!(Number.isFinite(result.gross)||result.gross===null&&result.calculationStatus==='identification_only')||!result.financial||!result.setbackRule)throw Error('Resposta de cálculo inválida.');
+    if(result.schema!=='VIABILEASY_ANALYSIS_V1'||!result.engine?.version||!Array.isArray(result.floorPlates)||!Array.isArray(result.pendings)||!(Number.isFinite(result.gross)||result.gross===null&&['identification_only','pending_rules'].includes(result.calculationStatus))||!result.financial||!result.setbackRule)throw Error('Resposta de cálculo inválida.');
+    if(typeof ReportEngine!=='undefined'&&!ReportEngine.isExample(lot)&&result.calculationStatus!=='pending_rules')throw Error('Resposta sem proteção normativa. Resultados mantidos pendentes.');
     if(active()){cached={key,result};failedKey=null;done();}
-   }catch(e){if(active()){error=task.controller.signal.aborted?'Cálculo no servidor excedeu o prazo; prévia demonstrativa local.':e.message;failedKey=key;done();}}
+   }catch(e){if(active()){error=task.controller.signal.aborted?'Cálculo no servidor excedeu o prazo; mantendo a proteção normativa local.':e.message;failedKey=key;done();}}
    finally{if(active())inFlight=null}
   },250);
  }

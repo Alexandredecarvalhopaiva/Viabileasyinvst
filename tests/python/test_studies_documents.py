@@ -1,5 +1,6 @@
 import base64
 from concurrent.futures import ThreadPoolExecutor
+from copy import deepcopy
 
 from conftest import call, grant, login, study
 
@@ -11,6 +12,8 @@ def test_feedback_assumptions_survive_save_and_reopen(system, accounts):
     c = system["client"]
     payload = study()
     extra = {
+        "analysisDate": "2026-11-05",
+        "sourceVersions": {"synthetic": {"version": "v1", "hash": "fixture-hash-v1"}},
         "regimeVariant": "note-b",
         "balconyProjectionMeters": 0.5,
         "finance": {
@@ -29,6 +32,51 @@ def test_feedback_assumptions_survive_save_and_reopen(system, accounts):
         malformed = study()
         malformed["scenario"].update(invalid)
         assert call(c, "/api/studies/lot-1", "PUT", malformed).status_code == 400
+
+
+def test_normative_reference_validation(system, accounts):
+    for invalid in ({"analysisDate": "2026-02-31"}, {"analysisDate": True},
+                    {"sourceVersions": []}, {"sourceVersions": {"source": {"version": 2}}},
+                    {"sourceVersions": {"source": {"hash": "a" * 201}}}):
+        payload = study()
+        payload["scenario"].update(invalid)
+        assert call(system["client"], "/api/studies/lot-1", "PUT", payload).status_code == 400
+
+
+def test_override_proposal_binds_author_to_session_and_preserves_review(system, accounts):
+    payload = study()
+    audit = {
+        "schema": "VIABILEASY_OVERRIDE_V1", "version": 1,
+        "status": "pending_review", "legalValidation": False,
+        "original": {"values": {"front": None, "side": None, "back": None}, "source": None},
+        "revisions": [{
+            "version": 1, "status": "pending_review", "values": {"front": 7, "side": 2, "back": 3},
+            "responsible": {"accountId": accounts["admin"]["id"], "verification": "session_claim"},
+            "justification": "Exceção sintética para revisão", "recordedAt": "2026-11-05T00:00:00Z",
+        }],
+    }
+    payload["lot"]["urbanContext"] = {"mode": "manual", "front": 7, "side": 2, "back": 3, "overrideAudit": audit}
+    c = system["client"]
+    assert call(c, "/api/studies/lot-1", "PUT", payload).status_code == 200
+    assert c.get("/api/studies/lot-1").json()["study"]["lot"]["urbanContext"]["overrideAudit"] == audit
+    next_version = deepcopy(payload)
+    next_context = next_version["lot"]["urbanContext"]
+    next_context["front"] = 8
+    next_audit = next_context["overrideAudit"]
+    next_audit["version"] = 2
+    next_audit["revisions"].append({**deepcopy(audit["revisions"][0]), "version": 2, "values": {"front": 8, "side": 2, "back": 3}})
+    assert call(c, "/api/studies/lot-1", "PUT", next_version).status_code == 200
+    assert call(c, "/api/studies/lot-1", "PUT", next_version).status_code == 200
+    stale = deepcopy(next_version)
+    stale["lot"]["urbanContext"]["front"] = 9
+    stale["lot"]["urbanContext"]["overrideAudit"]["revisions"][-1]["values"]["front"] = 9
+    assert call(c, "/api/studies/lot-1", "PUT", stale).status_code == 409
+    assert c.get("/api/studies/lot-1").json()["study"]["lot"]["urbanContext"]["front"] == 8
+    audit["revisions"][0]["responsible"]["accountId"] = accounts["other"]["id"]
+    assert call(c, "/api/studies/lot-1", "PUT", payload).status_code == 400
+    audit["revisions"][0]["responsible"]["accountId"] = accounts["admin"]["id"]
+    audit["status"] = "approved"
+    assert call(c, "/api/studies/lot-1", "PUT", payload).status_code == 400
 
 
 def test_study_credit_idempotency_and_geometry_changes(system, accounts):

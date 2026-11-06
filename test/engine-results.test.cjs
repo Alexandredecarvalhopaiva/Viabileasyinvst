@@ -26,3 +26,18 @@ test('Voltar ao cenário já armazenado cancela a consulta agendada do cenário 
  s.E.schedule(lot,b,()=>assert.fail('Cenário intermediário'));assert.equal(s.hasTimer(),true);
  s.E.schedule(lot,a,()=>{});assert.equal(s.hasTimer(),false);assert.equal(s.E.get(lot,a).engine.version,'cached');
 });
+test('Finalidade, data, versão e hash cancelam respostas normativas anteriores',async()=>{
+ const lot={id:'real-lot'},original={floors:4,use:'H3',analysisDate:'2026-11-05',sourceVersions:{fixture:{version:'v1',hash:'hash-v1'}}};
+ for(const next of [{...original,use:'H1'},{...original,analysisDate:'2026-11-06'},
+  {...original,sourceVersions:{fixture:{version:'v2',hash:'hash-v1'}}},
+  {...original,sourceVersions:{fixture:{version:'v1',hash:'hash-v2'}}}]){
+  const s=setup();let renders=0;
+  s.E.schedule(lot,original,()=>renders++);const old=s.run();
+  s.E.schedule(lot,next,()=>renders++);const current=s.run();
+  assert.equal(s.requests[0].args[1].signal.aborted,true);
+  s.requests[1].resolve(new Response(JSON.stringify(result('current'))));await current;
+  s.requests[0].resolve(new Response(JSON.stringify(result('stale'))));await old;
+  assert.equal(s.E.get(lot,next).engine.version,'current');
+  assert.equal(s.E.get(lot,original),null);assert.equal(renders,1);
+ }
+});

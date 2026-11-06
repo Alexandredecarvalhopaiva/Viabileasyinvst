@@ -104,3 +104,15 @@ test('Link da fonte salva aceita somente HTTP e HTTPS',()=>{
  assert.equal(ctx.urbanSourceLink({title:'Referência salva',url:'javascript:alert(1)'}),'Referência salva');
  assert.match(ctx.urbanSourceLink({title:'Fonte',url:'https://example.test/v1'}),/href="https:\/\/example.test\/v1"/);
 });
+test('Reabrir consulta espacial v1 após catálogo v2 preserva snapshots antigos sem nova rede',async()=>{
+ const {ctx,calls}=harness();ctx.state.lot=lot();
+ const pending=ctx.refreshUrbanLookup();calls[0].resolve(response('ZH2'));await pending;
+ const r=ctx.state.lot.territory,originalTitle=r.occupation.source.title;
+ r.key=JSON.stringify({catalog:'documentary-v1',...JSON.parse(r.key)});
+ ctx.U.catalog.id='documentary-v2';ctx.U.catalog.title='Título corrente v2';
+ await ctx.refreshUrbanLookup();
+ assert.equal(calls.length,1);
+ assert.equal(r.occupation.source.title,originalTitle);
+ assert.match(ctx.urbanLookupReport(),/LC 169/);
+ assert.doesNotMatch(ctx.urbanLookupReport(),/Título corrente v2/);
+});

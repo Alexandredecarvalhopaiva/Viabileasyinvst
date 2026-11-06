@@ -76,3 +76,67 @@ A próxima dependência é disponibilizar o pacote revisado com matriz de fontes
 vigência, licença e casos profissionais, e combinar seu contrato de resolução
 com Backend e Mika. Esta rodada entrega correções revisáveis de preservação do
 contexto e concorrência. A conclusão da automação normativa permanece pendente.
+
+## Proteção normativa e auditoria em 06/11/2026
+
+O caso de revisão da Mika foi reproduzido em
+`test/normative-analysis.test.mjs`. Um lote real ZH1 de 20 × 30 m recebia
+1.120 m² e 32 unidades sem regras essenciais. Agora o resultado canônico usa
+`calculationStatus=pending_rules`, mantém 600 m² de área e 100 m de perímetro
+e retorna `null` para unidades, áreas construtivas, envelopes, altura, índices
+aplicáveis e valores derivados. Cenários, volumetria, fallback local, API,
+JSON e relatório apresentam a pendência. A camada de apresentação conserva as
+hipóteses informadas para uma futura revisão.
+
+O motor mantém estimativas demonstrativas para os três exemplos cadastrados,
+conferindo identificador, medidas, posição e geometria. `custom`, sinalizadores
+de homologação e snapshots enviados pelo cliente não habilitam cálculo normativo.
+Os testes geométricos e do antigo cálculo demonstrativo usam uma opção interna
+de fixture, que a API pública não lê do payload. `validatedRuleCount` continua
+zero e `legalValidation` permanece falso.
+
+`NormativeContext` centraliza município de escopo, geometria posicionada,
+testadas, finalidade, pavimentos, regime, data normativa, versões/hashes e
+fontes territoriais observadas. `scenario.analysisDate` e
+`scenario.sourceVersions` são persistidos nos dois backends. O snapshot
+`VIABILEASY_NORMATIVE_V1` contém identidade canônica, entradas, estados e fontes
+por campo. Mudanças dependentes geram outra identidade e descartam respostas
+anteriores. Fontes e valores sintéticos ficam identificados no snapshot e
+continuam sujeitos ao bloqueio dos resultados de terreno real.
+
+A consulta espacial usa identidade própria, independente do catálogo normativo.
+Estudos antigos com `catalog` na chave espacial continuam legíveis. Abrir um
+estudo v1 após disponibilizar v2 conserva a origem e os valores registrados até
+atualização explícita. As referências documentais de ocupação e recuos são
+copiadas para a consulta salva. Data, finalidade e atualização de versões têm
+controles próprios; versões ou hashes ausentes aparecem como pendências.
+
+Exceções de recuos recebem valor original, referência, justificativa, conta
+responsável, data e versões encadeadas. O estado permanece `pending_review`.
+Uma exceção antiga sem auditoria recebe um registro `legacy_unverified`, sem
+autoria inventada. Python e Worker validam o responsável contra a sessão.
+A migração `202611050002_normative_context.sql` acrescenta a mesma proteção
+ao acesso direto por RPC, valida data e versões e rejeita alterações concorrentes
+que substituiriam histórico ou valor original. Repetir a mesma gravação conserva
+a versão. Mudança de geometria invalida o enquadramento correspondente.
+
+A migração foi executada somente no PostgreSQL local descartável. Backend e Mika
+precisam revisar e aplicar a migração no ambiente hospedado para ativar a proteção
+da RPC. Aprovar uma exceção técnica exige um fluxo servidor com autorização
+específica, ainda fora da proposta pendente implementada aqui.
+
+O painel também distingue área desconhecida de área calculada igual a zero.
+O aviso de recuos que eliminam a implantação exige um valor numérico conhecido.
+
+Foram aprovados 111 testes frontend, 54 testes Python, 13 testes da RPC/migrações
+em PostgreSQL descartável e 144 verificações geométricas. Quatro integrações
+opcionais Python continuam puladas por exigir configuração específica de migração
+ou modo de produção. Ruff, `git diff --check` e compilação do Worker Pages passaram. O navegador local foi
+verificado em 1440×1000, 390×844 e 320×844 com conta sintética, salvamento real
+no backend Python, proposta auditada, reabertura de v1, JSON e PDF. O cálculo
+foi interceptado pelo módulo canônico e por uma resposta antiga simulada, que
+foi rejeitada em favor do fallback protegido. O console ficou sem erros.
+
+O pacote normativo revisado, suas camadas, licença, vigência e casos profissionais
+continuam necessários para liberar preenchimento real e concluir AC-15. Os testes
+sintéticos comprovam o contrato e as proteções de software descritos nesta seção.

@@ -2,9 +2,9 @@ const {test}=require('node:test'),assert=require('node:assert/strict'),fs=requir
 const ctx={URL,proj4:require('../dist/vendor/geometry/proj4.js'),ClipperLib:require('../dist/vendor/geometry/clipper.js'),module:{exports:{}}};vm.createContext(ctx);
 for(const file of ['parcel-geometry','setback-rules','building-capacity'])vm.runInContext(fs.readFileSync('dist/'+file+'.js','utf8'),ctx);
 vm.runInContext(fs.readFileSync('dist/report-engine.js','utf8'),ctx);
-const app=fs.readFileSync('dist/app.js','utf8');
 vm.runInContext('this.G=ParcelGeometry;',ctx);ctx.getLotGeometry=l=>l.geometry;
-vm.runInContext(app.slice(app.indexOf('function calc('),app.indexOf('function miniMap('))+'\nthis.calculate=calc;',ctx);
+// Synthetic demonstration fixtures use an internal option that the public API never reads from client data.
+vm.runInContext('this.calculate=(lot,config)=>ReportEngine.calculate({...lot,geometry:getLotGeometry(lot)},config,{Geometry:ParcelGeometry,Setbacks:SetbackRules,Capacity:BuildingCapacity},{demonstration:true});',ctx);
 const fixture=()=>({id:'feedback-12x30',area:360,width:12,depth:30,geometry:ctx.G.rectangle(12,30),urbanContext:{mode:'catalog',zone:'ZH1',coastal:'outside',regime:'ordinary',roadClass:'local',macrozone:'MAD1'}});
 const config={floors:6,to:50,efficiency:76,unitArea:70,use:'H3',price:8200,cost:2700,landPrice:100000,indirect:22,profit:18};
 test('Relatório não usa CA 2/3 universais e declara a outorga acima do básico',()=>{

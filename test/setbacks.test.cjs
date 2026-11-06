@@ -6,9 +6,9 @@ vm.runInContext(fs.readFileSync('dist/setback-rules.js','utf8')+'\nthis.R=Setbac
 const {G,R}=ctx;
 vm.runInContext(fs.readFileSync('dist/building-capacity.js','utf8'),ctx);
 vm.runInContext(fs.readFileSync('dist/report-engine.js','utf8'),ctx);
-const app=fs.readFileSync('dist/app.js','utf8');
 ctx.getLotGeometry=lot=>lot.geometry||G.rectangle(lot.width,lot.depth);
-vm.runInContext(app.slice(app.indexOf('function calc('),app.indexOf('function miniMap('))+'\nthis.calculate=calc;',ctx);
+// Synthetic demonstration fixtures use an internal option that the public API never reads from client data.
+vm.runInContext('this.calculate=(lot,config)=>ReportEngine.calculate({...lot,geometry:getLotGeometry(lot)},config,{Geometry:ParcelGeometry,Setbacks:SetbackRules,Capacity:BuildingCapacity},{demonstration:true});',ctx);
 const near=(a,b)=>assert.ok(Math.abs(a-b)<.02,a+' != '+b);
 const plain=value=>JSON.parse(JSON.stringify(value));
 const lot=(urbanContext={})=>({area:600,width:20,depth:30,coastal:false,geometry:G.rectangle(20,30),urbanContext});

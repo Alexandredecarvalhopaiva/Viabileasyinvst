@@ -1,7 +1,21 @@
 /* One deterministic calculation interface for server results and the explicitly labelled demo fallback.
  * This is NOT Base_Regras_JP v1.1: that external rule set has not been supplied to this repository. */
 const ReportEngine=(()=>{
- const VERSION='feedback-demo-1.1',SCHEMA='VIABILEASY_ANALYSIS_V1';
+ const VERSION='feedback-demo-1.2',SCHEMA='VIABILEASY_ANALYSIS_V1';
+ // Only the registered examples enter the public demonstration path.
+ function isExample(lot){
+  const examples={
+   '024':[30,40,-7.0816,-34.8368],
+   '017':[24,40,-7.0619,-34.8406],
+   '031':[30,50,-7.1342,-34.8199]
+  };
+  const expected=examples[lot?.id];
+  if(!expected||lot.custom||lot.geometry?.geographic)return false;
+  if(!['width','depth','lat','lng'].every((key,i)=>lot[key]===expected[i]))return false;
+  const g=lot.geometry;
+  return !g||g.kind==='rectangle'&&g.front===0&&g.back===2&&
+   JSON.stringify(g.vertices)===JSON.stringify([[0,0],[lot.width,0],[lot.width,lot.depth],[0,lot.depth]]);
+ }
  const norm={occupation:'https://planodiretor.joaopessoa.pb.gov.br/wp-content/uploads/2025/01/LC169-2024_AlteraLUOS.pdf#page=4',
   parking:'https://planodiretor.joaopessoa.pb.gov.br/wp-content/uploads/2025/01/LC169-2024_AlteraLUOS.pdf#page=5',
   director:'https://www.joaopessoa.pb.gov.br/wp-content/uploads/2024/10/Lei-Complementar-no-164-2024.pdf',amendment:'https://sapl.joaopessoa.pb.leg.br/norma/22012'};
@@ -55,11 +69,12 @@ const ReportEngine=(()=>{
    rates:{itbi:.03,ret:.04,commercialIndirect:.10,administration:.12},source:feedback,
    priceBasis:f.priceBasis||'Preço informado; não verificado como venda fechada',costBasis:f.costBasis||'Custo informado; faixa do bairro não validada'};
  }
- function calculate(lot,config,deps,{includeNoteB=true,execution='browser-demonstration'}={}){
+ function calculate(lot,config,deps,{includeNoteB=true,execution='browser-demonstration',demonstration=isExample(lot)}={}){
   const {Geometry:G,Setbacks:R,Capacity:B}=deps;
   if(!lot||!config||!Number.isInteger(config.floors)||config.floors<1||config.floors>80||!finite(lot.area)||lot.area<=0||lot.area>1e6
    ||!finite(config.to)||config.to<0||config.to>100||!finite(config.unitArea)||config.unitArea<=0||config.unitArea>1e6||!['H1','H3','Comercial','Flats','Misto'].includes(config.use)
    ||!finite(config.price)||config.price<0||config.price>1e9||!finite(config.cost)||config.cost<0||config.cost>1e9||!finite(config.profit)||config.profit<0||config.profit>100)throw Error('Entradas do cenário inválidas.');
+  if(demonstration&&isExample(lot)&&!lot.urbanContext)lot={...lot,urbanContext:{zone:'ZH1',macrozone:'MAD2',mode:'demo'}};
   const context=lot.urbanContext||{},zone=code(context.zone||lot.zone),macrozone=code(context.macrozone),baseCa=1,maxCa=maxIA[macrozone]??null;
   const g=lot.geometry||G.rectangle(lot.width,lot.depth);
   if(!g.valid)throw Error('Geometria inválida.');
@@ -137,10 +152,44 @@ const ReportEngine=(()=>{
    result.parkingRules.productTarget=null;
    result.financial={...financialResult,complete:false,vgv:null,nonLand:null,residualStatic:null,residualNPV:null,cashflow:[]};
   }
-  if(includeNoteB&&config.use==='H3')result.noteB=noteEligible&&supported?{status:'conditional',source:evidence('LC 169/2024 · Anexo IV, nota B',norm.occupation),result:calculate(lot,{...config,floors:4,to:55,regimeVariant:'note-b'},deps,{includeNoteB:false,execution})}:
+  if(includeNoteB&&config.use==='H3')result.noteB=noteEligible&&supported&&demonstration?{status:'conditional',source:evidence('LC 169/2024 · Anexo IV, nota B',norm.occupation),result:calculate(lot,{...config,floors:4,to:55,regimeVariant:'note-b'},deps,{includeNoteB:false,execution,demonstration})}:
    {status:'pending',result:null,message:'Nota B deve ser comparada: confirme classe de via local/coletora, zona e enquadramento documental fora de regimes especiais. Não foi escolhido um melhor cenário.'};
+  result.geometry={area:g.area,perimeter:g.perimeter,frontage:g.frontage};
+  if(deps.Normative)result.normativeSnapshot=deps.Normative.snapshot({...lot,geometry:g},config);
+  result.engine.demonstration=demonstration;
+  if(!demonstration){
+   const message='Pacote normativo revisado ausente. Áreas construtivas, unidades, volumetria e valores derivados permanecem pendentes.';
+   result.calculationStatus='pending_rules';
+   result.classification='indeterminado';
+   result.engine.execution=execution.replace('demonstration','pending-rules');
+   result.engine.notice=message;
+   for(const key of ['baseCa','maxCa','toMax','permeability','coreArea','minWidth','privateArea',
+    'topSetbackArea','setbackArea','contiguousArea','footprint','gross','sellable','units','retail',
+    'totalBuilt','vgv','direct','indirect','nonLand','targetProfit','residual','margin','height','ca'])result[key]=null;
+   result.floorPlates=[];
+   result.envelope={paths:[],edgeOffsets:[],area:null,largest:null,method:'pending',reason:message};
+   result.setbackMethod='pending';result.setbackReason=message;
+   result.buildingCapacity={...result.buildingCapacity,modeledFloors:null};
+   result.parkingRules={...parking,legalMinimum:null,productTarget:null,legalDeficit:null,productDeficit:null,directFrontageIllustration:null};
+   result.outorga={...outorga,excessArea:null,status:'pending'};
+   result.financial={...financialResult,complete:false,vgv:null,direct:null,nonLandKnown:null,nonLand:null,
+    targetProfit:null,residualStatic:null,residualNPV:null,cashflow:[],items:financialResult.items.map(([name])=>[name,null])};
+   result.equipment={elevator:{required:null,cost:null,source:feedback},generator:{required:null,cost:null,source:feedback}};
+   result.evidence={...result.evidence,ia:evidence(message,null,'pending'),occupation:evidence(message,null,'pending')};
+   result.pendings=pendings.filter(item=>['macrozone','zone','zone-conflict','coastal','use','corner'].includes(item.id));
+   result.pendings.unshift({id:'essential-rules',status:'pending',message});
+   result.pendings.push({id:'setbacks',status:'pending',message:'Aplicação dos recuos pendente do pacote revisado e das condições do terreno.'},
+    {id:'height',status:'pending',message:'Altura e gabarito aplicáveis ainda não resolvidos.'});
+   // Documentary inputs remain visible. Fictitious fallback setbacks do not become results.
+   if(!setbackRule.resolved||context.mode!=='manual'){
+    const levels=setbackRule.levels.map(level=>({...level,values:{front:null,side:null,back:null},
+     edgeOffsets:[],edges:level.edges.map(edge=>({...edge,distance:null}))}));
+    result.setbackRule={...setbackRule,status:'pending',resolved:false,source:null,catalog:null,
+     reason:message,levels,top:levels.at(-1)};
+   }
+  }
   return result;
  }
- return {VERSION,SCHEMA,calculate,minimumParking};
+ return {VERSION,SCHEMA,calculate,minimumParking,isExample};
 })();
 if(typeof module!=='undefined')module.exports=ReportEngine;
