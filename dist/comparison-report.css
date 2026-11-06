@@ -1,0 +1,8 @@
+.comparison-panel{padding:24px}
+.comparison-controls{display:flex;align-items:end;gap:16px;flex-wrap:wrap;margin:20px 0}
+.comparison-controls label{display:grid;gap:6px;font-weight:600;flex:1;min-width:160px}
+.comparison-controls select{font:inherit;color:inherit;border:1px solid #bcc6d0;border-radius:8px;background:white;padding:12px;width:100%}
+.comparison-controls select:focus-visible{outline:3px solid #1f8ea6;outline-offset:2px}
+.comparison-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.comparison-panel .comparison-document{padding:0}
+@media(max-width:540px){.comparison-panel{padding:16px}.comparison-actions .btn,.comparison-controls .btn{width:100%}.comparison-panel .comparison-document{font-size:12px}.comparison-document td,.comparison-document th{padding:6px}}
