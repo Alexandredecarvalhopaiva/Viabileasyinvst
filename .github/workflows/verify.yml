@@ -41,7 +41,7 @@ jobs:
           PG_BIN: /usr/lib/postgresql/16/bin
         run: |
           test -x "$PG_BIN/initdb"
-          python -m pytest -q tests/supabase/test_database.py
+          python -m pytest -q tests/supabase
       - run: npm ci --ignore-scripts
       - run: npm run test:frontend
       - run: npm run verify:geometry
@@ -49,6 +49,8 @@ jobs:
       - run: git diff --exit-code -- dist/index.html
       - name: Compile Cloudflare Pages API function
         run: npx --yes wrangler@4.155.0 pages functions build --outdir "$RUNNER_TEMP/viabileasy-pages-functions" --compatibility-date 2026-10-28
+      - name: Validate compiled Worker JavaScript
+        run: node --check "$RUNNER_TEMP/viabileasy-pages-functions/index.js"
       - name: Build Linux production image
         run: docker build -t viabileasy-ci .
       - name: Start production container and verify readiness

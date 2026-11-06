@@ -59,10 +59,14 @@ export async function supabaseAPI(request, env, fetcher = fetch) {
         || request.headers.get('X-Viabileasy-Request') !== '1')) throw new APIError(403, 'Requisição não autorizada. Recarregue a página.');
     const provider = async (endpoint, {token, body, method = 'GET'} = {}) => {
       const result = await fetcher(config.supabase + endpoint, {
-        method, redirect: 'error', signal: AbortSignal.timeout(15000),
+        // Workers supports manual/follow only. Never forward credentials to redirects.
+        method, redirect: 'manual', signal: AbortSignal.timeout(15000),
         headers: {apikey: config.key, ...(token ? {Authorization: `Bearer ${token}`} : {}), ...(body ? {'Content-Type': 'application/json'} : {})},
         ...(body ? {body: JSON.stringify(body)} : {}),
       });
+      if (result.status >= 300 && result.status < 400) {
+        throw new APIError(503, 'O acesso está temporariamente indisponível.');
+      }
       const data = await result.json().catch(() => null);
       return {ok: result.ok, status: result.status, data};
     };
@@ -95,7 +99,7 @@ export async function supabaseAPI(request, env, fetcher = fetch) {
     };
     const redirect = target => new Response(null, {status: 303, headers: {Location: target}});
     if (path === '/api/health' && method === 'GET') {
-      response = json({status: 'ok', backend: 'cloudflare-supabase', version: '0.16.0'});
+      response = json({status: 'ok', backend: 'cloudflare-supabase', version: '0.16.1'});
     } else if (path === '/api/ready' && method === 'GET') {
       const ready = await rpc('ready', {}, null);
       response = json(ready);

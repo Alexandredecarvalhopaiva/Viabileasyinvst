@@ -56,6 +56,9 @@ def database():
                   $$ select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid $$;
             """)
             conn.execute(MIGRATION.read_text(), prepare=False)
+            for migration in sorted((ROOT / "supabase/migrations").glob("*.sql")):
+                if migration != MIGRATION:
+                    conn.execute(migration.read_text(), prepare=False)
         yield dsn
     finally:
         if started:
