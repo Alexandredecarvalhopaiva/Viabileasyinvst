@@ -7,9 +7,15 @@ const UrbanLookup=(()=>{
  const occupation={ZH1:{to:50,permeability:10},ZH2:{to:55,permeability:5},ZH3:{to:50,permeability:5},
   ZH4:{to:50,permeability:15},ZH5:{to:50,permeability:15}};
  const zoneName=value=>String(value||'').toUpperCase().replace(/[\s-]/g,'');
- const key=lot=>JSON.stringify({catalog:catalog.id,lat:lot.lat??null,lng:lot.lng??null,
+ const key=lot=>JSON.stringify({lat:lot.lat??null,lng:lot.lng??null,
   coordinates:lot.geometry?.geographic||lot.geometry?.metricCoordinates||lot.geometry?.vertices||[lot.width,lot.depth],
   front:lot.geometry?.front,back:lot.geometry?.back});
+ function matches(lot,identity){
+  if(identity===key(lot))return true;
+  // Older saved studies included the documentary catalog in their spatial identity.
+  try{const previous=JSON.parse(identity);delete previous.catalog;return JSON.stringify(previous)===key(lot);}
+  catch{return false;}
+ }
  function carry(previous,next){
   if(key(previous)!==key(next))return next;
   for(const field of ['buildingLimit','urbanContext','territory'])if(previous[field])next[field]=JSON.parse(JSON.stringify(previous[field]));
@@ -66,10 +72,13 @@ const UrbanLookup=(()=>{
   if(!candidates.length)return {...base,status:'not_found',candidates:[]};
   if(candidates.length!==1||candidates[0].boundary||(q.polygon&&Math.abs(candidates[0].coverage-1)>1e-6))return {...base,status:'ambiguous',candidates:candidates.map(c=>c.zone)};
   const zone=candidates[0].zone;
-  return {...base,status:q.polygon?'identified':'approximate',zone,candidates:[zone],occupation:occupation[zone]?{...occupation[zone],source:catalog}:null};
+  const setbacks=typeof SetbackRules!=='undefined'?SetbackRules.minimum(zone,1):null;
+  return {...base,status:q.polygon?'identified':'approximate',zone,candidates:[zone],
+   setbacks:setbacks?{values:{...setbacks},source:{...SetbackRules.catalog}}:null,
+   occupation:occupation[zone]?{...occupation[zone],source:{...catalog}}:null};
  }
  function apply(lot,result){
-  if(result.key!==key(lot))return false;
+  if(!matches(lot,result.key))return false;
   const context=lot.urbanContext;
   const preserve=context&&(context.origin!=='territory'||context.mode==='manual'||context.userConfirmed||context.coastal||context.regime||context.macrozone||context.roadClass||context.reference);
   result.contextPreserved=Boolean(preserve);
@@ -85,6 +94,6 @@ const UrbanLookup=(()=>{
   }
   return true;
  }
- return {catalog,occupation,key,carry,query,resolve,apply};
+ return {catalog,occupation,key,matches,carry,query,resolve,apply};
 })();
 if(typeof module!=='undefined')module.exports=UrbanLookup;

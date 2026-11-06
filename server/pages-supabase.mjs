@@ -1,4 +1,5 @@
 import {calculateAnalysis} from './calculate.mjs';
+import NormativeContext from '../dist/normative-context.js';
 /** Pages runtime: password login + HttpOnly sessions, Supabase RPC with the user's JWT.
  * No database password, service-role key, mail provider or Python service is used.
  */
@@ -183,8 +184,12 @@ export async function supabaseAPI(request, env, fetcher = fetch) {
       ];
       const route = routes.find(([verb, pattern]) => verb === method && pattern.test(path));
       if (!route) throw new APIError(404, 'Recurso não encontrado.');
-      await authenticate();
+      const actor=await authenticate();
       const data = ['POST', 'PUT'].includes(method) ? await boundedJSON(request, route[2] === 'add-document' ? 15 * 1024 * 1024 : 800000) : {};
+      if(route[2]==='save-study'&&data.scenario){
+        try{NormativeContext.request(data.lot||{},data.scenario);NormativeContext.validateOverride(data.lot||{},actor.id);}
+        catch(error){throw new APIError(400,error.message);}
+      }
       const result = await rpc(route[2], {...data, id: path.match(route[1])[1],
         ...(route[2] === 'documents' ? {page: url.searchParams.get('page') || '0', lotId: url.searchParams.get('lotId') || ''} : {})}, access);
       if (route[2] === 'file') {

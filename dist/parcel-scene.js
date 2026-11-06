@@ -16,6 +16,11 @@ function drawParcelScene(canvas){
  const m=Math.max(w,d)*.75;
  if(!decor){for(let x=-m;x<=m;x+=Math.max(5,Math.ceil(m/20))){line([cx+x,cy-m,-.1],[cx+x,cy+m,-.1],'#1f8ea616');line([cx-m,cy+x,-.1],[cx+m,cy+x,-.1],'#1f8ea616')}}
  poly(p.map(v=>[...v,0]),'#e5eee4','#4d7355',[4,3]);
+ if(c.calculationStatus==='pending_rules'){
+  ctx.font='13px sans-serif';ctx.fillStyle='#263e50';
+  ctx.fillText('Volumetria pendente de regras revisadas',12,40);
+  return;
+ }
  if(state.setbacks&&!decor){
   ctx.save();ctx.beginPath();path(p.map(v=>[...v,.01]));ctx.clip();
   c.setbackRule.levels[0].edges.forEach((edge,i)=>{

@@ -1,7 +1,7 @@
 import json
 import math
 import re
-from datetime import date
+from datetime import date, datetime
 from uuid import uuid4
 
 from fastapi import APIRouter, Depends, Request
@@ -80,6 +80,31 @@ def study_of(identifier, data):
     if scenario.get("use") not in ("H1", "H3", "Comercial", "Flats", "Misto"):
         raise APIError(400, "Produto inválido.")
     cleaned["use"] = scenario["use"]
+    if "analysisDate" in scenario:
+        value = scenario["analysisDate"]
+        if value is not None:
+            try:
+                if not isinstance(value, str) or date.fromisoformat(value).isoformat() != value:
+                    raise ValueError
+            except (ValueError, TypeError):
+                raise APIError(400, "Data normativa inválida.") from None
+        cleaned["analysisDate"] = value
+    if "sourceVersions" in scenario:
+        versions = scenario["sourceVersions"]
+        if not isinstance(versions, dict) or len(versions) > 32:
+            raise APIError(400, "Versões de fontes inválidas.")
+        for source_id, source in versions.items():
+            if (
+                not re.fullmatch(r"[a-zA-Z0-9_.-]{1,80}", source_id)
+                or not isinstance(source, dict)
+                or any(
+                    source.get(field) is not None
+                    and (not isinstance(source[field], str) or len(source[field]) > 200)
+                    for field in ("version", "hash")
+                )
+            ):
+                raise APIError(400, "Versão ou hash de fonte inválido.")
+        cleaned["sourceVersions"] = versions
     variant = scenario.get("regimeVariant", "general")
     if variant not in ("general", "note-b"):
         raise APIError(400, "Regime de cenário inválido.")
@@ -163,6 +188,56 @@ def analysis_identity(lot):
     )
 
 
+def validate_override(lot, responsible, previous=None):
+    context = lot.get("urbanContext")
+    audit = context.get("overrideAudit") if isinstance(context, dict) else None
+    if audit is None:
+        if isinstance(context, dict) and context.get("mode") == "manual" and (
+            previous is None or previous.get("urbanContext") != context
+            or analysis_identity(previous) != analysis_identity(lot)
+        ):
+            raise APIError(400, "Registre responsável e justificativa para novos recuos manuais.")
+        return
+    revisions = audit.get("revisions") if isinstance(audit, dict) else None
+    if (
+        not isinstance(revisions, list) or not 1 <= len(revisions) <= 50
+        or audit.get("schema") != "VIABILEASY_OVERRIDE_V1"
+        or audit.get("version") != len(revisions)
+        or audit.get("status") != "pending_review" or audit.get("legalValidation") is not False
+    ):
+        raise APIError(400, "Histórico da exceção técnica inválido.")
+    for index, row in enumerate(revisions):
+        if not isinstance(row, dict) or row.get("version") != index + 1:
+            raise APIError(400, "Versão da exceção técnica inválida.")
+        values = row.get("values")
+        if row.get("status") not in ("pending_review", "legacy_unverified") or not isinstance(values, dict):
+            raise APIError(400, "Versão da exceção técnica inválida.")
+        for name in ("front", "side", "back"):
+            value = values.get(name)
+            if value is None and row["status"] == "legacy_unverified":
+                continue
+            if not finite(value) or not 0 <= value <= 1000:
+                raise APIError(400, "Valor da exceção técnica inválido.")
+    latest = revisions[-1]
+    actor = latest.get("responsible")
+    justification = latest.get("justification")
+    try:
+        datetime.fromisoformat(latest.get("recordedAt", "").replace("Z", "+00:00"))
+    except (ValueError, TypeError, AttributeError):
+        raise APIError(400, "Data da exceção técnica inválida.") from None
+    if (
+        latest["status"] != "pending_review" or not isinstance(actor, dict)
+        or actor.get("accountId") != responsible
+        or not isinstance(justification, str) or not justification.strip() or len(justification) > 2000
+    ):
+        raise APIError(400, "Responsável ou justificativa da exceção técnica inválidos.")
+    context = lot["urbanContext"]
+    if context.get("mode") == "manual" and any(
+        context.get(name) != latest["values"][name] for name in ("front", "side", "back")
+    ):
+        raise APIError(400, "Valores da exceção diferem da versão registrada.")
+
+
 def serialize_study(row):
     return {
         **json.loads(row["payload"]),
@@ -230,7 +305,19 @@ def save_study(identifier: str, request: Request, data: dict = Depends(body)):
             "SELECT payload,last_opened_at FROM studies WHERE user_id=? AND id=?",
             (user["id"], identifier),
         )
-        unchanged = existing and analysis_identity(json.loads(existing["payload"])["lot"]) == identity
+        previous_lot = json.loads(existing["payload"])["lot"] if existing else None
+        unchanged = previous_lot and analysis_identity(previous_lot) == identity
+        validate_override(payload["lot"], user["id"], previous_lot)
+        if existing:
+            old_context = previous_lot.get("urbanContext")
+            new_context = payload["lot"].get("urbanContext")
+            old_audit = old_context.get("overrideAudit") if isinstance(old_context, dict) else None
+            new_audit = new_context.get("overrideAudit") if isinstance(new_context, dict) else None
+            if old_audit and old_audit != new_audit and unchanged and (
+                not new_audit or new_audit["revisions"][:-1] != old_audit["revisions"]
+                or new_audit.get("original") != old_audit.get("original")
+            ):
+                raise APIError(409, "A exceção técnica mudou. Reabra o estudo antes de editar.")
         charged = False
         if user["role"] != "super_admin" and not unchanged:
             previous = one(

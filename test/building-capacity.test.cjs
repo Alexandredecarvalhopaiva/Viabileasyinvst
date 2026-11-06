@@ -34,7 +34,7 @@ const app=fs.readFileSync('dist/app.js','utf8');ctx.getLotGeometry=lot=>lot.geom
  vm.runInContext(app.slice(app.indexOf('function calc('),app.indexOf('function miniMap('))+'\nthis.calculate=calc;',ctx);
  const lot={area:600,geometry:ctx.G.rectangle(20,30),buildingLimit:{...reference,maxFloors:4},urbanContext:{mode:'catalog',zone:'ZH1',coastal:'outside',regime:'ordinary'}};
  const config={floors:8,to:50,efficiency:76,unitArea:70,use:'H3',price:8200,cost:2700,landPrice:100000,indirect:22,profit:18};
- const result=ctx.calculate(lot,config);assert.equal(result.buildingCapacity.aboveReference,true);assert.equal(result.floorPlates.length,8);
- assert.equal(result.height,24);assert.equal(result.buildingCapacity.source.reference,reference.reference);
- lot.geometry=ctx.G.rectangle(4,6);lot.area=24;assert.equal(ctx.calculate(lot,config).buildingCapacity.modeledFloors,0);
+ const result=ctx.calculate(lot,config);assert.equal(result.buildingCapacity.aboveReference,true);assert.equal(result.floorPlates.length,0);
+ assert.equal(result.height,null);assert.equal(result.buildingCapacity.source.reference,reference.reference);
+ lot.geometry=ctx.G.rectangle(4,6);lot.area=24;assert.equal(ctx.calculate(lot,config).buildingCapacity.modeledFloors,null);
 });

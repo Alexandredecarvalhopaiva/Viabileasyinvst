@@ -2,6 +2,7 @@ import Geometry from '../dist/parcel-geometry.js';
 import Setbacks from '../dist/setback-rules.js';
 import Capacity from '../dist/building-capacity.js';
 import ReportEngine from '../dist/report-engine.js';
+import NormativeContext from '../dist/normative-context.js';
 
 /** Rebuild derived geometry; never accept client-provided area/envelopes as authority. */
 export function calculateAnalysis(data) {
@@ -18,6 +19,12 @@ export function calculateAnalysis(data) {
     geometry = Geometry.rectangle(lot.width,lot.depth);
   }
   if (!geometry.valid) throw Error('Geometria inválida.');
+  if(input?.geographic){
+    if(!Array.isArray(input.geographic)||input.geographic.length<3||input.geographic.length>121||
+      input.geographic.some(point=>!Array.isArray(point)||point.length!==2||
+        !point.every(Number.isFinite)||Math.abs(point[0])>180||Math.abs(point[1])>90))throw Error('Coordenadas inválidas.');
+    geometry.geographic=input.geographic.map(point=>[...point]);
+  }
   return ReportEngine.calculate({...lot,geometry,area:geometry.area,width:geometry.frontage,depth:geometry.depth},data.scenario,
-    {Geometry,Setbacks,Capacity},{execution:'server-demonstration'});
+    {Geometry,Setbacks,Capacity,Normative:NormativeContext},{execution:'server-demonstration'});
 }
