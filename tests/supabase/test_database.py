@@ -214,9 +214,15 @@ def test_study_isolation_validation_and_delete(database):
 def test_report_assumptions_validate_without_spending_credits(database):
     owner = account(database, approved=True, balance=1)
     invalid = [
-        {"profit": 101}, {"price": 1e10}, {"unitArea": 1e7}, {"regimeVariant": "other"},
-        {"balconyProjectionMeters": 0.6}, {"finance": []}, {"finance": {"elevatorCost": -1}},
-        {"finance": {"salesMonths": 0}}, {"finance": {"constructionMonths": 2.5}},
+        {"profit": 101},
+        {"price": 1e10},
+        {"unitArea": 1e7},
+        {"regimeVariant": "other"},
+        {"balconyProjectionMeters": 0.6},
+        {"finance": []},
+        {"finance": {"elevatorCost": -1}},
+        {"finance": {"salesMonths": 0}},
+        {"finance": {"constructionMonths": 2.5}},
         {"finance": {"discount": {"annualRate": 0.1, "date": "2026-02-31", "source": "Teste"}}},
         {"finance": {"discount": {"annualRate": 0.1}}},
     ]
@@ -226,11 +232,19 @@ def test_report_assumptions_validate_without_spending_credits(database):
         assert call(database, owner, "save-study", payload).get("status") == 400, values
     assert call(database, owner, "usage")["usage"]["balance"] == 1
     payload = study("report-assumptions")
-    extra = {"regimeVariant": "note-b", "balconyProjectionMeters": 0.5, "finance": {
-        "projectsFloor": 12000, "registrationCost": 8000, "outorgaCost": 0,
-        "constructionMonths": 24, "salesStartMonth": 0, "salesMonths": 12,
-        "discount": {"annualRate": 0.1, "date": "2026-11-01", "source": "Teste sintético"},
-    }}
+    extra = {
+        "regimeVariant": "note-b",
+        "balconyProjectionMeters": 0.5,
+        "finance": {
+            "projectsFloor": 12000,
+            "registrationCost": 8000,
+            "outorgaCost": 0,
+            "constructionMonths": 24,
+            "salesStartMonth": 0,
+            "salesMonths": 12,
+            "discount": {"annualRate": 0.1, "date": "2026-11-01", "source": "Teste sintético"},
+        },
+    }
     payload["scenario"].update(extra)
     saved = call(database, owner, "save-study", payload)
     assert "study" in saved, saved
@@ -238,7 +252,10 @@ def test_report_assumptions_validate_without_spending_credits(database):
         assert saved["study"]["scenario"][key] == value
     payload["scenario"]["finance"]["projectsFloor"] = -1
     assert call(database, owner, "save-study", payload)["status"] == 400
-    assert call(database, owner, "study", {"id": payload["id"]})["study"]["scenario"]["finance"]["projectsFloor"] == 12000
+    assert (
+        call(database, owner, "study", {"id": payload["id"]})["study"]["scenario"]["finance"]["projectsFloor"]
+        == 12000
+    )
     assert call(database, owner, "usage")["usage"]["balance"] == 0
 
 
@@ -339,3 +356,194 @@ def test_rejected_requests_count_towards_rate_limit(database):
         assert count == 2  # Account initialization plus the rejected save.
         conn.execute("update viabil_private.rate_limits set count=600 where user_id=%s", (uid,))
     assert call(database, uid, "usage")["status"] == 429
+
+
+def metadata_call(database, uid, operation="get-metadata", **changes):
+    with psycopg.connect(database) as conn:
+        conn.execute("set local role authenticated")
+        conn.execute("select set_config('request.jwt.claim.sub',%s,true)", (str(uid),))
+        return conn.execute(
+            "select public.viabil_study_metadata(%s,%s)",
+            (operation, Jsonb({"id": "metadata-lot", **changes})),
+        ).fetchone()[0]
+
+
+def test_metadata_zero_balance_legacy_save_documents_and_isolation(database):
+    uid = account(database, approved=True, balance=1)
+    other = account(database, approved=True)
+    saved = call(database, uid, "save-study", study("metadata-lot"))["study"]
+    assert saved["metadata"]["revision"] == 0 and saved["metadata"]["stage"] == "triage"
+    assert call(database, uid, "usage")["usage"]["balance"] == 0
+    doc = call(database, uid, "add-document", {**document(), "scope": "lot", "lotId": "metadata-lot"})
+    assert "document" in doc, doc
+    for revision, stage in enumerate(("waiting_information", "archived", "triage")):
+        result = metadata_call(
+            database,
+            uid,
+            "save-metadata",
+            expectedRevision=revision,
+            stage=stage,
+            tags=[" Prospecção ", "PROSPECCAO"],
+            note="",
+        )
+        assert result["metadata"]["revision"] == revision + 1, result
+        assert result["metadata"]["tags"] == ["Prospecção"]
+        assert result["metadata"]["stage"] == stage
+        assert any(
+            item["id"] == doc["document"]["id"] for item in call(database, uid, "documents")["documents"]
+        )
+    current = result["metadata"]
+    # The old RPC's validation drops extra fields. The trigger retains canonical metadata.
+    legacy = call(database, uid, "save-study", {**study("metadata-lot"), "metadata": saved["metadata"]})
+    assert legacy["study"]["metadata"] == current
+    assert metadata_call(database, uid) == {"metadata": current}
+    assert call(database, uid, "studies")["studies"][0]["metadata"] == current
+    assert call(database, uid, "usage")["usage"]["balance"] == 0
+    assert metadata_call(database, other)["status"] == 404
+    denied = metadata_call(
+        database, other, "save-metadata", expectedRevision=3, stage="archived", tags=[], note="overwrite"
+    )
+    assert denied["status"] == 404
+    assert metadata_call(database, uid)["metadata"] == current
+    pending = account(database)
+    assert metadata_call(database, pending)["status"] == 403
+    with psycopg.connect(database) as conn:
+        conn.execute("set local role authenticated")
+        assert (
+            conn.execute("select public.viabil_study_metadata('get-metadata','{}')").fetchone()[0]["status"]
+            == 401
+        )
+    with psycopg.connect(database) as conn:
+        conn.execute("set local role authenticated")
+        with pytest.raises(psycopg.errors.InsufficientPrivilege):
+            conn.execute("select metadata from viabil_private.studies")
+
+
+@pytest.mark.parametrize("revision", [0, 1])
+def test_metadata_atomic_conflict_including_legacy_first_write(database, revision):
+    from threading import Barrier
+
+    uid = account(database, approved=True, admin=True)
+    original = call(database, uid, "save-study", study("metadata-lot"))["study"]
+    if revision:
+        metadata_call(
+            database, uid, "save-metadata", expectedRevision=0, stage="triage", tags=[], note="initial"
+        )
+    barrier = Barrier(2)
+
+    def save(label):
+        barrier.wait()
+        return metadata_call(
+            database,
+            uid,
+            "save-metadata",
+            expectedRevision=revision,
+            stage="in_study",
+            tags=[label],
+            note=label,
+        )
+
+    with ThreadPoolExecutor(max_workers=2) as pool:
+        results = list(pool.map(save, ("one", "two")))
+    assert sum("metadata" in result for result in results) == 1
+    assert next(result for result in results if "error" in result)["code"] == "METADATA_CONFLICT"
+    winner = next(result["metadata"] for result in results if "metadata" in result)
+    assert winner["revision"] == revision + 1
+    assert metadata_call(database, uid)["metadata"] == winner
+    actual = call(database, uid, "study", {"id": "metadata-lot"})["study"]
+    assert {key: value for key, value in actual.items() if key != "metadata"} == {
+        key: value for key, value in original.items() if key != "metadata"
+    }
+
+
+@pytest.mark.parametrize(
+    "changes",
+    [
+        {"stage": "invalid"},
+        {"stage": []},
+        {"expectedRevision": True},
+        {"expectedRevision": -1},
+        {"expectedRevision": 1.1},
+        {"expectedRevision": "0"},
+        {"expectedRevision": 9007199254740991},
+        {"tags": [""]},
+        {"tags": [" "]},
+        {"tags": [1]},
+        {"tags": ["a" * 33]},
+        {"tags": ["a"] * 11},
+        {"tags": None},
+        {"note": None},
+        {"note": "a" * 1001},
+    ],
+)
+def test_metadata_rpc_validates_direct_clients(database, changes):
+    uid = account(database, approved=True, admin=True)
+    call(database, uid, "save-study", study("metadata-lot"))
+    data = {"expectedRevision": 0, "stage": "triage", "tags": [], "note": "", **changes}
+    result = metadata_call(database, uid, "save-metadata", **data)
+    assert result["status"] == 400 and result["code"] == "INVALID_METADATA", result
+    assert metadata_call(database, uid)["metadata"]["revision"] == 0
+
+
+def test_metadata_additive_migration_with_existing_study(database):
+    from psycopg.conninfo import make_conninfo
+
+    name = "legacy_" + uuid4().hex
+    with psycopg.connect(database, autocommit=True) as conn:
+        conn.execute(f'create database "{name}"')
+    legacy_database = make_conninfo(database, dbname=name)
+    try:
+        with psycopg.connect(legacy_database, autocommit=True) as conn:
+            conn.execute("""
+                create schema auth;
+                create table auth.users(id uuid primary key, email text, email_confirmed_at timestamptz, raw_user_meta_data jsonb);
+                create table auth.identities(user_id uuid references auth.users(id), provider text);
+                create function auth.uid() returns uuid language sql stable as
+                  $$ select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid $$;
+            """)
+            conn.execute((ROOT / "supabase/migrations/202610300001_pages.sql").read_text(), prepare=False)
+        uid = account(legacy_database, approved=True, admin=True)
+        historic = study("metadata-lot")
+        historic["scenario"]["profit"] = 101
+        saved = call(legacy_database, uid, "save-study", historic)["study"]
+        with psycopg.connect(legacy_database, autocommit=True) as conn:
+            conn.execute(
+                (ROOT / "supabase/migrations/202611050001_report_assumptions.sql").read_text(), prepare=False
+            )
+        assert "metadata" not in saved
+        migration = ROOT / "supabase/migrations/202611060001_study_metadata.sql"
+        with psycopg.connect(legacy_database, autocommit=True) as conn:
+            conn.execute(migration.read_text(), prepare=False)
+        current = call(legacy_database, uid, "study", {"id": "metadata-lot"})["study"]
+        assert {key: value for key, value in current.items() if key != "metadata"} == saved
+        assert current["metadata"]["revision"] == 0 and current["metadata"]["stage"] == "triage"
+        updated = metadata_call(
+            legacy_database,
+            uid,
+            "save-metadata",
+            expectedRevision=0,
+            stage="in_study",
+            tags=["😀" * 32],
+            note="Nota persistida",
+        )
+        assert updated["metadata"]["revision"] == 1
+        with psycopg.connect(legacy_database, autocommit=True) as conn:
+            conn.execute(migration.read_text(), prepare=False)
+        assert metadata_call(legacy_database, uid) == updated
+    finally:
+        with psycopg.connect(database, autocommit=True) as conn:
+            conn.execute(f'drop database "{name}"')
+
+
+def test_rejected_metadata_retains_rate_accounting(database):
+    uid = account(database, approved=True, admin=True)
+    call(database, uid, "save-study", study("metadata-lot"))
+    result = metadata_call(
+        database, uid, "save-metadata", expectedRevision=False, stage="triage", tags=[], note=""
+    )
+    assert result["code"] == "INVALID_METADATA"
+    with psycopg.connect(database) as conn:
+        count = conn.execute(
+            "select count from viabil_private.rate_limits where user_id=%s", (uid,)
+        ).fetchone()[0]
+        assert count == 3  # Session creation, scenario save and rejected metadata.

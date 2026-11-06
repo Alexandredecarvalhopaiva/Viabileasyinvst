@@ -206,3 +206,24 @@ test('Refreshing a browser-only password session does not turn it into a persist
   assert.equal(res.status,200);
   assert.ok(res.headers.getSetCookie().every(value=>!value.includes('Max-Age=')));
 });
+
+test('Metadata routes forward the user JWT to the dedicated RPC and preserve conflict codes', async () => {
+  const metadata = {schemaVersion: 1, stage: 'triage', tags: [], note: '', revision: 0, updatedAt: null};
+  for (const method of ['GET', 'PUT']) {
+    const calls = [];
+    const result = await supabaseAPI(request('/api/studies/tree/metadata', method, method === 'PUT'
+      ? {expectedRevision: 0, stage: 'in_study', tags: ['prospecção'], note: ''} : undefined), env, async (url, options) => {
+      if (url.endsWith('/user')) return response(identity);
+      calls.push({url, options});
+      return response(method === 'GET' ? {metadata} : {status: 409, code: 'METADATA_CONFLICT', error: 'Conflito'});
+    });
+    assert.equal(result.status, method === 'GET' ? 200 : 409);
+    assert.equal(calls.length, 1);
+    assert.ok(calls[0].url.endsWith('/rpc/viabil_study_metadata'));
+    assert.equal(calls[0].options.headers.Authorization, 'Bearer synthetic.jwt.access');
+    const body = JSON.parse(calls[0].options.body);
+    assert.equal(body.operation, method === 'GET' ? 'get-metadata' : 'save-metadata');
+    assert.equal(body.payload.id, 'tree');
+    assert.deepEqual((await result.json())[method === 'GET' ? 'metadata' : 'code'], method === 'GET' ? metadata : 'METADATA_CONFLICT');
+  }
+});

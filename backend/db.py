@@ -86,6 +86,7 @@ studies = table(
     Column("payload", Text, nullable=False),
     Column("updated_at", BigInteger, nullable=False),
     Column("last_opened_at", BigInteger),
+    Column("metadata", Text, nullable=False, server_default="{}"),
 )
 documents = table(
     "documents",
@@ -191,6 +192,8 @@ class Database:
                     execute(conn, f"ALTER TABLE users ADD COLUMN {name} {definition}")
             if "last_opened_at" not in {c["name"] for c in inspect(conn).get_columns("studies")}:
                 execute(conn, "ALTER TABLE studies ADD COLUMN last_opened_at BIGINT")
+            if "metadata" not in {c["name"] for c in inspect(conn).get_columns("studies")}:
+                execute(conn, "ALTER TABLE studies ADD COLUMN metadata TEXT NOT NULL DEFAULT '{}'")
             execute(conn, "CREATE INDEX IF NOT EXISTS documents_lot ON documents(user_id,lot_id,created_at)")
             execute(
                 conn,
@@ -201,6 +204,7 @@ class Database:
                 "CREATE INDEX IF NOT EXISTS credit_ledger_user_date ON credit_ledger(user_id,created_at)",
             )
             execute(conn, "INSERT INTO schema_versions(version) VALUES(1) ON CONFLICT(version) DO NOTHING")
+            execute(conn, "INSERT INTO schema_versions(version) VALUES(2) ON CONFLICT(version) DO NOTHING")
         if self.sqlite and self.engine.url.database != ":memory:":
             from pathlib import Path
 

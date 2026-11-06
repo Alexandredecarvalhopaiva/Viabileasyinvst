@@ -165,6 +165,39 @@ O perfil do Auth e a aprovação do aplicativo são controles distintos.
 
 ## Testes e limites
 
+### Organização de estudos da CPTECH-7
+
+Aplicar `supabase/migrations/202611060001_study_metadata.sql` após as migrações
+anteriores e antes de disponibilizar a interface que edita a organização. A
+migração adiciona uma coluna, um trigger de compatibilidade e a RPC
+`viabil_study_metadata`. Pode ser reaplicada. Estudos anteriores recebem etapa
+em triagem, etiquetas e nota vazias e revisão zero. Clientes anteriores
+continuam salvando o cenário com os metadados conservados pelo banco.
+
+As rotas `GET` e `PUT /api/studies/{id}/metadata` exigem a conta aprovada dona
+do estudo. O `PUT` recebe `expectedRevision`, `stage`, `tags` e `note`. Uma
+gravação concorrente retorna `409 METADATA_CONFLICT`; a interface conserva o
+rascunho e permite carregar a revisão atual antes de reaplicar a proposta.
+As etapas são `triage`, `in_study`, `waiting_information` e `archived`. Até 10
+etiquetas de 32 caracteres e nota opcional de 1.000 caracteres são validados
+no servidor. Organizar, arquivar e restaurar funcionam com saldo zero.
+
+O backend Python aplica sua migração aditiva durante a inicialização e mantém
+os metadados separados do payload do cenário. As verificações específicas
+podem ser repetidas em ambiente descartável com os comandos abaixo.
+
+```sh
+.venv/bin/python -m pytest -q tests/python/test_study_metadata.py tests/python/test_migration.py
+.venv/bin/python -m pytest -q tests/supabase/test_database.py
+node --test test/study-library.test.cjs test/pages-supabase.test.mjs
+# Opcional, após instalar playwright e seu Chromium no ambiente de teste.
+LIBRARY_QA_OUTPUT=./qa-output .venv/bin/python -m pytest -q tests/browser/test_library.py
+```
+
+Uma reversão de interface/API pode conservar a coluna e a RPC aditivas para
+preservar a organização já gravada. A aprovação da entrega deve identificar
+se a migração foi aplicada e se o fluxo autenticado foi conferido no destino.
+
 ```sh
 node --test test/pages-supabase.test.mjs test/pages-proxy.test.mjs
 .venv/bin/python -m pytest -q tests/supabase/test_database.py

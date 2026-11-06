@@ -68,7 +68,8 @@ export async function supabaseAPI(request, env, fetcher = fetch) {
       return {ok: result.ok, status: result.status, data};
     };
     const rpc = async (operation, payload, token) => {
-      const result = await provider(operation === 'ready' ? '/rest/v1/rpc/viabil_ready' : '/rest/v1/rpc/viabil_api',
+      const endpoint = ['get-metadata', 'save-metadata'].includes(operation) ? '/rest/v1/rpc/viabil_study_metadata' : '/rest/v1/rpc/viabil_api';
+      const result = await provider(operation === 'ready' ? '/rest/v1/rpc/viabil_ready' : endpoint,
         {method: 'POST', token, body: operation === 'ready' ? {} : {operation, payload}});
       if (!result.ok || !result.data) throw new APIError(result.status === 401 ? 401 : 503, 'Não foi possível acessar os dados. Tente novamente.');
       if (result.data.error) throw new APIError(result.data.status || 400, result.data.error, result.data.code);
@@ -171,6 +172,8 @@ export async function supabaseAPI(request, env, fetcher = fetch) {
       const routes = [
         ['GET', /^\/api\/usage$/, 'usage'], ['GET', /^\/api\/studies$/, 'studies'],
         ['GET', /^\/api\/studies\/([\w-]{1,80})$/, 'study'],
+        ['GET', /^\/api\/studies\/([\w-]{1,80})\/metadata$/, 'get-metadata'],
+        ['PUT', /^\/api\/studies\/([\w-]{1,80})\/metadata$/, 'save-metadata'],
         ['PUT', /^\/api\/studies\/([\w-]{1,80})$/, 'save-study'],
         ['POST', /^\/api\/studies\/([\w-]{1,80})\/open$/, 'open-study'],
         ['DELETE', /^\/api\/studies\/([\w-]{1,80})$/, 'delete-study'],
