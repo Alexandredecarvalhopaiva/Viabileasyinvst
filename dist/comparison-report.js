@@ -74,15 +74,11 @@ function comparisonInputs(alternative) {
   const scenario = {...state, floors: alternative.floors, to: alternative.to, regimeVariant: alternative.regimeVariant || 'general'};
   return EngineResults.payload({...state.lot, geometry: getLotGeometry(state.lot)}, scenario);
 }
+function comparisonContext(data) {
+  return JSON.stringify(data.map(item => [item.id, comparisonInputs(item), item]));
+}
 function comparisonStale(selection, data) {
-  if (selection.draftDirty) return true;
-  return ['A', 'B'].some(slot => {
-    const snapshot = selection[slot];
-    if (!snapshot) return false;
-    const current = data.find(item => item.id === snapshot.id);
-    return !current || snapshot.revision !== JSON.stringify(comparisonInputs(current)) ||
-      JSON.stringify(snapshot.result) !== JSON.stringify(current);
-  });
+  return Boolean(selection.draftDirty || selection.context !== comparisonContext(data));
 }
 function comparisonPanel(data) {
   const selection = state.comparisonSelection || {};
@@ -91,7 +87,8 @@ function comparisonPanel(data) {
   return `<section class="panel section-space comparison-panel" aria-label="Relatório comparativo"><h2>Selecionar duas alternativas</h2>
     <p>Escolha A e B e confirme a captura. Edições posteriores exigem atualizar a seleção.</p>
     <div class="comparison-controls">${['A', 'B'].map((slot, index) => `<label for="comparison-${slot}">Alternativa ${slot}<select id="comparison-${slot}" data-comparison-slot="${slot}">${data.map((item, position) => `<option value="${esc(item.id)}" ${((selection.draft?.[slot] || selection[slot]?.id) === item.id || !selection.draft?.[slot] && !selection[slot] && position === index) ? 'selected' : ''}>${esc(item.name)}</option>`).join('')}</select></label>`).join('')}
-    <button class="btn" type="button" data-comparison-action="capture">Atualizar seleção A / B</button></div>
+    <button class="btn" type="button" data-comparison-action="capture">Atualizar seleção A / B</button>
+    ${['A', 'B'].map(slot => `<button class="btn" type="button" data-comparison-action="capture-${slot}" ${selection.report ? '' : 'disabled'}>Atualizar somente ${slot}</button>`).join('')}</div>
     <p role="status">${stale ? 'Seleção desatualizada. A escolha, o terreno, as premissas ou a base mudaram. Atualize A / B para exportar.' : selection.report ? 'Seleção capturada. Tela, impressão e JSON usam os mesmos resultados.' : 'Aguardando confirmação das duas alternativas.'}</p>
     <div class="comparison-actions"><button class="btn" type="button" data-comparison-action="print" ${ready ? '' : 'disabled'}>Imprimir comparação / salvar PDF</button>
     <button class="btn" type="button" data-comparison-action="json" ${ready ? '' : 'disabled'}>Exportar comparação JSON</button></div>
@@ -102,13 +99,15 @@ if (typeof document !== 'undefined') document.addEventListener('click', event =>
   if (!button || !guardSelection()) return;
   try {
     const data = scenarioData();
-    if (button.dataset.comparisonAction === 'capture') {
-      const selected = {};
-      for (const slot of ['A', 'B']) {
+    if (button.dataset.comparisonAction.startsWith('capture')) {
+      const selected = {A: state.comparisonSelection?.A, B: state.comparisonSelection?.B};
+      const slots = button.dataset.comparisonAction === 'capture' ? ['A', 'B'] : [button.dataset.comparisonAction.slice(-1)];
+      for (const slot of slots) {
         const alternative = data.find(item => item.id === document.getElementById(`comparison-${slot}`).value);
         selected[slot] = ComparisonReport.capture(alternative.id, alternative.name, comparisonInputs(alternative), alternative);
       }
       selected.report = ComparisonReport.manifest(selected.A, selected.B);
+      selected.context = comparisonContext(data);
       state.comparisonSelection = selected;
       render();
       document.querySelector('[data-comparison-action="capture"]')?.focus();
